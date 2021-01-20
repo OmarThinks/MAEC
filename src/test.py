@@ -590,7 +590,7 @@ class MAECTestCase(unittest.TestCase):
 		validation = validate_specific(input_value="abc",
 			input_name_string="formatting",input_range=["png","jpg"])
 		self.assertEqual(validation,{"case":2,"result":
-			{"description":"abc is not allowed image format",
+			{"description":"abc is not allowed formatting",
 			"status":422}})
 		print("Test b_7_1: validate_specific:")
 
@@ -724,13 +724,15 @@ class MAECTestCase(unittest.TestCase):
 		print("Test b_8_14: validate__must input: correct base64")
 
 	def test_b_8_015_validate__must(self):
-		validation = validate__must(input="png",type="frmt",
-			input_name_string="formatting")
+		validation = validate__must(input="png",input_name_string="formatting"
+			,type="spfc",
+			input_range=["png","jpg"])
 		self.assertEqual(validation  ,{"case":True,"result":"png"})
-		validation = validate__must(input="abc",type="frmt",
-			input_name_string="formatting")
+		validation = validate__must(input="abc",input_name_string="formatting",
+			type="spfc",
+			input_range=["png","jpg"])
 		self.assertEqual(validation  ,{"case":False,"result":
-			{"description":"abc is not allowed image format","status":422}})
+			{"description":"abc is not allowed formatting","status":422}})
 		print("Test b_8_14: validate__must input: correct base64")
 
 
