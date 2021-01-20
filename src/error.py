@@ -7,7 +7,14 @@ from flask import jsonify
 
 
 
-def my_error(status=404 ,description=""):
+def my_error(status=404 ,description="",fullError=""):
+	#In case the error was totally ready
+	if fullError != "":
+		status = fullError["status"]
+		description = fullError["description"]
+		return jsonify({"success": False, 
+		"error": status,"message": description}),status
+
 	if status not in [400,401,403,404,405,422,500]:
 		raise Exception("status is "+str(status)
 			+ ", not in [[400,401,403,404,405,422,500]]")
@@ -36,8 +43,7 @@ jsoinfyError
 
 """
 def jsonifyError(input_dict):
-	return jsonify(error_dict = {"success": False, 
-		"error": input_dict["status"],"message": input_dict["description"],}),status
+	
 
 
 	
