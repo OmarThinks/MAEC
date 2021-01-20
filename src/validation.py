@@ -208,13 +208,15 @@ def validate_base64(
 			"description":input_name_string+
 			" can not be converted to base64"}} 
 
-def validate_specific(input_value,input_name_string,input_array):
+def validate_specific(input_value,input_name_string,input_range):
 	if input_value == None: return {"case":3,"result":None}
-	
-	for elem in input_array:
+	try:
+		for elem in input_range:
 		if type(input_value) == type(elem):
 			if input_value == elem:
 				return {"case":1,"result":input_formatting}
+	except Exception as e:
+		pass
 	return {"case":2,"result":{"status":422, 
 			"description":str(input_value)+" is not allowed "+str(input_name_string)}} 
 		
@@ -232,11 +234,11 @@ type:
 	- "f" : Float
 	- "b" : Boolean
 	- "b64" : base64
-	- "frmt": Image Formatting
+	- "spfc": specific
 
 """
 def validate__must(input,type,
-	input_name_string,maximum=0,minimum=0):
+	input_name_string,maximum=0,minimum=0,input_range=[]):
 	validation=0;
 	if type == "s":
 		validation= validate_string(
@@ -258,12 +260,13 @@ def validate__must(input,type,
 		validation = validate_base64(
 			input_string=input,input_name_string=input_name_string,
 			maximum_length=maximum,minimum_length=minimum)
-	elif type == "frmt":
-		validation = validate_formatting(input_formatting=input)
+	elif type == "spfc":
+		validation = validate_specific(input_value=input,
+			input_name_string=input_name_string,input_range=input_range)
 	else:
 		raise Exception("validate_must: type is"+str(type)
 			+ "and it can not be like this, it should be: "+
-			"'s', 'i', 'f' or 'b'")
+			"'s', 'i', 'f', 'b', 'b64' or 'spfc'")
 	if validation["case"] == 1:
 		# Success: correct data type
 		return {"case":True,
