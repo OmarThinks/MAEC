@@ -1,7 +1,34 @@
+"""
+reciever:
+
+INPUTS:
+	- request: the request variable
+	- inputs: a list of strings containing the names of the predicted
+	 	variables passed in the request body
+FUNCTION:
+	- This function recievs the inputs of the endpoint, that are as a JSON request body
+OUTPUTS:
+	- a dictionary with these values {"success": ... , "result": ... }
+		- "success": a boolean: True or False
+			It represents whther the function was able to receve inputs or not
+		- "result":
+			- if success == True: a dictionary of the expected variables
+				Example: {"a":1, "b":2, "c":None}
+			- if success == False: dictionry of "status" code of failure and reason
+				Example: {"status":400,"description":"there is no request body"}
+- Example:
+	Please check the file "test_app.py" to see how it works
+	there is an endpoint called "reciever_test"
+
+
+
+"""
+
+
 def reciever(request, inputs):
 	toReturn = {}
 	if type(inputs) != type([]):
-		raise("MOAG:reciever:ERROR:"+
+		raise("MORG:reciever:ERROR:"+
 			" The 'inputs'' varbiale has a type of " + str(type(inputs)) +
 			", type of 'inputs' is supposed to be 'list'.")
 	for inputs_index in inputs:
