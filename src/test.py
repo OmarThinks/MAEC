@@ -6,33 +6,19 @@ import random
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func 
-
-
-try:
-	from src import SECRET
-	from src import EXPIRATION_AFTER
-	from src import db
-	from .app import *
-	from .auth import *
-	from .models import (db,Product, Order, User)
-	from .functions import *
-except:
-	from __init__ import *
-	from app import *
-	from auth import *
-	from models import (db,Product, Order, User)
-	from functions import *
-
-
 from flask_cors import CORS
 from flask_migrate import Migrate 
-from flask_sqlalchemy import SQLAlchemy
-import random
-import jwt
 import base64
 
+try:
+	from __init__ import *
+except:
+	from src import *
 
-from datetime import timedelta,date,datetime,time
+
+
+
+
 """
 a:models
 a_01=user
