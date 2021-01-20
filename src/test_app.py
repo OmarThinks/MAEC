@@ -147,8 +147,7 @@ Tests: test_02_populate_test
 			else:
 				return my_error(fullError=result["result"])
 		except Exception as e:
-			return (my_error(status=500,description=str(e)))
-
+			return my_error(fullError={"status":500,"description":str(e)})
 
 
 
