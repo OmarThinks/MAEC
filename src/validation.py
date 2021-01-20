@@ -214,7 +214,7 @@ def validate_specific(input_value,input_name_string,input_range):
 		for elem in input_range:
 			if type(input_value) == type(elem):
 				if input_value == elem:
-					return {"case":1,"result":input_formatting}
+					return {"case":1,"result":input_value}
 	except Exception as e:
 		pass
 	return {"case":2,"result":{"status":422, 
