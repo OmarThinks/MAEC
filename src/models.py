@@ -98,3 +98,56 @@ class Product(db.Model):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def db_drop_and_create_all():
+    db.drop_all()
+    db.create_all()
+
+
+
+def populate_tables():
+    db_drop_and_create_all()
+
+    products = list()
+    products.append(Product(
+        name="Labtop", price=300))
+    products.append(Product(
+        name="Mobile", price=100))
+    products.append(Product(
+        name="Candy", price=.5))
+    products.append(Product(
+        name="Table", price=150))
+    products.append(Product(
+        name="Keyboard", price=5))
+    products.append(Product(
+        name="Mouse", price=4))
+    db.session.add_all(products)
+    db.session.commit()
+
+
