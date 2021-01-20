@@ -22,11 +22,7 @@ except:
 	from src import *
 
 
-if "SECRET" in os.environ:
-	SECRET = os.environ["SECRET"]
 
-
-MAX_IMAGE_LETTERS=250000
 
 
 
@@ -74,7 +70,6 @@ class config_test:
 
 def create_app(DOCKER=False,testing=TESTING):
 	# create and configure the app
-	SECRET
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
 	app.config.from_object(config_test)
@@ -85,7 +80,7 @@ def create_app(DOCKER=False,testing=TESTING):
 		db.create_all()
 	except:
 		pass
-	populate_tables()
+	#populate_tables()
 	
 
 	CORS(app,resources={r"*":{"origins":"*"}})
