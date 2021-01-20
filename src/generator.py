@@ -1,3 +1,5 @@
+from flask import (Flask, 
+	request, abort, jsonify, Response,render_template)
 """
 reciever:
 
@@ -26,26 +28,33 @@ OUTPUTS:
 """
 
 
-def reciever(request, inputs):
+def reciever(input_request, inputs):
 	toReturn = {}
+	
+	#Validating that nputs is a list
 	if type(inputs) != type([]):
 		raise("MORG:reciever:ERROR:"+
 			" The 'inputs'' varbiale has a type of " + str(type(inputs)) +
 			", type of 'inputs' is supposed to be 'list'.")
+	#Validating that inputs is a list of strings
 	for inputs_index in inputs:
 		if type(inputs[inputs_index]) != str:
 			raise("MOAG:reciever:ERROR:"+
 			" The 'inputs'' varbiale is supposed to be a list of strings, " + 
 			"one of the elements was found to be "+str(type(inputs[inputs_index])))
+	#Validating that the request can be parsed to JSON
 	try:
-		body = request.get_json()
+		body = input_request.get_json()
 	except:
 		return {"success":False,"result":{"status":400, 
 			"description":"request body can not be parsed to json"}}
+	#Validating that there is a request body
 	try:
-		for inputs_index in inputs:
-			toReturn[inputs[inputs_index]] = body.get(inputs[inputs_index],None)
+		testing = body.get("testing",None)
 	except:
 		return {"success":False,"result":{"status":400, 
 			"description":"there is no request body"}}
+	#Finally, return values
+	for inputs_index in inputs:
+		toReturn[inputs[inputs_index]] = body.get(inputs[inputs_index],None)
 	return {"success":True,"result":toReturn}
