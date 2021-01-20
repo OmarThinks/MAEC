@@ -33,17 +33,4 @@ def my_error(status=404 ,description="",fullError=""):
 	
 	error_dict["description"] = description
 	return jsonify(error_dict),status
-
-
-
-
-
-"""
-jsoinfyError
-
-"""
-def jsonifyError(input_dict):
-	
-
-
 	
