@@ -136,6 +136,47 @@ Tests: test_01_clear_tables
 
 
 
+
+
+
+
+	@app.route("/reciever/<test_case_id>", methods=["POST"])
+	def reciever_test():
+		try:
+			return jsonify(reciever(request,["a","b","c"]))
+		except Exception as e:
+			return (my_error(status=500,description=str(e)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 
 
