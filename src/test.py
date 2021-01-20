@@ -737,6 +737,37 @@ class MAECTestCase(unittest.TestCase):
 
 
 
+	def test_c_0_0_0(self):
+		print("Here we start deep tests")
+		#Testing the function of route "get_categories"
+
+		"""response = self.client().get("/categories")
+		self.assertEqual(response.status_code,200)
+		data = json.loads(response.data)
+		self.assertEqual(data["success"],True)
+		self.assertIsNotNone(data["categories"])"""
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
