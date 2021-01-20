@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
-
+SECRET = "abc"
 try:
 	from .validaton import *
 	from .error import *
