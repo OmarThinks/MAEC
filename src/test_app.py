@@ -61,23 +61,14 @@ endpoints:
 """
 
 
-class config:
-	#SECRET_KEY=os.urandom(32)
-	SECRET_KEY=secrets.token_urlsafe(5000)
-	basedir = os.path.abspath(os.path.dirname(__file__))
-	DEBUG = False
-	SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
-		os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases/database.sqlite"))
-	SQLALCHEMY_TRACK_MODIFICATIONS= False
-
-
 class config_test:
 	#SECRET_KEY=os.urandom(32)
 	SECRET_KEY=secrets.token_urlsafe(5000)
 	basedir = os.path.abspath(os.path.dirname(__file__))
 	DEBUG = True
 	SQLALCHEMY_DATABASE_URI = "sqlite:///{}".format(
-		os.path.join(os.path.dirname(os.path.abspath(__file__)), "databases/test.sqlite"))
+		os.path.join(os.path.dirname(os.path.abspath(__file__)), 
+			"testing_databases/test.sqlite"))
 	SQLALCHEMY_TRACK_MODIFICATIONS= False
 
 
