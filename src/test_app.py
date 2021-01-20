@@ -146,34 +146,25 @@ Tests: test_01_clear_tables
 		This endpont is created to test the reciever endpoint
 		it will return the same exact return value of the reciever function
 		"""
-		#print(test_case_id,flush=True)
-		"""try:
-			body = request.get_json()
-		except:
-			return {"success":False,"result":{"status":400, 
-				"description":"request body can not be parsed to json"}}
-		try:
-			username = body.get("username",None)
-		except:
-			return {"success":False,"result":{"status":400, 
-				"description":"there is no request body"}}"""
-
 
 		inputs = []
-		if test_case_id == 1:
-			inputs == ["a","b","c"] 
-			#This is successful
-		if test_case_id == 2:
-			inputs == ["a","b",["1","2"]]
-			#Fail: There can not be an array inside an array
-		if test_case_id == 3:
-			inputs == ["1","c",3]
-			#Fail: Only stirngs are allowed
-		if test_case_id == 3:
+		if test_case_id == 1: #This is the first error
+			request = 1
+			#Fail: request should be of type flask.request
+		if test_case_id == 2: #This is second error
 			inputs == "This will fail"
 			#Fail: inputs should be a list of strings, not a string
+		if test_case_id == 3: #This is the third error (Example:1)
+			inputs == ["a","b",["1","2"]]
+			#Fail: There can not be an array inside an array
+		if test_case_id == 4: #This is the third error (Example:2)
+			inputs == ["1","c",3]
+			#Fail: Only stirngs are allowed
+		if test_case_id == 0: #This is successful
+			inputs == ["name","price","in_stock"] 
+			#This is successful
 		try:
-			result = reciever(input_request= 1,inputs=inputs)
+			result = reciever(input_request= request,inputs=inputs)
 			if result["success"]==True:
 				return jsonify(result["result"])
 			else:

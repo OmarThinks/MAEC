@@ -35,7 +35,7 @@ def reciever(input_request, inputs):
 	#vValidating that input_request has the type of flask.request
 	if type(input_request) != type(request):
 		raise Exception("MORG:reciever:ERROR: 'input_request' is supposed to be have "+
-			"the type of flask.request, but foud type of "+ 
+			"the type of flask.request, but found type of "+ 
 			str(type(input_request)))
 	#Validating that inputs is a list
 	if type(inputs) != type([]):
