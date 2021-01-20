@@ -173,7 +173,7 @@ Tests: test_01_clear_tables
 			inputs == "This will fail"
 			#Fail: inputs should be a list of strings, not a string
 		try:
-			result = reciever(input_request= request,inputs=inputs)
+			result = reciever(input_request= 1,inputs=inputs)
 			if result["success"]==True:
 				return jsonify(result["result"])
 			else:

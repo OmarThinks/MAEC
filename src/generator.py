@@ -30,16 +30,20 @@ OUTPUTS:
 
 def reciever(input_request, inputs):
 	toReturn = {}
-	
+	if type(input_request) != type(request):
+		raise Exception("MORG:reciever:ERROR: 'input_request' is supposed to be have "+
+			"the type of request, from Flask, but foud type of "+ 
+			str(type(input_request)))
+
 	#Validating that nputs is a list
 	if type(inputs) != type([]):
-		raise("MORG:reciever:ERROR:"+
+		raise Exception("MORG:reciever:ERROR:"+
 			" The 'inputs'' varbiale has a type of " + str(type(inputs)) +
 			", type of 'inputs' is supposed to be 'list'.")
 	#Validating that inputs is a list of strings
 	for inputs_index in inputs:
 		if type(inputs[inputs_index]) != str:
-			raise("MOAG:reciever:ERROR:"+
+			raise Exception("MOAG:reciever:ERROR:"+
 			" The 'inputs'' varbiale is supposed to be a list of strings, " + 
 			"one of the elements was found to be "+str(type(inputs[inputs_index])))
 	#Validating that the request can be parsed to JSON
