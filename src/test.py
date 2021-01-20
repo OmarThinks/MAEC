@@ -29,7 +29,7 @@ b:validation Functions
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
-class CantiinTestCase(unittest.TestCase):
+class MAECTestCase(unittest.TestCase):
 	"""This class represents the trivia test case"""
 
 	def setUp(self):
@@ -52,6 +52,10 @@ class CantiinTestCase(unittest.TestCase):
 
 
 
+
+
+
+
 	def test_b_01_001_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id=1,
@@ -61,7 +65,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(all_products.get(1),
 			validation["result"])
 		print("Test b_1_1: validate_model_id: Product 1")
-
 
 	def test_b_01_002_validate_model_id(self):
 		all_products = Product.query
@@ -73,7 +76,6 @@ class CantiinTestCase(unittest.TestCase):
 			validation["result"])
 		print("Test b_1_2: validate_model_id: Product 6")
 
-
 	def test_b_01_003_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id=5.5,
@@ -84,7 +86,6 @@ class CantiinTestCase(unittest.TestCase):
 			validation["result"])
 		print("Test b_1_3: validate_model_id: Product 5.5")
 
-
 	def test_b_01_004_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id="3",
@@ -94,7 +95,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(all_products.get(3),
 			validation["result"])
 		print("Test b_1_4: validate_model_id: Product '3'")
-
 
 	def test_b_01_005_validate_model_id(self):
 		all_products = Product.query
@@ -109,7 +109,6 @@ class CantiinTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_1_5: validate_model_id: Product i")
 
-
 	def test_b_01_006_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id=0,
@@ -123,7 +122,6 @@ class CantiinTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_1_6: validate_model_id: Product 0")
 
-
 	def test_b_01_007_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id=-1,
@@ -135,7 +133,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual(422
 			,validation["result"]["status"])
 		print("Test b_1_7: validate_model_id: Product -1")
-
 
 	def test_b_01_008_validate_model_id(self):
 		all_products = Product.query
@@ -149,7 +146,6 @@ class CantiinTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_1_8: validate_model_id: Product 20")
 
-
 	def test_b_01_009_validate_model_id(self):
 		all_products = Product.query
 		validation = validate_model_id(input_id=None,
@@ -159,7 +155,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual({'status': 400, 'description': 'product is missing'},
 			validation["result"])
 		print("Test b_1_9: validate_model_id: Product None")
-
 
 	def test_b_01_010_validate_model_id(self):
 		all_orders = Order.query
@@ -192,7 +187,6 @@ class CantiinTestCase(unittest.TestCase):
 			validation["result"])
 		print("Test b_2_1: validate_string: 'to validate'")
 
-
 	def test_b_02_002_validate_string(self):
 		to_validate = 1
 		validation = validate_string(
@@ -202,7 +196,6 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual("1",
 			validation["result"])
 		print("Test b_2_2: validate_string: '1'")
-
 
 	def test_b_02_003_validate_string(self):
 		to_validate = "More Than 3"
@@ -216,7 +209,6 @@ class CantiinTestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_2_3: validate_string:"+
 			" More than max length")
-
 
 	def test_b_02_004_validate_string(self):
 		to_validate = None
@@ -530,6 +522,72 @@ class CantiinTestCase(unittest.TestCase):
 		print("Test b_5_8: validate_float: None")
 
 
+	def test_b_6_001_validate_base64(self):
+		validation = validate_base64(input_string=None,
+			input_name_string="input",maximum_length=4,
+			minimum_length=0)
+		self.assertEqual(validation,{"case":3,"result":None})
+		
+		validation = validate_base64(input_string=5,
+			input_name_string="b64",maximum_length=4,
+			minimum_length=0)
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"b64 is not a string","status":400}})
+
+		validation = validate_base64(input_string="abcde",
+			input_name_string="b64",maximum_length=4,
+			minimum_length=0)
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"b64 length can not be more than 4 characters"
+			,"status":422}})
+		
+		validation = validate_base64(input_string="a",
+			input_name_string="b64",maximum_length=4,
+			minimum_length=3)
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"b64 length can not be less than 3 characters"
+			,"status":422}})
+		
+		validation = validate_base64(input_string="abcd",
+			input_name_string="b64",maximum_length=4,
+			minimum_length=3)
+		self.assertEqual(validation,{"case":1,"result":"abcd"})
+		
+		validation = validate_base64(input_string="abcde",
+			input_name_string="b64",maximum_length=8,
+			minimum_length=3)
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"b64 can not be converted to base64"
+			,"status":422}})
+		
+		validation = validate_base64(input_string="abc*",
+			input_name_string="b64",maximum_length=8,
+			minimum_length=3)
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"b64 can not be converted to base64"
+			,"status":422}})
+		
+		validation = validate_base64(input_string="abcd",
+			input_name_string="b64",maximum_length=8,
+			minimum_length=3)
+		self.assertEqual(validation,{"case":1,"result":"abcd"})
+		print("Test b_6_1: validate_base64: None")
+
+
+	def test_b_7_001_validate_formatting(self):		
+		validation = validate_formatting(input_formatting="png")
+		self.assertEqual(validation,{"case":1,"result":"png"})
+		validation = validate_formatting(input_formatting="a")
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"minimum formatting length is 2 letters",
+			"status":422}})
+		validation = validate_formatting(input_formatting="abc")
+		self.assertEqual(validation,{"case":2,"result":
+			{"description":"abc is not allowed image format",
+			"status":422}})
+		print("Test b_7_1: validate_formatting:")
+
+
 
 
 
@@ -642,9 +700,34 @@ class CantiinTestCase(unittest.TestCase):
 		self.assertEqual("my_data is missing"
 			,validation["result"]["description"])
 		self.assertEqual(400
-			,validation["result"]["status"])
-		
+			,validation["result"]["status"])	
 		print("Test b_6_12: validate__must wrong input: None str")
+
+	def test_b_6_013_validate__must(self):
+		validation = validate__must(input="abcde",type="b64",
+			input_name_string="b64",maximum=1000,minimum=-5)
+		self.assertEqual(validation  ,{"case":False,"result":{"description":
+		"b64 can not be converted to base64","status":422}})
+		print("Test b_6_13: validate__must wrong input: wrong base64")
+
+	def test_b_6_014_validate__must(self):
+		validation = validate__must(input="abcd/+/=",type="b64",
+			input_name_string="b64",maximum=1000,minimum=-5)
+		self.assertEqual(validation  ,{"case":True,"result":"abcd/+/="})
+		print("Test b_6_14: validate__must input: correct base64")
+
+	def test_b_6_015_validate__must(self):
+		validation = validate__must(input="png",type="frmt",
+			input_name_string="formatting")
+		self.assertEqual(validation  ,{"case":True,"result":"png"})
+		validation = validate__must(input="abc",type="frmt",
+			input_name_string="formatting")
+		self.assertEqual(validation  ,{"case":False,"result":
+			{"description":"abc is not allowed image format","status":422}})
+		print("Test b_6_14: validate__must input: correct base64")
+
+
+
 
 
 
