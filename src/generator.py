@@ -14,6 +14,7 @@ OUTPUTS:
 		- "result":
 			- if success == True: a dictionary of the expected variables
 				Example: {"a":1, "b":2, "c":None}
+				None:means that this varaiable was not recieved successfully
 			- if success == False: dictionry of "status" code of failure and reason
 				Example: {"status":400,"description":"there is no request body"}
 - Example:

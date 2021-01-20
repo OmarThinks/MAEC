@@ -155,7 +155,10 @@ Tests: test_01_clear_tables
 			#Fail: There can not be an array inside an array
 		if test_case_id == 3:
 			inputs == ["1","c",3]
-			#Success: Only stirngs are allowed
+			#Fail: Only stirngs are allowed
+		if test_case_id == 3:
+			inputs == "This will fail"
+			#Fail: inputs should be a list of strings, not a string
 		try:
 			return jsonify(reciever(request,inputs))
 		except Exception as e:
