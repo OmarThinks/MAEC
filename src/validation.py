@@ -1,3 +1,14 @@
+
+try:
+	from __init__ import *
+except:
+	from src import *
+
+
+
+
+
+
 import json
 from flask import Flask, request, jsonify, abort
 import base64
