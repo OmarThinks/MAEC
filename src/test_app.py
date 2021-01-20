@@ -146,7 +146,6 @@ Tests: test_01_clear_tables
 		This endpont is created to test the reciever endpoint
 		it will return the same exact return value of the reciever function
 		"""
-
 		inputs = []
 		if test_case_id == 1: #This is the first error
 			request = 1
@@ -161,15 +160,14 @@ Tests: test_01_clear_tables
 			inputs == ["1","c",3]
 			#Fail: Only stirngs are allowed
 		if test_case_id == 0: #This is successful
-			inputs == ["name","price","in_stock"] 
+			inputs == ["name","price","in_stock"]
 			#This is successful
 		try:
 			result = reciever(input_request= request,inputs=inputs)
 			if result["success"]==True:
 				return jsonify(result["result"])
 			else:
-				return my_error(status=result["result"]["status"],
-					description=result["result"]["description"])
+				return my_error(fullError=result["result"])
 		except Exception as e:
 			return (my_error(status=500,description=str(e)))
 
