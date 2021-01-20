@@ -739,13 +739,16 @@ class MAECTestCase(unittest.TestCase):
 
 	def test_c_0_0_0(self):
 		print("Here we start deep tests")
-		#Testing the function of route "get_categories"
 
-		"""response = self.client().get("/categories")
-		self.assertEqual(response.status_code,200)
+	def test_c_1_1_1_reciever_tests(self):
+		#Testing the function of route "reciever/int"
+		response = self.client().post("/reciever/1")
+		#Expected to fail, there is no request body
 		data = json.loads(response.data)
+		print(data)
+		self.assertEqual(response.status_code,400)
 		self.assertEqual(data["success"],True)
-		self.assertIsNotNone(data["categories"])"""
+		self.assertIsNotNone(data["result"],"there is no request body")
 		
 
 

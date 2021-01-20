@@ -48,4 +48,4 @@ def reciever(request, inputs):
 	except:
 		return {"success":False,"result":{"status":400, 
 			"description":"there is no request body"}}
-	retrun {"success":True,"result":toReturn}
+	return {"success":True,"result":toReturn}
