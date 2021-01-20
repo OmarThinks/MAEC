@@ -117,30 +117,8 @@ Tests: test_02_populate_test
 
 
 
-	"""
-	2)	"/populate" ->--------->"GET" , "OPTIONS"
-	"""
-	@app.route("/populate", methods=["GET"])
-	def populate_all_tables():
-		test_only()
-		#This endpoint will clear all the data in the database and 
-		#populate with new data
-		try:
-			populate_tables()
-			return jsonify({"success":True})
-		except:
-			abort(422) #Unprocessible
-		"""
-Tests: test_01_clear_tables
-		"""
 
-
-
-
-
-
-
-	@app.route("/reciever/<int:test_case_id>", methods=["POST"])
+	@app.route("/reciever_test/<int:test_case_id>", methods=["POST"])
 	def reciever_test(test_case_id):
 		"""
 		This endpont is created to test the reciever endpoint
@@ -176,6 +154,50 @@ Tests: test_01_clear_tables
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	"""
+	2)	"/populate" ->--------->"GET" , "OPTIONS"
+	"""
+	@app.route("/populate", methods=["GET"])
+	def populate_all_tables():
+		test_only()
+		#This endpoint will clear all the data in the database and 
+		#populate with new data
+		try:
+			populate_tables()
+			return jsonify({"success":True})
+		except:
+			abort(422) #Unprocessible
+		"""
+Tests: test_01_clear_tables
+		"""
 
 
 

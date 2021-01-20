@@ -742,7 +742,7 @@ class MAECTestCase(unittest.TestCase):
 
 	def test_c_1_0_1_reciever_tests(self):
 		#Testing the function of route "reciever/int"
-		response = self.client().post("/reciever/1",json=None)
+		response = self.client().post("/reciever_test/1",json=None)
 		#Expected to fail, there is no request body
 		data = json.loads(response.data)
 		#print(data)
@@ -752,7 +752,7 @@ class MAECTestCase(unittest.TestCase):
 		
 	def test_c_1_0_2_reciever_tests(self):
 		#Testing the function of route "reciever/int"
-		response = self.client().post("/reciever/1",json=12)
+		response = self.client().post("/reciever_test/1",json=12)
 		#Expected to fail, there is no request body
 		data = json.loads(response.data)
 		print(data)
