@@ -184,7 +184,7 @@ Tests: test_01_clear_tables
 		
 
 	@app.route("/products", methods=["POST"])
-	@requires_auth()
+	#@requires_auth()
 	def post_products(payload):
 	#This endpoint will add a new product
 		#print(payload,flush=True)
@@ -263,7 +263,7 @@ Tests: test_01_clear_tables
 
 
 	@app.route("/products/<int:product_id>", methods=["PUT"])
-	@requires_auth()
+	#@requires_auth()
 	def edit_products(payload,product_id):
 	#This endpoint will add a new product
 	#This is the correct arrangement
@@ -369,7 +369,7 @@ Tests: test_01_clear_tables
 		
 
 	@app.route("/products/<int:product_id>", methods=["DELETE"])
-	@requires_auth()
+	#@requires_auth()
 	def delete_products(payload,product_id):
 	#This endpoint will delete an existing product
 		
@@ -411,7 +411,7 @@ Tests: test_01_clear_tables
 
 
 	@app.route("/products/users", methods=["GET"])
-	@requires_auth()
+	#@requires_auth()
 	def get_products_users(payload):
 		user_id=int(payload["uid"])
 		products = Product.query.filter(
