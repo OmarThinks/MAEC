@@ -85,7 +85,9 @@ def create_app(DOCKER=False,testing=TESTING):
 		db.create_all()
 	except:
 		pass
-	#populate_tables()
+	populate_tables()
+	
+
 	CORS(app,resources={r"*":{"origins":"*"}})
 	@app.after_request
 	def after_request(response):
