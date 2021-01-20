@@ -1,5 +1,5 @@
 def reciever(request, inputs):
-	toReturn = []
+	toReturn = {}
 	if type(inputs) != type([]):
 		raise("MOAG:reciever:ERROR:"+
 			" The 'inputs'' varbiale has a type of " + str(type(inputs)) +
@@ -15,10 +15,9 @@ def reciever(request, inputs):
 		return {"success":False,"result":{"status":400, 
 			"description":"request body can not be parsed to json"}}
 	try:
-		username = body.get("username",None)
-		password1 = body.get("password1",None)
-		password2 = body.get("password2",None)
+		for inputs_index in inputs:
+			toReturn[inputs[inputs_index]] = body.get(inputs[inputs_index],None)
 	except:
 		return {"success":False,"result":{"status":400, 
 			"description":"there is no request body"}}
-	retrun {"success":True}
+	retrun {"success":True,"result":toReturn}
