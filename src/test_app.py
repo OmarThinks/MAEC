@@ -140,10 +140,24 @@ Tests: test_01_clear_tables
 
 
 
-	@app.route("/reciever/<test_case_id>", methods=["POST"])
-	def reciever_test():
+	@app.route("/reciever/<int:test_case_id>", methods=["POST"])
+	def reciever_test(test_case_id):
+		"""
+		This endpont is created to test the reciever endpoint
+		it will return the same exact return value of the reciever function
+		"""
+		inputs = []
+		if test_case_id == 1:
+			inputs == ["a","b","c"] 
+			#This is successful
+		if test_case_id == 2:
+			inputs == ["a","b",["1","2"]]
+			#Fail: There can not be an array inside an array
+		if test_case_id == 3:
+			inputs == ["1","c",3]
+			#Success: Only stirngs are allowed
 		try:
-			return jsonify(reciever(request,["a","b","c"]))
+			return jsonify(reciever(request,inputs))
 		except Exception as e:
 			return (my_error(status=500,description=str(e)))
 
