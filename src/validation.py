@@ -208,16 +208,16 @@ def validate_base64(
 			"description":input_name_string+
 			" can not be converted to base64"}} 
 
-def validate_formatting(input_formatting):
-	validation = validate_string(input_formatting,"formatting",minimum_length=2,
-	max_length=20)
-	if validation["case"] != 1:
-		return validation
-	input_formatting = validation["result"]
-	if input_formatting not in ALLOWED_IMAGE_FORMATS:
-		return {"case":2,"result":{"status":422, 
-			"description":str(input_formatting)+" is not allowed image format"}} 
-	return {"case":1,"result":input_formatting}
+def validate_specific(input_value,input_name_string,input_array):
+	if input_value == None: return {"case":3,"result":None}
+	
+	for elem in input_array:
+		if type(input_value) == type(elem):
+			if input_value == elem:
+				return {"case":1,"result":input_formatting}
+	return {"case":2,"result":{"status":422, 
+			"description":str(input_value)+" is not allowed "+str(input_name_string)}} 
+		
 
 
 
