@@ -23,19 +23,21 @@ OUTPUTS:
 	Please check the file "test_app.py" to see how it works
 	there is an endpoint called "reciever_test"
 
-
-
+ERRORS:
+	- input_request is not the type of flask.request
+	- inputs is not a list
+	- inputs is not a list of strings
 """
 
 
 def reciever(input_request, inputs):
 	toReturn = {}
+	#vValidating that input_request has the type of flask.request
 	if type(input_request) != type(request):
 		raise Exception("MORG:reciever:ERROR: 'input_request' is supposed to be have "+
-			"the type of request, from Flask, but foud type of "+ 
+			"the type of flask.request, but foud type of "+ 
 			str(type(input_request)))
-
-	#Validating that nputs is a list
+	#Validating that inputs is a list
 	if type(inputs) != type([]):
 		raise Exception("MORG:reciever:ERROR:"+
 			" The 'inputs'' varbiale has a type of " + str(type(inputs)) +
