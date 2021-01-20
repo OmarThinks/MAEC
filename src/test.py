@@ -156,15 +156,6 @@ class MAECTestCase(unittest.TestCase):
 			validation["result"])
 		print("Test b_1_9: validate_model_id: Product None")
 
-	def test_b_01_010_validate_model_id(self):
-		all_orders = Order.query
-		validation = validate_model_id(input_id=3,
-			model_query=all_orders,
-			model_name_string="order")
-		self.assertEqual(validation["case"],1)
-		self.assertEqual(all_orders.get(3),
-			validation["result"])
-		print("Test b_1_10: validate_model_id: Order 7")
 
 
 
@@ -593,14 +584,14 @@ class MAECTestCase(unittest.TestCase):
 
 
 
-	def test_b_6_001_validate__must(self):
+	def test_b_8_001_validate__must(self):
 		validation = validate__must(input=5,type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(5.0,validation["result"])
-		print("Test b_6_1: validate__must float: 5")
+		print("Test b_8_1: validate__must float: 5")
 
-	def test_b_6_002_validate__must(self):
+	def test_b_8_002_validate__must(self):
 		validation = validate__must(input="unknown",type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -608,16 +599,16 @@ class MAECTestCase(unittest.TestCase):
 			,validation["result"]["description"])
 		self.assertEqual(400
 			,validation["result"]["status"])
-		print("Test b_6_2: validate__must float: 'i'")
+		print("Test b_8_2: validate__must float: 'i'")
 
-	def test_b_6_003_validate__must(self):
+	def test_b_8_003_validate__must(self):
 		validation = validate__must(input=5,type="i",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(5,validation["result"])
-		print("Test b_6_3: validate__must integer: 5")
+		print("Test b_8_3: validate__must integer: 5")
 
-	def test_b_6_004_validate__must(self):
+	def test_b_8_004_validate__must(self):
 		validation = validate__must(input="unknown",type="i",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -625,16 +616,16 @@ class MAECTestCase(unittest.TestCase):
 			,validation["result"]["description"])
 		self.assertEqual(400
 			,validation["result"]["status"])
-		print("Test b_6_4: validate__must integer: 'i'")
+		print("Test b_8_4: validate__must integer: 'i'")
 
-	def test_b_6_005_validate__must(self):
+	def test_b_8_005_validate__must(self):
 		validation = validate__must(input=True,type="b",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(True,validation["result"])
-		print("Test b_6_5: validate__must boolean: True")
+		print("Test b_8_5: validate__must boolean: True")
 
-	def test_b_6_006_validate__must(self):
+	def test_b_8_006_validate__must(self):
 		validation = validate__must(input="unknown",type="b",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -642,25 +633,25 @@ class MAECTestCase(unittest.TestCase):
 			,validation["result"]["description"])
 		self.assertEqual(400
 			,validation["result"]["status"])
-		print("Test b_6_6: validate__must boolean: 'unknown'")
+		print("Test b_8_6: validate__must boolean: 'unknown'")
 
-	def test_b_6_007_validate__must(self):
+	def test_b_8_007_validate__must(self):
 		validation = validate__must(input="dddaaatta",type="s",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual("dddaaatta",validation["result"])
-		print("Test b_6_7: validate__must string: 'dddaaatta'")
+		print("Test b_8_7: validate__must string: 'dddaaatta'")
 
-	def test_b_6_008_validate__must(self):
+	def test_b_8_008_validate__must(self):
 		try:
 			validation = validate__must(input="1",type="wrong",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 			self.assertEqual(True,False)
 		except Exception as e:
 			self.assertEqual(True,True)
-		print("Test b_6_8: validate__must wrong type: 'wrong'")
+		print("Test b_8_8: validate__must wrong type: 'wrong'")
 
-	def test_b_6_009_validate__must(self):
+	def test_b_8_009_validate__must(self):
 		validation = validate__must(input=None,type="i",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -669,9 +660,9 @@ class MAECTestCase(unittest.TestCase):
 		self.assertEqual(400
 			,validation["result"]["status"])
 		
-		print("Test b_6_9: validate__must wrong input: None int")
+		print("Test b_8_9: validate__must wrong input: None int")
 
-	def test_b_6_010_validate__must(self):
+	def test_b_8_010_validate__must(self):
 		validation = validate__must(input=None,type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -680,9 +671,9 @@ class MAECTestCase(unittest.TestCase):
 		self.assertEqual(400
 			,validation["result"]["status"])
 		
-		print("Test b_6_10: validate__must wrong input: None float")
+		print("Test b_8_10: validate__must wrong input: None float")
 
-	def test_b_6_011_validate__must(self):
+	def test_b_8_011_validate__must(self):
 		validation = validate__must(input=None,type="b",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -691,9 +682,9 @@ class MAECTestCase(unittest.TestCase):
 		self.assertEqual(400
 			,validation["result"]["status"])
 		
-		print("Test b_6_11: validate__must wrong input: None bool")
+		print("Test b_8_11: validate__must wrong input: None bool")
 
-	def test_b_6_012_validate__must(self):
+	def test_b_8_012_validate__must(self):
 		validation = validate__must(input=None,type="s",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -701,22 +692,22 @@ class MAECTestCase(unittest.TestCase):
 			,validation["result"]["description"])
 		self.assertEqual(400
 			,validation["result"]["status"])	
-		print("Test b_6_12: validate__must wrong input: None str")
+		print("Test b_8_12: validate__must wrong input: None str")
 
-	def test_b_6_013_validate__must(self):
+	def test_b_8_013_validate__must(self):
 		validation = validate__must(input="abcde",type="b64",
 			input_name_string="b64",maximum=1000,minimum=-5)
 		self.assertEqual(validation  ,{"case":False,"result":{"description":
 		"b64 can not be converted to base64","status":422}})
-		print("Test b_6_13: validate__must wrong input: wrong base64")
+		print("Test b_8_13: validate__must wrong input: wrong base64")
 
-	def test_b_6_014_validate__must(self):
+	def test_b_8_014_validate__must(self):
 		validation = validate__must(input="abcd/+/=",type="b64",
 			input_name_string="b64",maximum=1000,minimum=-5)
 		self.assertEqual(validation  ,{"case":True,"result":"abcd/+/="})
-		print("Test b_6_14: validate__must input: correct base64")
+		print("Test b_8_14: validate__must input: correct base64")
 
-	def test_b_6_015_validate__must(self):
+	def test_b_8_015_validate__must(self):
 		validation = validate__must(input="png",type="frmt",
 			input_name_string="formatting")
 		self.assertEqual(validation  ,{"case":True,"result":"png"})
@@ -724,7 +715,7 @@ class MAECTestCase(unittest.TestCase):
 			input_name_string="formatting")
 		self.assertEqual(validation  ,{"case":False,"result":
 			{"description":"abc is not allowed image format","status":422}})
-		print("Test b_6_14: validate__must input: correct base64")
+		print("Test b_8_14: validate__must input: correct base64")
 
 
 
