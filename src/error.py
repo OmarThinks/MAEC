@@ -3,12 +3,11 @@ try:
 except:
 	from src import *
 
-
+from flask import jsonify
 
 
 
 def my_error(status=404 ,description=""):
-	
 	if status not in [400,401,403,404,405,422,500]:
 		raise Exception("status is "+str(status)
 			+ ", not in [[400,401,403,404,405,422,500]]")
@@ -27,3 +26,18 @@ def my_error(status=404 ,description=""):
 	
 	error_dict["description"] = description
 	return jsonify(error_dict),status
+
+
+
+
+
+"""
+jsoinfyError
+
+"""
+def jsonifyError(input_dict):
+	return jsonify(error_dict = {"success": False, 
+		"error": input_dict["status"],"message": input_dict["description"],}),status
+
+
+	
