@@ -124,22 +124,39 @@ Tests: test_02_populate_test
 		This endpont is created to test the reciever endpoint
 		it will return the same exact return value of the reciever function
 		"""
+		"""try:
+			my_request = request
+		except:
+			print("NO",flush=True)"""
+
+		"""try:
+			username = body.get("username",None)
+			password1 = body.get("password1",None)
+			password2 = body.get("password2",None)
+		except:
+			return my_error(status=400, 
+				description = "there is no request body")"""
+
+
+
+		
 		inputs = []
 		if test_case_id == 1: #This is the first error
-			request = 1
+			my_request = 1
 			#Fail: request should be of type flask.request
-		if test_case_id == 2: #This is second error
+		elif test_case_id == 2: #This is second error
 			inputs == "This will fail"
 			#Fail: inputs should be a list of strings, not a string
-		if test_case_id == 3: #This is the third error (Example:1)
+		elif test_case_id == 3: #This is the third error (Example:1)
 			inputs == ["a","b",["1","2"]]
 			#Fail: There can not be an array inside an array
-		if test_case_id == 4: #This is the third error (Example:2)
+		elif test_case_id == 4: #This is the third error (Example:2)
 			inputs == ["1","c",3]
 			#Fail: Only stirngs are allowed
-		if test_case_id == 0: #This is successful
+		elif test_case_id == 0: #This is successful
 			inputs == ["name","price","in_stock"]
 			#This is successful
+		#print(my_request,flush=True)
 		try:
 			result = reciever(input_request= request,inputs=inputs)
 			if result["success"]==True:
@@ -147,6 +164,7 @@ Tests: test_02_populate_test
 			else:
 				return my_error(fullError=result["result"])
 		except Exception as e:
+			raise e
 			return my_error(fullError={"status":500,"description":str(e)})
 
 
