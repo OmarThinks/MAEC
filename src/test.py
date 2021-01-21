@@ -775,12 +775,22 @@ class MoRG_TestCase(unittest.TestCase):
 		#Testing the function of route "reciever_test/int"
 		response = self.client().post("/reciever_test/2",json=
 			{'in_stock': True, 'name': "abc", 'price': 5})
-		#Expected to succeed, request body is not JSON seriablizable
+		#Expected to succeed, empty response
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,200)
 		self.assertEqual(data,{})
 		print("Test c_1_2_1: reciever_tests : request body"+
 			" successful, full request body")
+
+	def test_c_1_2_2_reciever_tests(self):
+		#Testing the function of route "reciever_test/int"
+		response = self.client().post("/reciever_test/2")
+		#Expected to succeed, empty response
+		data = json.loads(response.data)
+		self.assertEqual(response.status_code,200)
+		self.assertEqual(data,{})
+		print("Test c_1_2_2: reciever_tests : request body"+
+			" successful, empty request body")
 
 	def test_c_7_1_1_reciever_tests(self):
 		#Testing the function of route "reciever/int"
