@@ -771,7 +771,8 @@ class MoRG_TestCase(unittest.TestCase):
 			"MoRG:validate_expected:ERROR: 123 is not a supported data type")
 		print("Test b_10_1: validate_expected")"""
 
-	def test_b_11_001_validate_expected(self):
+
+	def test_b_10_001_validate_expected(self):
 		validate_expected({})
 		validate_expected({"abc":"string","123":"integer","true":"boolean"})
 		try:
@@ -792,7 +793,39 @@ class MoRG_TestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),
 			"MoRG:validate_expected:ERROR: 123 is not a supported data type")
-		print("Test b_11_1: validate_expected")
+		print("Test b_10_1: validate_expected")
+
+	def test_b_11_001_validate_attendance_from_expected(self):
+		#Exactly
+		validate_attendance_from_expected(
+			input_dict = {"a":1,"b":True},input_dict_name="tst",
+			expected={"a":"string","b":"boolean"})
+		#Empty
+		validate_attendance_from_expected(
+			input_dict = {},input_dict_name="tst",
+			expected={})
+		#More
+		validate_attendance_from_expected(
+			input_dict = {"a":1},input_dict_name="tst",
+			expected={})
+		try:
+			#Expected got something wrong
+			validate_attendance_from_expected(
+				input_dict = {"a":1,"b":True},input_dict_name="tst",
+			expected={"a":"bla_bla_blaaaaaaaa","b":"boolean"})
+		except Exception as e:
+			self.assertEqual(str(e),"MoRG:validate_expected:ERROR: "+
+				"bla_bla_blaaaaaaaa is not a supported data type")
+		try:
+			#input_dict got something wrong
+			validate_attendance_from_expected(
+				input_dict = {"a":1},input_dict_name="tst",
+			expected={"a":"string","b":"boolean"})
+		except Exception as e:
+			self.assertEqual(str(e),"MoRG:validate_attendance_from_expected:"+
+				"ERROR:tst did not carry this key 'b', but it exists in"+
+				" 'expected' dict")
+		print("Test b_11_1: validate_attendance_from_expected")
 
 	def test_c_0_0_0(self):
 		print("Good MoRG-ing")

@@ -234,12 +234,8 @@ def validate_attendance_from_expected(input_dict,input_dict_name,expected):
 	for key in expected:
 		if key not in input_dict:
 			raise Exception("MoRG:validate_attendance_from_expected:ERROR:"+
-				str(input_dict_name)+" did not acrry this key '"+
-				str(key)+"', but it exists in expected"
-				"'input_dict' did not have the key of '" + str(key)+
-				"' and this key exists in expected, but it does not exist in the input dict")
-
-
+				str(input_dict_name)+" did not carry this key '"+
+				str(key)+"', but it exists in 'expected' dict")
 
 
 """
