@@ -137,6 +137,7 @@ Tests: test_02_populate_test
 			return my_error(status=400, 
 				description = "there is no request body")"""
 		my_request = request
+		inputs =[]
 		if test_case_id == 0: #This is successful
 			inputs = ["name","price","in_stock"]
 			#This is successful
@@ -163,7 +164,7 @@ Tests: test_02_populate_test
 			else:
 				return my_error(fullError=result["result"])
 		except Exception as e:
-			#raise e
+			raise e
 			return my_error(fullError={"status":500,"description":str(e)})
 
 
