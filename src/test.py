@@ -29,7 +29,7 @@ b:validation Functions
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
-class MAECTestCase(unittest.TestCase):
+class MoRG_TestCase(unittest.TestCase):
 	"""This class represents the trivia test case"""
 
 	def setUp(self):
@@ -743,7 +743,7 @@ class MAECTestCase(unittest.TestCase):
 	def test_c_1_1_1_reciever_tests(self):
 		#Testing the function of route "reciever/int"
 		response = self.client().post("/reciever_test/1")
-		#Expected to fail, Error in the server
+		#Expected to fail, No request body
 		data = json.loads(response.data)
 		self.assertEqual(data,{'description': 
 			'there is no request body', 'error': 400, 'message': 'bad request', 
@@ -754,11 +754,22 @@ class MAECTestCase(unittest.TestCase):
 	def test_c_1_1_2_reciever_tests(self):
 		#Testing the function of route "reciever/int"
 		response = self.client().post("/reciever_test/1",json={})
-		#Expected to fail, Error in the server
+		#Expected to Succeed, Error in the server
 		data = json.loads(response.data)
 		self.assertEqual(data,{'in_stock': None, 'name': None, 'price': None})
 		self.assertEqual(response.status_code,200)
-		print("Test c_1_1_1: reciever_tests : request body successful")
+		print("Test c_1_1_2: reciever_tests : request body successful, empty")
+
+	def test_c_1_1_3_reciever_tests(self):
+		#Testing the function of route "reciever/int"
+		response = self.client().post("/reciever_test/1",json=
+			{'in_stock': True, 'name': "abc", 'price': 5})
+		#Expected to fail, request body is not JSON seriablizable
+		data = json.loads(response.data)
+		self.assertEqual(response.status_code,200)
+		self.assertEqual(data,{'in_stock': True, 'name': "abc", 'price': 5})
+		print("Test c_1_1_1: reciever_tests : request body"+
+			" successful, full request body")
 
 	def test_c_7_1_1_reciever_tests(self):
 		#Testing the function of route "reciever/int"
