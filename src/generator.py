@@ -5,8 +5,10 @@ reciever:
 
 INPUTS:
 	- request: the request variable
-	- inputs: a list of strings containing the names of the predicted
+	- inputs (Optional): a list of strings containing the names of the predicted
 	 	variables passed in the request body
+	 	In case of not entring the inputs value, it has a defualt value of []
+	 	and the return value will be {}
 FUNCTION:
 	- This function recievs the inputs of the endpoint, that are as a JSON request body
 OUTPUTS:
@@ -30,9 +32,10 @@ ERRORS:
 """
 
 
-def reciever(request, inputs):
+def reciever(request, inputs=[]):
 	toReturn = {}
-	#vValidating that input_request has the type of flask.request
+	# Validating that input_request has the type of flask.request
+
 	if type(input_request) != type(request):
 		raise Exception("MORG:reciever:ERROR: 'input_request' is supposed to be have "+
 			"the type of flask.request, but found type of "+ 
@@ -47,20 +50,27 @@ def reciever(request, inputs):
 		if type(inputs[inputs_index]) != str:
 			raise Exception("MOAG:reciever:ERROR:"+
 			" The 'inputs'' varbiale is supposed to be a list of strings, " + 
-			"one of the elements was found to be "+str(type(inputs[inputs_index])))
-	#Validating that the request can be parsed to JSON
-	try:
-		body = input_request.get_json()
-	except:
-		return {"success":False,"result":{"status":400, 
-			"description":"request body can not be parsed to json"}}
-	#Validating that there is a request body
-	try:
-		testing = body.get("testing",None)
-	except:
-		return {"success":False,"result":{"status":400, 
-			"description":"there is no request body"}}
-	#Finally, return values
-	for inputs_index in inputs:
-		toReturn[inputs[inputs_index]] = body.get(inputs[inputs_index],None)
+			"one of the elements was found to be "+str(type(inputs[inputs_index])))	
+	# Now we are sure that inputs is a list of strings, 
+	# and we got rid of all developers errors
+
+
+	if len(inputs)!=0:
+		#Validating that the request can be parsed to JSON
+		try:
+			body = input_request.get_json()
+		except:
+			return {"success":False,"result":{"status":400, 
+				"description":"request body can not be parsed to json"}}
+		#Validating that there is a request body
+		try:
+			testing = body.get("testing",None)
+		except:
+			return {"success":False,"result":{"status":400, 
+				"description":"there is no request body"}}
+		#Finally, return values
+		for inputs_index in inputs:
+			toReturn[inputs[inputs_index]] = body.get(inputs[inputs_index],None)
+	else:
+		toReturn={}
 	return {"success":True,"result":toReturn}
