@@ -50,7 +50,7 @@ def reciever(input_request, inputs=[]):
 		if type(inputs_value) != str:
 			raise Exception("MOAG:reciever:ERROR:"+
 			" The 'inputs'' varbiale is supposed to be a list of strings, " + 
-			"one of the elements was found to be "+str(type(inputs[inputs_index])))	
+			"one of the elements was found to be "+str(type(inputs_value)))	
 	# Now we are sure that inputs is a list of strings, 
 	# and we got rid of all developers errors
 
