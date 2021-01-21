@@ -245,7 +245,7 @@ def validate_attendance_from_expected(input_dict,input_dict_name,expected):
 """
 Unorganizedly written
 """
-
+"""
 def validate__dict(input_dict,function_name,dict_name,full=True):
 	if type(input_dict) != dict:
 		data_type_error("validate_dict",dict_name,"dict",input_dict)
@@ -262,7 +262,7 @@ def validate__dict(input_dict,function_name,dict_name,full=True):
 			"MoRG:validate_dict:ERROR: "+
 				str(value)+ " is not a supported data type by MoRG")
 
-
+"""
 
 
 

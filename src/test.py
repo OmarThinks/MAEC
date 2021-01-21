@@ -744,7 +744,7 @@ class MoRG_TestCase(unittest.TestCase):
 			" of 'c', but found type of '<class 'str'>' instead")
 		print("Test b_9_001: data_type_error")
 
-	def test_b_10_001_validate__dict(self):
+	"""def test_b_10_001_validate__dict(self):
 		raise Exception("not ready")
 		validate__dict({},"testing_function_name","test_name",full=True)
 		validate__dict({"abc":"string","123":"integer","true":"boolean"}
@@ -769,7 +769,7 @@ class MoRG_TestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),
 			"MoRG:validate_expected:ERROR: 123 is not a supported data type")
-		print("Test b_10_1: validate_expected")
+		print("Test b_10_1: validate_expected")"""
 
 	def test_b_11_001_validate_expected(self):
 		validate_expected({})
