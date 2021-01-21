@@ -30,7 +30,7 @@ ERRORS:
 """
 
 
-def reciever(input_request, inputs):
+def reciever(request, inputs):
 	toReturn = {}
 	#vValidating that input_request has the type of flask.request
 	if type(input_request) != type(request):
