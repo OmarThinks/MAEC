@@ -95,12 +95,22 @@ def reciever(input_request, inputs=[]):
 attendance_validator:
 
 INPUTS:
-	- inputs: a dictionary of recieved values
+	- expected: a dictionary that represent what is expected
+		- Example: {"name":"string", "price": "integer", "in_stock":"boolean"}
+	- recieved: a dictionary of recieved values
 		- Example: {"name":"abc","price":5,"in_stock":True}
 		- Example: {"name":None,"price":5,"in_stock":True}
 		- Example: {"name":None,"price":None,"in_stock":None}
 		- Example: {}
-	- all: a boolean value of the recieved 
+	- all: a boolean value
+		- represents whther or not all values are required
+		- True: all values are required
+			If one value is missing, it will fail
+		- False: at least one value is required
+			if all are equal to None. or they do not exist, it will fail
+	- old_values: If all==False, then old values must be entered
+		- old_values is a dict containing the old values before replacement
+		- It must have the same keys as the keys of expected
 
 FUNCTION:
 	- This function recievs the inputs of the endpoint, that are as a JSON request body
@@ -123,7 +133,7 @@ ERRORS:
 	- inputs is not a list
 	- inputs is not a list of strings
 """
-def attendance_validator(recieved,all=True):
+def attendance_validator(expected,recieved,all=True,old_values=None):
 	pass
 
 
