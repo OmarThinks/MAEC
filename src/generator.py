@@ -32,14 +32,14 @@ ERRORS:
 """
 
 
-def reciever(request, inputs=[]):
+def reciever(input_request, inputs=[]):
 	toReturn = {}
 	# Validating that request has the type of flask.request
 
-	if type(request) != type(request):
+	if type(input_request) != type(request):
 		raise Exception("MORG:reciever:ERROR: 'request' is supposed to be have "+
 			"the type of flask.request, but found type of "+ 
-			str(type(request)))
+			str(type(input_request)))
 	#Validating that inputs is a list
 	if type(inputs) != type([]):
 		raise Exception("MORG:reciever:ERROR:"+
@@ -55,9 +55,9 @@ def reciever(request, inputs=[]):
 	# and we got rid of all developers errors
 
 	if len(inputs)!=0:
-		#Validating that the request can be parsed to JSON
+		#Validating that the input_request can be parsed to JSON
 		try:
-			body = request.get_json()
+			body = input_request.get_json()
 		except:
 			return {"success":False,"result":{"status":400, 
 				"description":"request body can not be parsed to json"}}

@@ -147,18 +147,22 @@ Tests: test_02_populate_test
 		if test_case_id == 3: #This is the first error
 			my_request = 1
 			#Fail: request should be of type flask.request
-		if test_case_id==4: 
+		if test_case_id == 4: #This is the first error
+			my_request = 1
+			inputs = ["name","price","in_stock"]
+			#Fail: request should be of type flask.request
+		if test_case_id==5: 
 			#This is second error
 			inputs = "This will fail"
 			#Fail: inputs should be a list of strings, not a string
-		if test_case_id == 5: #This is the third error (Example:1)
+		if test_case_id == 6: #This is the third error (Example:1)
 			inputs = ["a","b",["1","2"]]
 			#Fail: There can not be an array inside an array
-		if test_case_id == 6: #This is the third error (Example:2)
+		if test_case_id == 7: #This is the third error (Example:2)
 			inputs = ["1","c",3]
 			#Fail: Only stirngs are allowed
 		try:
-			result = reciever(request= my_request,inputs=inputs)
+			result = reciever(input_request= my_request,inputs=inputs)
 			if result["success"]==True:
 				return jsonify(result)
 			else:
