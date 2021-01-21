@@ -160,7 +160,7 @@ Tests: test_02_populate_test
 		try:
 			result = reciever(request= my_request,inputs=inputs)
 			if result["success"]==True:
-				return jsonify(result["result"])
+				return jsonify(result)
 			else:
 				return my_error(fullError=result["result"])
 		except Exception as e:

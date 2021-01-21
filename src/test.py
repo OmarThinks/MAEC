@@ -756,7 +756,8 @@ class MoRG_TestCase(unittest.TestCase):
 		response = self.client().post("/reciever_test/1",json={})
 		#Expected to Succeed, Error in the server
 		data = json.loads(response.data)
-		self.assertEqual(data,{'in_stock': None, 'name': None, 'price': None})
+		self.assertEqual(data,{"success":True,"result":
+			{'in_stock': None, 'name': None, 'price': None}})
 		self.assertEqual(response.status_code,200)
 		print("Test c_1_1_2: reciever_tests : request body successful, empty")
 
@@ -767,7 +768,8 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to succeed,
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,200)
-		self.assertEqual(data,{'in_stock': True, 'name': "abc", 'price': 5})
+		self.assertEqual(data,{"success":True,"result":
+			{'in_stock': True, 'name': "abc", 'price': 5}})
 		print("Test c_1_1_3: reciever_tests : request body"+
 			" successful, full request body")
 
@@ -778,7 +780,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to succeed, empty response
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,200)
-		self.assertEqual(data,{})
+		self.assertEqual(data,{"success":True,"result":{}})
 		print("Test c_1_2_1: reciever_tests : request body"+
 			" successful, full request body")
 
@@ -788,7 +790,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to succeed, empty response
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,200)
-		self.assertEqual(data,{})
+		self.assertEqual(data,{"success":True,"result":{}})
 		print("Test c_1_2_2: reciever_tests : request body"+
 			" successful, empty request body")
 
@@ -798,7 +800,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,200)
-		self.assertEqual(data,{})
+		self.assertEqual(data,{"success":True,"result":{}})
 		print("Test c_1_3_1: wrong request type")
 
 	def test_c_7_1_1_reciever_tests(self):
@@ -832,7 +834,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#print(data)
 		self.assertEqual(response.status_code,400)
 		self.assertEqual(data["success"],True)
-		self.assertIsNotNone(data["result"],"there is no request body")
+		self.assertIsNotNone(data,{"success":True,"result":"there is no request body"})
 		
 
 
