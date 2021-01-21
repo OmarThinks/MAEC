@@ -73,3 +73,80 @@ def reciever(input_request, inputs=[]):
 	else:
 		toReturn={}
 	return {"success":True,"result":toReturn}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+attendance_validator:
+
+INPUTS:
+	- inputs: a dictionary of recieved values
+		- Example: {"name":"abc","price":5,"in_stock":True}
+		- Example: {"name":None,"price":5,"in_stock":True}
+		- Example: {"name":None,"price":None,"in_stock":None}
+		- Example: {}
+	- all: a boolean value of the recieved 
+
+FUNCTION:
+	- This function recievs the inputs of the endpoint, that are as a JSON request body
+OUTPUTS:
+	- a dictionary with these values {"success": ... , "result": ... }
+		- "success": a boolean: True or False
+			It represents whther the function was able to receve inputs or not
+		- "result":
+			- if success == True: a dictionary of the expected variables
+				Example: {"a":1, "b":2, "c":None}
+				None:means that this varaiable was not recieved successfully
+			- if success == False: dictionry of "status" code of failure and reason
+				Example: {"status":400,"description":"there is no request body"}
+- Example:
+	Please check the file "test_app.py" to see how it works
+	there is an endpoint called "reciever_test"
+
+ERRORS:
+	- input_request is not the type of flask.request
+	- inputs is not a list
+	- inputs is not a list of strings
+"""
+def attendance_validator(recieved,all=True):
+	pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
