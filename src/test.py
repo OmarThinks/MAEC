@@ -740,9 +740,9 @@ class MoRG_TestCase(unittest.TestCase):
 			data_type_error("a","b","c","d")
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:a:ERROR: 'b'' is supposed to have the type"+
+			"MoRG:a:ERROR: 'b' is supposed to have the type"+
 			" of 'c', but found type of '<class 'str'>' instead")
-		print("Test b_8_14: validate__must input: correct base64")
+		print("Test b_9_001: data_type_error")
 
 	def test_c_0_0_0(self):
 		print("Good MoRG-ing")
@@ -807,10 +807,10 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description':
-		 "MoRG:reciever:ERROR: 'request' is supposed to be have the "+
-		 " flask.request, but found type of <class 'int'>", 
-			'error': 500, 'message': 'internal server error', 'success': False})
+		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: "+
+			"'input_request' is supposed to have the type of "+
+			"'flask.request', but found type of '<class 'int'>' instead",
+			 'error': 500, 'message': 'internal server error', 'success': False})
 		print("Test c_1_3_1: wrong request type")
 
 	def test_c_1_3_2_reciever_tests(self):
@@ -819,9 +819,9 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description':
-		 "MORG:reciever:ERROR: 'request' is supposed to be have the type of"+
-		 " flask.request, but found type of <class 'int'>", 
+		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: "+
+			"'input_request' is supposed to have the type of 'flask.request'"+
+			", but found type of '<class 'int'>' instead", 
 			'error': 500, 'message': 'internal server error', 'success': False})
 		print("Test c_1_3_2: wrong request type")
 
@@ -831,10 +831,10 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description':
-		 "MORG:reciever:ERROR: 'request' is supposed to be have the type of"+
-		 " flask.request, but found type of <class 'int'>", 
-			'error': 500, 'message': 'internal server error', 'success': False})
+		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: 'input_request' "+
+			"is supposed to have the type of 'flask.request', but found type of "+
+			"'<class 'int'>' instead", 'error': 500, 'message': 
+			'internal server error', 'success': False})
 		print("Test c_1_4_1: wrong request type")
 
 	def test_c_1_4_2_reciever_tests(self):
@@ -843,10 +843,10 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description':
-		 "MORG:reciever:ERROR: 'request' is supposed to be have the type of"+
-		 " flask.request, but found type of <class 'int'>", 
-			'error': 500, 'message': 'internal server error', 'success': False})
+		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: "+
+			"'input_request' is supposed to have the type of 'flask.request'"+
+			", but found type of '<class 'int'>' instead", 'error': 500, 
+			'message': 'internal server error', 'success': False})
 		print("Test c_1_4_2: wrong request type")
 
 	def test_c_1_5_1_reciever_tests(self):
@@ -855,10 +855,10 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': 
-			"MORG:reciever:ERROR: The 'inputs'' varbiale has a type of "+
-			"<class 'str'>, type of 'inputs' is supposed to be 'list'.",
-			 'error': 500, 'message': 'internal server error', 'success': False})
+		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: 'inputs' "+
+			"is supposed to have the type of 'list', but found type of "+
+			"'<class 'str'>' instead", 'error': 500, 'message': 
+			'internal server error', 'success': False})
 		print("Test c_1_5_1: wrong inputs type")
 
 	def test_c_1_6_1_reciever_tests(self):
@@ -867,10 +867,10 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MOAG:reciever:ERROR: The 'inputs'' varbiale is"+
-			" supposed to be a list of strings, one of the elements was found "+
-			"to be <class 'list'>", 'error': 500, 
-			'message': 'internal server error', 'success': False})
+		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: 'each "+
+			"'inputs' element' is supposed to have the type of 'string',"+
+			" but found type of '<class 'list'>' instead", 'error': 500,
+			 'message': 'internal server error', 'success': False})
 		print("Test c_1_6_1: wrong type in inputs")
 
 	def test_c_1_7_1_reciever_tests(self):
@@ -878,13 +878,11 @@ class MoRG_TestCase(unittest.TestCase):
 		response = self.client().post("/reciever_test/7")
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
-		print(data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MOAG:reciever:ERROR: The"+
-			" 'inputs'' varbiale is "+
-			"supposed to be a list of strings, one of the elements was found to be"+
-			" <class 'int'>", 'error': 500, 'message': 'internal server error',
-			'success': False})
+		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: 'each 'inputs' "+
+			"element' is supposed to have the type of 'string', but found type"+
+			" of '<class 'int'>' instead", 'error': 500, 
+			'message': 'internal server error', 'success': False})
 		print("Test c_1_7_1: wrong type in inputs")
 
 
