@@ -49,16 +49,11 @@ def reciever(input_request, expected={}):
 	toReturn = {}
 	# Validating that request has the type of flask.request
 
+	validate_expected(expected)
+
 	if type(input_request) != type(request):
 		data_type_error("reciever","input_request","flask.request",input_request)
 	#Validating that expected is a dict
-	if type(expected) != dict:
-		data_type_error("reciever","expected","dict",expected)
-	
-	#Validating that expected is a list of strings
-	for expected_value in (expected):
-		if type(expected_value) != str:
-			data_type_error("reciever","each 'expected' element","string",expected_value)
 	# Now we are sure that expected is a list of strings, 
 	# and we got rid of all developers errors
 
