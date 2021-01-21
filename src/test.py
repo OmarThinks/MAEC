@@ -770,6 +770,30 @@ class MoRG_TestCase(unittest.TestCase):
 			"MoRG:validate_expected:ERROR: 123 is not a supported data type")
 		print("Test b_10_1: validate_expected")
 
+	def test_b_11_001_validate_expected(self):
+		validate_expected({})
+		validate_expected({"abc":"string","123":"integer","true":"boolean"})
+		try:
+			validate_expected("abc")
+		except Exception as e:
+			print(str(e))
+			self.assertEqual(str(e),
+			"MoRG:validate_expected:ERROR: 'expected' is supposed to have "+
+			"the type of 'dict', but found type of '<class 'str'>' instead")
+		try:
+			validate_expected({"abc":123})
+		except Exception as e:
+			self.assertEqual(str(e),
+			"MoRG:validate_expected:ERROR: 'each element of expected'"+
+			" is supposed to have the type of 'string', but found type "+
+			"of '<class 'int'>' instead")
+		try:
+			validate_expected({"abc":"123"})
+		except Exception as e:
+			self.assertEqual(str(e),
+			"MoRG:validate_expected:ERROR: 123 is not a supported data type")
+		print("Test b_10_1: validate_expected")
+
 	def test_c_0_0_0(self):
 		print("Good MoRG-ing")
 

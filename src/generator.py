@@ -209,7 +209,11 @@ def validate_expected(expected):
 	if type(expected) != dict:
 		data_type_error("validate_expected","expected","dict",expected)
 	for key in expected:
-		if type(expected[key]) != str:
+		value = expected["key"]
+		if type(value) != str:
 			data_type_error("validate_expected",
-				"each element of expected","string",expected[key])
+				"each element of expected","string",value)
+		if value not in DATA_TYPES_SUPPORTED:
+			raise Exception("MoRG:validate_expected:ERROR: "+value
+				+" is not a supported data type")
 
