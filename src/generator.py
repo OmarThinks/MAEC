@@ -170,7 +170,33 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 
 
 
+"""
+validate_expected
 
+- INPUTS:
+	- expected: the dictiony of the expected daya and how they look like 
+		-Example: {"name":"string","price":"integer","in_stock":"boolean"}
+- FUNCTION:
+	- it will aise error if the data is not validated
+- OUTPUTS:
+	- no outputs, errors are raise uf somethng went wrong
+
+NOTES:
+	- expected is not a user input, it is a developer creation,
+		that is why it raises error, not validate with success or failure
+"""
+
+def validate_expected(expected):
+	if type(expected) != dict:
+		data_type_error("validate_expected","expected","dict",expected)
+	for key in expected:
+		value = expected["key"]
+		if type(value) != str:
+			data_type_error("validate_expected",
+				"each element of expected","string",value)
+		if value not in DATA_TYPES_SUPPORTED:
+			raise Exception("MoRG:validate_expected:ERROR: "+value
+				+" is not a supported data type")
 
 
 
@@ -203,17 +229,4 @@ def validate_dict(input_dict,function_name,dict_name,full=True):
 
 
 
-
-
-def validate_expected(expected):
-	if type(expected) != dict:
-		data_type_error("validate_expected","expected","dict",expected)
-	for key in expected:
-		value = expected["key"]
-		if type(value) != str:
-			data_type_error("validate_expected",
-				"each element of expected","string",value)
-		if value not in DATA_TYPES_SUPPORTED:
-			raise Exception("MoRG:validate_expected:ERROR: "+value
-				+" is not a supported data type")
 
