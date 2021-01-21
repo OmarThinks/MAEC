@@ -43,24 +43,24 @@ ERRORS:
 """
 
 
-def reciever(input_request, inputs=[]):
+def reciever(input_request, expected={}):
 	toReturn = {}
 	# Validating that request has the type of flask.request
 
 	if type(input_request) != type(request):
 		data_type_error("reciever","input_request","flask.request",input_request)
-	#Validating that inputs is a list
-	if type(inputs) != type([]):
-		data_type_error("reciever","inputs","list",inputs)
+	#Validating that expected is a dict
+	if type(expected) != dict
+		data_type_error("reciever","expected","dict",expected)
 	
-	#Validating that inputs is a list of strings
-	for inputs_value in (inputs):
-		if type(inputs_value) != str:
-			data_type_error("reciever","each 'inputs' element","string",inputs_value)
-	# Now we are sure that inputs is a list of strings, 
+	#Validating that expected is a list of strings
+	for expected_value in (expected):
+		if type(expected_value) != str:
+			data_type_error("reciever","each 'expected' element","string",expected_value)
+	# Now we are sure that expected is a list of strings, 
 	# and we got rid of all developers errors
 
-	if len(inputs)!=0:
+	if len(expected)!=0:
 		#Validating that the input_request can be parsed to JSON
 		try:
 			body = input_request.get_json()
@@ -74,8 +74,8 @@ def reciever(input_request, inputs=[]):
 			return {"success":False,"result":{"status":400, 
 				"description":"there is no request body"}}
 		#Finally, return values
-		for inputs_value in (inputs):
-			toReturn[inputs_value] = body.get(inputs_value,None)
+		for expected_value in (expected):
+			toReturn[expected_value] = body.get(expected_value,None)
 	else:
 		toReturn={}
 	return {"success":True,"result":toReturn}
@@ -185,5 +185,13 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 
 
 
+
+
+def validate_expected(expected):
+	if type(expected) != dict
+		data_type_error("validate_expected","expected","dict",expected)
+	for key in expected:
+		if type(expected[key]) != str:
+			data_type_error("validate_expected","expected","string",expected)
 
 
