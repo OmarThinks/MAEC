@@ -48,20 +48,15 @@ def reciever(input_request, inputs=[]):
 	# Validating that request has the type of flask.request
 
 	if type(input_request) != type(request):
-		raise Exception("MORG:reciever:ERROR: 'request' is supposed to be have "+
-			"the type of flask.request, but found type of "+ 
-			str(type(input_request)))
+		data_type_error("reciever","input_request","flask.request",input_request)
 	#Validating that inputs is a list
 	if type(inputs) != type([]):
-		raise Exception("MORG:reciever:ERROR:"+
-			" The 'inputs'' varbiale has a type of " + str(type(inputs)) +
-			", type of 'inputs' is supposed to be 'list'.")
+		data_type_error("reciever","inputs","list",inputs)
+	
 	#Validating that inputs is a list of strings
 	for inputs_value in (inputs):
 		if type(inputs_value) != str:
-			raise Exception("MOAG:reciever:ERROR:"+
-			" The 'inputs'' varbiale is supposed to be a list of strings, " + 
-			"one of the elements was found to be "+str(type(inputs_value)))	
+			data_type_error("reciever","each 'inputs' element","string",inputs_value)
 	# Now we are sure that inputs is a list of strings, 
 	# and we got rid of all developers errors
 
