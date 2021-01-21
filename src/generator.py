@@ -49,7 +49,7 @@ def reciever(input_request, expected={}):
 	toReturn = {}
 	# Validating that request has the type of flask.request
 
-	validate_expected(expected)
+	validate_dict(expected,"reciever","expected",full=True)
 
 	if type(input_request) != type(request):
 		data_type_error("reciever","input_request","flask.request",input_request)
@@ -140,8 +140,9 @@ ERRORS:
 """
 def attendance_validator(expected,recieved,all=True,old_values=None):
 	# Validating that "expected", "recieved" and "old_values" are dicts
-	validate_expected(expected)
-	validate_expected(old_values)
+	validate_dict(expected,"attendance_validator","expected",full=True)
+	validate_dict(old_values,"attendance_validator","old_values",full=False)
+	validate_dict(recieved,"attendance_validator","old_values",full=False)
 	
 	if type(recieved) != dict:
 		raise Exception("MORG:attendance_validator:ERROR:"+
@@ -183,11 +184,11 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 
 
 
-def validate_dict(full_dict,function_name,dict_name,full=True):
-	if type(full_dict) != dict:
-		data_type_error(function_name,dict_name,"dict",full_dict)
-	for key in full_dict:
-		value = full_dict[key]
+def validate_dict(input_dict,function_name,dict_name,full=True):
+	if type(input_dict) != dict:
+		data_type_error(function_name,dict_name,"dict",input_dict)
+	for key in input_dict:
+		value = input_dict[key]
 		if type(value) != str:
 			data_type_error("validate_expected",
 				"each element of "+str(function_name),"string",value)
@@ -198,17 +199,5 @@ def validate_dict(full_dict,function_name,dict_name,full=True):
 			raise Exception(
 			"MoRG:validate_expected:ERROR: "+
 				str(value)+ " is not a supported data type by MoRG")
-"""
-def validate_expected(expected):
-	if type(expected) != dict:
-		data_type_error("validate_expected","expected","dict",expected)
-	for key in expected:
-		value = expected[key]
-		if type(value) != str:
-			data_type_error("validate_expected",
-				"each element of expected","string",value)
-		if value not in DATA_TYPES_SUPPORTED:
-			raise Exception(
-			"MoRG:validate_expected:ERROR: "+
-				str(value)+ " is not a supported data type")
-"""
+
+
