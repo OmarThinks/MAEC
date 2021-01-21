@@ -71,8 +71,8 @@ def reciever(input_request, expected={}):
 			return {"success":False,"result":{"status":400, 
 				"description":"there is no request body"}}
 		#Finally, return values
-		for expected_value in (expected):
-			toReturn[expected_value] = body.get(expected_value,None)
+		for key in (expected):
+			toReturn[key] = body.get(expected[key],None)
 	else:
 		toReturn={}
 	return {"success":True,"result":toReturn}
@@ -140,10 +140,9 @@ ERRORS:
 """
 def attendance_validator(expected,recieved,all=True,old_values=None):
 	# Validating that "expected", "recieved" and "old_values" are dicts
-	if type(expected) != dict:
-		raise Exception("MORG:attendance_validator:ERROR:"+
-			" The 'expected' varbiale has a type of " + str(type(expected)) +
-			", type of 'expected' is supposed to be 'dict'.")
+	validate_expected(expected)
+	validate_expected(old_values)
+	
 	if type(recieved) != dict:
 		raise Exception("MORG:attendance_validator:ERROR:"+
 			" The 'recieved' varbiale has a type of " + str(type(recieved)) +
@@ -183,6 +182,19 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 
 
 
+
+def validate_full_dict(full_dict,function_name,dict_name):
+	if type(full_dict) != dict:
+		data_type_error(function_name,dict_name,"dict",full_dict)
+	for key in full_dict:
+		value = full_dict[key]
+		if type(value) != str:
+			data_type_error("validate_expected",
+				"each element of "+str(function_name),"string",value)
+		if value not in DATA_TYPES_SUPPORTED:
+			raise Exception(
+			"MoRG:validate_expected:ERROR: "+
+				str(value)+ " is not a supported data type by MoRG")
 
 def validate_expected(expected):
 	if type(expected) != dict:
