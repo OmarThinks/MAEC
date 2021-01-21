@@ -842,6 +842,18 @@ class MoRG_TestCase(unittest.TestCase):
 			'error': 500, 'message': 'internal server error', 'success': False})
 		print("Test c_1_4_2: wrong request type")
 
+	def test_c_1_5_1_reciever_tests(self):
+		#Testing the function of route "reciever_test/int"
+		response = self.client().post("/reciever_test/5")
+		#Expected to fail, request has wrong value
+		data = json.loads(response.data)
+		self.assertEqual(response.status_code,500)
+		self.assertEqual(data,{'description': 
+			"MORG:reciever:ERROR: The 'inputs'' varbiale has a type of "+
+			"<class 'str'>, type of 'inputs' is supposed to be 'list'.",
+			 'error': 500, 'message': 'internal server error', 'success': False})
+		print("Test c_1_5_1: wrong request type")
+
 	def test_c_7_1_1_reciever_tests(self):
 		#Testing the function of route "reciever/int"
 		response = self.client().post("/reciever_test/1")
