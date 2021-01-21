@@ -113,17 +113,19 @@ INPUTS:
 		- It must have the same keys as the keys of expected
 
 FUNCTION:
-	- This function recievs the inputs of the endpoint, that are as a JSON request body
+	- This function handels the recieved inputs
+	- And make sure that they are as expected, all attending
 OUTPUTS:
 	- a dictionary with these values {"success": ... , "result": ... }
 		- "success": a boolean: True or False
 			It represents whther the function was able to receve inputs or not
 		- "result":
 			- if success == True: a dictionary of the expected variables
-				Example: {"a":1, "b":2, "c":None}
-				None:means that this varaiable was not recieved successfully
+				Without any None at all, and at the same expected formatting
+				Example: {"a":1, "b":2, "c":"5"}
+				None: there will be nothing called None here
 			- if success == False: dictionry of "status" code of failure and reason
-				Example: {"status":400,"description":"there is no request body"}
+				Example: {"status":400,"desctiption":"a is missing"}
 - Example:
 	Please check the file "test_app.py" to see how it works
 	there is an endpoint called "reciever_test"
