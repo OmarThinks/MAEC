@@ -879,41 +879,6 @@ class MoRG_TestCase(unittest.TestCase):
 			'success': False})
 		print("Test c_1_7_1: wrong type in inputs")
 
-	def test_c_7_1_1_reciever_tests(self):
-		#Testing the function of route "reciever/int"
-		response = self.client().post("/reciever_test/1")
-		#Expected to fail, Error in the server
-		data = json.loads(response.data)
-		#print(data)
-		self.assertEqual(data,{"success":False,"error":500,
-			"message":
-			"MORG:reciever:ERROR: 'input_request' is supposed to be have "+
-			    "the type of flask.request, but found type of <class 'int'>"})
-		self.assertEqual(response.status_code,500)
-		
-	def test_c_7_2_1_reciever_tests(self):
-		#Testing the function of route "reciever/int"
-		response = self.client().post("/reciever_test/2",json={"a","a"})
-		data = json.loads(response.data)
-		#Expected to fail, Error in the server
-		self.assertEqual(data,{"success":False,"error":500,
-			"message":
-			"MORG:reciever:ERROR: 'input_request' is supposed to be have "+
-			    "the type of flask.request, but found type of <class 'int'>"})
-		self.assertEqual(response.status_code,500)
-		
-	def test_c_7_0_2_reciever_tests(self):
-		#Testing the function of route "reciever/int"
-		response = self.client().post("/reciever_test/1",json=12)
-		#Expected to fail, there is no request body
-		data = json.loads(response.data)
-		#print(data)
-		self.assertEqual(response.status_code,400)
-		self.assertEqual(data["success"],True)
-		self.assertIsNotNone(data,{"success":True,"result":"there is no request body"})
-		
-
-
 
 
 
