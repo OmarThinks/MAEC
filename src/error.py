@@ -12,8 +12,8 @@ def my_error(status=404 ,description="",fullError=""):
 	if fullError != "":
 		status = fullError["status"]
 		description = fullError["description"]
-		return jsonify({"success": False, 
-		"error": status,"message": description}),status
+		#return jsonify({"success": False, 
+		#"error": status,"message": description}),status
 
 	if status not in [400,401,403,404,405,422,500]:
 		raise Exception("status is "+str(status)
