@@ -133,32 +133,35 @@ OUTPUTS:
 	there is an endpoint called "reciever_test"
 
 ERRORS:
-	- input_request is not the type of flask.request
-	- inputs is not a list
-	- inputs is not a list of strings
+	- all is not boolean
+	- "expected" is not as expected
+	- recieved does not pass (validate_attendance_from_expected)
+	- 'old_values' is not None, and it doesn't pass 
+		(validate_attendance_from_expected)
 """
+
+
+
+#To Be continued
 def attendance_validator(expected,recieved,all=True,old_values=None):
-	# Validating that "expected", "recieved" and "old_values" are dicts
-	validate_dict(expected,"attendance_validator","expected",full=True)
-	validate_dict(old_values,"attendance_validator","old_values",full=False)
-	validate_dict(recieved,"attendance_validator","old_values",full=False)
-	
-	if type(recieved) != dict:
-		raise Exception("MORG:attendance_validator:ERROR:"+
-			" The 'recieved' varbiale has a type of " + str(type(recieved)) +
-			", type of 'recieved' is supposed to be 'dict'.")
-	if type(old_values) != dict:
-		raise Exception("MORG:attendance_validator:ERROR:"+
-			" The 'old_values' varbiale has a type of " + str(type(old_values)) +
-			", type of 'old_values' is supposed to be 'dict'.")
-	
+	#validating that all has a boolean type
+	if type(all)!=bool:
+		data_type_error(function_name="attendance_validator",
+			variable_name="all",expected_type_name="boolean",all)
+
+	#NOTE: reciever has already filled empty data with "None"
+	validate_attendance_from_expected(recieved,"recieved",expected)
+
+	#In this case there are old values
+	if old_values!= None:
+		validate_attendance_from_expected(old_values,"old_values",expected)
+
 	#validaing that "all" has a type of boolean
 	if type(all) != bool:
-		raise Exception("MORG:attendance_validator:ERROR:"+
-			" The 'all' varbiale has a type of " + str(type(all)) +
-			", type of 'all' is supposed to be 'dict'.")
+		data_type_error(function_name="attendance_validator",
+			variable_name="all",expected_type_name="boolean",all)
+	#To Be continued
 	
-	#validating data types inside the dicts
 
 
 
