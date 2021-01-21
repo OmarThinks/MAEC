@@ -1,5 +1,16 @@
 from flask import (Flask, 
 	request, abort, jsonify, Response,render_template)
+
+
+def data_type_error(function_name,variable_name,expected_type_name,input):
+	raise Exception("MORG:"+function_name+":ERROR: "+
+		variable_name+" is supposed to be have "+
+		"the type of "+expected_type_name+", but found type of "+ 
+		str(type(input)))
+
+
+
+
 """
 reciever:
 
@@ -156,7 +167,7 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 			" The 'all' varbiale has a type of " + str(type(all)) +
 			", type of 'all' is supposed to be 'dict'.")
 	
-
+	#validating data types inside the dicts
 
 
 
