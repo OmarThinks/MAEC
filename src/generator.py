@@ -48,8 +48,7 @@ ERRORS:
 def reciever(input_request, expected={}):
 	toReturn = {}
 	# Validating that request has the type of flask.request
-
-	validate_dict(expected,"reciever","expected",full=True)
+	validate_expected(expected)
 
 	if type(input_request) != type(request):
 		data_type_error("reciever","input_request","flask.request",input_request)
@@ -72,7 +71,7 @@ def reciever(input_request, expected={}):
 				"description":"there is no request body"}}
 		#Finally, return values
 		for key in (expected):
-			toReturn[key] = body.get(expected[key],None)
+			toReturn[key] = body.get(key,None)
 	else:
 		toReturn={}
 	return {"success":True,"result":toReturn}
@@ -184,6 +183,11 @@ validate_expected
 NOTES:
 	- expected is not a user input, it is a developer creation,
 		that is why it raises error, not validate with success or failure
+
+ERROR:
+	- expected is not a dict
+	- value corresponding to each key is not a string
+	- value corresponding to each key is not is the DATA_TYPES_SUPPORTED
 """
 
 def validate_expected(expected):
@@ -221,9 +225,12 @@ NOTES:
 		that is why it raises error, not validate with success or failure
 """
 
-def validate_attendance_from_expected(input_dict,expected)
-	pass
-
+def validate_attendance_from_expected(input_dict,expected):
+	validate_expected(expected)
+	if type(input_dict)!= dict:
+		data_type_error("validate_attendance_from_expected",
+			"input_dict","dict",input_dict)
+	#To be contued
 
 
 
