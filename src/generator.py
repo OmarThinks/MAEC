@@ -1,3 +1,5 @@
+DATA_TYPES_SUPPORTED=["string","integer","boolean"]
+
 from flask import (Flask, 
 	request, abort, jsonify, Response,render_template)
 
@@ -197,5 +199,5 @@ def validate_expected(expected):
 				"each element of expected","string",value)
 		if value not in DATA_TYPES_SUPPORTED:
 			raise Exception(
-			"MoRG:validate_expected:ERROR: '"+
+			"MoRG:validate_expected:ERROR: "+
 				str(value)+ " is not a supported data type")
