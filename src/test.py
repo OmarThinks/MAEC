@@ -738,9 +738,20 @@ class MAECTestCase(unittest.TestCase):
 
 
 	def test_c_0_0_0(self):
-		print("Here we start deep tests")
+		print("Good MoRG-ing")
 
 	def test_c_1_1_1_reciever_tests(self):
+		#Testing the function of route "reciever/int"
+		response = self.client().post("/reciever_test/1")
+		#Expected to fail, Error in the server
+		data = json.loads(response.data)
+		self.assertEqual(data,{'description': 
+			'there is no request body', 'error': 400, 'message': 'bad request', 
+			'success': False})
+		self.assertEqual(response.status_code,400)
+		print("Test c_1_11: reciever_tests : no request body")
+
+	def test_c_7_1_1_reciever_tests(self):
 		#Testing the function of route "reciever/int"
 		response = self.client().post("/reciever_test/1")
 		#Expected to fail, Error in the server
@@ -752,7 +763,7 @@ class MAECTestCase(unittest.TestCase):
 			    "the type of flask.request, but found type of <class 'int'>"})
 		self.assertEqual(response.status_code,500)
 		
-	def test_c_1_2_1_reciever_tests(self):
+	def test_c_7_2_1_reciever_tests(self):
 		#Testing the function of route "reciever/int"
 		response = self.client().post("/reciever_test/2",json={"a","a"})
 		data = json.loads(response.data)
@@ -763,7 +774,7 @@ class MAECTestCase(unittest.TestCase):
 			    "the type of flask.request, but found type of <class 'int'>"})
 		self.assertEqual(response.status_code,500)
 		
-	def test_c_1_0_2_reciever_tests(self):
+	def test_c_7_0_2_reciever_tests(self):
 		#Testing the function of route "reciever/int"
 		response = self.client().post("/reciever_test/1",json=12)
 		#Expected to fail, there is no request body
