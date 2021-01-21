@@ -232,77 +232,77 @@ class MoRG_TestCase(unittest.TestCase):
 
 
 
-	def test_b_3_001_validate_boolean(self):
+	def test_b_03_001_validate_boolean(self):
 		validation = validate_boolean(input_boolean=True,
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(True,validation["result"])
 		print("Test b_3_1: validate_boolean: True")
 
-	def test_b_3_002_validate_boolean(self):
+	def test_b_03_002_validate_boolean(self):
 		validation = validate_boolean(input_boolean="True",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(True,validation["result"])
 		print("Test b_3_2: validate_boolean: 'True'")
 
-	def test_b_3_003_validate_boolean(self):
+	def test_b_03_003_validate_boolean(self):
 		validation = validate_boolean(input_boolean="true",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(True,validation["result"])
 		print("Test b_3_3: validate_boolean: 'true'")
 
-	def test_b_3_004_validate_boolean(self):
+	def test_b_03_004_validate_boolean(self):
 		validation = validate_boolean(input_boolean=1,
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(True,validation["result"])
 		print("Test b_3_4: validate_boolean: 1")
 
-	def test_b_3_005_validate_boolean(self):
+	def test_b_03_005_validate_boolean(self):
 		validation = validate_boolean(input_boolean="1",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(True,validation["result"])
 		print("Test b_3_5: validate_boolean: '1'")
 
-	def test_b_3_006_validate_boolean(self):
+	def test_b_03_006_validate_boolean(self):
 		validation = validate_boolean(input_boolean=False,
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(False,validation["result"])
 		print("Test b_3_6: validate_boolean: False")
 
-	def test_b_3_007_validate_boolean(self):
+	def test_b_03_007_validate_boolean(self):
 		validation = validate_boolean(input_boolean="False",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(False,validation["result"])
 		print("Test b_3_7: validate_boolean: 'False'")
 
-	def test_b_3_008_validate_boolean(self):
+	def test_b_03_008_validate_boolean(self):
 		validation = validate_boolean(input_boolean="false",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(False,validation["result"])
 		print("Test b_3_8: validate_boolean: 'false'")
 
-	def test_b_3_009_validate_boolean(self):
+	def test_b_03_009_validate_boolean(self):
 		validation = validate_boolean(input_boolean=0,
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(False,validation["result"])
 		print("Test b_3_9: validate_boolean: 0")
 
-	def test_b_3_010_validate_boolean(self):
+	def test_b_03_010_validate_boolean(self):
 		validation = validate_boolean(input_boolean="0",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],1)
 		self.assertEqual(False,validation["result"])
 		print("Test b_3_10: validate_boolean: '0'")
 
-	def test_b_3_011_validate_boolean_wrong(self):
+	def test_b_03_011_validate_boolean_wrong(self):
 		validation = validate_boolean(input_boolean="5",
 			input_name_string="variable")
 		self.assertEqual(validation["case"],2)
@@ -314,7 +314,7 @@ class MoRG_TestCase(unittest.TestCase):
 		print("Test b_3_11: validate_boolean_wrong:"+
 			" '5'")
 
-	def test_b_3_012_validate_boolean(self):
+	def test_b_03_012_validate_boolean(self):
 		validation = validate_boolean(input_boolean=None,
 			input_name_string="variable")
 		self.assertEqual(validation["case"],3)
@@ -330,7 +330,7 @@ class MoRG_TestCase(unittest.TestCase):
 
 
 
-	def test_b_4_001_validate_integer(self):
+	def test_b_04_001_validate_integer(self):
 		validation = validate_integer(input_integer=5,
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -339,7 +339,7 @@ class MoRG_TestCase(unittest.TestCase):
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_4_1: validate_integer: 5")
 
-	def test_b_4_002_validate_integer(self):
+	def test_b_04_002_validate_integer(self):
 		validation = validate_integer(input_integer=5.0,
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -348,7 +348,7 @@ class MoRG_TestCase(unittest.TestCase):
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_4_2: validate_integer: 5.0")
 
-	def test_b_4_003_validate_integer(self):
+	def test_b_04_003_validate_integer(self):
 		validation = validate_integer(input_integer="5.0",
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -360,7 +360,7 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_4_3: validate_integer: '5.0'")
 
-	def test_b_4_004_validate_integer_wrong(self):
+	def test_b_04_004_validate_integer_wrong(self):
 		validation = validate_integer(input_integer="i",
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -372,7 +372,7 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_4_4: validate_integer: i")
 
-	def test_b_4_005_validate_integer(self):
+	def test_b_04_005_validate_integer(self):
 		validation = validate_integer(input_integer=0,
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -381,7 +381,7 @@ class MoRG_TestCase(unittest.TestCase):
 		self.assertEqual(0.0,validation["result"])
 		print("Test b_4_5: validate_integer: 0")
 
-	def test_b_4_006_validate_integer_wrong(self):
+	def test_b_04_006_validate_integer_wrong(self):
 		validation = validate_integer(input_integer=-40,
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -394,7 +394,7 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_4_6: validate_integer: -40")
 
-	def test_b_4_007_validate_integer_wrong(self):
+	def test_b_04_007_validate_integer_wrong(self):
 		validation = validate_integer(input_integer=4,
 			input_name_string="input",maximum=3,
 			minimum=0)
@@ -407,7 +407,7 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_4_7: validate_integer: >max")
 
-	def test_b_4_008_validate_integer_wrong(self):
+	def test_b_04_008_validate_integer_wrong(self):
 		validation = validate_integer(input_integer=None,
 			input_name_string="input",maximum=3,
 			minimum=0)
@@ -441,7 +441,7 @@ class MoRG_TestCase(unittest.TestCase):
 
 
 
-	def test_b_5_001_validate_float(self):
+	def test_b_05_001_validate_float(self):
 		validation = validate_float(input_float=5,
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -450,7 +450,7 @@ class MoRG_TestCase(unittest.TestCase):
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_5_1: validate_float: 5")
 
-	def test_b_5_002_validate_float(self):
+	def test_b_05_002_validate_float(self):
 		validation = validate_float(input_float=5.0,
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -459,7 +459,7 @@ class MoRG_TestCase(unittest.TestCase):
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_5_2: validate_float: 5.0")
 
-	def test_b_5_003_validate_float(self):
+	def test_b_05_003_validate_float(self):
 		validation = validate_float(input_float="5.0",
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -468,7 +468,7 @@ class MoRG_TestCase(unittest.TestCase):
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_5_3: validate_float: '5.0'")
 
-	def test_b_5_004_validate_float_wrong(self):
+	def test_b_05_004_validate_float_wrong(self):
 		validation = validate_float(input_float="i",
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -480,7 +480,7 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_5_4: validate_float: i")
 
-	def test_b_5_005_validate_float(self):
+	def test_b_05_005_validate_float(self):
 		validation = validate_float(input_float=0,
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -489,7 +489,7 @@ class MoRG_TestCase(unittest.TestCase):
 		self.assertEqual(0.0,validation["result"])
 		print("Test b_5_5: validate_float: 0")
 
-	def test_b_5_006_validate_float_wrong(self):
+	def test_b_05_006_validate_float_wrong(self):
 		validation = validate_float(input_float=-40,
 			input_name_string="input",maximum=1000,
 			minimum=0)
@@ -502,7 +502,7 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_5_6: validate_float: -40")
 
-	def test_b_5_007_validate_float_wrong(self):
+	def test_b_05_007_validate_float_wrong(self):
 		validation = validate_float(input_float=4,
 			input_name_string="input",maximum=3,
 			minimum=0)
@@ -515,7 +515,7 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_5_7: validate_float: >max")
 
-	def test_b_5_008_validate_float_wrong(self):
+	def test_b_05_008_validate_float_wrong(self):
 		validation = validate_float(input_float=None,
 			input_name_string="input",maximum=3,
 			minimum=0)
@@ -526,7 +526,7 @@ class MoRG_TestCase(unittest.TestCase):
 		print("Test b_5_8: validate_float: None")
 
 
-	def test_b_6_001_validate_base64(self):
+	def test_b_06_001_validate_base64(self):
 		validation = validate_base64(input_string=None,
 			input_name_string="input",maximum_length=4,
 			minimum_length=0)
@@ -578,7 +578,7 @@ class MoRG_TestCase(unittest.TestCase):
 		print("Test b_6_1: validate_base64: None")
 
 
-	def test_b_7_001_validate_specific(self):		
+	def test_b_07_001_validate_specific(self):		
 		validation = validate_specific(input_value="png",
 			input_name_string="formatting",input_range=["png","jpg"])
 		self.assertEqual(validation,{"case":1,"result":"png"})
@@ -600,14 +600,14 @@ class MoRG_TestCase(unittest.TestCase):
 
 
 
-	def test_b_8_001_validate__must(self):
+	def test_b_08_001_validate__must(self):
 		validation = validate__must(input=5,type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(5.0,validation["result"])
 		print("Test b_8_1: validate__must float: 5")
 
-	def test_b_8_002_validate__must(self):
+	def test_b_08_002_validate__must(self):
 		validation = validate__must(input="unknown",type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -617,14 +617,14 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_8_2: validate__must float: 'i'")
 
-	def test_b_8_003_validate__must(self):
+	def test_b_08_003_validate__must(self):
 		validation = validate__must(input=5,type="i",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(5,validation["result"])
 		print("Test b_8_3: validate__must integer: 5")
 
-	def test_b_8_004_validate__must(self):
+	def test_b_08_004_validate__must(self):
 		validation = validate__must(input="unknown",type="i",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -634,14 +634,14 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_8_4: validate__must integer: 'i'")
 
-	def test_b_8_005_validate__must(self):
+	def test_b_08_005_validate__must(self):
 		validation = validate__must(input=True,type="b",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual(True,validation["result"])
 		print("Test b_8_5: validate__must boolean: True")
 
-	def test_b_8_006_validate__must(self):
+	def test_b_08_006_validate__must(self):
 		validation = validate__must(input="unknown",type="b",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -651,14 +651,14 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])
 		print("Test b_8_6: validate__must boolean: 'unknown'")
 
-	def test_b_8_007_validate__must(self):
+	def test_b_08_007_validate__must(self):
 		validation = validate__must(input="dddaaatta",type="s",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],True)
 		self.assertEqual("dddaaatta",validation["result"])
 		print("Test b_8_7: validate__must string: 'dddaaatta'")
 
-	def test_b_8_008_validate__must(self):
+	def test_b_08_008_validate__must(self):
 		try:
 			validation = validate__must(input="1",type="wrong",
 			input_name_string="my_data",maximum=1000,minimum=-5)
@@ -667,7 +667,7 @@ class MoRG_TestCase(unittest.TestCase):
 			self.assertEqual(True,True)
 		print("Test b_8_8: validate__must wrong type: 'wrong'")
 
-	def test_b_8_009_validate__must(self):
+	def test_b_08_009_validate__must(self):
 		validation = validate__must(input=None,type="i",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -678,7 +678,7 @@ class MoRG_TestCase(unittest.TestCase):
 		
 		print("Test b_8_9: validate__must wrong input: None int")
 
-	def test_b_8_010_validate__must(self):
+	def test_b_08_010_validate__must(self):
 		validation = validate__must(input=None,type="f",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -689,7 +689,7 @@ class MoRG_TestCase(unittest.TestCase):
 		
 		print("Test b_8_10: validate__must wrong input: None float")
 
-	def test_b_8_011_validate__must(self):
+	def test_b_08_011_validate__must(self):
 		validation = validate__must(input=None,type="b",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -700,7 +700,7 @@ class MoRG_TestCase(unittest.TestCase):
 		
 		print("Test b_8_11: validate__must wrong input: None bool")
 
-	def test_b_8_012_validate__must(self):
+	def test_b_08_012_validate__must(self):
 		validation = validate__must(input=None,type="s",
 			input_name_string="my_data",maximum=1000,minimum=-5)
 		self.assertEqual(validation["case"],False)
@@ -710,20 +710,20 @@ class MoRG_TestCase(unittest.TestCase):
 			,validation["result"]["status"])	
 		print("Test b_8_12: validate__must wrong input: None str")
 
-	def test_b_8_013_validate__must(self):
+	def test_b_08_013_validate__must(self):
 		validation = validate__must(input="abcde",type="b64",
 			input_name_string="b64",maximum=1000,minimum=-5)
 		self.assertEqual(validation  ,{"case":False,"result":{"description":
 		"b64 can not be converted to base64","status":422}})
 		print("Test b_8_13: validate__must wrong input: wrong base64")
 
-	def test_b_8_014_validate__must(self):
+	def test_b_08_014_validate__must(self):
 		validation = validate__must(input="abcd/+/=",type="b64",
 			input_name_string="b64",maximum=1000,minimum=-5)
 		self.assertEqual(validation  ,{"case":True,"result":"abcd/+/="})
 		print("Test b_8_14: validate__must input: correct base64")
 
-	def test_b_8_015_validate__must(self):
+	def test_b_08_015_validate__must(self):
 		validation = validate__must(input="png",input_name_string="formatting"
 			,type="spfc",
 			input_range=["png","jpg"])
@@ -735,7 +735,7 @@ class MoRG_TestCase(unittest.TestCase):
 			{"description":"abc is not allowed formatting","status":422}})
 		print("Test b_8_14: validate__must input: correct base64")
 
-	def test_b_9_001_data_type_error(self):
+	def test_b_09_001_data_type_error(self):
 		try:
 			data_type_error("a","b","c","d")
 		except Exception as e:
@@ -743,6 +743,24 @@ class MoRG_TestCase(unittest.TestCase):
 			"MoRG:a:ERROR: 'b' is supposed to have the type"+
 			" of 'c', but found type of '<class 'str'>' instead")
 		print("Test b_9_001: data_type_error")
+
+	def test_b_10_001_validate_expected(self):
+		validate_expected({"abc":"123","cde":"45"})
+		validate_expected({})
+		try:
+			validate_expected("abc")
+		except Exception as e:
+			self.assertEqual(str(e),
+			"MoRG:validate_expected:ERROR: 'expected' is supposed to have the type"+
+			" of 'dict', but found type of '<class 'str'>' instead")
+		try:
+			validate_expected({"abc":123})
+		except Exception as e:
+			self.assertEqual(str(e),
+			"MoRG:validate_expected:ERROR: 'each element of expected'"+
+			" is supposed to have the type of 'string', but found type "+
+			"of '<class 'int'>' instead")
+		print("Test b_10_1: validate_expected")
 
 	def test_c_0_0_0(self):
 		print("Good MoRG-ing")

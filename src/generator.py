@@ -50,7 +50,7 @@ def reciever(input_request, expected={}):
 	if type(input_request) != type(request):
 		data_type_error("reciever","input_request","flask.request",input_request)
 	#Validating that expected is a dict
-	if type(expected) != dict
+	if type(expected) != dict:
 		data_type_error("reciever","expected","dict",expected)
 	
 	#Validating that expected is a list of strings
@@ -188,10 +188,11 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 
 
 def validate_expected(expected):
-	if type(expected) != dict
+	if type(expected) != dict:
 		data_type_error("validate_expected","expected","dict",expected)
 	for key in expected:
 		if type(expected[key]) != str:
-			data_type_error("validate_expected","expected","string",expected)
+			data_type_error("validate_expected",
+				"each element of expected","string",expected[key])
 
 
