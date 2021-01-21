@@ -735,7 +735,14 @@ class MoRG_TestCase(unittest.TestCase):
 			{"description":"abc is not allowed formatting","status":422}})
 		print("Test b_8_14: validate__must input: correct base64")
 
-
+	def test_b_9_001_data_type_error(self):
+		try:
+			data_type_error("a","b","c","d")
+		except Exception as e:
+			self.assertEqual(str(e),
+			"MoRG:a:ERROR: 'b'' is supposed to have the type"+
+			" of 'c', but found type of '<class 'str'>' instead")
+		print("Test b_8_14: validate__must input: correct base64")
 
 	def test_c_0_0_0(self):
 		print("Good MoRG-ing")
@@ -801,7 +808,7 @@ class MoRG_TestCase(unittest.TestCase):
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
 		self.assertEqual(data,{'description':
-		 "MORG:reciever:ERROR: 'request' is supposed to be have the type of"+
+		 "MoRG:reciever:ERROR: 'request' is supposed to be have the "+
 		 " flask.request, but found type of <class 'int'>", 
 			'error': 500, 'message': 'internal server error', 'success': False})
 		print("Test c_1_3_1: wrong request type")
@@ -871,6 +878,7 @@ class MoRG_TestCase(unittest.TestCase):
 		response = self.client().post("/reciever_test/7")
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
+		print(data)
 		self.assertEqual(response.status_code,500)
 		self.assertEqual(data,{'description': "MOAG:reciever:ERROR: The"+
 			" 'inputs'' varbiale is "+

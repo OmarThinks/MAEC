@@ -3,10 +3,10 @@ from flask import (Flask,
 
 
 def data_type_error(function_name,variable_name,expected_type_name,input):
-	raise Exception("MORG:"+function_name+":ERROR: "+
-		variable_name+" is supposed to be have "+
-		"the type of "+expected_type_name+", but found type of "+ 
-		str(type(input)))
+	raise Exception("MoRG:"+str(function_name)+":ERROR: '"+
+		str(variable_name)+"'' is supposed to have "+
+		"the type of '"+expected_type_name+"', but found type of '"+ 
+		str(type(input))+"' instead")
 
 
 
