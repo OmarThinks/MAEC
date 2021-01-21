@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 SECRET = "abc"
+DATA_TYPES_SUPPORTED=["string","integer","boolean"]
 try:
 	from .validaton import *
 	from .error import *
