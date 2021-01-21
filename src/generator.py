@@ -136,7 +136,26 @@ ERRORS:
 	- inputs is not a list of strings
 """
 def attendance_validator(expected,recieved,all=True,old_values=None):
-	pass
+	# Validating that "expected", "recieved" and "old_values" are dicts
+	if type(expected) != dict:
+		raise Exception("MORG:attendance_validator:ERROR:"+
+			" The 'expected' varbiale has a type of " + str(type(expected)) +
+			", type of 'expected' is supposed to be 'dict'.")
+	if type(recieved) != dict:
+		raise Exception("MORG:attendance_validator:ERROR:"+
+			" The 'recieved' varbiale has a type of " + str(type(recieved)) +
+			", type of 'recieved' is supposed to be 'dict'.")
+	if type(old_values) != dict:
+		raise Exception("MORG:attendance_validator:ERROR:"+
+			" The 'old_values' varbiale has a type of " + str(type(old_values)) +
+			", type of 'old_values' is supposed to be 'dict'.")
+	
+	#validaing that "all" has a type of boolean
+	if type(all) != bool:
+		raise Exception("MORG:attendance_validator:ERROR:"+
+			" The 'all' varbiale has a type of " + str(type(all)) +
+			", type of 'all' is supposed to be 'dict'.")
+	
 
 
 
