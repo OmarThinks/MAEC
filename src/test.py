@@ -749,7 +749,16 @@ class MAECTestCase(unittest.TestCase):
 			'there is no request body', 'error': 400, 'message': 'bad request', 
 			'success': False})
 		self.assertEqual(response.status_code,400)
-		print("Test c_1_11: reciever_tests : no request body")
+		print("Test c_1_1_1: reciever_tests : no request body")
+
+	def test_c_1_1_2_reciever_tests(self):
+		#Testing the function of route "reciever/int"
+		response = self.client().post("/reciever_test/1",json={})
+		#Expected to fail, Error in the server
+		data = json.loads(response.data)
+		self.assertEqual(data,{'in_stock': None, 'name': None, 'price': None})
+		self.assertEqual(response.status_code,200)
+		print("Test c_1_1_1: reciever_tests : request body successful")
 
 	def test_c_7_1_1_reciever_tests(self):
 		#Testing the function of route "reciever/int"
