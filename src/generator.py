@@ -190,7 +190,7 @@ def validate_expected(expected):
 	if type(expected) != dict:
 		data_type_error("validate_expected","expected","dict",expected)
 	for key in expected:
-		value = expected["key"]
+		value = expected[key]
 		if type(value) != str:
 			data_type_error("validate_expected",
 				"each element of expected","string",value)
@@ -201,16 +201,39 @@ def validate_expected(expected):
 
 
 
+"""
+validate_attendance_from_expected
+
+- INPUTS:
+	- input_dict: a dictionary that needs to be validated
+		- Example: {"name":1, "price":"a", "in_stock": 5}
+		- Example: {"name":"1", "price":4}
+	- expected: the dictiony of the expected daya and how they look like 
+		-Example: {"name":"string","price":"integer","in_stock":"boolean"}
+- FUNCTION:
+	- we need to make sure that all the keys in expected exist in this input
+- OUTPUTS:
+	- no outputs, errors are raise uf somethng went wrong
+
+NOTES:
+	- input_dict is not a user input, it is supposed to be the output of
+		reciever, it is a developer creation,
+		that is why it raises error, not validate with success or failure
+"""
+
+def validate_attendance_from_expected(input_dict,expected)
+	pass
 
 
 
 
 
 
+"""
+Unorganizedly written
+"""
 
-
-
-def validate_dict(input_dict,function_name,dict_name,full=True):
+def validate__dict(input_dict,function_name,dict_name,full=True):
 	if type(input_dict) != dict:
 		data_type_error("validate_dict",dict_name,"dict",input_dict)
 	for key in input_dict:

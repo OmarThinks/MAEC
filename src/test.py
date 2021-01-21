@@ -744,17 +744,18 @@ class MoRG_TestCase(unittest.TestCase):
 			" of 'c', but found type of '<class 'str'>' instead")
 		print("Test b_9_001: data_type_error")
 
-	def test_b_10_001_validate_expected(self):
-		validate_dict({},"testing_function_name","test_name",full=True)
-		validate_dict({"abc":"string","123":"integer","true":"boolean"}
+	def test_b_10_001_validate__dict(self):
+		raise Exception("not ready")
+		validate__dict({},"testing_function_name","test_name",full=True)
+		validate__dict({"abc":"string","123":"integer","true":"boolean"}
 			,"testing_function_name","test_name",full=True)
-		validate_dict({"abc":"string","123":"integer","true":None}
+		validate__dict({"abc":"string","123":"integer","true":None}
 			,"testing_function_name","test_name",full=False)
 		try:
-			validate_dict("abc","testing_function_name","test_name",full=True)
+			validate__dict("abc","testing_function_name","test_name",full=True)
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:validate_dict:ERROR: 'test_name' is supposed to have"+
+			"MoRG:validate__dict:ERROR: 'test_name' is supposed to have"+
 			" the type of 'dict', but found type of '<class 'str'>' instead")
 		try:
 			validate_expected({"abc":123})
@@ -776,7 +777,6 @@ class MoRG_TestCase(unittest.TestCase):
 		try:
 			validate_expected("abc")
 		except Exception as e:
-			print(str(e))
 			self.assertEqual(str(e),
 			"MoRG:validate_expected:ERROR: 'expected' is supposed to have "+
 			"the type of 'dict', but found type of '<class 'str'>' instead")
@@ -792,7 +792,7 @@ class MoRG_TestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),
 			"MoRG:validate_expected:ERROR: 123 is not a supported data type")
-		print("Test b_10_1: validate_expected")
+		print("Test b_11_1: validate_expected")
 
 	def test_c_0_0_0(self):
 		print("Good MoRG-ing")
