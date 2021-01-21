@@ -745,14 +745,17 @@ class MoRG_TestCase(unittest.TestCase):
 		print("Test b_9_001: data_type_error")
 
 	def test_b_10_001_validate_expected(self):
-		validate_expected({})
-		validate_expected({"abc":"string","123":"integer","true":"boolean"})
+		validate_dict({},"testing_function_name","test_name",full=True)
+		validate_dict({"abc":"string","123":"integer","true":"boolean"}
+			,"testing_function_name","test_name",full=True)
+		validate_dict({"abc":"string","123":"integer","true":None}
+			,"testing_function_name","test_name",full=False)
 		try:
-			validate_expected("abc")
+			validate_dict("abc","testing_function_name","test_name",full=True)
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:validate_expected:ERROR: 'expected' is supposed to have the type"+
-			" of 'dict', but found type of '<class 'str'>' instead")
+			"MoRG:validate_dict:ERROR: 'test_name' is supposed to have"+
+			" the type of 'dict', but found type of '<class 'str'>' instead")
 		try:
 			validate_expected({"abc":123})
 		except Exception as e:

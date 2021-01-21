@@ -186,18 +186,30 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 
 def validate_dict(input_dict,function_name,dict_name,full=True):
 	if type(input_dict) != dict:
-		data_type_error(function_name,dict_name,"dict",input_dict)
+		data_type_error("validate_dict",dict_name,"dict",input_dict)
 	for key in input_dict:
 		value = input_dict[key]
-		if type(value) != str:
-			data_type_error("validate_expected",
-				"each element of "+str(function_name),"string",value)
 		if not full:
 			if value == None:
 				continue
+		if type(value) != str:
+			data_type_error("validate_dict",
+				"each element of "+str(dict_name),"string",value)
 		if value not in DATA_TYPES_SUPPORTED:
 			raise Exception(
-			"MoRG:validate_expected:ERROR: "+
+			"MoRG:validate_dict:ERROR: "+
 				str(value)+ " is not a supported data type by MoRG")
 
+
+
+
+
+
+def validate_expected(expected):
+	if type(expected) != dict:
+		data_type_error("validate_expected","expected","dict",expected)
+	for key in expected:
+		if type(expected[key]) != str:
+			data_type_error("validate_expected",
+				"each element of expected","string",expected[key])
 
