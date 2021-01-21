@@ -792,6 +792,15 @@ class MoRG_TestCase(unittest.TestCase):
 		print("Test c_1_2_2: reciever_tests : request body"+
 			" successful, empty request body")
 
+	def test_c_1_3_1_reciever_tests(self):
+		#Testing the function of route "reciever_test/int"
+		response = self.client().post("/reciever_test/3")
+		#Expected to fail, request has wrong value
+		data = json.loads(response.data)
+		self.assertEqual(response.status_code,200)
+		self.assertEqual(data,{})
+		print("Test c_1_3_1: wrong request type")
+
 	def test_c_7_1_1_reciever_tests(self):
 		#Testing the function of route "reciever/int"
 		response = self.client().post("/reciever_test/1")
