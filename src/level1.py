@@ -170,15 +170,20 @@ def attendance_validator(received,expected,old=None):
 	#The previous step has failed
 	if received["success"] ==  False:
 		return received
-	
+	toReturn={}
 	if old == None:
 		#It is a new record, like POST method
-		return new_attendance_validator(expected,
+		toReturn = new_attendance_validator(expected,
 			received_result=received["result"])
-	#the record already exists, like PATCH or PUT methods
-	return old_attendance_validator(expected=expected,
+	else:
+		#the record already exists, like PATCH or PUT methods
+		toReturn = old_attendance_validator(expected=expected,
 		received_result=received["result"],old_dict=old)
+	morbs_checkpoint(input_dict=toReturn,
+		function_name="attendance_validator",variable_name="toReturn")
+	return toReturn
 
+	 
 
 
 
