@@ -1232,15 +1232,28 @@ class MoRBs_TestCase(unittest.TestCase):
 			old={"name":"efg","price":9,"in_stock":False}),
 			{"success":False,"result":{"status":400,"description":
 			"you must at least enter one field to change"}})
-
-		#input_dict not dict
-		try:
-			morbs_checkpoint(input_dict=123,
-			function_name="tst",variable_name="nm")
-		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm' is supposed to have"+
-				" the type of 'dict', but found type of '<class 'int'>' instead")
 		print("Test c_2_3: attendance_validator")
+
+
+	def test_c_2_4_attendance_validator(self):	
+		# failing checkpoint
+		try:
+			attendance_validator(expected=
+			{"name":"string","price":"integer","in_stock":"boolean"}
+			,received={"success":1,
+			"result":{"name":"abc","price":5,"in_stock":True}},
+			old={"name":"efg","price":9,"in_stock":False})
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:attendance_validator:ERROR: 'received['success']' is supposed to have the type of 'bool', but found type of '<class 'int'>' instead")
+		# recieved not dict
+		try:
+			attendance_validator(expected=
+			{"name":"string","price":"integer","in_stock":"boolean"}
+			,received="abc",
+			old={"name":"efg","price":9,"in_stock":False})
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:attendance_validator:ERROR: 'received' is supposed to have the type of 'dict', but found type of '<class 'str'>' instead")
+		print("Test c_2_4: attendance_validator")
 
 
 
