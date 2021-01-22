@@ -1196,6 +1196,13 @@ class MoRBs_TestCase(unittest.TestCase):
 			"result":{"name":"abc","price":5,"in_stock":True}},
 			old={"name":"efg","price":9,"in_stock":False}),
 			{"success":True,"result":{"name":"abc","price":5,"in_stock":True}})
+		# missing values with old
+		self.assertEqual(attendance_validator(expected=
+			{"name":"string","price":"integer","in_stock":"boolean"}
+			,received={"success":True,
+			"result":{"name":None,"price":None,"in_stock":True}},
+			old={"name":"efg","price":9,"in_stock":False}),
+			{"success":True,"result":{"name":"efg","price":9,"in_stock":True}})
 
 		#input_dict not dict
 		try:
