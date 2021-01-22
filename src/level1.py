@@ -256,9 +256,10 @@ def old_attendance_validator(expected,recieved_result,old_dict):
 	#Now we need to make sure that not all the values are equal to none
 	toReturn = {}
 
-	if len(recieved_result) != 0:
+	if len(expected) != 0:
 		all_Nones = True
-		for key in recieved_result:
+		for key in expected:
+			toReturn[key] = recieved_result[key]
 			if recieved_result[key] != None:
 				#There is at least one value not equal to None
 				all_Nones = False

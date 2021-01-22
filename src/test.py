@@ -876,6 +876,36 @@ class MoRBs_TestCase(unittest.TestCase):
 				"supposed to be a dictionary without 'None' values")
 		print("Test b_13_1: validateReadyDict")
 
+	def test_b_14_001_old_attendance_validator(self):
+		#Exactly
+		self.assertEqual(
+		old_attendance_validator(expected={"a":"string","b":"integer"},
+			recieved_result={"a":1,"b":5},old_dict={"a":4,"b":9}),
+		{"success":True,"result":{"a":1,"b":5}})
+		#Empty
+		self.assertEqual(
+		old_attendance_validator(expected={},recieved_result={},old_dict={}),
+		{"success":True,"result":{}})
+		self.assertEqual(
+		old_attendance_validator(expected={},recieved_result={"a":4},
+			old_dict={"b":"9"}),
+		{"success":True,"result":{}})
+		#fail: expected is wrong
+		try:
+			old_attendance_validator(expected={"abc":"str"},recieved_result={"a":4},
+				old_dict={"b":"9"})
+		except Exception as e:
+			self.assertEqual(str(e),
+				"MoRBs:validate_expected:ERROR: str is not a supported data type")
+		#fail value has None
+		try:
+			validateReadyDict(input_dict = {"a":1,"b":None},dict_name="tst")
+		except Exception as e:
+			self.assertEqual(str(e),
+				"MoRBs:validateReadyDict:ERROR:tst:is "+
+				"supposed to be a dictionary without 'None' values")
+		print("Test b_14_1: old_attendance_validator")
+
 	def test_c_0_0_0(self):
 		print("Good MoRBs")
 
