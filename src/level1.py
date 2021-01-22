@@ -157,27 +157,16 @@ ERRORS:
 
 
 #To Be continued
-def attendance_validator(expected,received,all=True,old_values=None):
-	#validating that all has a boolean type
-	if type(all)!=bool:
-		data_type_error(function_name="attendance_validator",
-			variable_name="all",expected_type_name="boolean",imput=all)
-
-	#NOTE: receiver has already filled empty data with "None"
-	validate_attendance_from_expected(received,"received",expected)
-
-	#In this case there are old values
-	if old_values!= None:
-		validate_attendance_from_expected(old_values,"old_values",expected)
-
-	#validaing that "all" has a type of boolean
-	if type(all) != bool:
-		data_type_error(function_name="attendance_validator",
-			variable_name="all",expected_type_name="boolean",imput=all)
-	#To Be continued
+def attendance_validator(received,expected,old=None):
+	#The previous step has failed
+	if received["success"] ==  False:
+		return received
 	
-
-
+	if old == None:
+		#It is a new record, like POST method
+		return new_attendance_validator(expected,received["result"])
+	#the record already exists, like PATCH or PUT methods
+	return new_attendance_validator(expected,received["result"])
 
 
 
