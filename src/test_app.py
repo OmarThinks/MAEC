@@ -118,11 +118,11 @@ Tests: test_02_populate_test
 
 
 
-	@app.route("/reciever_test/<int:test_case_id>", methods=["POST"])
-	def reciever_test(test_case_id):
+	@app.route("/receiver_test/<int:test_case_id>", methods=["POST"])
+	def receiver_test(test_case_id):
 		"""
-		This endpont is created to test the reciever endpoint
-		it will return the same exact return value of the reciever function
+		This endpont is created to test the receiver endpoint
+		it will return the same exact return value of the receiver function
 		"""
 		"""try:
 			my_request = request
@@ -162,7 +162,7 @@ Tests: test_02_populate_test
 			expected = ["1","c",3]
 			#Fail: Only stirngs are allowed
 		try:
-			result = reciever(request= my_request,expected=expected)
+			result = receiver(request= my_request,expected=expected)
 			if result["success"]==True:
 				return jsonify(result)
 			else:

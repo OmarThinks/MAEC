@@ -831,27 +831,27 @@ class MoRBs_TestCase(unittest.TestCase):
 		#Exactly
 		self.assertEqual(new_attendance_validator(
 			expected={"a":"string","b":"boolean"},
-			recieved_result = {"a":1,"b":True}),
+			received_result = {"a":1,"b":True}),
 		{"success":True,"result":{"a":1,"b":True}})
 		#Empty
 		self.assertEqual(new_attendance_validator(
-			expected={},recieved_result = {}),
+			expected={},received_result = {}),
 		{"success":True,"result":{}})
 		#More
 		self.assertEqual(new_attendance_validator(
-			expected={},recieved_result = {"a":1}),
+			expected={},received_result = {"a":1}),
 		{"success":True,"result":{}})
 
 		#fail validate attendance from expected
 		try:
 			self.assertEqual(new_attendance_validator(
-			expected={"a":"string"},recieved_result = {}),
+			expected={"a":"string"},received_result = {}),
 			{"success":False,"result":{"status":400, 
 			"description":"a is missing"}})
 		except Exception as e:
 			self.assertEqual(str(e),
 				"MoRBs:validate_attendance_from_expected:ERROR:"+
-				"recieved did not carry this key 'a', but it exists in"+
+				"received did not carry this key 'a', but it exists in"+
 				" 'expected' dict")
 		print("Test b_12_1: new_attendance_validator")
 
@@ -880,24 +880,24 @@ class MoRBs_TestCase(unittest.TestCase):
 		#Exactly
 		self.assertEqual(
 		old_attendance_validator(expected={"a":"string","b":"integer"},
-			recieved_result={"a":1,"b":5},old_dict={"a":4,"b":9}),
+			received_result={"a":1,"b":5},old_dict={"a":4,"b":9}),
 		{"success":True,"result":{"a":1,"b":5}})
 		#Empty
 		self.assertEqual(
-		old_attendance_validator(expected={},recieved_result={},old_dict={}),
+		old_attendance_validator(expected={},received_result={},old_dict={}),
 		{"success":True,"result":{}})
 		self.assertEqual(
-		old_attendance_validator(expected={},recieved_result={"a":4},
+		old_attendance_validator(expected={},received_result={"a":4},
 			old_dict={"b":"9"}),
 		{"success":True,"result":{}})
 		#fail: expected is wrong
 		try:
-			old_attendance_validator(expected={"abc":"str"},recieved_result={"a":4},
+			old_attendance_validator(expected={"abc":"str"},received_result={"a":4},
 				old_dict={"b":"9"})
 		except Exception as e:
 			self.assertEqual(str(e),
 				"MoRBs:validate_expected:ERROR: str is not a supported data type")
-		#fail value has None
+		#fail received is wrong
 		try:
 			validateReadyDict(input_dict = {"a":1,"b":None},dict_name="tst")
 		except Exception as e:
@@ -909,111 +909,111 @@ class MoRBs_TestCase(unittest.TestCase):
 	def test_c_0_0_0(self):
 		print("Good MoRBs")
 
-	def test_c_1_1_1_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/1")
+	def test_c_1_1_1_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/1")
 		#Expected to fail, No request body
 		data = json.loads(response.data)
 		self.assertEqual(data,{'description': 
 			'there is no request body', 'error': 400, 'message': 'bad request', 
 			'success': False})
 		self.assertEqual(response.status_code,400)
-		print("Test c_1_1_1: reciever_tests : no request body")
+		print("Test c_1_1_1: receiver_tests : no request body")
 
-	def test_c_1_1_2_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/1",json={})
+	def test_c_1_1_2_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/1",json={})
 		#Expected to Succeed, Error in the server
 		data = json.loads(response.data)
 		self.assertEqual(data,{"success":True,"result":
 			{'in_stock': None, 'name': None, 'price': None}})
 		self.assertEqual(response.status_code,200)
-		print("Test c_1_1_2: reciever_tests : request body successful, empty")
+		print("Test c_1_1_2: receiver_tests : request body successful, empty")
 
-	def test_c_1_1_3_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/1",json=
+	def test_c_1_1_3_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/1",json=
 			{'in_stock': True, 'name': "abc", 'price': 5})
 		#Expected to succeed,
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,200)
 		self.assertEqual(data,{"success":True,"result":
 			{'in_stock': True, 'name': "abc", 'price': 5}})
-		print("Test c_1_1_3: reciever_tests : request body"+
+		print("Test c_1_1_3: receiver_tests : request body"+
 			" successful, full request body")
 
-	def test_c_1_2_1_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/2",json=
+	def test_c_1_2_1_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/2",json=
 			{'in_stock': True, 'name': "abc", 'price': 5})
 		#Expected to succeed, empty response
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,200)
 		self.assertEqual(data,{"success":True,"result":{}})
-		print("Test c_1_2_1: reciever_tests : request body"+
+		print("Test c_1_2_1: receiver_tests : request body"+
 			" successful, full request body")
 
-	def test_c_1_2_2_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/2")
+	def test_c_1_2_2_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/2")
 		#Expected to succeed, empty response
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,200)
 		self.assertEqual(data,{"success":True,"result":{}})
-		print("Test c_1_2_2: reciever_tests : request body"+
+		print("Test c_1_2_2: receiver_tests : request body"+
 			" successful, empty request body")
 
-	def test_c_1_3_1_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/3")
+	def test_c_1_3_1_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/3")
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRBs:reciever:ERROR: "+
+		self.assertEqual(data,{'description': "MoRBs:receiver:ERROR: "+
 			"'request' is supposed to have the type of "+
 			"'flask.request', but found type of '<class 'int'>' instead",
 			 'error': 500, 'message': 'internal server error', 'success': False})
 		print("Test c_1_3_1: wrong request type")
 
-	def test_c_1_3_2_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/3",json={"price":5})
+	def test_c_1_3_2_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/3",json={"price":5})
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRBs:reciever:ERROR: "+
+		self.assertEqual(data,{'description': "MoRBs:receiver:ERROR: "+
 			"'request' is supposed to have the type of 'flask.request'"+
 			", but found type of '<class 'int'>' instead", 
 			'error': 500, 'message': 'internal server error', 'success': False})
 		print("Test c_1_3_2: wrong request type")
 
-	def test_c_1_4_1_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/3")
+	def test_c_1_4_1_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/3")
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRBs:reciever:ERROR: 'request' "+
+		self.assertEqual(data,{'description': "MoRBs:receiver:ERROR: 'request' "+
 			"is supposed to have the type of 'flask.request', but found type of "+
 			"'<class 'int'>' instead", 'error': 500, 'message': 
 			'internal server error', 'success': False})
 		print("Test c_1_4_1: wrong request type")
 
-	def test_c_1_4_2_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/3",json={"price":5})
+	def test_c_1_4_2_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/3",json={"price":5})
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRBs:reciever:ERROR: "+
+		self.assertEqual(data,{'description': "MoRBs:receiver:ERROR: "+
 			"'request' is supposed to have the type of 'flask.request'"+
 			", but found type of '<class 'int'>' instead", 'error': 500, 
 			'message': 'internal server error', 'success': False})
 		print("Test c_1_4_2: wrong request type")
 
-	def test_c_1_5_1_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/5")
+	def test_c_1_5_1_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/5")
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
@@ -1023,9 +1023,9 @@ class MoRBs_TestCase(unittest.TestCase):
 			'message': 'internal server error', 'success': False})
 		print("Test c_1_5_1: wrong inputs type")
 
-	def test_c_1_6_1_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/6")
+	def test_c_1_6_1_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/6")
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
@@ -1035,9 +1035,9 @@ class MoRBs_TestCase(unittest.TestCase):
 			'message': 'internal server error', 'success': False})
 		print("Test c_1_6_1: wrong type in inputs")
 
-	def test_c_1_7_1_reciever_tests(self):
-		#Testing the function of route "reciever_test/int"
-		response = self.client().post("/reciever_test/7")
+	def test_c_1_7_1_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/7")
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)

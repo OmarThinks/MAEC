@@ -13,7 +13,7 @@ def data_type_error(function_name,variable_name,expected_type_name,input):
 
 
 """
-reciever:
+receiver:
 
 INPUTS:
 	- request: the request variable
@@ -30,12 +30,12 @@ OUTPUTS:
 		- "result":
 			- if success == True: a dictionary of the expected variables
 				Example: {"a":1, "b":2, "c":None}
-				None:means that this varaiable was not recieved successfully
+				None:means that this varaiable was not received successfully
 			- if success == False: dictionry of "status" code of failure and reason
 				Example: {"status":400,"description":"there is no request body"}
 - Example:
 	Please check the file "test_app.py" to see how it works
-	there is an endpoint called "reciever_test"
+	there is an endpoint called "receiver_test"
 
 ERRORS:
 	- request is not the type of flask.request
@@ -44,22 +44,22 @@ ERRORS:
 """
 
 
-def reciever(request, expected={}, recieve_nothing = False):
-	if recieve_nothing == True:
-		return nothing_reciever
+def receiver(request, expected={}, receive_nothing = False):
+	if receive_nothing == True:
+		return nothing_receiver
 	
 	# Validating that request has the type of flask.request
 	validate_expected(expected)
 
 	if type(request) != type(flask_request):
-		data_type_error("reciever","request","flask.request",request)
+		data_type_error("receiver","request","flask.request",request)
 	#Validating that expected is a dict
 	# Now we are sure that expected is a list of strings, 
 	# and we got rid of all developers errors
 
 	if len(expected)!=0:
 		if request.method != "GET":
-			return json_reciever(request,expected)		
+			return json_receiver(request,expected)		
 	return {"success":True,"result":{}}
 
 
@@ -70,13 +70,13 @@ def reciever(request, expected={}, recieve_nothing = False):
 
 
 
-def nothing_reciever():
+def nothing_receiver():
 	return {"success":True,"result":{}}
 
 
 
 
-def json_reciever(request, expected={}):
+def json_receiver(request, expected={}):
 	toReturn={}
 	#Validating that the request can be parsed to JSON
 	try:
@@ -113,7 +113,7 @@ attendance_validator:
 INPUTS:
 	- expected: a dictionary that represent what is expected
 		- Example: {"name":"string", "price": "integer", "in_stock":"boolean"}
-	- recieved: a dictionary of recieved values
+	- received: a dictionary of received values
 		- Example: {"name":"abc","price":5,"in_stock":True}
 		- Example: {"name":None,"price":5,"in_stock":True}
 		- Example: {"name":None,"price":None,"in_stock":None}
@@ -129,12 +129,12 @@ INPUTS:
 		- It must have the same keys as the keys of expected
 
 FUNCTION:
-	- This function handels the recieved inputs
+	- This function handels the received inputs
 	- And make sure that they are as expected, all attending
 OUTPUTS:
 	- a dictionary with these values {"success": ... , "result": ... }
 		- "success": a boolean: True or False
-			It represents whther the function was able to recieve inputs or not
+			It represents whther the function was able to receive inputs or not
 		- "result":
 			- if success == True: a dictionary of the expected variables
 				Without any None at all, and at the same expected formatting
@@ -144,12 +144,12 @@ OUTPUTS:
 				Example: {"status":400,"desctiption":"a is missing"}
 - Example:
 	Please check the file "test_app.py" to see how it works
-	there is an endpoint called "reciever_test"
+	there is an endpoint called "receiver_test"
 
 ERRORS:
 	- all is not boolean
 	- "expected" is not as expected
-	- recieved does not pass (validate_attendance_from_expected)
+	- received does not pass (validate_attendance_from_expected)
 	- 'old_values' is not None, and it doesn't pass 
 		(validate_attendance_from_expected)
 """
@@ -157,14 +157,14 @@ ERRORS:
 
 
 #To Be continued
-def attendance_validator(expected,recieved,all=True,old_values=None):
+def attendance_validator(expected,received,all=True,old_values=None):
 	#validating that all has a boolean type
 	if type(all)!=bool:
 		data_type_error(function_name="attendance_validator",
 			variable_name="all",expected_type_name="boolean",imput=all)
 
-	#NOTE: reciever has already filled empty data with "None"
-	validate_attendance_from_expected(recieved,"recieved",expected)
+	#NOTE: receiver has already filled empty data with "None"
+	validate_attendance_from_expected(received,"received",expected)
 
 	#In this case there are old values
 	if old_values!= None:
@@ -198,14 +198,14 @@ new_attendance_validator
 - INPUTS:
 	- expected: the dictiony of the expected data and how they look like 
 		-Example: {"name":"string","price":"integer","in_stock":"boolean"}
-	- recieved_result: the dictionary of the recieved result (recieved["result"])
+	- received_result: the dictionary of the received result (received["result"])
 - FUNCTION:
-	- it will raise error if the recieved_result is not validated
+	- it will raise error if the received_result is not validated
 	- it will tell wehther there has been any inputs missing in the request
 - OUTPUTS:
 	- a dictionary with these values {"success": ... , "result": ... }
 		- "success": a boolean: True or False
-			It represents whther the function was able to recieve inputs or not
+			It represents whther the function was able to receive inputs or not
 		- "result":
 			- if success == True: a dictionary of the expected variables
 				Without any None at all, and at the same expected formatting
@@ -218,12 +218,12 @@ NOTES:
 		that is why it raises error, not validate with success or failure
 
 ERROR:
-	- recieved result failed to pass validate_attendance_from_expected
-	- a value in the recieved_result is equal to None
+	- received result failed to pass validate_attendance_from_expected
+	- a value in the received_result is equal to None
 """
-def new_attendance_validator(expected,recieved_result):
-	#NOTE: reciever has already filled empty data with "None"
-	validate_attendance_from_expected(recieved_result,"recieved",expected)
+def new_attendance_validator(expected,received_result):
+	#NOTE: receiver has already filled empty data with "None"
+	validate_attendance_from_expected(received_result,"received",expected)
 	
 	#Now we are sure that we have all values
 	#We need to make sure that there are no values that have the value of None
@@ -233,8 +233,8 @@ def new_attendance_validator(expected,recieved_result):
 	# they will not raise error, rather they will just fail
 	toReturn = {}
 	for key in expected:
-		toReturn[key] = recieved_result[key]
-		if recieved_result[key] == None:
+		toReturn[key] = received_result[key]
+		if received_result[key] == None:
 			return {"success":False,"result":{"status":400, 
 			"description":str(key) +" is missing"}}
 	return {"success":True,"result":toReturn}
@@ -245,9 +245,9 @@ def new_attendance_validator(expected,recieved_result):
 
 
 
-def old_attendance_validator(expected,recieved_result,old_dict):
-	#NOTE: reciever has already filled empty data with "None"
-	validate_attendance_from_expected(recieved_result,"recieved",expected)
+def old_attendance_validator(expected,received_result,old_dict):
+	#NOTE: receiver has already filled empty data with "None"
+	validate_attendance_from_expected(received_result,"received",expected)
 	validate_attendance_from_expected(old_dict,"old_dict",expected)
 	
 	validateReadyDict(input_dict=old_dict,dict_name="old_dict")
@@ -259,8 +259,8 @@ def old_attendance_validator(expected,recieved_result,old_dict):
 	if len(expected) != 0:
 		all_Nones = True
 		for key in expected:
-			toReturn[key] = recieved_result[key]
-			if recieved_result[key] != None:
+			toReturn[key] = received_result[key]
+			if received_result[key] != None:
 				#There is at least one value not equal to None
 				all_Nones = False
 			else:
@@ -335,7 +335,7 @@ validate_attendance_from_expected
 
 NOTES:
 	- input_dict is not a user input, it is supposed to be the output of
-		reciever, it is a developer creation,
+		receiver, it is a developer creation,
 		that is why it raises error, not validate with success or failure
 """
 
@@ -365,7 +365,7 @@ validateReadyDict
 		- Example: {"name":1, "price":"a", "in_stock": 5}
 		- Example: {"name":"1", "price":None}
 	- dict_name: sttring that carries the dict name 
-		-Example: "expected" or "recieved"
+		-Example: "expected" or "received"
 - FUNCTION:
 	- we need to make sure this is a dictionary
 	- we need to make sure that input_dict does not have any value of None
@@ -374,7 +374,7 @@ validateReadyDict
 
 NOTES:
 	- input_dict is not a user input, it is supposed to be a complete dict
-		reciever, it is a developer creation,
+		receiver, it is a developer creation,
 		that is why it raises error, not validate with success or failure
 """
 def validateReadyDict(input_dict,dict_name):
