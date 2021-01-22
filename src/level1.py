@@ -134,7 +134,7 @@ FUNCTION:
 OUTPUTS:
 	- a dictionary with these values {"success": ... , "result": ... }
 		- "success": a boolean: True or False
-			It represents whther the function was able to receve inputs or not
+			It represents whther the function was able to recieve inputs or not
 		- "result":
 			- if success == True: a dictionary of the expected variables
 				Without any None at all, and at the same expected formatting
@@ -192,9 +192,38 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 
 
 
-def new_attendance_validator(expected,recieved):
+"""
+new_attendance_validator
+
+- INPUTS:
+	- expected: the dictiony of the expected data and how they look like 
+		-Example: {"name":"string","price":"integer","in_stock":"boolean"}
+	- recieved_result: the dictionary of the recieved result (recieved["result"])
+- FUNCTION:
+	- it will raise error if the recieved_result is not validated
+	- it will tell wehther there has been any inputs missing in the request
+- OUTPUTS:
+	- a dictionary with these values {"success": ... , "result": ... }
+		- "success": a boolean: True or False
+			It represents whther the function was able to recieve inputs or not
+		- "result":
+			- if success == True: a dictionary of the expected variables
+				Without any None at all, and at the same expected formatting
+				Example: {"a":1, "b":2, "c":"5"}
+				None: there will be nothing called None here
+			- if success == False: dictionry of "status" code of failure and reason
+				Example: {"status":400,"desctiption":"a is missing"}
+NOTES:
+	- expected is not a user input, it is a developer creation,
+		that is why it raises error, not validate with success or failure
+
+ERROR:
+	- recieved result failed to pass validate_attendance_from_expected
+	- a value in the recieved_result is equal to None
+"""
+def new_attendance_validator(expected,recieved_result):
 	#NOTE: reciever has already filled empty data with "None"
-	validate_attendance_from_expected(recieved,"recieved",expected)
+	validate_attendance_from_expected(recieved_result,"recieved",expected)
 	
 	#Now we are sure that we have all values
 	#We need to make sure that there are no valuesa that have the value of None
@@ -202,11 +231,11 @@ def new_attendance_validator(expected,recieved):
 	#and we can not allow empty fields
 	#empty fields are user mistake, not developer's mistakes
 	# they will not raise error, rather they will just fail
-	for key in recieved:
-		if recieved[key] == None:
-			return "result":{"status":400, 
-			"description":str(key) +" is missing"}
-	return {"success":True,"result":recieved}
+	for key in recieved_result:
+		if recieved_result[key] == None:
+			return {"success":False,"result":{"status":400, 
+			"description":str(key) +" is missing"}}
+	return {"success":True,"result":recieved_result}
 
 
 
@@ -222,10 +251,10 @@ def new_attendance_validator(expected,recieved):
 validate_expected
 
 - INPUTS:
-	- expected: the dictiony of the expected daya and how they look like 
+	- expected: the dictiony of the expected data and how they look like 
 		-Example: {"name":"string","price":"integer","in_stock":"boolean"}
 - FUNCTION:
-	- it will aise error if the data is not validated
+	- it will raise error if the data is not validated
 - OUTPUTS:
 	- no outputs, errors are raise uf somethng went wrong
 
