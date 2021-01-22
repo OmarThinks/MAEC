@@ -897,6 +897,17 @@ class MoRBs_TestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),
 				"MoRBs:validate_expected:ERROR: str is not a supported data type")
+		#fail: received is wrong
+		try:
+			old_attendance_validator(expected={"abc":"string"},received_result={"a":4},
+				old_dict={"abc":"9"})
+		except Exception as e:
+			self.assertEqual(str(e),
+				"MoRBs:validate_attendance_from_expected:ERROR:received did "+
+				"not carry this key 'abc', but it exists in 'expected' dict")
+		
+
+
 		#fail received is wrong
 		try:
 			validateReadyDict(input_dict = {"a":1,"b":None},dict_name="tst")
