@@ -937,8 +937,6 @@ class MoRBs_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),
 				"MoRBs:validateReadyDict:ERROR:old_dict:is supposed "+
 				"to be a dictionary without 'None' values")		
-
-
 		#fail received is wrong
 		try:
 			validateReadyDict(input_dict = {"a":1,"b":None},dict_name="tst")
@@ -947,6 +945,9 @@ class MoRBs_TestCase(unittest.TestCase):
 				"MoRBs:validateReadyDict:ERROR:tst:is "+
 				"supposed to be a dictionary without 'None' values")
 		print("Test b_14_1: old_attendance_validator")
+
+	def test_b_15_001_morbs_checkpoint(self):
+		print("Test b_15_1: morbs_checkpoint")
 
 	def test_c_0_0_0(self):
 		print("Good MoRBs")
