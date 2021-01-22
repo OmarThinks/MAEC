@@ -953,6 +953,12 @@ class MoRBs_TestCase(unittest.TestCase):
 		morbs_checkpoint(input_dict={"success":False,
 			"result":{"status":1,"description":"abc"}},
 			function_name="tst",variable_name="nm")
+		try:
+			morbs_checkpoint(input_dict=123,
+			function_name="tst",variable_name="nm")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm' is supposed to have"+
+				" the type of 'dict', but found type of '<class 'int'>' instead")
 		print("Test b_15_1: morbs_checkpoint")
 
 	def test_c_0_0_0(self):
