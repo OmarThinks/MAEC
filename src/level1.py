@@ -10,8 +10,9 @@ def data_type_error(function_name,variable_name,expected_type_name,input):
 		str(type(input))+"' instead")
 
 def missing_data_error(function_name,variable_name):
+	#raise Exception("abc")
 	raise Exception("MoRBs:"+str(function_name)+":ERROR:missing_data_error:'"+
-		str(variable_name)+"' is missing ")
+		variable_name+"' is missing")
 
 
 
@@ -396,7 +397,7 @@ def morbs_checkpoint(input_dict,function_name,variable_name):
 			variable_name=variable_name,expected_type_name="dict",input=input_dict)
 	if "success" not in input_dict:
 		missing_data_error(function_name=function_name,
-			variable_name = input_dict_name+"['success']")
+			variable_name = variable_name+"['success']")
 	if type(input_dict["success"])!= bool:
 		data_type_error(function_name=function_name,
 			variable_name=str(variable_name)+"['success']",
@@ -404,7 +405,7 @@ def morbs_checkpoint(input_dict,function_name,variable_name):
 	
 	if "result" not in input_dict:
 		missing_data_error(function_name=function_name,
-			variable_name = input_dict_name+"['result']")
+			variable_name = variable_name+"['result']")
 	if type(input_dict["result"])!= dict:
 		data_type_error(function_name=function_name,
 			variable_name=str(variable_name)+"['result']",
@@ -413,14 +414,14 @@ def morbs_checkpoint(input_dict,function_name,variable_name):
 	if input_dict["success"] == False:
 		if "status" not in input_dict["result"]:
 			missing_data_error(function_name=function_name,
-			variable_name = input_dict_name+"['result']['status']")
+			variable_name = variable_name+"['result']['status']")
 		if type(input_dict["result"]['status']) != int:
 			data_type_error(function_name=function_name,
 				variable_name=str(variable_name)+"['result']['status']",
 				expected_type_name="int",input=input_dict)
 		if "description" not in input_dict["result"]:
 			missing_data_error(function_name=function_name,
-			variable_name = input_dict_name+"['result']['description']")
+			variable_name = variable_name+"['result']['description']")
 		if type(input_dict["result"]['description']) != str:
 			data_type_error(function_name=function_name,
 				variable_name=str(variable_name)+"['result']['description']",
