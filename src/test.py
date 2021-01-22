@@ -890,6 +890,11 @@ class MoRBs_TestCase(unittest.TestCase):
 		old_attendance_validator(expected={},received_result={"a":4},
 			old_dict={"b":"9"}),
 		{"success":True,"result":{}})
+		self.assertEqual(
+		old_attendance_validator(expected={"a":"integer"},received_result={"a":None},
+			old_dict={"a":"9"}),
+		{"success":False,"result":{"status":400, 
+				"description" : "you must at least enter one field to change"}})
 		#fail: expected is wrong
 		try:
 			old_attendance_validator(expected={"abc":"str"},received_result={"a":4},
@@ -922,8 +927,7 @@ class MoRBs_TestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),
 				"MoRBs:validateReadyDict:ERROR:old_dict:is supposed "+
-				"to be a dictionary without 'None' values")
-		
+				"to be a dictionary without 'None' values")		
 
 
 		#fail received is wrong
