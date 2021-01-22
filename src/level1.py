@@ -395,18 +395,16 @@ def morbs_checkpoint(input_dict,function_name,variable_name):
 		data_type_error(function_name=function_name,
 			variable_name=variable_name,expected_type_name="dict",input=input_dict)
 	if "success" not in input_dict:
-		raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
-		str(variable_name)+"' is supposed to be a dict with the key of '"+
-		"success', but this key was not found")
+		missing_data_error(function_name=function_name,
+			variable_name = input_dict_name+"['success']")
 	if type(input_dict["success"])!= bool:
 		data_type_error(function_name=function_name,
 			variable_name=str(variable_name)+"['success']",
 			expected_type_name="bool",input=input_dict)
 	
 	if "result" not in input_dict:
-		raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
-		str(variable_name)+"' is supposed to be a dict with the key of '"+
-		"result', but this key was not found")
+		missing_data_error(function_name=function_name,
+			variable_name = input_dict_name+"['result']")
 	if type(input_dict["result"])!= dict:
 		data_type_error(function_name=function_name,
 			variable_name=str(variable_name)+"['result']",
@@ -414,17 +412,15 @@ def morbs_checkpoint(input_dict,function_name,variable_name):
 
 	if input_dict["success"] == False:
 		if "status" not in input_dict["result"]:
-			raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
-			str(variable_name)+"' success is False, expected result is missing "+
-			"the 'status' key")
+			missing_data_error(function_name=function_name,
+			variable_name = input_dict_name+"['result']['status']")
 		if type(input_dict["result"]['status']) != int:
 			data_type_error(function_name=function_name,
 				variable_name=str(variable_name)+"['result']['status']",
 				expected_type_name="int",input=input_dict)
 		if "description" not in input_dict["result"]:
-			raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
-			str(variable_name)+"' success is False, expected result is missing "+
-			"the 'description' key")
+			missing_data_error(function_name=function_name,
+			variable_name = input_dict_name+"['result']['description']")
 		if type(input_dict["result"]['description']) != str:
 			data_type_error(function_name=function_name,
 				variable_name=str(variable_name)+"['result']['description']",
