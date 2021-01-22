@@ -832,41 +832,28 @@ class MoRBs_TestCase(unittest.TestCase):
 		self.assertEqual(new_attendance_validator(
 			expected={"a":"string","b":"boolean"},
 			recieved_result = {"a":1,"b":True}),
-		{"success":True,"result":{"a":1,"b":True}}
-		)
+		{"success":True,"result":{"a":1,"b":True}})
 		#Empty
 		self.assertEqual(new_attendance_validator(
-			expected={},
-			recieved_result = {}),
-		{"success":True,"result":{}}
-		)
+			expected={},recieved_result = {}),
+		{"success":True,"result":{}})
 		#More
 		self.assertEqual(new_attendance_validator(
-			expected={},
-			recieved_result = {"a":1}),
-		{"success":True,"result":{}}
-		)
-		validate_attendance_from_expected(
-			input_dict = {"a":1},input_dict_name="tst",
-			expected={})
+			expected={},recieved_result = {"a":1}),
+		{"success":True,"result":{}})
+
+		#fail validate attendance from expected
 		try:
-			#Expected got something wrong
-			validate_attendance_from_expected(
-				input_dict = {"a":1,"b":True},input_dict_name="tst",
-			expected={"a":"bla_bla_blaaaaaaaa","b":"boolean"})
+			self.assertEqual(new_attendance_validator(
+			expected={"a":"string"},recieved_result = {}),
+			{"success":False,"result":{"status":400, 
+			"description":"a is missing"}})
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:validate_expected:ERROR: "+
-				"bla_bla_blaaaaaaaa is not a supported data type")
-		try:
-			#input_dict got something wrong
-			validate_attendance_from_expected(
-				input_dict = {"a":1},input_dict_name="tst",
-			expected={"a":"string","b":"boolean"})
-		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:validate_attendance_from_expected:"+
-				"ERROR:tst did not carry this key 'b', but it exists in"+
+			self.assertEqual(str(e),
+				"MoRBs:validate_attendance_from_expected:ERROR:"+
+				"recieved did not carry this key 'a', but it exists in"+
 				" 'expected' dict")
-		print("Test b_11_1: validate_attendance_from_expected")
+		print("Test b_12_1: new_attendance_validator")
 
 	def test_c_0_0_0(self):
 		print("Good MoRBs")
