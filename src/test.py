@@ -891,7 +891,7 @@ class MoRG_TestCase(unittest.TestCase):
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
 		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: "+
-			"'input_request' is supposed to have the type of "+
+			"'request' is supposed to have the type of "+
 			"'flask.request', but found type of '<class 'int'>' instead",
 			 'error': 500, 'message': 'internal server error', 'success': False})
 		print("Test c_1_3_1: wrong request type")
@@ -903,7 +903,7 @@ class MoRG_TestCase(unittest.TestCase):
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
 		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: "+
-			"'input_request' is supposed to have the type of 'flask.request'"+
+			"'request' is supposed to have the type of 'flask.request'"+
 			", but found type of '<class 'int'>' instead", 
 			'error': 500, 'message': 'internal server error', 'success': False})
 		print("Test c_1_3_2: wrong request type")
@@ -914,7 +914,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: 'input_request' "+
+		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: 'request' "+
 			"is supposed to have the type of 'flask.request', but found type of "+
 			"'<class 'int'>' instead", 'error': 500, 'message': 
 			'internal server error', 'success': False})
@@ -927,7 +927,7 @@ class MoRG_TestCase(unittest.TestCase):
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
 		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: "+
-			"'input_request' is supposed to have the type of 'flask.request'"+
+			"'request' is supposed to have the type of 'flask.request'"+
 			", but found type of '<class 'int'>' instead", 'error': 500, 
 			'message': 'internal server error', 'success': False})
 		print("Test c_1_4_2: wrong request type")

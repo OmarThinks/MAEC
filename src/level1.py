@@ -1,8 +1,7 @@
 DATA_TYPES_SUPPORTED=["string","integer","boolean"]
 
-from flask import (Flask, 
-	request, abort, jsonify, Response,render_template)
-
+from flask import (Flask, abort, jsonify, Response,render_template)
+from flask import request as flask_request
 
 def data_type_error(function_name,variable_name,expected_type_name,input):
 	raise Exception("MoRG:"+str(function_name)+":ERROR: '"+
@@ -39,27 +38,27 @@ OUTPUTS:
 	there is an endpoint called "reciever_test"
 
 ERRORS:
-	- input_request is not the type of flask.request
+	- request is not the type of flask.request
 	- inputs is not a list
 	- inputs is not a list of strings
 """
 
 
-def reciever(input_request, expected={}):
+def reciever(request, expected={}):
 	toReturn = {}
 	# Validating that request has the type of flask.request
 	validate_expected(expected)
 
-	if type(input_request) != type(request):
-		data_type_error("reciever","input_request","flask.request",input_request)
+	if type(request) != type(flask_request):
+		data_type_error("reciever","request","flask.request",request)
 	#Validating that expected is a dict
 	# Now we are sure that expected is a list of strings, 
 	# and we got rid of all developers errors
 
 	if len(expected)!=0:
-		#Validating that the input_request can be parsed to JSON
+		#Validating that the request can be parsed to JSON
 		try:
-			body = input_request.get_json()
+			body = request.get_json()
 		except:
 			return {"success":False,"result":{"status":400, 
 				"description":"request body can not be parsed to json"}}
@@ -147,7 +146,7 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 	#validating that all has a boolean type
 	if type(all)!=bool:
 		data_type_error(function_name="attendance_validator",
-			variable_name="all",expected_type_name="boolean",all)
+			variable_name="all",expected_type_name="boolean",imput=all)
 
 	#NOTE: reciever has already filled empty data with "None"
 	validate_attendance_from_expected(recieved,"recieved",expected)
@@ -159,7 +158,7 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 	#validaing that "all" has a type of boolean
 	if type(all) != bool:
 		data_type_error(function_name="attendance_validator",
-			variable_name="all",expected_type_name="boolean",all)
+			variable_name="all",expected_type_name="boolean",imput=all)
 	#To Be continued
 	
 

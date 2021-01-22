@@ -162,7 +162,7 @@ Tests: test_02_populate_test
 			expected = ["1","c",3]
 			#Fail: Only stirngs are allowed
 		try:
-			result = reciever(input_request= my_request,expected=expected)
+			result = reciever(request= my_request,expected=expected)
 			if result["success"]==True:
 				return jsonify(result)
 			else:
