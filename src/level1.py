@@ -252,7 +252,7 @@ validate_attendance_from_expected
 - FUNCTION:
 	- we need to make sure that all the keys in expected exist in this input
 - OUTPUTS:
-	- no outputs, errors are raise uf somethng went wrong
+	- no outputs, errors are raised if somethng went wrong
 
 NOTES:
 	- input_dict is not a user input, it is supposed to be the output of
@@ -276,6 +276,28 @@ def validate_attendance_from_expected(input_dict,input_dict_name,expected):
 
 
 
+
+
+"""
+validateReadyDict
+
+- INPUTS:
+	- input_dict: a dictionary that needs to be validated
+		- Example: {"name":1, "price":"a", "in_stock": 5}
+		- Example: {"name":"1", "price":None}
+	- dict_name: sttring that carries the dict name 
+		-Example: "expected" or "recieved"
+- FUNCTION:
+	- we need to make sure this is a dictionary
+	- we need to make sure that input_dict does not have any value of None
+- OUTPUTS:
+	- no outputs, errors are raised if somethng went wrong
+
+NOTES:
+	- input_dict is not a user input, it is supposed to be a complete dict
+		reciever, it is a developer creation,
+		that is why it raises error, not validate with success or failure
+"""
 def validateReadyDict(input_dict,dict_name):
 	#validating that input is a dict
 	if type(input_dict) != dict:
