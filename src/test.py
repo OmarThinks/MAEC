@@ -985,7 +985,6 @@ class MoRBs_TestCase(unittest.TestCase):
 			morbs_checkpoint(input_dict={"success":True},
 				function_name="tst",variable_name="nm")
 		except Exception as e:
-			print(str(e))
 			self.assertEqual(str(e),"MoRBs:tst:ERROR:missing_data_"+
 				"error:'nm['result']' is missing")
 		#result not dict
@@ -993,7 +992,6 @@ class MoRBs_TestCase(unittest.TestCase):
 			morbs_checkpoint(input_dict={"success":True,"result":123},
 				function_name="tst",variable_name="nm")
 		except Exception as e:
-			print(str(e))
 			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['result']' "+
 				"is supposed to have the type of 'dict', but found type "+
 				"of '<class 'int'>' instead")
@@ -1002,7 +1000,6 @@ class MoRBs_TestCase(unittest.TestCase):
 			morbs_checkpoint(input_dict={"success":False,"result":{}},
 				function_name="tst",variable_name="nm")
 		except Exception as e:
-			print(str(e))
 			self.assertEqual(str(e),"MoRBs:tst:ERROR:missing_data_"+
 				"error:'nm['result']['status']' is missing")
 		#status not int
@@ -1010,7 +1007,6 @@ class MoRBs_TestCase(unittest.TestCase):
 			morbs_checkpoint(input_dict={"success":False,"result":{"status":True}},
 				function_name="tst",variable_name="nm")
 		except Exception as e:
-			print(str(e))
 			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['result']"+
 				"['status']' is supposed to have the type of 'int', "+
 				"but found type of '<class 'bool'>' instead")
@@ -1019,7 +1015,6 @@ class MoRBs_TestCase(unittest.TestCase):
 			morbs_checkpoint(input_dict={"success":False,"result":{"status":1}},
 				function_name="tst",variable_name="nm")
 		except Exception as e:
-			print(str(e))
 			self.assertEqual(str(e),"MoRBs:tst:ERROR:missing_data_error:"+
 				"'nm['result']['description']' is missing")
 		#description not string
@@ -1028,9 +1023,7 @@ class MoRBs_TestCase(unittest.TestCase):
 				{"status":1,"description":123}},
 				function_name="tst",variable_name="nm")
 		except Exception as e:
-			print(str(e))
-			self.assertEqual(str(e),"MoRBs:tst:ERROR:missing_data_error:"+
-				"'nm['result']['description']' is missing")
+			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['result']['description']' is supposed to have the type of 'str', but found type of '<class 'int'>' instead")
 		print("Test b_15_1: morbs_checkpoint")
 
 	def test_c_0_0_0(self):
