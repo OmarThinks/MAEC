@@ -947,6 +947,12 @@ class MoRBs_TestCase(unittest.TestCase):
 		print("Test b_14_1: old_attendance_validator")
 
 	def test_b_15_001_morbs_checkpoint(self):
+		# Perfect
+		morbs_checkpoint(input_dict={"success":True,"result":{}},
+			function_name="tst",variable_name="nm")
+		morbs_checkpoint(input_dict={"success":False,
+			"result":{"status":1,"description":"abc"}},
+			function_name="tst",variable_name="nm")
 		print("Test b_15_1: morbs_checkpoint")
 
 	def test_c_0_0_0(self):
