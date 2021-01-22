@@ -401,7 +401,7 @@ def morbs_checkpoint(input_dict,function_name,variable_name):
 	if type(input_dict["success"])!= bool:
 		data_type_error(function_name=function_name,
 			variable_name=str(variable_name)+"['success']",
-			expected_type_name="bool",input=input_dict)
+			expected_type_name="bool",input=input_dict["success"])
 	
 	if "result" not in input_dict:
 		missing_data_error(function_name=function_name,
@@ -409,7 +409,7 @@ def morbs_checkpoint(input_dict,function_name,variable_name):
 	if type(input_dict["result"])!= dict:
 		data_type_error(function_name=function_name,
 			variable_name=str(variable_name)+"['result']",
-			expected_type_name="dict",input=input_dict)
+			expected_type_name="dict",input=input_dict["result"])
 
 	if input_dict["success"] == False:
 		if "status" not in input_dict["result"]:
@@ -418,14 +418,14 @@ def morbs_checkpoint(input_dict,function_name,variable_name):
 		if type(input_dict["result"]['status']) != int:
 			data_type_error(function_name=function_name,
 				variable_name=str(variable_name)+"['result']['status']",
-				expected_type_name="int",input=input_dict)
+				expected_type_name="int",input=input_dict["result"]['status'])
 		if "description" not in input_dict["result"]:
 			missing_data_error(function_name=function_name,
 			variable_name = variable_name+"['result']['description']")
 		if type(input_dict["result"]['description']) != str:
 			data_type_error(function_name=function_name,
 				variable_name=str(variable_name)+"['result']['description']",
-				expected_type_name="str",input=input_dict)
+				expected_type_name="str",input=input_dict["result"]['description'])
 
 
 

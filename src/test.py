@@ -979,7 +979,7 @@ class MoRBs_TestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['success']' "+
 				"is supposed to have the type of 'bool', but found type "+
-				"of '<class 'dict'>' instead")
+				"of '<class 'int'>' instead")
 		#result not in
 		try:
 			morbs_checkpoint(input_dict={"success":True},
@@ -988,6 +988,49 @@ class MoRBs_TestCase(unittest.TestCase):
 			print(str(e))
 			self.assertEqual(str(e),"MoRBs:tst:ERROR:missing_data_"+
 				"error:'nm['result']' is missing")
+		#result not dict
+		try:
+			morbs_checkpoint(input_dict={"success":True,"result":123},
+				function_name="tst",variable_name="nm")
+		except Exception as e:
+			print(str(e))
+			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['result']' "+
+				"is supposed to have the type of 'dict', but found type "+
+				"of '<class 'int'>' instead")
+		#missing status
+		try:
+			morbs_checkpoint(input_dict={"success":False,"result":{}},
+				function_name="tst",variable_name="nm")
+		except Exception as e:
+			print(str(e))
+			self.assertEqual(str(e),"MoRBs:tst:ERROR:missing_data_"+
+				"error:'nm['result']['status']' is missing")
+		#status not int
+		try:
+			morbs_checkpoint(input_dict={"success":False,"result":{"status":True}},
+				function_name="tst",variable_name="nm")
+		except Exception as e:
+			print(str(e))
+			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['result']"+
+				"['status']' is supposed to have the type of 'int', "+
+				"but found type of '<class 'bool'>' instead")
+		#missing description
+		try:
+			morbs_checkpoint(input_dict={"success":False,"result":{"status":1}},
+				function_name="tst",variable_name="nm")
+		except Exception as e:
+			print(str(e))
+			self.assertEqual(str(e),"MoRBs:tst:ERROR:missing_data_error:"+
+				"'nm['result']['description']' is missing")
+		#description not string
+		try:
+			morbs_checkpoint(input_dict={"success":False,"result":
+				{"status":1,"description":123}},
+				function_name="tst",variable_name="nm")
+		except Exception as e:
+			print(str(e))
+			self.assertEqual(str(e),"MoRBs:tst:ERROR:missing_data_error:"+
+				"'nm['result']['description']' is missing")
 		print("Test b_15_1: morbs_checkpoint")
 
 	def test_c_0_0_0(self):
