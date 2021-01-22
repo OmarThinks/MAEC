@@ -1200,9 +1200,16 @@ class MoRBs_TestCase(unittest.TestCase):
 		self.assertEqual(attendance_validator(expected=
 			{"name":"string","price":"integer","in_stock":"boolean"}
 			,received={"success":True,
+			"result":{"name":None,"price":None,"in_stock":True,"data":False}},
+			old={"name":"efg","price":9,"in_stock":False,"rty":"741"}),
+			{"success":True,"result":{"name":"efg","price":9,"in_stock":True}})
+		# empty with old
+		self.assertEqual(attendance_validator(expected=
+			{}
+			,received={"success":True,
 			"result":{"name":None,"price":None,"in_stock":True}},
 			old={"name":"efg","price":9,"in_stock":False}),
-			{"success":True,"result":{"name":"efg","price":9,"in_stock":True}})
+			{"success":True,"result":{}})
 
 		#input_dict not dict
 		try:
