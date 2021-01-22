@@ -977,7 +977,17 @@ class MoRBs_TestCase(unittest.TestCase):
 			morbs_checkpoint(input_dict={"success":1},
 				function_name="tst",variable_name="nm")
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['success']' is supposed to have the type of 'bool', but found type of '<class 'dict'>' instead")
+			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['success']' "+
+				"is supposed to have the type of 'bool', but found type "+
+				"of '<class 'dict'>' instead")
+		#result not in
+		try:
+			morbs_checkpoint(input_dict={"success":True},
+				function_name="tst",variable_name="nm")
+		except Exception as e:
+			print(str(e))
+			self.assertEqual(str(e),"MoRBs:tst:ERROR:missing_data_"+
+				"error:'nm['result']' is missing")
 		print("Test b_15_1: morbs_checkpoint")
 
 	def test_c_0_0_0(self):
