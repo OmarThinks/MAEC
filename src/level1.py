@@ -9,6 +9,10 @@ def data_type_error(function_name,variable_name,expected_type_name,input):
 		"the type of '"+str(expected_type_name)+"', but found type of '"+ 
 		str(type(input))+"' instead")
 
+def missing_data_error(function_name,variable_name):
+	raise Exception("MoRBs:"+str(function_name)+":ERROR:missing_data_error:'"+
+		str(variable_name)+"' is missing ")
+
 
 
 
