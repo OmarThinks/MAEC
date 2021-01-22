@@ -895,6 +895,15 @@ class MoRBs_TestCase(unittest.TestCase):
 			old_dict={"a":"9"}),
 		{"success":False,"result":{"status":400, 
 				"description" : "you must at least enter one field to change"}})
+		#missing value filled
+		self.assertEqual(
+		old_attendance_validator(expected={"a":"string","b":"integer"},
+			received_result={"a":1,"b":None},old_dict={"a":4,"b":9}),
+		{"success":True,"result":{"a":1,"b":9}})
+		self.assertEqual(
+		old_attendance_validator(expected={"a":"string","b":"integer"},
+			received_result={"a":None,"b":7},old_dict={"a":"4","b":9}),
+		{"success":True,"result":{"a":"4","b":7}})
 		#fail: expected is wrong
 		try:
 			old_attendance_validator(expected={"abc":"str"},received_result={"a":4},
