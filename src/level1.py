@@ -184,15 +184,29 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 
 
 
-#TBC
+
+
+
+
+
+
+
+
 def new_attendance_validator(expected,recieved):
 	#NOTE: reciever has already filled empty data with "None"
 	validate_attendance_from_expected(recieved,"recieved",expected)
-	#Now we are sure that we have all values, there is no None
-	#TBC
 	
-
-
+	#Now we are sure that we have all values
+	#We need to make sure that there are no valuesa that have the value of None
+	#Bacause it is a post method
+	#and we can not allow empty fields
+	#empty fields are user mistake, not developer's mistakes
+	# they will not raise error, rather they will just fail
+	for key in recieved:
+		if recieved[key] == None:
+			return "result":{"status":400, 
+			"description":str(key) +" is missing"}
+	return {"success":True,"result":recieved}
 
 
 
@@ -307,7 +321,7 @@ def validateReadyDict(input_dict,dict_name):
 	# validating that the input_dict really has no None
 	for key in input_dict:
 		if input_dict[key] == None:
-			raise Exception("MoRBs:validateReadyDict:ERROR:"+str(dict_name)
+			raise Exception("MoRBs:validateReadyDict:ERROR:"+str(dict_name)+
 				":is supposed to be a dictionary without 'None' values")
 
 
