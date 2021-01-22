@@ -161,6 +161,11 @@ Tests: test_02_populate_test
 		if test_case_id == 7: #This is the third error (Example:2)
 			expected = ["1","c",3]
 			#Fail: Only stirngs are allowed
+		if test_case_id == 8: #This is the third error (Example:2)
+			expected = {"name":"string","price":"string","in_stock":"string"}
+			return receiver(request= my_request,
+				expected=expected,receive_nothing=True)
+			#Fail: Only stirngs are allowed
 		try:
 			result = receiver(request= my_request,expected=expected)
 			if result["success"]==True:

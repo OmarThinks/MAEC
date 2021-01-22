@@ -46,7 +46,7 @@ ERRORS:
 
 def receiver(request, expected={}, receive_nothing = False):
 	if receive_nothing == True:
-		return nothing_receiver
+		return nothing_receiver()
 	
 	# Validating that request has the type of flask.request
 	validate_expected(expected)
