@@ -1026,6 +1026,23 @@ class MoRBs_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['result']['description']' is supposed to have the type of 'str', but found type of '<class 'int'>' instead")
 		print("Test b_15_1: morbs_checkpoint")
 
+	def test_b_16_001_attendance_validator(self):
+		# Perfect
+		self.assertEqual(attendance_validator(expected=
+			{"name":"string","price":"integer","in_stock":"boolean"}
+			,received={"success":True,
+			"result":{"name":"abc","price":5,"in_stock":True}}),
+			{"success":True,"result":{"name":"abc","price":5,"in_stock":True}})
+		
+		#input_dict not dict
+		try:
+			morbs_checkpoint(input_dict=123,
+			function_name="tst",variable_name="nm")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm' is supposed to have"+
+				" the type of 'dict', but found type of '<class 'int'>' instead")
+		print("Test b_16_1: attendance_validator")
+
 	def test_c_0_0_0(self):
 		print("Good MoRBs")
 

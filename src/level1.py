@@ -160,7 +160,7 @@ ERRORS:
 
 
 
-def attendance_validator(received,expected,old=None):
+def attendance_validator(expected,received,old=None):
 	morbs_checkpoint(input_dict=received,
 		function_name="attendance_validator",variable_name="received")
 	if type(received)!=dict:
