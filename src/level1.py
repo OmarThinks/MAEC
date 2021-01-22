@@ -160,8 +160,9 @@ ERRORS:
 
 
 
-#To Be continued
 def attendance_validator(received,expected,old=None):
+	morbs_checkpoint(input_dict=received,
+		function_name="attendance_validator",variable_name="received")
 	if type(received)!=dict:
 		data_type_error(function_name="attendance_validator",
 			variable_name="received",expected_type_name="dict",
