@@ -44,8 +44,10 @@ ERRORS:
 """
 
 
-def reciever(request, expected={}):
-	toReturn = {}
+def reciever(request, expected={}, recieve_nothing = False):
+	if recieve_nothing == True:
+		return nothing_reciever
+	
 	# Validating that request has the type of flask.request
 	validate_expected(expected)
 
@@ -56,29 +58,42 @@ def reciever(request, expected={}):
 	# and we got rid of all developers errors
 
 	if len(expected)!=0:
-		#Validating that the request can be parsed to JSON
-		try:
-			body = request.get_json()
-		except:
-			return {"success":False,"result":{"status":400, 
-				"description":"request body can not be parsed to json"}}
-		#Validating that there is a request body
-		try:
-			testing = body.get("testing",None)
-		except:
-			return {"success":False,"result":{"status":400, 
-				"description":"there is no request body"}}
-		#Finally, return values
-		for key in (expected):
-			toReturn[key] = body.get(key,None)
-	else:
-		toReturn={}
+		if request.method != "GET":
+			return json_reciever(request,expected)		
+	return {"success":True,"result":{}}
+
+
+
+
+
+
+
+
+
+def nothing_reciever():
+	return {"success":True,"result":{}}
+
+
+
+
+def json_reciever(request, expected={}):
+	toReturn={}
+	#Validating that the request can be parsed to JSON
+	try:
+		body = request.get_json()
+	except:
+		return {"success":False,"result":{"status":400, 
+			"description":"request body can not be parsed to json"}}
+	#Validating that there is a request body
+	try:
+		testing = body.get("testing",None)
+	except:
+		return {"success":False,"result":{"status":400, 
+			"description":"there is no request body"}}
+	#Finally, return values
+	for key in (expected):
+		toReturn[key] = body.get(key,None)
 	return {"success":True,"result":toReturn}
-
-
-
-
-
 
 
 
