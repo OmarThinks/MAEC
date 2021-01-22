@@ -178,6 +178,13 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 	
 
 
+def new_attendance_validator(expected,recieved):
+	pass
+
+
+
+
+
 
 
 
