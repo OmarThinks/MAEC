@@ -114,27 +114,29 @@ INPUTS:
 	- expected: a dictionary that represent what is expected
 		- Example: {"name":"string", "price": "integer", "in_stock":"boolean"}
 	- received: a dictionary of received values
-		- Example: {"name":"abc","price":5,"in_stock":True}
-		- Example: {"name":None,"price":5,"in_stock":True}
-		- Example: {"name":None,"price":None,"in_stock":None}
-		- Example: {}
-	- all: a boolean value
-		- represents whther or not all values are required
-		- True: all values are required
-			If one value is missing, it will fail
-		- False: at least one value is required
-			if all are equal to None. or they do not exist, it will fail
-	- old_values: If all==False, then old values must be entered
-		- old_values is a dict containing the old values before replacement
+		- Example: {"success":True,"result":{"name":"abc","price":5,"in_stock":True}}
+		- Example: {"success":True,"result":{"name":None,"price":5,"in_stock":True}}
+		- Example: {"success":True,"result":{"name":None,
+				"price":None,"in_stock":None}}
+		- Example: {"sucess":True,"result":{}}
+		- Example: {"sucess":False,"result":{"status":400,"description":"there"}}
+	- old_values: = None (default)
+		- it should be a dict containing old values
+		- it can not contain None
 		- It must have the same keys as the keys of expected
+		-Example:
+			- {"name":"abc","price":12,"in_stock":True}
+			- {}
 
 FUNCTION:
 	- This function handels the received inputs
 	- And make sure that they are as expected, all attending
+	- If there was a value missing in receuved, and it was expected, and it is old
+		then it will be filled from old
 OUTPUTS:
 	- a dictionary with these values {"success": ... , "result": ... }
 		- "success": a boolean: True or False
-			It represents whther the function was able to receive inputs or not
+			It represents whether the function was able to receive inputs or not
 		- "result":
 			- if success == True: a dictionary of the expected variables
 				Without any None at all, and at the same expected formatting
@@ -143,15 +145,12 @@ OUTPUTS:
 			- if success == False: dictionry of "status" code of failure and reason
 				Example: {"status":400,"desctiption":"a is missing"}
 - Example:
-	Please check the file "test_app.py" to see how it works
-	there is an endpoint called "receiver_test"
+	- {"success":True,"result":{"name":"product","price":5,"in_stock":True}}
 
 ERRORS:
-	- all is not boolean
 	- "expected" is not as expected
-	- received does not pass (validate_attendance_from_expected)
-	- 'old_values' is not None, and it doesn't pass 
-		(validate_attendance_from_expected)
+	- new_attendance_validator errors
+	- old_attendance_validator errors
 """
 
 
@@ -168,9 +167,11 @@ def attendance_validator(received,expected,old=None):
 	
 	if old == None:
 		#It is a new record, like POST method
-		return new_attendance_validator(expected,received["result"])
+		return new_attendance_validator(expected,
+			received_result=received["result"])
 	#the record already exists, like PATCH or PUT methods
-	return new_attendance_validator(expected,received["result"])
+	return old_attendance_validator(expected=expected,
+		received_result=received["result"],old_dict=old)
 
 
 
