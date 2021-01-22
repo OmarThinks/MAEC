@@ -231,11 +231,14 @@ def new_attendance_validator(expected,recieved_result):
 	#and we can not allow empty fields
 	#empty fields are user mistake, not developer's mistakes
 	# they will not raise error, rather they will just fail
-	for key in recieved_result:
+	toReturn = {}
+	for key in expected:
+		toReturn[key] = recieved_result[key]
 		if recieved_result[key] == None:
 			return {"success":False,"result":{"status":400, 
 			"description":str(key) +" is missing"}}
-	return {"success":True,"result":recieved_result}
+
+	return {"success":True,"result":toReturn}
 
 
 
