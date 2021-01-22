@@ -1089,6 +1089,15 @@ class MoRBs_TestCase(unittest.TestCase):
 			'message': 'internal server error', 'success': False})
 		print("Test c_1_7_1: wrong type in inputs")
 
+	def test_c_1_8_1_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver_test/8")
+		#Expected to fail, request has wrong value
+		data = json.loads(response.data)
+		self.assertEqual(response.status_code,200)
+		self.assertEqual(data,{"result":{}, 'success': True})
+		print("Test c_1_8_1: wrong type in inputs")
+
 
 
 
