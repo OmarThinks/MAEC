@@ -29,7 +29,7 @@ b:validation Functions
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
-class MoRG_TestCase(unittest.TestCase):
+class MoRBs_TestCase(unittest.TestCase):
 	"""This class represents the trivia test case"""
 
 	def setUp(self):
@@ -740,7 +740,7 @@ class MoRG_TestCase(unittest.TestCase):
 			data_type_error("a","b","c","d")
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:a:ERROR: 'b' is supposed to have the type"+
+			"MoRBs:a:ERROR: 'b' is supposed to have the type"+
 			" of 'c', but found type of '<class 'str'>' instead")
 		print("Test b_9_001: data_type_error")
 
@@ -755,20 +755,20 @@ class MoRG_TestCase(unittest.TestCase):
 			validate__dict("abc","testing_function_name","test_name",full=True)
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:validate__dict:ERROR: 'test_name' is supposed to have"+
+			"MoRBs:validate__dict:ERROR: 'test_name' is supposed to have"+
 			" the type of 'dict', but found type of '<class 'str'>' instead")
 		try:
 			validate_expected({"abc":123})
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:validate_expected:ERROR: 'each element of expected'"+
+			"MoRBs:validate_expected:ERROR: 'each element of expected'"+
 			" is supposed to have the type of 'string', but found type "+
 			"of '<class 'int'>' instead")
 		try:
 			validate_expected({"abc":"123"})
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:validate_expected:ERROR: 123 is not a supported data type")
+			"MoRBs:validate_expected:ERROR: 123 is not a supported data type")
 		print("Test b_10_1: validate_expected")"""
 
 
@@ -779,20 +779,20 @@ class MoRG_TestCase(unittest.TestCase):
 			validate_expected("abc")
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:validate_expected:ERROR: 'expected' is supposed to have "+
+			"MoRBs:validate_expected:ERROR: 'expected' is supposed to have "+
 			"the type of 'dict', but found type of '<class 'str'>' instead")
 		try:
 			validate_expected({"abc":123})
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:validate_expected:ERROR: 'each element of expected'"+
+			"MoRBs:validate_expected:ERROR: 'each element of expected'"+
 			" is supposed to have the type of 'string', but found type "+
 			"of '<class 'int'>' instead")
 		try:
 			validate_expected({"abc":"123"})
 		except Exception as e:
 			self.assertEqual(str(e),
-			"MoRG:validate_expected:ERROR: 123 is not a supported data type")
+			"MoRBs:validate_expected:ERROR: 123 is not a supported data type")
 		print("Test b_10_1: validate_expected")
 
 	def test_b_11_001_validate_attendance_from_expected(self):
@@ -814,7 +814,7 @@ class MoRG_TestCase(unittest.TestCase):
 				input_dict = {"a":1,"b":True},input_dict_name="tst",
 			expected={"a":"bla_bla_blaaaaaaaa","b":"boolean"})
 		except Exception as e:
-			self.assertEqual(str(e),"MoRG:validate_expected:ERROR: "+
+			self.assertEqual(str(e),"MoRBs:validate_expected:ERROR: "+
 				"bla_bla_blaaaaaaaa is not a supported data type")
 		try:
 			#input_dict got something wrong
@@ -822,13 +822,13 @@ class MoRG_TestCase(unittest.TestCase):
 				input_dict = {"a":1},input_dict_name="tst",
 			expected={"a":"string","b":"boolean"})
 		except Exception as e:
-			self.assertEqual(str(e),"MoRG:validate_attendance_from_expected:"+
+			self.assertEqual(str(e),"MoRBs:validate_attendance_from_expected:"+
 				"ERROR:tst did not carry this key 'b', but it exists in"+
 				" 'expected' dict")
 		print("Test b_11_1: validate_attendance_from_expected")
 
 	def test_c_0_0_0(self):
-		print("Good MoRG-ing")
+		print("Good MoRBs")
 
 	def test_c_1_1_1_reciever_tests(self):
 		#Testing the function of route "reciever_test/int"
@@ -890,7 +890,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: "+
+		self.assertEqual(data,{'description': "MoRBs:reciever:ERROR: "+
 			"'request' is supposed to have the type of "+
 			"'flask.request', but found type of '<class 'int'>' instead",
 			 'error': 500, 'message': 'internal server error', 'success': False})
@@ -902,7 +902,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: "+
+		self.assertEqual(data,{'description': "MoRBs:reciever:ERROR: "+
 			"'request' is supposed to have the type of 'flask.request'"+
 			", but found type of '<class 'int'>' instead", 
 			'error': 500, 'message': 'internal server error', 'success': False})
@@ -914,7 +914,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: 'request' "+
+		self.assertEqual(data,{'description': "MoRBs:reciever:ERROR: 'request' "+
 			"is supposed to have the type of 'flask.request', but found type of "+
 			"'<class 'int'>' instead", 'error': 500, 'message': 
 			'internal server error', 'success': False})
@@ -926,7 +926,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRG:reciever:ERROR: "+
+		self.assertEqual(data,{'description': "MoRBs:reciever:ERROR: "+
 			"'request' is supposed to have the type of 'flask.request'"+
 			", but found type of '<class 'int'>' instead", 'error': 500, 
 			'message': 'internal server error', 'success': False})
@@ -938,7 +938,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRG:validate_expected:ERROR: "+
+		self.assertEqual(data,{'description': "MoRBs:validate_expected:ERROR: "+
 			"'expected' is supposed to have the type of 'dict', but found "+
 			"type of '<class 'str'>' instead", 'error': 500, 
 			'message': 'internal server error', 'success': False})
@@ -950,7 +950,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRG:validate_expected:ERROR: "+
+		self.assertEqual(data,{'description': "MoRBs:validate_expected:ERROR: "+
 			"'expected' is supposed to have the type of 'dict', but found type "+
 			"of '<class 'list'>' instead", 'error': 500, 
 			'message': 'internal server error', 'success': False})
@@ -962,7 +962,7 @@ class MoRG_TestCase(unittest.TestCase):
 		#Expected to fail, request has wrong value
 		data = json.loads(response.data)
 		self.assertEqual(response.status_code,500)
-		self.assertEqual(data,{'description': "MoRG:validate_expected:ERROR: "+
+		self.assertEqual(data,{'description': "MoRBs:validate_expected:ERROR: "+
 			"'expected' is supposed to have the type of 'dict', but found "+
 			"type of '<class 'list'>' instead", 'error': 500, 
 			'message': 'internal server error', 'success': False})

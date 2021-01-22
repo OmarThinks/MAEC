@@ -4,7 +4,7 @@ from flask import (Flask, abort, jsonify, Response,render_template)
 from flask import request as flask_request
 
 def data_type_error(function_name,variable_name,expected_type_name,input):
-	raise Exception("MoRG:"+str(function_name)+":ERROR: '"+
+	raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
 		str(variable_name)+"' is supposed to have "+
 		"the type of '"+str(expected_type_name)+"', but found type of '"+ 
 		str(type(input))+"' instead")
@@ -216,7 +216,7 @@ def validate_expected(expected):
 			data_type_error("validate_expected",
 				"each element of expected","string",value)
 		if value not in DATA_TYPES_SUPPORTED:
-			raise Exception("MoRG:validate_expected:ERROR: "+value
+			raise Exception("MoRBs:validate_expected:ERROR: "+value
 				+" is not a supported data type")
 
 
@@ -250,7 +250,7 @@ def validate_attendance_from_expected(input_dict,input_dict_name,expected):
 	#Now we are very sure that we have 2 dictionaries
 	for key in expected:
 		if key not in input_dict:
-			raise Exception("MoRG:validate_attendance_from_expected:ERROR:"+
+			raise Exception("MoRBs:validate_attendance_from_expected:ERROR:"+
 				str(input_dict_name)+" did not carry this key '"+
 				str(key)+"', but it exists in 'expected' dict")
 
@@ -272,8 +272,8 @@ def validate__dict(input_dict,function_name,dict_name,full=True):
 				"each element of "+str(dict_name),"string",value)
 		if value not in DATA_TYPES_SUPPORTED:
 			raise Exception(
-			"MoRG:validate_dict:ERROR: "+
-				str(value)+ " is not a supported data type by MoRG")
+			"MoRBs:validate_dict:ERROR: "+
+				str(value)+ " is not a supported data type by MoRBs")
 
 """
 
