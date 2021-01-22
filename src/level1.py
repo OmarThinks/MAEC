@@ -276,9 +276,17 @@ def validate_attendance_from_expected(input_dict,input_dict_name,expected):
 
 
 
-def validateNoNone(input_dict):
-	pass
+def validateReadyDict(input_dict,dict_name):
+	#validating that input is a dict
+	if type(input_dict) != dict:
+		data_type_error(function_name="validateReadyDict",
+			variable_name=dict_name,expected_type_name="dict",input=input_dict)
 
+	# validating that the input_dict really has no None
+	for key in input_dict:
+		if input_dict[key] == None:
+			raise Exception("MoRBs:validateReadyDict:ERROR:"+str(dict_name)
+				":is supposed to be a dictionary without 'None' values")
 
 
 """
