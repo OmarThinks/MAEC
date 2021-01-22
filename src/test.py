@@ -905,6 +905,15 @@ class MoRBs_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),
 				"MoRBs:validate_attendance_from_expected:ERROR:received did "+
 				"not carry this key 'abc', but it exists in 'expected' dict")
+		#fail: old_dict is wrong
+		try:
+			old_attendance_validator(expected={"abc":"string"},
+				received_result={"abc":4},
+				old_dict={"abce":"9"})
+		except Exception as e:
+			self.assertEqual(str(e),
+				"MoRBs:validate_attendance_from_expected:ERROR:old_dict did "+
+				"not carry this key 'abc', but it exists in 'expected' dict")
 		
 
 
