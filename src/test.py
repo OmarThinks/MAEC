@@ -855,6 +855,27 @@ class MoRBs_TestCase(unittest.TestCase):
 				" 'expected' dict")
 		print("Test b_12_1: new_attendance_validator")
 
+	def test_b_13_001_validateReadyDict(self):
+		#Exactly
+		validateReadyDict(input_dict = {"a":1,"b":True},dict_name="tst")
+		#Empty
+		validateReadyDict(input_dict = {},dict_name="tst")
+		#fail data type
+		try:
+			validateReadyDict(input_dict = "abc",dict_name="tst")
+		except Exception as e:
+			self.assertEqual(str(e),
+				"MoRBs:validateReadyDict:ERROR: 'tst' is supposed to have"+
+				" the type of 'dict', but found type of '<class 'str'>' instead")
+		#fail value has None
+		try:
+			validateReadyDict(input_dict = {"a":1,"b":None},dict_name="tst")
+		except Exception as e:
+			self.assertEqual(str(e),
+				"MoRBs:validateReadyDict:ERROR:tst:is "+
+				"supposed to be a dictionary without 'None' values")
+		print("Test b_13_1: validateReadyDict")
+
 	def test_c_0_0_0(self):
 		print("Good MoRBs")
 

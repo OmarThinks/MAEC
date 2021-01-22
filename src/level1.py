@@ -246,6 +246,32 @@ def new_attendance_validator(expected,recieved_result):
 
 
 
+def old_attendance_validator(expected,recieved_result,old_dict):
+	#NOTE: reciever has already filled empty data with "None"
+	validate_attendance_from_expected(recieved_result,"recieved",expected)
+	validate_attendance_from_expected(old_dict,"old_dict",expected)
+	
+	#Now we are sure that we have all values
+	#We need to make sure that there are no valuesa that have the value of None
+	#Bacause it is a post method
+	#and we can not allow empty fields
+	#empty fields are user mistake, not developer's mistakes
+	# they will not raise error, rather they will just fail
+	toReturn = {}
+	for key in expected:
+		toReturn[key] = recieved_result[key]
+		if recieved_result[key] == None:
+			return {"success":False,"result":{"status":400, 
+			"description":str(key) +" is missing"}}
+
+	return {"success":True,"result":toReturn}
+
+
+
+
+
+
+
 
 
 
