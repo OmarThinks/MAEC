@@ -143,7 +143,7 @@ OUTPUTS:
 				Example: {"a":1, "b":2, "c":"5"}
 				None: there will be nothing called None here
 			- if success == False: dictionry of "status" code of failure and reason
-				Example: {"status":400,"desctiption":"a is missing"}
+				Example: {"status":400,"description":"a is missing"}
 - Example:
 	- {"success":True,"result":{"name":"product","price":5,"in_stock":True}}
 
@@ -206,7 +206,7 @@ new_attendance_validator
 				Example: {"a":1, "b":2, "c":"5"}
 				None: there will be nothing called None here
 			- if success == False: dictionry of "status" code of failure and reason
-				Example: {"status":400,"desctiption":"a is missing"}
+				Example: {"status":400,"description":"a is missing"}
 NOTES:
 	- expected is not a user input, it is a developer creation,
 		that is why it raises error, not validate with success or failure
@@ -382,6 +382,50 @@ def validateReadyDict(input_dict,dict_name):
 		if input_dict[key] == None:
 			raise Exception("MoRBs:validateReadyDict:ERROR:"+str(dict_name)+
 				":is supposed to be a dictionary without 'None' values")
+
+
+
+
+def morbs_checkpoint(input_dict,function_name,variable_name):
+	if type(input_dict)!= dict:
+		data_type_error(function_name=function_name,
+			variable_name=variable_name,expected_type_name="dict",input=input_dict)
+	if "success" not in input_dict:
+		raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
+		str(variable_name)+"' is supposed to be a dict with the key of '"+
+		"success', but this key was not found")
+	if type(input_dict["success"])!= bool:
+		data_type_error(function_name=function_name,
+			variable_name=str(variable_name)+"['success']",
+			expected_type_name="bool",input=input_dict)
+	
+	if "result" not in input_dict:
+		raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
+		str(variable_name)+"' is supposed to be a dict with the key of '"+
+		"result', but this key was not found")
+	if type(input_dict["result"])!= dict:
+		data_type_error(function_name=function_name,
+			variable_name=str(variable_name)+"['result']",
+			expected_type_name="dict",input=input_dict)
+
+	if input_dict["success"] == False:
+		if "status" not in input_dict["result"]:
+			raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
+			str(variable_name)+"' success is False, expected result is missing "+
+			"the 'status' key")
+		if type(input_dict["result"]['status']) != int:
+			data_type_error(function_name=function_name,
+				variable_name=str(variable_name)+"['result']['status']",
+				expected_type_name="int",input=input_dict)
+		if "description" not in input_dict["result"]:
+			raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
+			str(variable_name)+"' success is False, expected result is missing "+
+			"the 'description' key")
+		if type(input_dict["result"]['description']) != str:
+			data_type_error(function_name=function_name,
+				variable_name=str(variable_name)+"['result']['description']",
+				expected_type_name="str",input=input_dict)
+
 
 
 """
