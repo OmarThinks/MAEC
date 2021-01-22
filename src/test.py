@@ -1189,6 +1189,9 @@ class MoRBs_TestCase(unittest.TestCase):
 			,received={"success":True,
 			"result":{"name":"abc","price":5,"in_stock":True}}),
 			{"success":True,"result":{}})
+		print("Test c_2_1: attendance_validator")
+	
+	def test_c_2_2_attendance_validator(self):	
 		# perfect with old
 		self.assertEqual(attendance_validator(expected=
 			{"name":"string","price":"integer","in_stock":"boolean"}
@@ -1210,6 +1213,25 @@ class MoRBs_TestCase(unittest.TestCase):
 			"result":{"name":None,"price":None,"in_stock":True}},
 			old={"name":"efg","price":9,"in_stock":False}),
 			{"success":True,"result":{}})
+		print("Test c_2_2: attendance_validator")
+
+	def test_c_2_3_attendance_validator(self):	
+		# new missing value
+		self.assertEqual(attendance_validator(expected=
+			{"name":"string","price":"integer","in_stock":"boolean"}
+			,received={"success":True,
+			"result":{"name":None,"price":5,"in_stock":True}}),
+			{"success":False,"result":{"status":400,"description":
+			"name is missing"}})
+		
+		# old missing all
+		self.assertEqual(attendance_validator(expected=
+			{"name":"string","price":"integer","in_stock":"boolean"}
+			,received={"success":True,
+			"result":{"name":None,"price":None,"in_stock":None}},
+			old={"name":"efg","price":9,"in_stock":False}),
+			{"success":False,"result":{"status":400,"description":
+			"you must at least enter one field to change"}})
 
 		#input_dict not dict
 		try:
@@ -1218,7 +1240,7 @@ class MoRBs_TestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm' is supposed to have"+
 				" the type of 'dict', but found type of '<class 'int'>' instead")
-		print("Test c_2_1: attendance_validator")
+		print("Test c_2_3: attendance_validator")
 
 
 
