@@ -250,6 +250,42 @@ def new_attendance_validator(expected,received_result):
 
 
 
+
+
+
+"""
+old_attendance_validator
+
+- INPUTS:
+	- expected: the dictiony of the expected data and how they look like 
+		-Example: {"name":"string","price":"integer","in_stock":"boolean"}
+	- received_result: the dictionary of the received result (received["result"])
+	- old_dict: a dictionary that contains the old values
+		- Example: {"name":"abc","price":123,"in_stock":"boolean"}
+- FUNCTION:
+	- it will raise error if the received_result is not validated
+	- it will raise error if all inputs are missing
+	- if there are any missing values it will fill them from the old
+- OUTPUTS:
+	- a dictionary with these values {"success": ... , "result": ... }
+		- "success": a boolean: True or False
+			It represents whther the function was able to receive inputs or not
+		- "result":
+			- if success == True: a dictionary of the expected variables
+				Without any None at all, and at the same expected formatting
+				Example: {"a":1, "b":2, "c":"5"}
+				None: there will be nothing called None here
+			- if success == False: dictionry of "status" code of failure and reason
+				Example: {"status":400,"description":
+				"you must at least enter one value"}
+NOTES:
+	- expected is not a user input, it is a developer creation,
+		that is why it raises error, not validate with success or failure
+ERROR:
+	- received result failed to pass validate_attendance_from_expected
+	- a value in the received_result is equal to None
+	- old is not a ready dict
+"""
 def old_attendance_validator(expected,received_result,old_dict):
 	#NOTE: receiver has already filled empty data with "None"
 	validate_attendance_from_expected(received_result,"received",expected)
