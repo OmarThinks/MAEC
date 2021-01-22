@@ -190,6 +190,19 @@ def attendance_validator(expected,received,old=None):
 
 
 
+"""
+data_types_validator
+"""
+def data_types_validator():
+	return True
+
+	 
+
+
+
+
+
+
 
 
 
