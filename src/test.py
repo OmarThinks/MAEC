@@ -964,16 +964,20 @@ class MoRBs_TestCase(unittest.TestCase):
 		try:
 			morbs_checkpoint(input_dict={},function_name="tst",variable_name="nm")
 		except Exception as e:
-			pass
 			self.assertEqual(str(e),"MoRBs:tst:ERROR:"+
 				"missing_data_error:'nm['success']' is missing")
 		#success not in input_dict
 		try:
 			morbs_checkpoint(input_dict={},function_name="tst",variable_name="nm")
 		except Exception as e:
-			pass
 			self.assertEqual(str(e),"MoRBs:tst:ERROR:"+
 				"missing_data_error:'nm['success']' is missing")
+		#success not bool
+		try:
+			morbs_checkpoint(input_dict={"success":1},
+				function_name="tst",variable_name="nm")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:tst:ERROR: 'nm['success']' is supposed to have the type of 'bool', but found type of '<class 'dict'>' instead")
 		print("Test b_15_1: morbs_checkpoint")
 
 	def test_c_0_0_0(self):
