@@ -178,8 +178,19 @@ def attendance_validator(expected,recieved,all=True,old_values=None):
 	
 
 
+
+
+
+
+
+
+#TBC
 def new_attendance_validator(expected,recieved):
-	pass
+	#NOTE: reciever has already filled empty data with "None"
+	validate_attendance_from_expected(recieved,"recieved",expected)
+	#Now we are sure that we have all values, there is no None
+	#TBC
+	
 
 
 
@@ -260,6 +271,14 @@ def validate_attendance_from_expected(input_dict,input_dict_name,expected):
 			raise Exception("MoRBs:validate_attendance_from_expected:ERROR:"+
 				str(input_dict_name)+" did not carry this key '"+
 				str(key)+"', but it exists in 'expected' dict")
+
+
+
+
+
+def validateNoNone(input_dict):
+	pass
+
 
 
 """
