@@ -226,7 +226,7 @@ def new_attendance_validator(expected,recieved_result):
 	validate_attendance_from_expected(recieved_result,"recieved",expected)
 	
 	#Now we are sure that we have all values
-	#We need to make sure that there are no valuesa that have the value of None
+	#We need to make sure that there are no values that have the value of None
 	#Bacause it is a post method
 	#and we can not allow empty fields
 	#empty fields are user mistake, not developer's mistakes
@@ -237,7 +237,6 @@ def new_attendance_validator(expected,recieved_result):
 		if recieved_result[key] == None:
 			return {"success":False,"result":{"status":400, 
 			"description":str(key) +" is missing"}}
-
 	return {"success":True,"result":toReturn}
 
 
@@ -251,18 +250,25 @@ def old_attendance_validator(expected,recieved_result,old_dict):
 	validate_attendance_from_expected(recieved_result,"recieved",expected)
 	validate_attendance_from_expected(old_dict,"old_dict",expected)
 	
+	validateReadyDict(input_dict=old_dict,dict_name="old_dict")
+	
 	#Now we are sure that we have all values
-	#We need to make sure that there are no valuesa that have the value of None
-	#Bacause it is a post method
-	#and we can not allow empty fields
-	#empty fields are user mistake, not developer's mistakes
-	# they will not raise error, rather they will just fail
+	#Now we need to make sure that not all the values are equal to none
 	toReturn = {}
-	for key in expected:
-		toReturn[key] = recieved_result[key]
-		if recieved_result[key] == None:
+
+	if len(recieved_result) != 0:
+		all_Nones = True
+		for key in recieved_result:
+			if recieved_result[key] != None:
+				#There is at least one value not equal to None
+				all_Nones = False
+			else:
+				#The value is equal to None
+				#It must be substituted
+				toReturn[key] = old_dict[key]
+		if all_Nones:
 			return {"success":False,"result":{"status":400, 
-			"description":str(key) +" is missing"}}
+				"description" : "you must at least enter one field to change"}}
 
 	return {"success":True,"result":toReturn}
 
