@@ -139,10 +139,11 @@ def get_class_dict(input):
 	lambda a:not(inspect.isroutine(a)))
 	data = [a for a in data if not(a[0].startswith('_') 
 		or a[0].endswith('_') or
-		(a[0] == "query") or (a[0] == "query_class") or 
-		("morbs" in a))]
+		(a[0] == "query") or (a[0] == "query_class"))]
 	toReturn = {}
 	for element in data:		
+		if "morbs" in element[0]:
+			continue
 		toReturn[element[0]] = element[1]
 	return toReturn
 
