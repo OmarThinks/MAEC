@@ -777,6 +777,27 @@ class MoRBs_TestCase(unittest.TestCase):
 			"type of 'dict', but found type of '<class 'int'>' instead")
 		print("Test b_9_004: expectDataType")
 
+	def test_b_9_005_expectDictKey(self):
+		expectDictKey(function_name="abc",variable_name="tst",
+			expectedKey="123",input={"123":789,"456":"a"})
+		#Not dict
+		try:
+			expectDataType(function_name="tst",
+				variable_name="abc",expected_type=dict,input=789)
+		except Exception as e:
+			self.assertEqual(str(e),
+			"MoRBs:tst:ERROR: 'abc' is supposed to have the "+
+			"type of 'dict', but found type of '<class 'int'>' instead")
+		#key not found
+		try:
+			expectDataType(function_name="tst",
+				variable_name="abc",expected_type=dict,input=789)
+		except Exception as e:
+			self.assertEqual(str(e),
+			"MoRBs:tst:ERROR: 'abc' is supposed to have the "+
+			"type of 'dict', but found type of '<class 'int'>' instead")
+		print("Test b_9_005: expectDictKey")
+
 	"""def test_b_10_001_validate__dict(self):
 		raise Exception("not ready")
 		validate__dict({},"testing_function_name","test_name",full=True)
