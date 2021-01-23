@@ -59,7 +59,7 @@ def expectDataType(function_name,variable_name,expected_type,input):
 
 def expectDictKey(function_name,variable_name,expectedKey,input):
 	expectDataType(function_name,variable_name,dict,input)
-	key_var_name = variable_name+"["+str(expectedKey)+"]"
+	key_var_name = "dictionary key:"+variable_name+"["+str(expectedKey)+"]"
 	expectDataType(function_name,key_var_name,str,expectedKey)
 	if expectedKey not in input:
 		variable_name = variable_name+"["+expectedKey+"]"
