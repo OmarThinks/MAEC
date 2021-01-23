@@ -84,7 +84,7 @@ class Column():
 
 
 
-def modelGenerator():
+def modelGenerator(input):
 	def __init__():
 		class sample(db.Model):
 			__tablename__ = 'sometable'
@@ -100,7 +100,15 @@ def modelGenerator():
 
 
 
-da = modelGenerator()
+class test_model():
+	__tablename__ = "abc"
+	id = Column(name = "id" , "data_type" = "integer")
+	price = Column(name = "price" , "data_type" = "float")
+	in_stock = Column(name = "in_stock" , "data_type" = "boolean")
+
+
+
+da = modelGenerator(test_model)
 
 
 
@@ -133,4 +141,11 @@ def get_class_dict(input):
 	for element in data:		
 		toReturn[element[0]] = element[1]
 	return toReturn
+
+
+def function():
+	pass
+
+
+
 
