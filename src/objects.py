@@ -3,6 +3,7 @@ try:
 except:
 	from src import *
 from sqlalchemy import Column as saColumn
+import inspect
 
 
 class Column():
@@ -84,20 +85,42 @@ class Column():
 
 
 def modelGenerator():
-	class sample(db.Model):
-		__tablename__ = 'sometable'
-		id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
-		name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
-	"""class example(db.Model):
-		__tablename__ = 'sometable'
-		id = Column("id","integer")"""
-	#db.create_all()
-	return sample
-
+	def __init__():
+		class sample(db.Model):
+			__tablename__ = 'sometable'
+			id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
+			name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
+		"""class example(db.Model):
+			__tablename__ = 'sometable'
+			id = Column("id","integer")"""
+		#db.create_all()
+		return sample
+	return __init__()
 
 
 
 
 da = modelGenerator()
 
+
+
+
+
+
+
+
+
+
+
+
+def get_model_attrs(input):
+	data = inspect.getmembers(input, 
+	lambda a:not(inspect.isroutine(a)))
+	data = [a for a in data if not(a[0].startswith('_') 
+		or a[0].endswith('_') or
+		(a[0] == "query") or (a[0] == "query_class"))]
+	toReturn = {}
+	for element in data:		
+		toReturn[element[0]] = element[1]
+	return toReturn
 

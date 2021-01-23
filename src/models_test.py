@@ -176,12 +176,13 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		data = [a for a in data if not(a[0].startswith('_') 
 			or a[0].endswith('_') or
 			(a[0] == "query") or (a[0] == "query_class"))]
-		data = [a for a in data if not(a[0].startswith('__') 
-		and a[0].endswith('__'))]
+
 
 		for element in data:
 			pass
 			print(element)
+		self.assertEqual({"index1":"abc","index2":"efg"},
+			get_model_attrs(test_class))
 		print("Test a_1_3: oject_indces")
 
 
