@@ -85,7 +85,7 @@ class Column():
 
 
 def modelGenerator(input):
-	input_attrs = get_class_dict(input)
+	input_attrs = get_class_dict(input,case = "clean")
 	class toReturn(db.Model):
 		pass			
 	#for input_attrs in :
@@ -176,14 +176,48 @@ def get_class_dict(input,case = "all"):
 	return toReturn
 
 
-def function():
-	pass
 
 
 
+"""
+returnModelAttrs
 
-
-def returnMORBSClass(input_dict):
+- Inputs:
+	- input_dict : a clean dict that contains the Columns
+		- every element here must be of the Column type
+		- { < column-name > : < Column > }
+		- Example:
+					{
+					"id":Column(name="id",data_type="integer"),
+					"name":Column(name="name",data_type="string")
+					}
+- Function:
+	- Create a dictionary that represents the attrs of 
+		the Final SQLAchemy model
+	- a dict called 'morbs', that is the input
+	- a dict called 'expected', to passed to reciever
+	- raise error if something goes wrong
+- Tolerance: None
+	- These are developer mistakes, not user mistakes
+- Output:
+	a dictionary like this
+	{
+		< column-name > : < sq-Column >, ..., ...,
+		"expected":{< column-name > : < data-type >, ..., ...},
+		"morbs-Columns" : input_dict
+	}
+	-Example:
+		{
+			"id" : saCOlumn(db.Integer),
+			"name" : saCOlumn(db.String),
+			"expected": { "id" : "integer", "name" : "string" },
+			"morbs-Columns" : {
+					"id":Column(name="id",data_type="integer"),
+					"name":Column(name="name",data_type="string")
+					}
+		}
+"""
+def returnModelAttrs(input_dict):
 	for attribute in input_dict:
 		if type(input_dict[attribute]) != Column:
 			data_type_error(function_name="returnMORBSClass",
