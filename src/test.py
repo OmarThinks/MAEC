@@ -10,6 +10,8 @@ from flask_cors import CORS
 from flask_migrate import Migrate 
 import base64
 
+import inspect
+
 try:
 	from __init__ import *
 except:
@@ -1254,6 +1256,27 @@ class MoRBs_TestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:attendance_validator:ERROR: 'received' is supposed to have the type of 'dict', but found type of '<class 'str'>' instead")
 		print("Test c_2_4: attendance_validator")
+
+
+
+
+
+
+	def test_c_2_5_attendance_validator(self):	
+		print(Product)
+		print(Product.id)
+		#print(Product.bla)
+		data = inspect.getmembers(Product, lambda a:not(inspect.isroutine(a)))
+		for element in data:
+			print(element)
+		print("_____")
+		data = [a for a in data if not(a[0].startswith('_') or a[0].endswith('_') or
+			(a[0] == "query") or (a[0] == "query_class"))]
+		#data = [a for a in data if not(a[0].startswith('__') and a[0].endswith('__'))]
+
+		for element in data:
+			print(element)
+		print("Test c_2_5: attendance_validator")
 
 
 
