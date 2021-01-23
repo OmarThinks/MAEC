@@ -113,8 +113,11 @@ class MoRBs_models_TestCase(unittest.TestCase):
 	def test_a_01_002_validate_validate(self):
 		col = Column("Hi","string")
 		#in case of success string
-		self.assertEqual(col.validate("Hey"),
+		self.assertEqual(Column("Hi","string").validate("Hey"),
 			{"success":True,"result":"Hey"})
+		#in case of success float
+		self.assertEqual(Column("Hi","float").validate("1.1"),
+			{"success":True,"result":1.1})
 		#in case of failure
 		self.assertEqual(Column("Hi","integer").validate("Hey"),
 			{"success":False,"result":{"status":400,
