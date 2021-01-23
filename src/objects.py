@@ -50,5 +50,6 @@ class Column():
 		elif self.data_type == "float":
 			validation_string = "f"
 		return validate__must(input = input,type = validation_string,
-			input_name_string=self.name)
+			input_name_string=self.name,maximum = self.maximum, 
+			minimum=self.minimum)
 
