@@ -140,6 +140,32 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		print("Test a_1_2: validate_column_validate")
 
 
+	def test_a_1_3_oject_indces(self):	
+		#print(Product)
+		#print(Product.id)
+		#print(Product.bla)
+		class test_class():
+			index1 ="abc"
+			index2 ="efg"
+			def f1():
+				pass
+				
+		data = inspect.getmembers(test_class, 
+			lambda a:not(inspect.isroutine(a)))
+		for element in data:
+			pass
+			print(element)
+		print("_____")
+		data = [a for a in data if not(a[0].startswith('_') 
+			or a[0].endswith('_') or
+			(a[0] == "query") or (a[0] == "query_class"))]
+		data = [a for a in data if not(a[0].startswith('__') 
+		and a[0].endswith('__'))]
+
+		for element in data:
+			pass
+			print(element)
+		print("Test a_1_3: oject_indces")
 
 
 
