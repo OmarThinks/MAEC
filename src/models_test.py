@@ -80,6 +80,11 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:Column.__init__:"+
 				"ERROR:not_in_range_error:'data_type' is not in "+
 				"this range "+str(DATA_TYPES_SUPPORTED))
+		#name starts with '_'
+		try:
+			col = Column("_price","string")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Column:name:can not start with '_'")
 
 		print("Test a_1_1: validate_column_insert")
 
