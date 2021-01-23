@@ -251,7 +251,7 @@ createExpectedFromClass
 				name = Column(data_type = "string")
 - Function:
 	- Create the expected of the class
-	- If the class got something wrong, it will raise error
+	- If the class got something wrong, it will evade it
 - Output:
 	- the expected dictionary
 	-Example: {"id":"integer","name":"string"}
@@ -265,9 +265,12 @@ def createExpectedFromClass(inputClass):
 	the_dict = convert_class_to_dict(inputClass,case = "clean")
 	toReturn = {}
 	for attributeName in the_dict:
-		expectDataType(function_name="createExpectedFromClass",
+		try:
+			expectDataType(function_name="createExpectedFromClass",
 			variable_name = attributeName,expected_type=Column,
 			input=the_dict[attributeName])
+		except:
+			continue
 		dataName = the_dict[attributeName].name
 		dataType = the_dict[attributeName].data_type
 		toReturn[dataName] = dataType

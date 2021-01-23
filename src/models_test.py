@@ -177,6 +177,20 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			convert_class_to_dict(test_class,case = "morbs"))
 		print("Test a_1_3: oject_indces")
 
+	def test_a_1_4_createExpectedFromClass(self):	
+		class test_class():
+			id = Column("id","integer")
+			name = Column("name","string")
+			price = Column("price","float")
+			hiddenexpectedhere = 4567
+			hiddenexpectedher = Column("hiddenexpectedher","float")
+			blablamorbshidden = Column("blablamorbshidden","float")
+			def f1():
+				pass
+		self.assertEqual({"id":"integer","name":"string","price":"float"},
+			createExpectedFromClass(test_class))
+		print("Test a_1_4: createExpectedFromClass")
+
 
 
 
