@@ -21,6 +21,12 @@ except:
 class Column(object):
 	"""docstring for Column"""
 	def __init__(self, name, type):
+		if type(name) != str:
+			data_type_error(function_name="Column",
+				variable_name="name",expected_type_name="string",input=name)
+		if type(type) != str:
+			data_type_error(function_name="type",
+				variable_name="name",expected_type_name="string",input=name)
 		
 		self.name = name
 		self.type = type
