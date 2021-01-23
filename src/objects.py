@@ -113,7 +113,17 @@ da = modelGenerator()
 
 
 
-def get_model_dict(input):
+
+"""
+get_class_dict
+
+- INPUTS: a class with attributes
+- FUNCTION: create a dct that represents the class attributes
+- OUTPUT: a dict that represents the class attrs and their values
+	- Example: {"name":"string","price":"integer"}
+
+"""
+def get_class_dict(input):
 	data = inspect.getmembers(input, 
 	lambda a:not(inspect.isroutine(a)))
 	data = [a for a in data if not(a[0].startswith('_') 
