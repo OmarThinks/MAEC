@@ -43,11 +43,13 @@ def data_type_error(function_name,variable_name,expected_type_name,input):
 		str(type(input))+"' instead")
 
 def missing_data_error(function_name,variable_name):
-	#raise Exception("abc")
 	raise Exception("MoRBs:"+str(function_name)+":ERROR:missing_data_error:'"+
 		variable_name+"' is missing")
 
-
-
+#range is supposed to be a array
+def not_in_range_error(function_name,variable_name,range):
+	raise Exception("MoRBs:"+str(function_name)+":ERROR:not_in_range_error:'"+
+		variable_name+"' is not in this range "+str(range))
+	
 
 
