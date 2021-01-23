@@ -85,6 +85,12 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			col = Column("_price","string")
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:Column:name:can not start with '_'")
+		#name contains 'query'
+		try:
+			col = Column("thereisqueryhidden","string")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Column:name:can "+
+				"not contain the string 'query'")
 
 		print("Test a_1_1: validate_column_insert")
 
