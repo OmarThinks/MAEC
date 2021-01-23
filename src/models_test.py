@@ -180,7 +180,7 @@ class MoRBs_models_TestCase(unittest.TestCase):
 
 	def test_a_1_4_createExpectedFromClass(self):	
 		class test_class():
-			id = Column("id","integer")
+			id = Column("id","integer",primary_key = True)
 			name = Column("name","string")
 			price = Column("price","float")
 			hiddenexpectedhere = 4567
@@ -188,7 +188,7 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			blablamorbshidden = Column("blablamorbshidden","float")
 			def f1():
 				pass
-		self.assertEqual({"id":"integer","name":"string","price":"float"},
+		self.assertEqual({"name":"string","price":"float"},
 			createExpectedFromClass(test_class))
 		print("Test a_1_4: createExpectedFromClass")
 	
