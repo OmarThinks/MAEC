@@ -138,6 +138,7 @@ convert_class_to_dict
 			class example():
 				name = "Labtop"
 				price = 123
+				expected = "abc" # this will be removed
 	- case : a string that carries one of three values
 		- "all" : means return all attrs
 		- "morbs": get all the attrs containging the word morbs
@@ -238,6 +239,14 @@ def generateModelAttrs(input_dict):
 
 
 
-def createExpectedFromModel(inputModel):
-	convert_class_to_dict(input,case = "all")
-
+def createExpectedFromClass(inputModel):
+	the_dict = convert_class_to_dict(input,case = "clean")
+	toReturn = {}
+	for attributeName in the_dict:
+		expectDataType(function_name="createExpectedFromClass",
+			variable_name = attributeName,expected_type=Column,
+			input=the_dict[attributeName])
+		dataName = the_dict[attributeName].name
+		dataType = the_dict[attributeName].data_type
+		toReturn[dataName] = dataType
+	return toReturn
