@@ -63,7 +63,16 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		try:
 			col = Column(1,"string")
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:Column.__init__:ERROR: 'name' is supposed to have the type of 'string', but found type of '<class 'int'>' instead")
+			self.assertEqual(str(e),"MoRBs:Column.__init__:ERROR: "+
+				"'name' is supposed to have the type of 'string',"+
+				" but found type of '<class 'int'>' instead")
+		#data_type not string
+		try:
+			col = Column("price",123)
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Column.__init__:ERROR: "+
+				"'data_type' is supposed to have the type of 'string',"+
+				" but found type of '<class 'int'>' instead")
 
 		print("Test a_1_1: validate_column_insert")
 

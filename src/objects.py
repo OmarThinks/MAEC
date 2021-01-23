@@ -12,7 +12,8 @@ class Column():
 				variable_name="name",expected_type_name="string",input=name)
 		if type(data_type) != str:
 			data_type_error(function_name="Column.__init__",
-				variable_name="data_type",expected_type_name="string",input=name)
+				variable_name="data_type",
+				expected_type_name="string",input=data_type)
 		if data_type not in DATA_TYPES_SUPPORTED:
 			not_in_range_error(function_name="Column.__init__",
 				variable_name="data_type",range=DATA_TYPES_SUPPORTED)
