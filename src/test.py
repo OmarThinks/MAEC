@@ -814,26 +814,18 @@ class MoRBs_TestCase(unittest.TestCase):
 			expectInRange(function_name="abc",variable_name="tst",
 				range={"abc":123},input=1)
 		except Exception as e:
-			print(str(e))
 			self.assertEqual(str(e),
 			"MoRBs:abc:ERROR: 'tst' is supposed to have the type "+
 			"of 'list', but found type of '<class 'dict'>' instead")
-		#key not string
+		#Not in range
 		try:
-			expectDictKey(function_name="abc",variable_name="tst",
-				expectedKey=123,input={"123":789,"456":"a"})
+			expectInRange(function_name="abc",variable_name="tst",
+				range=[1,2,3],input=4)
 		except Exception as e:
+			print(str(e))
 			self.assertEqual(str(e),
-			"MoRBs:abc:ERROR: 'dictionary key:tst[123]' is"+
-			" supposed to have the type of 'str', but found"+
-			" type of '<class 'int'>' instead")
-		#key not found
-		try:
-			expectDictKey(function_name="abc",variable_name="tst",
-				expectedKey="1234",input={"123":789,"456":"a"})
-		except Exception as e:
-			self.assertEqual(str(e),
-			"MoRBs:abc:ERROR:missing_data_error:'tst[1234]' is missing")
+			"MoRBs:expectInRange:abc:ERROR:"+
+			"not_in_range_error:'tst' is not in this range [1, 2, 3]")
 		print("Test b_9_010: expectInRange")
 
 	"""def test_b_10_001_validate__dict(self):
