@@ -747,6 +747,15 @@ class MoRBs_TestCase(unittest.TestCase):
 			" of 'c', but found type of '<class 'str'>' instead")
 		print("Test b_9_001: data_type_error")
 
+	def test_b_9_002_missing_data_error(self):
+		try:
+			missing_data_error(function_name="sts",variable_name="tst")
+		except Exception as e:
+			print(str(e))
+			self.assertEqual(str(e),
+			"MoRBs:sts:ERROR:missing_data_error:'tst' is missing")
+		print("Test b_9_002: missing_data_error")
+
 	"""def test_b_10_001_validate__dict(self):
 		raise Exception("not ready")
 		validate__dict({},"testing_function_name","test_name",full=True)
