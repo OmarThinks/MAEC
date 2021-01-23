@@ -57,4 +57,14 @@ def expectDataType(function_name,variable_name,expected_type,input):
 		data_type_error(function_name,variable_name,
 			expected_type_name.__name__,input)
 
+def expectDictKey(function_name,variable_name,expectedKey,input):
+	expectDataType(function_name,variable_name,dict,input)
+	expectDataType(function_name,
+		variable_name=variable_name+"["+str(expectedKey)+"]",str,expectedKey)
+	if expectedKey not in input:
+		variable_name = variable_name+"["+expectedKey+"]"
+		missing_data_error(function_name,variable_name)
+		data_type_error(function_name,variable_name,
+			expected_type_name.__name__,input)
+
 
