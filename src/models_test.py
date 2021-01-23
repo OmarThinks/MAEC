@@ -166,21 +166,6 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			index2 ="efg"
 			def f1():
 				pass
-				
-		data = inspect.getmembers(test_class, 
-			lambda a:not(inspect.isroutine(a)))
-		for element in data:
-			pass
-			print(element)
-		print("_____")
-		data = [a for a in data if not(a[0].startswith('_') 
-			or a[0].endswith('_') or
-			(a[0] == "query") or (a[0] == "query_class"))]
-
-
-		for element in data:
-			pass
-			print(element)
 		self.assertEqual({"index1":"abc","index2":"efg"},
 			get_model_attrs(test_class))
 		print("Test a_1_3: oject_indces")
