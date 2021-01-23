@@ -751,10 +751,20 @@ class MoRBs_TestCase(unittest.TestCase):
 		try:
 			missing_data_error(function_name="sts",variable_name="tst")
 		except Exception as e:
-			print(str(e))
 			self.assertEqual(str(e),
 			"MoRBs:sts:ERROR:missing_data_error:'tst' is missing")
 		print("Test b_9_002: missing_data_error")
+
+	def test_b_9_003_not_in_range_error(self):
+		try:
+			not_in_range_error(function_name="abc",
+				variable_name="tst",range=["1","2"])
+		except Exception as e:
+			print(str(e))
+			self.assertEqual(str(e),
+			"MoRBs:abc:ERROR:not_in_range_error:"+
+			"'tst' is not in this range ['1', '2']")
+		print("Test b_9_003: not_in_range_error")
 
 	"""def test_b_10_001_validate__dict(self):
 		raise Exception("not ready")
