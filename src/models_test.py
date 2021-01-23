@@ -104,6 +104,13 @@ class MoRBs_models_TestCase(unittest.TestCase):
 				"'int', but found type of '<class 'str'>' instead")
 		#minimum not int
 		try:
+			col = Column("data","string", minimum = "abc")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Column.__init__:ERROR:"+
+				" 'minimum' is supposed to have the type of "+
+				"'int', but found type of '<class 'str'>' instead")
+		#minimum > max
+		try:
 			col = Column("data","string", maximum = 10, minimum=40)
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:Column:data"+

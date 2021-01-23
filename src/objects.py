@@ -35,7 +35,7 @@ class Column():
 		if minimum > maximum:
 			raise Exception("MoRBs:Column:"+name+":maximum can"+
 				" not be more than minimum")
-		if type(primary_key) != boolean:
+		if type(primary_key) != bool:
 			data_type_error(function_name="Column.__init__",
 				variable_name="primary_key",
 				expected_type_name="int",input=primary_key)
