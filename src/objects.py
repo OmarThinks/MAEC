@@ -84,25 +84,34 @@ class Column():
 
 
 
-def modelGenerator(input):
+def modelGenerator(database,inputClass):
 	input_attrs = convert_class_to_dict(input,case = "clean")
-	class toReturn(db.Model):
-		pass			
+	
+	class MoRBsORM(db.Model):
+		pass	
+	# This is the dictionary of the attributes
+	# {"id":saColumn(..),.....,
+	#	"morbs": ... ,
+	#	"expected": {name":"string"}}
+	morbs_attrs = generateModelAttrs(input_dict)
+	for attribute in morbs_attrs:
+		setattr(MoRBsORM,attribute,morbs_attrs[attribute])		
 	#for input_attrs in :
 	#	pass
 	#setattr(toReturn, 'deal_accepted', self.use_it)
-
+	"""
 	def __init__():
 		class sample(db.Model):
 			__tablename__ = 'sometable'
 			id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
 			name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
+		"""
 		"""class example(db.Model):
 			__tablename__ = 'sometable'
 			id = Column("id","integer")"""
 		#db.create_all()
-		return sample
-	return __init__()
+		#return MoRBsORM
+	return MoRBsORM
 
 
 
