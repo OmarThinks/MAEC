@@ -134,7 +134,7 @@ get_class_dict
 
 - INPUTS: 
 	- input : a class with attributes
-	- all : a string that carries one of three values
+	- case : a string that carries one of three values
 		- "all" : means return all attrs
 		- "morbs": get all the attrs containging the word morbs
 		- "clean": get all the attrs NOT containging the word morbs
@@ -143,7 +143,9 @@ get_class_dict
 	- Example: {"name":"string","price":"integer"}
 
 """
-def get_class_dict(input,all = "all"):
+def get_class_dict(input,case = "all"):
+	expectInRange(function_name="get_class_dict",variable_name="case"
+		,range=["all","morbs", "clean"],input = case)
 	data = inspect.getmembers(input, 
 	lambda a:not(inspect.isroutine(a)))
 	data = [a for a in data if not(a[0].startswith('_') 
@@ -151,9 +153,22 @@ def get_class_dict(input,all = "all"):
 		(a[0] == "query") or (a[0] == "query_class"))]
 	toReturn = {}
 	for element in data:		
-		if "morbs" in element[0]:
-			continue
 		toReturn[element[0]] = element[1]
+	#Now toReturn is full
+
+	#To remove all key containng 'morbs'
+	if case == "clean":
+		for key in toReturn:
+			if "morbs" in key:
+				toReturn.pop(key)
+	
+	#To remove all keys not containing 'morbs'
+	if case == "morbs":
+		for key in toReturn:
+			if "morbs" not in key:
+				toReturn.pop(key)
+
+	#Finally
 	return toReturn
 
 
