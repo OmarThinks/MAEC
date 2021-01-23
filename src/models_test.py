@@ -124,10 +124,19 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		#in case of success boolean
 		self.assertEqual(Column("Hi","boolean").validate(True),
 			{"success":True,"result":True})
-		#in case of failure
+		
+		#in case of failure integer
 		self.assertEqual(Column("Hi","integer").validate("Hey"),
 			{"success":False,"result":{"status":400,
 			"description":"Hi can not be converted to integer"}})
+		#in case of failure float
+		self.assertEqual(Column("Hi","float").validate("Hey"),
+			{"success":False,"result":{"status":400,
+			"description":"Hi can not be converted to float"}})
+		#in case of failure boolean
+		self.assertEqual(Column("Hi","boolean").validate("Hey"),
+			{"success":False,"result":{"status":400,
+			"description":"Hi can not be converted to boolean"}})
 		print("Test a_1_2: validate_column_validate")
 
 
