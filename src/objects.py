@@ -4,12 +4,16 @@ except:
 	from src import *
 from sqlalchemy import Column as saColumn
 from sqlalchemy import String, Integer, Float, Boolean
-
+import os
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, scoped_session
+from flask import Flask
 
 class Column():
 	"""docstring for Column"""
 	def __init__(self, name, data_type, maximum= 10000000000000000000, 
-		minimum = -10000000000000000000):
+		minimum = -10000000000000000000, primary_key = False):
 		if type(name) != str:
 			data_type_error(function_name="Column.__init__",
 				variable_name="name",expected_type_name="string",input=name)
@@ -38,24 +42,24 @@ class Column():
 				" not be more than minimum")
 		#setting up sa data type
 		if data_type == "string":
-			saCol = saColumn(db.String(),nullable=False)
+			saCol = saColumn(db.String()#,nullable=False
+				,primary_key=primary_key)
 		elif data_type == "boolean":
-			saCol = saColumn(db.Boolean(),nullable=False)
+			saCol = saColumn(db.Boolean()#,nullable=False
+				,primary_key=primary_key)
 		elif data_type == "float":
-			saCol = saColumn(db.Float(),nullable=False)
+			saCol = saColumn(db.Float()#,nullable=False
+				,primary_key=primary_key)
 		elif data_type == "integer":
-			if name == "id":
-				saCol = saColumn(db.Integer(),
-					nullable=False,primary_key=True)
-			else:
-				self.saCol = saColumn(Integer(),nullable=False)
+			saCol = saColumn(db.Integer()#,nullable=False
+				,primary_key=primary_key)
 
-		self.saColumn = saColumn
+		self.saColumn = saCol
 		self.name = name
 		self.data_type = data_type
 		self.maximum = maximum		
 		self.minimum = minimum		
-
+		self.primary_key = primary_key
 	"""
 	return value:
 
@@ -76,3 +80,42 @@ class Column():
 		return {"success":validation["case"], 
 		"result":validation["result"]}
 
+
+
+
+
+def modelGenerator():
+	class sample(db.Model):
+		__tablename__ = 'sometable'
+		id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
+		name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
+	"""class example(db.Model):
+		__tablename__ = 'sometable'
+		id = Column("id","integer")"""
+	#db.create_all()
+	return sample
+
+
+
+
+
+print(type(Column("id","integer").saColumn))
+print(saColumn(db.String,primary_key=False))
+print(type(saColumn(db.String,primary_key=False)))
+
+"""class sample(db.Model):
+	__tablename__ = 'sometable'
+	id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
+	name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
+"""
+#Base.metadata.create_all(engn)
+da = modelGenerator()
+
+"""Base.metadata.create_all(engn)
+da1 = modelGenerator()
+print()
+d = da1()
+session.add(d)
+session.commit()
+#db.create_all()
+"""
