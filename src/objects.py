@@ -113,7 +113,7 @@ da = modelGenerator()
 
 
 
-def get_model_attrs(input):
+def get_model_dict(input):
 	data = inspect.getmembers(input, 
 	lambda a:not(inspect.isroutine(a)))
 	data = [a for a in data if not(a[0].startswith('_') 
