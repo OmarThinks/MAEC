@@ -85,7 +85,7 @@ class Column():
 
 
 def modelGenerator(input):
-	input_attrs = get_class_dict(input,case = "clean")
+	input_attrs = convert_class_to_dict(input,case = "clean")
 	class toReturn(db.Model):
 		pass			
 	#for input_attrs in :
@@ -130,21 +130,25 @@ class test_model():
 
 
 """
-get_class_dict
+convert_class_to_dict
 
 - INPUTS: 
 	- input : a class with attributes
+		- Example:
+			class example():
+				name = "Labtop"
+				price = 123
 	- case : a string that carries one of three values
 		- "all" : means return all attrs
 		- "morbs": get all the attrs containging the word morbs
 		- "clean": get all the attrs NOT containging the word morbs
 - FUNCTION: create a dict that represents the class attributes
 - OUTPUT: a dict that represents the class attrs and their values
-	- Example: {"name":"string","price":"integer"}
+	- Example: {"name":"Labtop","price":123}
 
 """
-def get_class_dict(input,case = "all"):
-	expectInRange(function_name="get_class_dict",variable_name="case"
+def convert_class_to_dict(input,case = "all"):
+	expectInRange(function_name="convert_class_to_dict",variable_name="case"
 		,range=["all","morbs", "clean"],input = case)
 	data = inspect.getmembers(input, 
 	lambda a:not(inspect.isroutine(a)))
@@ -225,7 +229,7 @@ returnModelAttrs
 					}
 		}
 """
-def returnModelAttrs(input_dict):
+def generateModelAttrs(input_dict):
 	for attribute in input_dict:
 		if type(input_dict[attribute]) != Column:
 			data_type_error(function_name="returnMORBSClass",
@@ -235,5 +239,5 @@ def returnModelAttrs(input_dict):
 
 
 def createExpectedFromModel(inputModel):
-	pass
+	convert_class_to_dict(input,case = "all")
 
