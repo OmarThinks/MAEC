@@ -16,3 +16,13 @@ try:
 	from __init__ import *
 except:
 	from src import *
+
+
+class Column(object):
+	"""docstring for Column"""
+	def __init__(self, name, type):
+		self.name = name
+		self.type = type
+		
+
+
