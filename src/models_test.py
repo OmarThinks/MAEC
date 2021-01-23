@@ -16,6 +16,7 @@ from flask_migrate import Migrate
 import base64
 
 import inspect
+from sqlalchemy import Column as saColumn
 
 
 
@@ -190,6 +191,36 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		self.assertEqual({"id":"integer","name":"string","price":"float"},
 			createExpectedFromClass(test_class))
 		print("Test a_1_4: createExpectedFromClass")
+	
+	def test_a_1_5_generateModelAttrs(self):	
+		test_dict = {
+			"id": Column("id","integer"),
+			"name" : Column("name","string"),
+			"price" : Column("price","float")
+		}
+		"""data = generateModelAttrs(test_dict)
+		self.assertEqual(
+			data["expected"],{"id":"integer",
+			"name":"string","price":"float"})
+		self.assertEqual(data["morbs"],test_dict)
+		self.assertEqual(
+			data["morbs"],{
+			"id": Column("id","integer"),
+			"name" : Column("name","string"),
+			"price" : Column("price","float")})"""
+		self.assertEqual(
+			{"id":test_dict["id"].saColumn,
+			"name":test_dict["name"].saColumn,
+			"price":test_dict["price"].saColumn,
+			"expected":{"id":"integer","name":"string","price":"float"},
+			"morbs":{
+			"id":test_dict["id"],
+			"price":test_dict["price"],
+			"name":test_dict["name"]
+			}
+			},
+			generateModelAttrs(test_dict))
+		print("Test a_1_4: generateModelAttrs")
 
 
 
