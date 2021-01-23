@@ -236,6 +236,11 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			inputClass = test_class)
 		self.assertEqual(cp.success, True) 
 		self.assertEqual(cp.result, {"name":"abc","price":None}) 
+		cp = Ckeckpoint(success = False, result ={"status":400,
+			"description":"error"}, 
+			inputClass = test_class)
+		self.assertEqual(cp.success, False) 
+		self.assertEqual(cp.result, {"status":400, "description":"error"}) 
 		try:
 			Ckeckpoint(success = True)
 		except Exception as e:
