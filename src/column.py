@@ -21,6 +21,7 @@ except:
 class Column(object):
 	"""docstring for Column"""
 	def __init__(self, name, type):
+		
 		self.name = name
 		self.type = type
 		

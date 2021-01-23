@@ -34,3 +34,20 @@ def my_error(status=404 ,description="",fullError=""):
 	error_dict["description"] = description
 	return jsonify(error_dict),status
 	
+
+
+def data_type_error(function_name,variable_name,expected_type_name,input):
+	raise Exception("MoRBs:"+str(function_name)+":ERROR: '"+
+		str(variable_name)+"' is supposed to have "+
+		"the type of '"+str(expected_type_name)+"', but found type of '"+ 
+		str(type(input))+"' instead")
+
+def missing_data_error(function_name,variable_name):
+	#raise Exception("abc")
+	raise Exception("MoRBs:"+str(function_name)+":ERROR:missing_data_error:'"+
+		variable_name+"' is missing")
+
+
+
+
+
