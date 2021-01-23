@@ -268,7 +268,7 @@ def createExpectedFromClass(inputClass):
 		expectDataType(function_name="createExpectedFromClass",
 			variable_name = attributeName,expected_type=Column,
 			input=the_dict[attributeName])
-		dataName = attributeName
+		dataName = the_dict[attributeName].name
 		dataType = the_dict[attributeName].data_type
 		toReturn[dataName] = dataType
 	return toReturn
