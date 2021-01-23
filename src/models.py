@@ -1,7 +1,7 @@
 try:
-    from __init__ import *
+    from __init__ import db
 except:
-    from src import *
+    from src import db
 
 import os
 from sqlalchemy import Column, String, Integer, Float, Boolean
