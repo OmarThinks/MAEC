@@ -121,6 +121,9 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		#in case of success integer
 		self.assertEqual(Column("Hi","integer").validate("1"),
 			{"success":True,"result":1})
+		#in case of success boolean
+		self.assertEqual(Column("Hi","boolean").validate(True),
+			{"success":True,"result":True})
 		#in case of failure
 		self.assertEqual(Column("Hi","integer").validate("Hey"),
 			{"success":False,"result":{"status":400,
