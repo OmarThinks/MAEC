@@ -73,6 +73,13 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:Column.__init__:ERROR: "+
 				"'data_type' is supposed to have the type of 'string',"+
 				" but found type of '<class 'int'>' instead")
+		#data_type not in supported
+		try:
+			col = Column("price","bla bla")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Column.__init__:"+
+				"ERROR:not_in_range_error:'data_type' is not in "+
+				"this range "+str(DATA_TYPES_SUPPORTED))
 
 		print("Test a_1_1: validate_column_insert")
 
