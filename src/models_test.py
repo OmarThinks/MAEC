@@ -220,7 +220,27 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			}
 			},
 			generateModelAttrs(test_dict))
-		print("Test a_1_4: generateModelAttrs")
+		print("Test a_1_5: generateModelAttrs")
+
+	def test_a_1_6_Ckeckpoint(self):	
+		class test_class():
+			id = Column("id","integer",primary_key = True)
+			name = Column("name","string")
+			price = Column("price","float")
+			hiddenexpectedhere = 4567
+			hiddenexpectedher = Column("hiddenexpectedher","float")
+			blablamorbshidden = Column("blablamorbshidden","float")
+			def f1():
+				pass
+		cp = Ckeckpoint(success = True, result ={"name":"abc","price":None}, 
+			inputClass = test_class)
+		self.assertEqual(cp.success, True) 
+		self.assertEqual(cp.result, {"name":"abc","price":None}) 
+		try:
+			Ckeckpoint(success = True)
+		except Exception as e:
+			pass
+		print("Test a_1_6: Ckeckpoint")
 
 
 

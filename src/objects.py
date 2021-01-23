@@ -315,12 +315,12 @@ Checkpoint
 		- validate that there is an integer status code
 		- validate that description is a string
 - Output:
-	- No Output
+	- It is an object, it will be created
 	- It will only raise error in case if there was an error
 """
 class Ckeckpoint():
 	"""docstring for Ckeckpoint"""
-	def __init__(self, success, result, input_Class):
+	def __init__(self, success, result, inputClass):
 		# Making sure that success is Boolean
 		expectDataType(function_name= "Checkpoint.__init__",
 			variable_name = "success",expected_type=bool,
