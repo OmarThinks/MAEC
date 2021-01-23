@@ -30,6 +30,11 @@ class Column(object):
 		if type not in DATA_TYPES_SUPPORTED:
 			not_in_range_error(function_name="Column.__init__",
 				variable_name="type",range=DATA_TYPES_SUPPORTED)
+		if name[0] == "_":
+			raise Exception("MoRBs:Column:name:can not start with '_'")
+		if "query" in name:
+			raise Exception("MoRBs:Column:name:can not contain"+
+				" the string 'query'")
 		self.name = name
 		self.type = type
 		
