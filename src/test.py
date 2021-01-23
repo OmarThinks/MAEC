@@ -809,14 +809,15 @@ class MoRBs_TestCase(unittest.TestCase):
 	def test_b_9_010_expectInRange(self):
 		expectInRange(function_name="abc",variable_name="tst",
 			range=[1,2,3],input=1)
-		#Not dict
+		#Not list
 		try:
-			expectDictKey(function_name="abc",variable_name="tst",
-				expectedKey="123",input=123)
+			expectInRange(function_name="abc",variable_name="tst",
+				range={"abc":123},input=1)
 		except Exception as e:
+			print(str(e))
 			self.assertEqual(str(e),
 			"MoRBs:abc:ERROR: 'tst' is supposed to have the type "+
-			"of 'dict', but found type of '<class 'int'>' instead")
+			"of 'list', but found type of '<class 'dict'>' instead")
 		#key not string
 		try:
 			expectDictKey(function_name="abc",variable_name="tst",
