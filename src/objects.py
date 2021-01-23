@@ -38,14 +38,14 @@ class Column():
 				" not be more than minimum")
 		#setting up sa data type
 		if data_type == "string":
-			saCol = saColumn(String(),nullable=False)
+			saCol = saColumn(db.String(),nullable=False)
 		elif data_type == "boolean":
-			saCol = saColumn(Boolean(),nullable=False)
+			saCol = saColumn(db.Boolean(),nullable=False)
 		elif data_type == "float":
-			saCol = saColumn(Float(),nullable=False)
+			saCol = saColumn(db.Float(),nullable=False)
 		elif data_type == "integer":
 			if name == "id":
-				saCol = saColumn(Integer(),
+				saCol = saColumn(db.Integer(),
 					nullable=False,primary_key=True)
 			else:
 				self.saCol = saColumn(Integer(),nullable=False)
