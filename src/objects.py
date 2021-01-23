@@ -39,6 +39,10 @@ class Column():
 		self.maximum = maximum		
 		self.minimum = minimum		
 
+	"""
+	return value:
+
+	"""
 	def validate(self, input):
 		validation_string = ""
 		if self.data_type == "string":
@@ -49,7 +53,9 @@ class Column():
 			validation_string = "b"
 		elif self.data_type == "float":
 			validation_string = "f"
-		return validate__must(input = input,type = validation_string,
+		validation = validate__must(input = input,type = validation_string,
 			input_name_string=self.name,maximum = self.maximum, 
 			minimum=self.minimum)
+		return {"success":validation["case"], 
+		"result":validation["result"]}
 
