@@ -4,7 +4,8 @@ except:
     from src import db
 
 import os
-from sqlalchemy import Column, String, Integer, Float, Boolean
+from sqlalchemy import Column as saColumn
+from sqlalchemy import String, Integer, Float, Boolean
 from flask_sqlalchemy import SQLAlchemy
 import json
 
@@ -38,13 +39,13 @@ id,name,price
 '''
 class Product(db.Model):
     # Autoincrementing, unique primary key
-    id = Column(Integer(), primary_key=True)
+    id = saColumn(Integer(), primary_key=True)
     # String name
-    name = Column(String(), unique=False, nullable=False)
+    name = saColumn(String(), unique=False, nullable=False)
     # name could be like "Labtop"
     # name dowsn't have to be unique
     # allowing several users to sell the same product
-    price =  Column(Float(), unique=False, nullable=False)
+    price =  saColumn(Float(), unique=False, nullable=False)
     # Price is a float
     # Example: 5.0, 6.0 , 50.0, 0.5
     # It should be float, allowing things with low

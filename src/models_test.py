@@ -56,9 +56,15 @@ class MoRBs_models_TestCase(unittest.TestCase):
 
 
 	def test_a_01_001_validate_field_insert(self):
-		col = Field("Hi","string")
+		col = Column("Hi","string")
 		self.assertEqual(col.name,"Hi")
-		self.assertEqual(col.type,"string")
+		self.assertEqual(col.data_type,"string")
+		#name not string
+		try:
+			col = Column(1,"string")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Column.__init__:ERROR: 'name' is supposed to have the type of 'string', but found type of '<class 'int'>' instead")
+
 		print("Test a_1_1: validate_column_insert")
 
 
