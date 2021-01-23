@@ -35,6 +35,10 @@ class Column():
 		if minimum > maximum:
 			raise Exception("MoRBs:Column:"+name+":maximum can"+
 				" not be more than minimum")
+		if type(primary_key) != boolean:
+			data_type_error(function_name="Column.__init__",
+				variable_name="primary_key",
+				expected_type_name="int",input=primary_key)
 		#setting up sa data type
 		if data_type == "string":
 			saCol = saColumn(db.String()#,nullable=False
