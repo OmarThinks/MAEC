@@ -241,19 +241,34 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			inputClass = test_class)
 		self.assertEqual(cp.success, False) 
 		self.assertEqual(cp.result, {"status":400, "description":"error"}) 
-		#Correct result, success not boolean
-		try:
-			Ckeckpoint(success = 123, result={"name":"abc","price":None})
-			self.assertEqual(True,False)
-		except Exception as e:
-			pass
-		#Not matching result, success False
-		try:
-			Ckeckpoint(success = False, result={"name":"abc","price":None})
-			self.assertEqual(True,False)
-		except Exception as e:
-			pass
+		
+		my_list = [{"success":123,"result":
+			
+		{"status":400, "description":"error"}},#success not Boolean
+		{"success":True,"result":123},#result not dict
 
+		
+		{"success":False,"result":
+			{"statuuuus":400, "description":"error"}},#no status
+		{"success":False,"result":
+			{"status":400, "descriptiiiion":"error"}},#no description
+		{"success":False,"result":
+			{"status":"400", "description":"error"}},#status not int
+		{"success":False,"result":
+			{"status":400, "description":123}},#desc not str
+		
+		{"success":True,"result":
+			{"name":"abc","priice":None}}#absent price
+		]
+		#Correct result, success not boolean
+		for element in my_list:
+			success = element["success"]
+			result = element["result"]
+			try:
+				Ckeckpoint(success = success, result = result)
+				self.assertEqual(True,False)
+			except Exception as e:
+				pass
 		print("Test a_1_6: Ckeckpoint")
 
 
