@@ -1,7 +1,7 @@
 try:
-	from __init__ import *
+	from __init__ import DATA_TYPES_SUPPORTED
 except:
-	from src import *
+	from src import DATA_TYPES_SUPPORTED
 
 
 class Column(object):
