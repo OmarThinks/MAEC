@@ -84,13 +84,19 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		try:
 			col = Column("_price","string")
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:Column:name:can not start with '_'")
+			self.assertEqual(str(e),"MoRBs:Column:_price:name"+
+				":can not start with '_'")
 		#name contains 'query'
 		try:
 			col = Column("thereisqueryhidden","string")
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:Column:name:can "+
+			self.assertEqual(str(e),"MoRBs:Column:thereisqueryhidden:name:can "+
 				"not contain the string 'query'")
+		#maximum not int
+		try:
+			col = Column("data","string", maximum = "abc")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Column.__init__:ERROR: 'maximum' is supposed to have the type of 'int', but found type of '<class 'str'>' instead")
 
 		print("Test a_1_1: validate_column_insert")
 

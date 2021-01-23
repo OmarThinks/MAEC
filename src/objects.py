@@ -21,7 +21,7 @@ class Column():
 		if name[0] == "_":
 			raise Exception("MoRBs:Column:"+name+":name:can not start with '_'")
 		if "query" in name:
-			raise Exception("MoRBs:Column:"+name+"name:can not contain"+
+			raise Exception("MoRBs:Column:"+name+":name:can not contain"+
 				" the string 'query'")
 		if type(maximum) != int:
 			data_type_error(function_name="Column.__init__",
