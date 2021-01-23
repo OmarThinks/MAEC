@@ -55,7 +55,7 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		print("Test 1:Hello, MoRBs Models Tests!")
 
 
-	def test_a_01_001_validate_field_insert(self):
+	def test_a_01_001_validate_column_insert(self):
 		col = Column("Hi","string")
 		self.assertEqual(col.name,"Hi")
 		self.assertEqual(col.data_type,"string")
@@ -93,6 +93,12 @@ class MoRBs_models_TestCase(unittest.TestCase):
 				"not contain the string 'query'")
 
 		print("Test a_1_1: validate_column_insert")
+
+	def test_a_01_002_validate_validate(self):
+		col = Column("Hi","string")
+		self.assertEqual(col.validate("Hey"),
+			{"success":True,"result":"Hey"})
+		print("Test a_1_2: validate_column_validate")
 
 
 
