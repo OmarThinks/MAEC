@@ -2,9 +2,10 @@ try:
 	from __init__ import *
 except:
 	from src import *
+from sqlalchemy import Column as saColumn
 
 
-class Column():
+class Column(saColumn):
 	"""docstring for Column"""
 	def __init__(self, name, data_type, maximum= 10000000000000000000, 
 		minimum = -10000000000000000000):
