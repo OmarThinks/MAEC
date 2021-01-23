@@ -242,9 +242,12 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		self.assertEqual(cp.success, False) 
 		self.assertEqual(cp.result, {"status":400, "description":"error"}) 
 		try:
-			Ckeckpoint(success = True)
+			#Correct result, success not boolean
+			Ckeckpoint(success = 123, result={"name":"abc","price":None})
+			self.assertEqual(True,False)
 		except Exception as e:
 			pass
+		
 		print("Test a_1_6: Ckeckpoint")
 
 
