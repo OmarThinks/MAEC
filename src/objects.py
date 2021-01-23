@@ -221,8 +221,8 @@ returnModelAttrs
 	}
 	-Example:
 		{
-			"id" : saCOlumn(db.Integer),
-			"name" : saCOlumn(db.String),
+			"id" : saColumn(db.Integer),
+			"name" : saColumn(db.String),
 			"expected": { "id" : "integer", "name" : "string" },
 			"morbs" : {
 					"id":Column(name="id",data_type="integer"),
@@ -233,10 +233,10 @@ returnModelAttrs
 def generateModelAttrs(input_dict):
 	toReturn = {}
 	toReturn["morbs"] = input_dict
-	toReturn
+	toReturn["expected"] = createExpectedFromColumnsDict(input_dict)
 	for attribute in input_dict:
-		pass
-
+		toReturn[attribute] = input_dict[attribute].saColumn
+	return toReturn
 
 
 """
