@@ -757,14 +757,25 @@ class MoRBs_TestCase(unittest.TestCase):
 
 	def test_b_9_003_not_in_range_error(self):
 		try:
-			not_in_range_error(function_name="abc",
-				variable_name="tst",range=["1","2"])
+			not_in_range_error(function_name="rty",
+				variable_name="abc",range=["1","2"])
 		except Exception as e:
-			print(str(e))
 			self.assertEqual(str(e),
-			"MoRBs:abc:ERROR:not_in_range_error:"+
-			"'tst' is not in this range ['1', '2']")
+			"MoRBs:rty:ERROR:not_in_range_error:'abc' "+
+			"is not in this range ['1', '2']")
 		print("Test b_9_003: not_in_range_error")
+
+	def test_b_9_004_expectDataType(self):
+		expectDataType(function_name="tst",
+			variable_name="abc",expected_type=int,input=789)
+		try:
+			expectDataType(function_name="tst",
+				variable_name="abc",expected_type=dict,input=789)
+		except Exception as e:
+			self.assertEqual(str(e),
+			"MoRBs:tst:ERROR: 'abc' is supposed to have the "+
+			"type of 'dict', but found type of '<class 'int'>' instead")
+		print("Test b_9_004: expectDataType")
 
 	"""def test_b_10_001_validate__dict(self):
 		raise Exception("not ready")
