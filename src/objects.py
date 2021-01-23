@@ -88,7 +88,9 @@ def modelGenerator(input):
 	input_attrs = get_class_dict(input)
 	class toReturn(db.Model):
 		pass			
-
+	#for input_attrs in :
+	#	pass
+	#setattr(toReturn, 'deal_accepted', self.use_it)
 
 	def __init__():
 		class sample(db.Model):

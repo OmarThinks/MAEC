@@ -68,3 +68,11 @@ def expectDictKey(function_name,variable_name,expectedKey,input):
 			expected_type_name.__name__,input)
 
 
+
+def expect_in_range(function_name,variable_name,range,input):
+	expectDataType(function_name,,expected_type=list,input)
+	if input not in range:
+		raise Exception("MoRBs:expect_in_range:"+
+			str(function_name)+":ERROR:not_in_range_error:'"+
+			variable_name+"' is not in this range "+str(range))
+
