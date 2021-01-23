@@ -275,6 +275,8 @@ def createExpectedFromColumnsDict(inputDict):
 			input=the_dict[attributeName])
 		except:
 			continue
+		if the_dict[attributeName].primary_key == True:
+			continue
 		dataName = the_dict[attributeName].name
 		dataType = the_dict[attributeName].data_type
 		toReturn[dataName] = dataType
@@ -283,6 +285,39 @@ def createExpectedFromColumnsDict(inputDict):
 
 
 
+
+
+
+
+"""
+Checkpoint
+
+- Attributes:
+ 	- success:
+ 		A boolean carring the value of True or False
+ 	- result:
+ 		A dictionary carring info about what is next
+	-EXAMPLE 1 :
+		- Ckeckpoint.success = True
+		- Ckeckpoint.result = {"price":10.01,"name":None}
+	-EXAMPLE 2 :
+		- Ckeckpoint.success = False
+		- Ckeckpoint.result = {"status":400,"description":
+		"something went wrong"}
+- Inputs: 
+	- success: Boolean
+	- result: a dictionary
+- Function:
+	- if success = True:
+		- Validate that each value of expected class has a 
+			corresponding value of in result
+	- if success = False:
+		- validate that there is an integer status code
+		- validate that description is a string
+- Output:
+	- No Output
+	- It will only raise error in case if there was an error
+"""
 class Ckeckpoint():
 	"""docstring for Ckeckpoint"""
 	def __init__(self, success, result, input_Class):
