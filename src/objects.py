@@ -27,13 +27,14 @@ class Column():
 		
 	def validate(self, input):
 		validation_string = ""
-		if data_type == "string":
+		if self.data_type == "string":
 			validation_string = "s"
-		elif data_type == "integer":
+		elif self.data_type == "integer":
 			validation_string = "i"
-		elif data_type == "boolean":
+		elif self.data_type == "boolean":
 			validation_string = "b"
-		elif data_type == "float":
+		elif self.data_type == "float":
 			validation_string = "f"
-		return validate__must(input = input,type = validation_string)
+		return validate__must(input = input,type = validation_string,
+			input_name_string=self.name)
 
