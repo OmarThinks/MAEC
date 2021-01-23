@@ -50,7 +50,7 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		print("_+++++++++++++++++++++++++++++++++_")
 
 	#Note: Tests are run alphapetically
-	def test_a_test(self):
+	def test___a_test(self):
 		self.assertEqual(1,1)
 		print("Test 1:Hello, MoRBs Models Tests!")
 
@@ -111,7 +111,7 @@ class MoRBs_models_TestCase(unittest.TestCase):
 	def test_a_01_002_validate_validate(self):
 		col = Column("Hi","string")
 		self.assertEqual(col.validate("Hey"),
-			{"success":True,"result":"Hey"})
+			{"case":True,"result":"Hey"})
 		print("Test a_1_2: validate_column_validate")
 
 
