@@ -355,5 +355,12 @@ class Ckeckpoint():
 			expected= expected)
 		self.success = success
 		self.result = result
+	def ready():
+		the_dict = self.result
+		for key in the_dict:
+			if the_dict[key] == None:
+				raise Exception(
+				"MoRBs:ERROR:Checkpoint:not ready, but found a value"+
+				" of 'None' in this key:'" + str(key)+"'")
 
 
