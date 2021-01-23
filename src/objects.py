@@ -19,13 +19,26 @@ class Column():
 			not_in_range_error(function_name="Column.__init__",
 				variable_name="data_type",range=DATA_TYPES_SUPPORTED)
 		if name[0] == "_":
-			raise Exception("MoRBs:Column:name:can not start with '_'")
+			raise Exception("MoRBs:Column:"+name+":name:can not start with '_'")
 		if "query" in name:
-			raise Exception("MoRBs:Column:name:can not contain"+
+			raise Exception("MoRBs:Column:"+name+"name:can not contain"+
 				" the string 'query'")
+		if type(maximum) != int:
+			data_type_error(function_name="Column.__init__",
+				variable_name="maximum",
+				expected_type_name="int",input=maximum)
+		if type(minimum) != int:
+			data_type_error(function_name="Column.__init__",
+				variable_name="minimum",
+				expected_type_name="int",input=minimum)
+		if minimum > maximum:
+			raise Exception("MoRBs:Column:"+name+":maximum can"+
+				" not be more than minimum")
 		self.name = name
 		self.data_type = data_type
-		
+		self.maximum = maximum		
+		self.minimum = minimum		
+
 	def validate(self, input):
 		validation_string = ""
 		if self.data_type == "string":
