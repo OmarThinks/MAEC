@@ -112,8 +112,13 @@ class MoRBs_models_TestCase(unittest.TestCase):
 
 	def test_a_01_002_validate_validate(self):
 		col = Column("Hi","string")
+		#in case of success string
 		self.assertEqual(col.validate("Hey"),
-			{"case":True,"result":"Hey"})
+			{"success":True,"result":"Hey"})
+		#in case of failure
+		self.assertEqual(Column("Hi","integer").validate("Hey"),
+			{"success":False,"result":{"status":400,
+			"description":"Hi can not be converted to integer"}})
 		print("Test a_1_2: validate_column_validate")
 
 
