@@ -169,6 +169,11 @@ class MoRBs_models_TestCase(unittest.TestCase):
 				pass
 		self.assertEqual({"index1":"abc","index2":"efg"},
 			get_class_dict(test_class,case = "clean"))
+		self.assertEqual({"index1":"abc","index2":"efg",
+			"blablamorbshidden":123},
+			get_class_dict(test_class,case = "all"))
+		self.assertEqual({"blablamorbshidden":123},
+			get_class_dict(test_class,case = "morbs"))
 		print("Test a_1_3: oject_indces")
 
 
