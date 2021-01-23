@@ -164,6 +164,7 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		class test_class():
 			index1 ="abc"
 			index2 ="efg"
+			hiddenexpectedhere = 4567
 			blablamorbshidden = 123
 			def f1():
 				pass

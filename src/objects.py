@@ -148,15 +148,20 @@ def get_class_dict(input,case = "all"):
 		,range=["all","morbs", "clean"],input = case)
 	data = inspect.getmembers(input, 
 	lambda a:not(inspect.isroutine(a)))
-	data = [a for a in data if not(a[0].startswith('_') 
+	to_pop = []
+	
+	the_data = []
+	for a in data:
+		if not(a[0].startswith('_') 
 		or a[0].endswith('_') or
 		(a[0] == "query") or (a[0] == "query_class") or 
-		("expected" in a))]
+		("expected" in a[0])
+		):
+			the_data.append(a)
 	toReturn = {}
-	for element in data:		
+	for element in the_data:		
 		toReturn[element[0]] = element[1]
 	#Now toReturn is full
-	to_pop = []
 	#To remove all key containng 'morbs'
 	if case == "clean":
 		for key in toReturn:
@@ -171,8 +176,10 @@ def get_class_dict(input,case = "all"):
 
 	#poping useless info
 	for key in to_pop:
-		toReturn.pop(key)
-
+		try:
+			toReturn.pop(key)
+		except Exception as e:
+			pass
 	#Finally
 	return toReturn
 
