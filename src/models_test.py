@@ -50,36 +50,14 @@ class MoRBs_models_TestCase(unittest.TestCase):
 	#Note: Tests are run alphapetically
 	def test_a_test(self):
 		self.assertEqual(1,1)
-		print("Test 1:Hello, Tests!")
+		print("Test 1:Hello, MoRBs Models Tests!")
 
 
-
-	def test_002_drop_all_create_all(self):
-		db_drop_and_create_all()
-		products = Product.query.all()
-		self.assertEqual(len(products),0)
-		print("Test 2: db_drop_and_create_all")
-
-
-	def test_003_populate_tables(self):
-		populate_tables()
-		products = Product.query.all()
-		self.assertEqual(len(products),6)
-		print("Test 3: populate tables")
-
-
-
-
-
-	def test_b_01_001_validate_model_id(self):
-		all_products = Product.query
-		validation = validate_model_id(input_id=1,
-			model_query=all_products,
-			model_name_string="product")
-		self.assertEqual(validation["case"],1)
-		self.assertEqual(all_products.get(1),
-			validation["result"])
-		print("Test b_1_1: validate_model_id: Product 1")
+	def test_a_01_001_validate_column_insert(self):
+		col = Column("Hi","string")
+		self.assertEqual(col.name,"Hi")
+		self.assertEqual(col.type,"string")
+		print("Test a_1_1: validate_column_insert")
 
 
 
