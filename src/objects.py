@@ -196,7 +196,7 @@ def convert_class_to_dict(input,case = "all"):
 returnModelAttrs
 
 - Inputs:
-	- input_dict : a clean dict that contains the Columns
+	- input_dict : the output of convert_class_to_dict
 		- every element here must be of the Column type
 		- { < column-name > : < Column > }
 		- Example:
@@ -224,18 +224,18 @@ returnModelAttrs
 			"id" : saCOlumn(db.Integer),
 			"name" : saCOlumn(db.String),
 			"expected": { "id" : "integer", "name" : "string" },
-			"morbs-Columns" : {
+			"morbs" : {
 					"id":Column(name="id",data_type="integer"),
 					"name":Column(name="name",data_type="string")
 					}
 		}
 """
 def generateModelAttrs(input_dict):
+	toReturn = {}
+	toReturn["morbs"] = input_dict
+	toReturn
 	for attribute in input_dict:
-		if type(input_dict[attribute]) != Column:
-			data_type_error(function_name="returnMORBSClass",
-				variable_name=attribute,
-				expected_type_name="Column",input = input_dict(attribute))
+		pass
 
 
 
@@ -263,6 +263,10 @@ createExpectedFromClass
 
 def createExpectedFromClass(inputClass):
 	the_dict = convert_class_to_dict(inputClass,case = "clean")
+	return createExpectedFromColumnsDict(the_dict)
+
+def createExpectedFromColumnsDict(inputDict):
+	the_dict = inputDict
 	toReturn = {}
 	for attributeName in the_dict:
 		try:
@@ -275,3 +279,5 @@ def createExpectedFromClass(inputClass):
 		dataType = the_dict[attributeName].data_type
 		toReturn[dataName] = dataType
 	return toReturn
+
+
