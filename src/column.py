@@ -27,7 +27,8 @@ class Column(object):
 		if type(type) != str:
 			data_type_error(function_name="type",
 				variable_name="name",expected_type_name="string",input=name)
-		
+		if type not in DATA_TYPES_SUPPORTED:
+			pass
 		self.name = name
 		self.type = type
 		
