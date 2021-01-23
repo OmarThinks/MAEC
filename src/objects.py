@@ -85,6 +85,9 @@ class Column():
 
 
 def modelGenerator(input):
+	
+
+
 	def __init__():
 		class sample(db.Model):
 			__tablename__ = 'sometable'
@@ -102,13 +105,13 @@ def modelGenerator(input):
 
 class test_model():
 	__tablename__ = "abc"
-	id = Column(name = "id" , "data_type" = "integer")
-	price = Column(name = "price" , "data_type" = "float")
-	in_stock = Column(name = "in_stock" , "data_type" = "boolean")
+	id = Column(name = "id" , data_type = "integer")
+	price = Column(name = "price" , data_type = "float")
+	in_stock = Column(name = "in_stock" , data_type = "boolean")
 
 
 
-da = modelGenerator(test_model)
+#da = modelGenerator(test_model)
 
 
 
@@ -136,7 +139,8 @@ def get_class_dict(input):
 	lambda a:not(inspect.isroutine(a)))
 	data = [a for a in data if not(a[0].startswith('_') 
 		or a[0].endswith('_') or
-		(a[0] == "query") or (a[0] == "query_class"))]
+		(a[0] == "query") or (a[0] == "query_class") or 
+		("morbs" in a))]
 	toReturn = {}
 	for element in data:		
 		toReturn[element[0]] = element[1]
