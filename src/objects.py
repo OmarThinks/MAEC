@@ -3,9 +3,10 @@ try:
 except:
 	from src import *
 from sqlalchemy import Column as saColumn
+from sqlalchemy import String, Integer, Float, Boolean
 
 
-class Column(saColumn):
+class Column():
 	"""docstring for Column"""
 	def __init__(self, name, data_type, maximum= 10000000000000000000, 
 		minimum = -10000000000000000000):
@@ -35,6 +36,21 @@ class Column(saColumn):
 		if minimum > maximum:
 			raise Exception("MoRBs:Column:"+name+":maximum can"+
 				" not be more than minimum")
+		#setting up sa data type
+		if data_type = "string":
+			saCol = saColumn(String(),nullable=False)
+		elif data_type = "boolean":
+			saCol = saColumn(Boolean(),nullable=False)
+		elif data_type = "float":
+			saCol = saColumn(Float(),nullable=False)
+		elif data_type = "integer":
+			if name == "id":
+				saCol = saColumn(Integer(),
+					nullable=False,primary_key=True)
+			else:
+				self.saCol = saColumn(Integer(),nullable=False)
+
+		self.saColumn = saColumn
 		self.name = name
 		self.data_type = data_type
 		self.maximum = maximum		
