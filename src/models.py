@@ -1,13 +1,15 @@
+try:
+    from __init__ import *
+except:
+    from src import *
+
 import os
 from sqlalchemy import Column, String, Integer, Float, Boolean
 from flask_sqlalchemy import SQLAlchemy
 import json
 
 
-try:
-    from __init__ import *
-except:
-    from src import *
+
 
 
 """

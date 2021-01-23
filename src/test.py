@@ -1,3 +1,8 @@
+try:
+	from __init__ import *
+except:
+	from src import *
+
 import os
 import secrets
 import unittest
@@ -12,10 +17,7 @@ import base64
 
 import inspect
 
-try:
-	from __init__ import *
-except:
-	from src import *
+
 
 
 

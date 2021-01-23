@@ -4,6 +4,11 @@ IMORTANT:
 TESTING=False 	IN CASE OF PRODUCTION
 TESTING=True 	IN CASE OF TESTING
 """
+try:
+	from __init__ import *
+except:
+	from src import *
+
 import os
 import string
 import secrets
@@ -16,10 +21,7 @@ from random import shuffle
 import json
 from random import shuffle
 
-try:
-	from __init__ import *
-except:
-	from src import *
+
 
 
 

@@ -1,3 +1,8 @@
+try:
+	from __init__ import *
+except:
+	from src import *
+
 import os
 import secrets
 import unittest
@@ -12,10 +17,7 @@ import base64
 
 import inspect
 
-try:
-	from __init__ import *
-except:
-	from src import *
+
 
 
 
@@ -53,8 +55,8 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		print("Test 1:Hello, MoRBs Models Tests!")
 
 
-	def test_a_01_001_validate_column_insert(self):
-		col = Column("Hi","string")
+	def test_a_01_001_validate_field_insert(self):
+		col = Field("Hi","string")
 		self.assertEqual(col.name,"Hi")
 		self.assertEqual(col.type,"string")
 		print("Test a_1_1: validate_column_insert")
