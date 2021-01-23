@@ -85,7 +85,9 @@ class Column():
 
 
 def modelGenerator(input):
-	
+	input_attrs = get_class_dict(input)
+	class toReturn(db.Model):
+		pass			
 
 
 	def __init__():
@@ -152,5 +154,14 @@ def function():
 	pass
 
 
+
+
+
+def returnMORBSClass(input_dict):
+	for attribute in input_dict:
+		if type(input_dict[attribute]) != Column:
+			data_type_error(function_name="returnMORBSClass",
+				variable_name=attribute,
+				expected_type_name="Column",input = input_dict(attribute))
 
 

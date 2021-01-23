@@ -52,4 +52,9 @@ def not_in_range_error(function_name,variable_name,range):
 		variable_name+"' is not in this range "+str(range))
 	
 
+def expectDataType(function_name,variable_name,expected_type,input):
+	if type(input) != expected_type:
+		data_type_error(function_name,variable_name,
+			expected_type_name.__name__,input)
+
 
