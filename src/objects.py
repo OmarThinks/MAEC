@@ -25,5 +25,15 @@ class Column():
 		self.name = name
 		self.data_type = data_type
 		
-
+	def validate(self, input):
+		validation_string = ""
+		if data_type == "string":
+			validation_string = "s"
+		elif data_type == "integer":
+			validation_string = "i"
+		elif data_type == "boolean":
+			validation_string = "b"
+		elif data_type == "float":
+			validation_string = "f"
+		return validate__must(input = input,type = validation_string)
 
