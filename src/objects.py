@@ -3,12 +3,7 @@ try:
 except:
 	from src import *
 from sqlalchemy import Column as saColumn
-from sqlalchemy import String, Integer, Float, Boolean
-import os
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
-from flask import Flask
+
 
 class Column():
 	"""docstring for Column"""
@@ -96,26 +91,6 @@ def modelGenerator():
 	return sample
 
 
-
-
-
-print(type(Column("id","integer").saColumn))
-print(saColumn(db.String,primary_key=False))
-print(type(saColumn(db.String,primary_key=False)))
-
-"""class sample(db.Model):
-	__tablename__ = 'sometable'
-	id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
-	name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
-"""
-#Base.metadata.create_all(engn)
 da = modelGenerator()
 
-"""Base.metadata.create_all(engn)
-da1 = modelGenerator()
-print()
-d = da1()
-session.add(d)
-session.commit()
-#db.create_all()
-"""
+
