@@ -155,18 +155,22 @@ def get_class_dict(input,case = "all"):
 	for element in data:		
 		toReturn[element[0]] = element[1]
 	#Now toReturn is full
-
+	to_pop = []
 	#To remove all key containng 'morbs'
 	if case == "clean":
 		for key in toReturn:
 			if "morbs" in key:
-				toReturn.pop(key)
+				to_pop.append(key)
 	
 	#To remove all keys not containing 'morbs'
 	if case == "morbs":
 		for key in toReturn:
 			if "morbs" not in key:
-				toReturn.pop(key)
+				to_pop.append(key)
+
+	#poping useless info
+	for key in to_pop:
+		toReturn.pop(key)
 
 	#Finally
 	return toReturn

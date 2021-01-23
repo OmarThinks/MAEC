@@ -168,7 +168,7 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			def f1():
 				pass
 		self.assertEqual({"index1":"abc","index2":"efg"},
-			get_class_dict(test_class))
+			get_class_dict(test_class,case = "clean"))
 		print("Test a_1_3: oject_indces")
 
 
