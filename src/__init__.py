@@ -7,13 +7,11 @@ try:
 	from .validaton import *
 	from .error import *
 	from .models import *
-	from .column import *
 	from .level1 import *
 	from .test_app import *
 except:
 	from validation import *
 	from error import *
 	from models import *
-	from column import *
 	from level1 import *
 	from test_app import *

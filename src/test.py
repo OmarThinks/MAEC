@@ -1263,19 +1263,24 @@ class MoRBs_TestCase(unittest.TestCase):
 
 
 	def test_c_2_5_attendance_validator(self):	
-		print(Product)
-		print(Product.id)
+		#print(Product)
+		#print(Product.id)
 		#print(Product.bla)
-		data = inspect.getmembers(Product, lambda a:not(inspect.isroutine(a)))
+		data = inspect.getmembers(Product, 
+			lambda a:not(inspect.isroutine(a)))
 		for element in data:
-			print(element)
-		print("_____")
-		data = [a for a in data if not(a[0].startswith('_') or a[0].endswith('_') or
+			pass
+			#print(element)
+		#print("_____")
+		data = [a for a in data if not(a[0].startswith('_') 
+			or a[0].endswith('_') or
 			(a[0] == "query") or (a[0] == "query_class"))]
-		#data = [a for a in data if not(a[0].startswith('__') and a[0].endswith('__'))]
+		#data = [a for a in data if not(a[0].startswith('__') 
+		#and a[0].endswith('__'))]
 
 		for element in data:
-			print(element)
+			pass
+			#print(element)
 		print("Test c_2_5: attendance_validator")
 
 
