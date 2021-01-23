@@ -1,4 +1,3 @@
-DATA_TYPES_SUPPORTED=["string","integer","boolean"]
 
 from flask import (Flask, abort, jsonify, Response,render_template)
 from flask import request as flask_request
