@@ -61,6 +61,9 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		self.assertEqual(col.data_type,"string")
 		self.assertEqual(col.maximum,40)
 		self.assertEqual(col.minimum,7)
+		self.assertEqual(col.primary_key,False)
+		col = Column("Hi","string")
+		self.assertEqual(col.primary_key,False)
 		#name not string
 		try:
 			col = Column(1,"string")
@@ -117,10 +120,10 @@ class MoRBs_models_TestCase(unittest.TestCase):
 				":maximum can not be more than minimum")
 		#private_key not bool
 		try:
-			col = Column("data","string", private_key = "abc")
+			col = Column("data","string", primary_key = "abc")
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:Column.__init__:ERROR:"+
-				" 'private_key' is supposed to have the type of "+
+				" 'primary_key' is supposed to have the type of "+
 				"'boolean', but found type of '<class 'str'>' instead")
 		print("Test a_1_1: validate_column_insert")
 
