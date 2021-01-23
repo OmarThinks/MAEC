@@ -37,13 +37,13 @@ class Column():
 			raise Exception("MoRBs:Column:"+name+":maximum can"+
 				" not be more than minimum")
 		#setting up sa data type
-		if data_type = "string":
+		if data_type == "string":
 			saCol = saColumn(String(),nullable=False)
-		elif data_type = "boolean":
+		elif data_type == "boolean":
 			saCol = saColumn(Boolean(),nullable=False)
-		elif data_type = "float":
+		elif data_type == "float":
 			saCol = saColumn(Float(),nullable=False)
-		elif data_type = "integer":
+		elif data_type == "integer":
 			if name == "id":
 				saCol = saColumn(Integer(),
 					nullable=False,primary_key=True)
