@@ -56,9 +56,11 @@ class MoRBs_models_TestCase(unittest.TestCase):
 
 
 	def test_a_01_001_validate_column_insert(self):
-		col = Column("Hi","string")
+		col = Column("Hi","string", maximum=40, minimum = 7)
 		self.assertEqual(col.name,"Hi")
 		self.assertEqual(col.data_type,"string")
+		self.assertEqual(col.maximum,40)
+		self.assertEqual(col.minimum,7)
 		#name not string
 		try:
 			col = Column(1,"string")
