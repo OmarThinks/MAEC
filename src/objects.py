@@ -150,7 +150,8 @@ def get_class_dict(input,case = "all"):
 	lambda a:not(inspect.isroutine(a)))
 	data = [a for a in data if not(a[0].startswith('_') 
 		or a[0].endswith('_') or
-		(a[0] == "query") or (a[0] == "query_class"))]
+		(a[0] == "query") or (a[0] == "query_class") or 
+		("expected" in a))]
 	toReturn = {}
 	for element in data:		
 		toReturn[element[0]] = element[1]
@@ -224,4 +225,8 @@ def returnModelAttrs(input_dict):
 				variable_name=attribute,
 				expected_type_name="Column",input = input_dict(attribute))
 
+
+
+def createExpectedFromModel(inputModel):
+	pass
 
