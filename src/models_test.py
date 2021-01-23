@@ -115,6 +115,13 @@ class MoRBs_models_TestCase(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:Column:data"+
 				":maximum can not be more than minimum")
+		#private_key not bool
+		try:
+			col = Column("data","string", private_key = "abc")
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Column.__init__:ERROR:"+
+				" 'private_key' is supposed to have the type of "+
+				"'boolean', but found type of '<class 'str'>' instead")
 		print("Test a_1_1: validate_column_insert")
 
 	def test_a_01_002_validate_validate(self):

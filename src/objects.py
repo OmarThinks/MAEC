@@ -38,7 +38,7 @@ class Column():
 		if type(primary_key) != bool:
 			data_type_error(function_name="Column.__init__",
 				variable_name="primary_key",
-				expected_type_name="int",input=primary_key)
+				expected_type_name="boolean",input=primary_key)
 		#setting up sa data type
 		if data_type == "string":
 			saCol = saColumn(db.String()#,nullable=False
