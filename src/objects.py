@@ -6,7 +6,8 @@ except:
 
 class Column():
 	"""docstring for Column"""
-	def __init__(self, name, data_type):
+	def __init__(self, name, data_type, maximum= 10000000000000000000, 
+		minimum = -10000000000000000000):
 		if type(name) != str:
 			data_type_error(function_name="Column.__init__",
 				variable_name="name",expected_type_name="string",input=name)
