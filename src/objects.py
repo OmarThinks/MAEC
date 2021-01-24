@@ -84,48 +84,47 @@ class Column():
 
 
 
+
+"""
 def modelGenerator(database,inputClass):
 	input_attrs = convert_class_to_dict(input,case = "clean")
-	
+"""
+"""
 	class MoRBsORM(db.Model):
-		pass	
+		__tablename__ = "testit"
 	# This is the dictionary of the attributes
 	# {"id":saColumn(..),.....,
 	#	"morbs": ... ,
 	#	"expected": {name":"string"}}
 	morbs_attrs = generateModelAttrs(input_dict)
 	for attribute in morbs_attrs:
-		setattr(MoRBsORM,attribute,morbs_attrs[attribute])		
+		setattr(MoRBsORM,attribute,morbs_attrs[attribute])
+"""		
+"""
 	#for input_attrs in :
 	#	pass
 	#setattr(toReturn, 'deal_accepted', self.use_it)
-	"""
-	def __init__():
-		class sample(db.Model):
+	
+	#def __init__():
+"""
+"""
+	class sample(db.Model):
+		__tablename__ = inputClass.__name__
+		#__name__ = inputClass.__name__
+		#__table_args__ = {'extend_existing': True}
+		id = Column("id","integer", primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
+		name = Column("name","string").saColumn #saColumn(db.String,primary_key=False)
+"""
+"""		
+		class example(db.Model):
 			__tablename__ = 'sometable'
-			id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
-			name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
-		"""
-		"""class example(db.Model):
-			__tablename__ = 'sometable'
-			id = Column("id","integer")"""
-		#db.create_all()
-		#return MoRBsORM
-	return MoRBsORM
-
-
-
-
-class test_model():
-	__tablename__ = "abc"
-	id = Column(name = "id" , data_type = "integer")
-	price = Column(name = "price" , data_type = "float")
-	in_stock = Column(name = "in_stock" , data_type = "boolean")
-
-
-
-#da = modelGenerator(test_model)
-
+			id = Column("id","integer")
+		db.create_all()
+		return sample
+"""
+"""
+	#return sample
+"""
 
 
 
@@ -373,3 +372,44 @@ class Ckeckpoint():
 				" of 'None' in this key:'" + str(key)+"'")
 
 
+
+class test_model():
+	__tablename__ = "abc"
+	id = Column(name = "id" , data_type = "integer", primary_key =True)
+	price = Column(name = "price" , data_type = "float")
+	in_stock = Column(name = "in_stock" , data_type = "boolean")
+
+
+
+
+def modelGenerator(input):
+	input_attrs = convert_class_to_dict(input,case = "clean")
+	#class toReturn(db.Model):
+	#	pass			
+	#for input_attrs in :
+	#	pass
+	#setattr(toReturn, 'deal_accepted', self.use_it)
+
+	#def __init__():
+	class sample(db.Model):
+		__tablename__ = 'sometable'
+		id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
+		name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
+	"""class example(db.Model):
+		__tablename__ = 'sometable'
+		id = Column("id","integer")"""
+	#db.create_all()
+	return sample
+	#return __init__()
+
+
+
+"""
+class sample(db.Model):
+	__tablename__ = 'sometable'
+	id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
+	name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
+"""
+
+
+da = modelGenerator(input= test_model)
