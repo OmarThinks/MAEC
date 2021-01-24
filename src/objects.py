@@ -85,6 +85,10 @@ class Column():
 
 
 
+
+
+
+
 """
 def modelGenerator(database,inputClass):
 	input_attrs = convert_class_to_dict(input,case = "clean")
@@ -373,6 +377,12 @@ class Ckeckpoint():
 
 
 
+
+
+
+
+
+
 class test_model():
 	__tablename__ = "abc"
 	id = Column(name = "id" , data_type = "integer", primary_key =True)
@@ -380,25 +390,31 @@ class test_model():
 	in_stock = Column(name = "in_stock" , data_type = "boolean")
 
 
-
-
-def modelGenerator(input):
-	input_attrs = convert_class_to_dict(input,case = "clean")
-	#class toReturn(db.Model):
-	#	pass			
+def modelGenerator(database = db, model = test_model):
+	"""input_attrs = convert_class_to_dict(input,case = "clean")
+	class toReturn(db.Model):
+		pass			
+	"""
 	#for input_attrs in :
 	#	pass
 	#setattr(toReturn, 'deal_accepted', self.use_it)
 
 	#def __init__():
-	class sample(db.Model):
+	class sample(database.Model, ):
 		__tablename__ = 'sometable'
 		id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
 		name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
+		morbs = {"abc":"abc"}
+		expected = {"abc","abc"}
+	#input_attrs = convert_class_to_dict(input,case = "clean")
+	"""for attr in input_attrs:
+		setattr(sample, attr, input_attrs[attr])"""		
 	"""class example(db.Model):
 		__tablename__ = 'sometable'
 		id = Column("id","integer")"""
 	#db.create_all()
+	#convert_class_to_dict(sample)
+	#print(convert_class_to_dict(sample))
 	return sample
 	#return __init__()
 
@@ -412,4 +428,7 @@ class sample(db.Model):
 """
 
 
-da = modelGenerator(input= test_model)
+da = modelGenerator(model= test_model)
+
+
+
