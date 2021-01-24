@@ -383,18 +383,12 @@ class Ckeckpoint():
 
 
 
-class test_model():
-	__tablename__ = "abc"
-	id = Column(name = "id" , data_type = "integer", primary_key =True)
-	price = Column(name = "price" , data_type = "float")
-	in_stock = Column(name = "in_stock" , data_type = "boolean")
-
-
 def modelGenerator(database, model):
 	"""input_attrs = convert_class_to_dict(input,case = "clean")
 	class toReturn(db.Model):
 		pass			
 	"""
+	the_name=model.__name__
 	#for input_attrs in :
 	#	pass
 	#setattr(toReturn, 'deal_accepted', self.use_it)
@@ -408,11 +402,12 @@ def modelGenerator(database, model):
 	print(convert_class_to_dict(blueprint))
 	#def __init__():
 	class sample(database.Model,blueprint):
-		__tablename__ = 'sometable'
+		__tablename__ = the_name
+		__name__ = the_name
 		#id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
 		#name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
-		morbs = {"abc":"abc"}
-		expected = {"abc","abc"}
+		#morbs = {"abc":"abc"}
+		#expected = {"abc","abc"}
 	#print(sample.a)
 	#setattr(sample,"id",Column("id","integer",primary_key = True).saColumn)
 	#input_attrs = convert_class_to_dict(input,case = "clean")
@@ -424,6 +419,8 @@ def modelGenerator(database, model):
 	#db.create_all()
 	#convert_class_to_dict(sample)
 	#print(convert_class_to_dict(sample))
+	print(sample.morbs)
+	print(sample.expected)
 	return sample
 	#return __init__()
 
@@ -437,7 +434,23 @@ class sample(db.Model):
 """
 
 
+
+class test_model():
+	__tablename__ = "abc"
+	id = Column(name = "id" , data_type = "integer", primary_key =True)
+	price = Column(name = "price" , data_type = "float")
+	in_stock = Column(name = "in_stock" , data_type = "boolean")
+
 da = modelGenerator(database = db,model= test_model)
+
+
+
+class test_model2():
+	id = Column(name = "id" , data_type = "integer", primary_key =True)
+	priceee = Column(name = "priceeeee" , data_type = "float")
+	in_stockeee = Column(name = "in_stockeeee" , data_type = "boolean")
+
+da2 = modelGenerator(database = db,model= test_model2)
 
 
 
