@@ -410,7 +410,7 @@ def modelGenerator(database, model):
 	class sample(database.Model,blueprint):
 		__tablename__ = 'sometable'
 		#id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
-		name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
+		#name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
 		morbs = {"abc":"abc"}
 		expected = {"abc","abc"}
 	#print(sample.a)
