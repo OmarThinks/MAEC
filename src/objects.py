@@ -4,7 +4,9 @@ except:
 	from src import *
 from sqlalchemy import Column as saColumn
 import inspect
+from sqlalchemy.ext.declarative import declarative_base
 
+Base = declarative_base()
 
 class Column():
 	"""docstring for Column"""
@@ -399,9 +401,10 @@ def modelGenerator(database, model):
 	for key in input_attrs:
 		setattr(blueprint,key,input_attrs[key])
 	#setattr(blueprint,"id",Column("id","integer",primary_key = True).saColumn)
-	print(convert_class_to_dict(blueprint))
+	#print(convert_class_to_dict(blueprint))
 	#def __init__():
-	class sample(database.Model,blueprint):
+	class sample(Base,blueprint):
+		#__table__ = the_name
 		__tablename__ = the_name
 		__name__ = the_name
 		#id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
@@ -419,8 +422,8 @@ def modelGenerator(database, model):
 	#db.create_all()
 	#convert_class_to_dict(sample)
 	#print(convert_class_to_dict(sample))
-	print(sample.morbs)
-	print(sample.expected)
+	#print(sample.morbs)
+	#print(sample.expected)
 	return sample
 	#return __init__()
 
@@ -434,7 +437,7 @@ class sample(db.Model):
 """
 
 
-
+"""
 class test_model():
 	__tablename__ = "abc"
 	id = Column(name = "id" , data_type = "integer", primary_key =True)
@@ -453,4 +456,4 @@ class test_model2():
 da2 = modelGenerator(database = db,model= test_model2)
 
 
-
+"""
