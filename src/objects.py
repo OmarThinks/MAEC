@@ -390,7 +390,13 @@ def modelGenerator(database, model):
 	class toReturn(db.Model):
 		pass			
 	"""
-	setattr(model,"tssssssssssssssst","123") 
+	#setattr(model,"tssssssssssssssst","123") 
+	input_attrs_dict = convert_class_to_dict(model,case = "clean")
+	input_attrs = generateModelAttrs(input_attrs_dict)
+	for key in input_attrs:
+		setattr(model,key,input_attrs[key])
+	#setattr(model, '__mro__', (database.Model))
+
 
 	#the_name=model.__name__
 	#for input_attrs in :
