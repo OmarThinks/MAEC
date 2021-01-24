@@ -390,23 +390,25 @@ def modelGenerator(database, model):
 	class toReturn(db.Model):
 		pass			
 	"""
-	the_name=model.__name__
+	setattr(model,"tssssssssssssssst","123") 
+
+	#the_name=model.__name__
 	#for input_attrs in :
 	#	pass
 	#setattr(toReturn, 'deal_accepted', self.use_it)
-	class blueprint():
+	"""class blueprint():
 		pass
 	input_attrs_dict = convert_class_to_dict(model,case = "clean")
 	input_attrs = generateModelAttrs(input_attrs_dict)
 	for key in input_attrs:
-		setattr(blueprint,key,input_attrs[key])
+		setattr(blueprint,key,input_attrs[key])"""
 	#setattr(blueprint,"id",Column("id","integer",primary_key = True).saColumn)
 	#print(convert_class_to_dict(blueprint))
 	#def __init__():
-	class sample(Base,blueprint):
+	"""class sample(Base,blueprint):
 		#__table__ = the_name
 		__tablename__ = the_name
-		__name__ = the_name
+		__name__ = the_name"""
 		#id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
 		#name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
 		#morbs = {"abc":"abc"}
@@ -424,27 +426,27 @@ def modelGenerator(database, model):
 	#print(convert_class_to_dict(sample))
 	#print(sample.morbs)
 	#print(sample.expected)
-	return sample
+	#return sample
 	#return __init__()
+	
+	return model
 
 
 
-"""
 class sample(db.Model):
 	__tablename__ = 'sometable'
 	id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
 	name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
-"""
 
 
-"""
+
+
 class test_model():
 	__tablename__ = "abc"
 	id = Column(name = "id" , data_type = "integer", primary_key =True)
 	price = Column(name = "price" , data_type = "float")
 	in_stock = Column(name = "in_stock" , data_type = "boolean")
 
-da = modelGenerator(database = db,model= test_model)
 
 
 
@@ -453,7 +455,17 @@ class test_model2():
 	priceee = Column(name = "priceeeee" , data_type = "float")
 	in_stockeee = Column(name = "in_stockeeee" , data_type = "boolean")
 
-da2 = modelGenerator(database = db,model= test_model2)
 
 
+print(convert_class_to_dict(test_model))
+
+print("+++++++++")
+test_model = modelGenerator(database = db,model= test_model)
+print(convert_class_to_dict(test_model))
+#da2 = modelGenerator(database = db,model= test_model2)
+"""
+
+"""
+
+"""
 """
