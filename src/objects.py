@@ -390,7 +390,7 @@ class test_model():
 	in_stock = Column(name = "in_stock" , data_type = "boolean")
 
 
-def modelGenerator(database = db, model = test_model):
+def modelGenerator(database, model):
 	"""input_attrs = convert_class_to_dict(input,case = "clean")
 	class toReturn(db.Model):
 		pass			
@@ -400,7 +400,11 @@ def modelGenerator(database = db, model = test_model):
 	#setattr(toReturn, 'deal_accepted', self.use_it)
 	class blueprint():
 		pass
-	setattr(blueprint,"id",Column("id","integer",primary_key = True).saColumn)
+	input_attrs_dict = convert_class_to_dict(model,case = "clean")
+	input_attrs = generateModelAttrs(input_attrs_dict)
+	for key in input_attrs:
+		setattr(blueprint,key,input_attrs[key])
+	#setattr(blueprint,"id",Column("id","integer",primary_key = True).saColumn)
 	print(convert_class_to_dict(blueprint))
 	#def __init__():
 	class sample(database.Model,blueprint):
@@ -433,7 +437,7 @@ class sample(db.Model):
 """
 
 
-da = modelGenerator(model= test_model)
+da = modelGenerator(database = db,model= test_model)
 
 
 
