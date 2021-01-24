@@ -398,14 +398,19 @@ def modelGenerator(database = db, model = test_model):
 	#for input_attrs in :
 	#	pass
 	#setattr(toReturn, 'deal_accepted', self.use_it)
-
+	class blueprint():
+		pass
+	setattr(blueprint,"id",Column("id","integer",primary_key = True).saColumn)
+	print(convert_class_to_dict(blueprint))
 	#def __init__():
-	class sample(database.Model, ):
+	class sample(database.Model,blueprint):
 		__tablename__ = 'sometable'
-		id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
+		#id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
 		name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
 		morbs = {"abc":"abc"}
 		expected = {"abc","abc"}
+	#print(sample.a)
+	#setattr(sample,"id",Column("id","integer",primary_key = True).saColumn)
 	#input_attrs = convert_class_to_dict(input,case = "clean")
 	"""for attr in input_attrs:
 		setattr(sample, attr, input_attrs[attr])"""		
