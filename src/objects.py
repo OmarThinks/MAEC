@@ -5,6 +5,7 @@ except:
 from sqlalchemy import Column as saColumn
 import inspect
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import (String, Integer, Float, Boolean)
 
 class Column():
 	"""docstring for Column"""
@@ -389,8 +390,27 @@ class MorbModel():
 
 
 
+"""
+Inputs:
+	- db: this is the databse variable
+	- model: this is the SQLAlchemy model
+Function:
+	- appending the attributes 'morbs' and 'expected' to it
+	- appending these methods:
+		- "__init__"
+		- "morbs_init"
+		- "morbsInsert"
+		- "morbsDelete"
+Output:
+	- the same model after appending the attributes to it
+Example:
+	class Order(db.Model):
+	    id = Column(Integer(), primary_key=True)
+	    amount =  Column(Integer(), nullable=False)
+	Order = morbsModel( Order )
 
-def modelGenerator(database, model):
+"""
+def getMorbsModel(db, model):
 	"""input_attrs = convert_class_to_dict(input,case = "clean")
 	class toReturn(db.Model):
 		pass			
