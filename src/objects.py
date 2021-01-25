@@ -6,8 +6,6 @@ from sqlalchemy import Column as saColumn
 import inspect
 from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
-
 class Column():
 	"""docstring for Column"""
 	def __init__(self, name, data_type, maximum= 10000000000000000000, 
@@ -381,6 +379,13 @@ class Ckeckpoint():
 
 
 
+class MorbModel():
+	"""docstring for MorbModel"""
+	def setParents(database,model):
+		setattr(model, '__mro__', (database.Model,MorbModel))
+
+
+
 
 
 
@@ -391,12 +396,12 @@ def modelGenerator(database, model):
 		pass			
 	"""
 	#setattr(model,"tssssssssssssssst","123") 
-	input_attrs_dict = convert_class_to_dict(model,case = "clean")
+	input_attrs_dict = convert_class_to_dict(model)
 	input_attrs = generateModelAttrs(input_attrs_dict)
 	for key in input_attrs:
 		setattr(model,key,input_attrs[key])
 	#setattr(model, '__mro__', (database.Model))
-
+	table = convert_class_to_dict(model)
 
 	#the_name=model.__name__
 	#for input_attrs in :
@@ -461,12 +466,15 @@ class test_model2():
 	priceee = Column(name = "priceeeee" , data_type = "float")
 	in_stockeee = Column(name = "in_stockeeee" , data_type = "boolean")
 
+	def setParents(database,model):
+		setattr(model, '__mro__', (database.Model,MorbModel))
 
 
 print(convert_class_to_dict(test_model))
 
 print("+++++++++")
 test_model = modelGenerator(database = db,model= test_model)
+#test_model.setParents(db,test_model)
 print(convert_class_to_dict(test_model))
 #da2 = modelGenerator(database = db,model= test_model2)
 """
