@@ -88,15 +88,19 @@ def create_app(DOCKER=False,testing=TESTING):
 
 
 	db.init_app(app)
-	print(convert_class_to_dict(sample,case = "all"))
-	print(sample.metadata)
+	#print(convert_class_to_dict(sample,case = "all"))
+	#print(convert_class_to_dict(sample.id["key"]))
+	print("Found the variable name: "+str(sample.id.expression.key))
+	print(convert_class_to_dict(sample.id))
 	try:
 		db.create_all()
 	except:
 		pass
 	#populate_tables()
-	print(convert_class_to_dict(sample,case = "all"))
-	print(sample.metadata)
+	#print(convert_class_to_dict(sample,case = "all"))
+	#print(sample.metadata)
+
+
 
 	CORS(app,resources={r"*":{"origins":"*"}})
 	@app.after_request

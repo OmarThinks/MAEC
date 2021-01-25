@@ -1,0 +1,21 @@
+{
+	'adapter': None,
+	'comparator': <sqlalchemy.orm.properties.ColumnProperty.Comparator object at 0x000001B3977F12E0>, 
+	'dispatch': <sqlalchemy.event.base.AttributeEventsDispatch object at 0x000001B397820740>, 
+	'expression': Column('id', Integer(), table=<sometable>, primary_key=True, nullable=False), 
+	'extension_type': symbol('NOT_EXTENSION'), 
+	'impl': None, 
+	'info': {}, 
+	'is_aliased_class': False, 
+	'is_attribute': True, 
+	'is_clause_element': False, 
+	'is_instance': False, 
+	'is_mapper': False, 
+	'is_property': False, 
+	'is_selectable': False, 
+	'key': 'id', 
+	'parent': <Mapper at 0x1b396fd6d30; sample>, 
+	'prop': <ColumnProperty at 0x1b396fc67c0; id>, 
+	'property': <ColumnProperty at 0x1b396fc67c0; id>, 
+	'timetuple': None
+}
