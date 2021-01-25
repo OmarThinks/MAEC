@@ -57,7 +57,8 @@
 			String(), 
 			table=<sometable>
 		), 
-	schema=None), 
+		schema=None
+	), 
 	'timetuple': None, 
 	'type': Integer(), 
 	'unique': None
