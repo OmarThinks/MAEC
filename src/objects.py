@@ -15,10 +15,10 @@ def saColumnReader(sacol):
 		variable_name = "sacol",expected_type = InstrumentedAttribute,
 		input = sacol)
 	toReturn = {}
+	
 	try:
 		toReturn["autoincrement"]=sacol.comparator.autoincrement
 		toReturn["default"]=sacol.comparator.default
-		toReturn["autoincrement"]=sacol.comparator.autoincrement
 		toReturn["foreign_keys"]=sacol.comparator.foreign_keys
 		toReturn["key"]=sacol.comparator.key
 		toReturn["name"]=sacol.comparator.name
@@ -39,6 +39,13 @@ class Column():
 	"""docstring for Column"""
 	def __init__(self, name, data_type, maximum= 10000000000000000000, 
 		minimum = -10000000000000000000, primary_key = False, sacol=None):
+		if sacol != None:
+			col = saColumnReader()
+			if sacol["type"] not in [String,Integer,Float,Boolean]:
+				print("MoRBs:WARNING:This SQLAlchemy data type is not "+
+					"supported, the supported SQLAlchemy data types "+
+					"are "+ str(DATA_TYPES_SUPPORTED))
+			return col
 		if type(name) != str:
 			data_type_error(function_name="Column.__init__",
 				variable_name="name",expected_type_name="string",input=name)
