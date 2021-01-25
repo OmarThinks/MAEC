@@ -7,6 +7,32 @@ import inspect
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import (String, Integer, Float, Boolean)
 
+
+def saColumnReader(sacol):
+	expectDataType(function_name = "readSAColumn",
+		variable_name = "sacol",expected_type = saColumn,
+		input = sacol)
+	toReturn = {}
+	try:
+		toReturn["autoincrement"]=saColumn.comparator.autoincrement
+		toReturn["default"]=saColumn.comparator.default
+		toReturn["autoincrement"]=saColumn.comparator.autoincrement
+		toReturn["foreign_keys"]=saColumn.comparator.foreign_keys
+		toReturn["key"]=saColumn.comparator.key
+		toReturn["name"]=saColumn.comparator.name
+		toReturn["nullable"]=saColumn.comparator.nullable
+		toReturn["primary_key"]=saColumn.comparator.primary_key
+		toReturn["type"]=saColumn.comparator.type
+		toReturn["unique"]=saColumn.comparator.unique
+	except:
+		raise Exception("MoRBs:ERROR:readSAColumn:can not read this"+
+			" column, may be this version of MoRBs is incompatible"+
+			" with your version of SQLAlchemy")
+	return toReturn
+
+
+
+
 class Column():
 	"""docstring for Column"""
 	def __init__(self, name, data_type, maximum= 10000000000000000000, 
@@ -410,6 +436,7 @@ Example:
 	Order = morbsModel( Order )
 
 """
+
 def getMorbsModel(db, model):
 	"""input_attrs = convert_class_to_dict(input,case = "clean")
 	class toReturn(db.Model):
@@ -498,6 +525,11 @@ class test_model2():
 	id = Column(name = "id" , data_type = "integer", primary_key =True)
 	priceee = Column(name = "priceeeee" , data_type = "float")
 	in_stockeee = Column(name = "in_stockeeee" , data_type = "boolean")
+
+
+
+
+
 
 
 
