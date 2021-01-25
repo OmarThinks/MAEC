@@ -13,11 +13,15 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from random import shuffle
 import json
-from random import shuffle
 
-db = SQLAlchemy()
-SECRET = "abc"
-DATA_TYPES_SUPPORTED=["string","integer","boolean","float"]
+from random import shuffle
+from validation import *
+from error import *
+from level1 import *
+from objects import *
+
+
+
 
 
 
@@ -71,6 +75,12 @@ def create_app(DOCKER=False,testing=True):
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
 	app.config.from_object(config_test)
+
+	db = SQLAlchemy()
+	SECRET = "abc"
+	DATA_TYPES_SUPPORTED=["string","integer","boolean","float"]
+
+
 
 	db = SQLAlchemy()
 	SECRET = "abc"
