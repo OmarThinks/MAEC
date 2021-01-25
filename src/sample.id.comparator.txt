@@ -1,0 +1,64 @@
+{
+	'adapter': None, 
+	'autoincrement': 'auto', 
+	'comment': None, 
+	'computed': None, 
+	'constraints': set(), 
+	'default': None, 
+	'dispatch': <sqlalchemy.event.base.DDLEventsDispatch object at 0x000001AAB3A0F440>, 
+	'doc': None, 
+	'expressions': 
+	[
+		Column
+		(
+			'id', 
+			Integer(), 
+			table=<sometable>, 
+			primary_key=True, 
+			nullable=False
+		)
+	], 
+	'foreign_keys': set(), 
+	'index': None, 
+	'info': {}, 
+	'is_literal': False, 
+	'key': 'id', 
+	'name': 'id', 
+	'nullable': False, 
+	'onupdate': None, 
+	'primary_key': True, 
+	'prop': <ColumnProperty at 0x1aab39d67c0; id>, 
+	'property': <ColumnProperty at 0x1aab39d67c0; id>, 
+	'proxy_set': 
+	{
+		Column
+		(
+			'id', 
+			Integer(), 
+			table=<sometable>, 
+			primary_key=True, 
+			nullable=False
+		)
+	}, 
+	'server_default': None, 
+	'server_onupdate': None, 
+	'system': False, 
+	'table': Table
+	(
+		'sometable', 
+		MetaData(bind=None), 
+		Column('id', Integer(), 
+		table=<sometable>, 
+		primary_key=True, 
+		nullable=False), 
+		Column
+		(
+			'name', 
+			String(), 
+			table=<sometable>
+		), 
+	schema=None), 
+	'timetuple': None, 
+	'type': Integer(), 
+	'unique': None
+}

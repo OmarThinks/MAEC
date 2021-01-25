@@ -91,7 +91,7 @@ def create_app(DOCKER=False,testing=TESTING):
 	#print(convert_class_to_dict(sample,case = "all"))
 	#print(convert_class_to_dict(sample.id["key"]))
 	print("Found the variable name: "+str(sample.id.expression.key))
-	print(convert_class_to_dict(sample.id))
+	print(convert_class_to_dict(sample.id.comparator))
 	try:
 		db.create_all()
 	except:
