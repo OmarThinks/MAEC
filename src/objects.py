@@ -17,15 +17,15 @@ def saColumnReader(sacol):
 	toReturn = {}
 	
 	try:
-		toReturn["autoincrement"]=sacol.comparator.autoincrement
-		toReturn["default"]=sacol.comparator.default
-		toReturn["foreign_keys"]=sacol.comparator.foreign_keys
-		toReturn["key"]=sacol.comparator.key
-		toReturn["name"]=sacol.comparator.name
-		toReturn["nullable"]=sacol.comparator.nullable
-		toReturn["primary_key"]=sacol.comparator.primary_key
-		toReturn["type"]=sacol.comparator.type
-		toReturn["unique"]=sacol.comparator.unique
+		toReturn["autoincrement"]=sacol.comparator.autoincrement # auto
+		toReturn["default"]=sacol.comparator.default # None
+		toReturn["foreign_keys"]=sacol.comparator.foreign_keys # set()
+		toReturn["key"]=sacol.comparator.key # id
+		toReturn["name"]=sacol.comparator.name # id
+		toReturn["nullable"]=sacol.comparator.nullable # False
+		toReturn["primary_key"]=sacol.comparator.primary_key # True
+		toReturn["type"]=sacol.comparator.type # INTEGER
+		toReturn["unique"]=sacol.comparator.unique # None
 	except:
 		raise Exception("MoRBs:ERROR:readSAColumn:can not read this"+
 			" column, may be this version of MoRBs is incompatible"+
