@@ -503,7 +503,7 @@ class test_model2():
 
 #print(convert_class_to_dict(test_model))
 
-print("+++++++++")
+#print("+++++++++")
 #test_model = modelGenerator(database = db,model= test_model)
 #test_model.setParents(db,test_model)
 #da2 = modelGenerator(database = db,model= test_model2)

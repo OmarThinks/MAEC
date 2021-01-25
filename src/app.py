@@ -1,8 +1,22 @@
+TESTING=True
 """
 IMORTANT:
 TESTING=False 	IN CASE OF PRODUCTION
 TESTING=True 	IN CASE OF TESTING
 """
+
+from flask_sqlalchemy import SQLAlchemy
+db = SQLAlchemy()
+SECRET = "abc"
+DATA_TYPES_SUPPORTED=["string","integer","boolean","float"]
+
+from validation import *
+from error import *
+from level1 import *
+from objects import *
+
+
+
 import os
 import string
 import secrets
@@ -13,13 +27,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from random import shuffle
 import json
-
 from random import shuffle
-from validation import *
-from error import *
-from level1 import *
-from objects import *
-
 
 
 
@@ -70,33 +78,25 @@ class config_test:
 	SQLALCHEMY_TRACK_MODIFICATIONS= False
 
 
-def create_app(DOCKER=False,testing=True):
+def create_app(DOCKER=False,testing=TESTING):
 	# create and configure the app
 	app = Flask(__name__)
 	#db=SQLAlchemy(app)
 	app.config.from_object(config_test)
-
-	db = SQLAlchemy()
-	SECRET = "abc"
-	DATA_TYPES_SUPPORTED=["string","integer","boolean","float"]
-
-
-
-	db = SQLAlchemy()
-	SECRET = "abc"
-	DATA_TYPES_SUPPORTED=["string","integer","boolean","float"]
-
-
 	db.app = app
 	migrate = Migrate(app,db)
+
+
 	db.init_app(app)
+	print(convert_class_to_dict(sample,case = "all"))
+	print(sample.metadata)
 	try:
 		db.create_all()
 	except:
 		pass
 	#populate_tables()
-	#print(convert_class_to_dict(sample,case = "all"))
-	
+	print(convert_class_to_dict(sample,case = "all"))
+	print(sample.metadata)
 
 	CORS(app,resources={r"*":{"origins":"*"}})
 	@app.after_request
@@ -113,17 +113,32 @@ def create_app(DOCKER=False,testing=True):
 		
 
 
-	"""
-	1)	"/clear_tables"-------->"GET" , "OPTIONS"
-	"""
-	@app.route("/clear_tables", methods=["GET"])
-	def clear_all_tables():
-		test_only()
-		db_drop_and_create_all()
-		"""
-Tests: test_02_populate_test
-		"""
-		return jsonify({"success":True})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
