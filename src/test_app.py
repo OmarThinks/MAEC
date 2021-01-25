@@ -83,6 +83,7 @@ def create_app(DOCKER=False,testing=TESTING):
 	except:
 		pass
 	#populate_tables()
+	print(convert_class_to_dict(sample,case = "all"))
 	
 
 	CORS(app,resources={r"*":{"origins":"*"}})

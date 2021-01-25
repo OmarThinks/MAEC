@@ -469,6 +469,19 @@ class sample(db.Model):
 	id = Column("id","integer",primary_key = True).saColumn #saColumn(db.Integer, primary_key=True)
 	name = Column("name","string",primary_key = False).saColumn #saColumn(db.String,primary_key=False)
 
+def change_sample(model):
+	morbs_dict = {
+	"id":Column("id","integer",primary_key = True),
+	"name":Column("name","string",primary_key = False)
+	}
+	return model
+
+
+
+
+
+#sample = change_sample(sample)
+#print(inspect(sample))
 
 
 
@@ -486,16 +499,13 @@ class test_model2():
 	priceee = Column(name = "priceeeee" , data_type = "float")
 	in_stockeee = Column(name = "in_stockeeee" , data_type = "boolean")
 
-	def setParents(database,model):
-		setattr(model, '__mro__', (database.Model,MorbModel))
 
 
-print(convert_class_to_dict(test_model))
+#print(convert_class_to_dict(test_model))
 
 print("+++++++++")
-test_model = modelGenerator(database = db,model= test_model)
+#test_model = modelGenerator(database = db,model= test_model)
 #test_model.setParents(db,test_model)
-print(convert_class_to_dict(test_model))
 #da2 = modelGenerator(database = db,model= test_model2)
 """
 
