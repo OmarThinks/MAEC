@@ -6,24 +6,26 @@ from sqlalchemy import Column as saColumn
 import inspect
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import (String, Integer, Float, Boolean)
+from sqlalchemy.orm.attributes import InstrumentedAttribute
+#import sqlalchemy.orm.attributes.InstrumentedAttribute as InstrumentedAttribute
 
 
 def saColumnReader(sacol):
 	expectDataType(function_name = "readSAColumn",
-		variable_name = "sacol",expected_type = saColumn,
+		variable_name = "sacol",expected_type = InstrumentedAttribute,
 		input = sacol)
 	toReturn = {}
 	try:
-		toReturn["autoincrement"]=saColumn.comparator.autoincrement
-		toReturn["default"]=saColumn.comparator.default
-		toReturn["autoincrement"]=saColumn.comparator.autoincrement
-		toReturn["foreign_keys"]=saColumn.comparator.foreign_keys
-		toReturn["key"]=saColumn.comparator.key
-		toReturn["name"]=saColumn.comparator.name
-		toReturn["nullable"]=saColumn.comparator.nullable
-		toReturn["primary_key"]=saColumn.comparator.primary_key
-		toReturn["type"]=saColumn.comparator.type
-		toReturn["unique"]=saColumn.comparator.unique
+		toReturn["autoincrement"]=sacol.comparator.autoincrement
+		toReturn["default"]=sacol.comparator.default
+		toReturn["autoincrement"]=sacol.comparator.autoincrement
+		toReturn["foreign_keys"]=sacol.comparator.foreign_keys
+		toReturn["key"]=sacol.comparator.key
+		toReturn["name"]=sacol.comparator.name
+		toReturn["nullable"]=sacol.comparator.nullable
+		toReturn["primary_key"]=sacol.comparator.primary_key
+		toReturn["type"]=sacol.comparator.type
+		toReturn["unique"]=sacol.comparator.unique
 	except:
 		raise Exception("MoRBs:ERROR:readSAColumn:can not read this"+
 			" column, may be this version of MoRBs is incompatible"+
@@ -36,7 +38,7 @@ def saColumnReader(sacol):
 class Column():
 	"""docstring for Column"""
 	def __init__(self, name, data_type, maximum= 10000000000000000000, 
-		minimum = -10000000000000000000, primary_key = False):
+		minimum = -10000000000000000000, primary_key = False, sacol=None):
 		if type(name) != str:
 			data_type_error(function_name="Column.__init__",
 				variable_name="name",expected_type_name="string",input=name)

@@ -17,7 +17,7 @@ import base64
 
 import inspect
 from sqlalchemy import Column as saColumn
-
+from sqlalchemy import (String, Integer, Float, Boolean)
 
 
 
@@ -270,6 +270,16 @@ class MoRBs_models_TestCase(unittest.TestCase):
 			except Exception as e:
 				pass
 		print("Test a_1_6: Ckeckpoint")
+
+
+
+	def test_a_1_7_saColumnReader(self):	
+		self.assertEqual(str(saColumnReader(Product.id)),
+		"{'autoincrement': 'auto', 'default': None, "+
+		"'foreign_keys': set(), 'key': 'id', 'name': 'id', "+
+		"'nullable': False, 'primary_key': True, "+
+		"'type': Integer(), 'unique': None}")
+		print("Test a_1_7: saColumnReader")
 
 
 
