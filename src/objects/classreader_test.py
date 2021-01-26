@@ -48,6 +48,7 @@ class classreader_TestCase(unittest.TestCase):
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
 		#Testing the class itself
+		print(type(saTestClass))
 		sa_dict = convert_class_to_dict(saTestClass)
 		for key in sa_dict:
 			print(type(sa_dict[key]))

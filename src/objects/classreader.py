@@ -1,8 +1,8 @@
-from errors import expectInRange
+from errors import expectInRange,
 import inspect
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
-
+from sqlalchemy.ext.declarative.api import DeclarativeMeta
 """
 convert_class_to_dict
 
@@ -66,10 +66,16 @@ def convert_class_to_dict(input,case = "all"):
 
 
 
-def convert_sa_to_dict(saModel):
-
-	convert_class_to_dict(input,case = "all")
-
+def getSAModelColumns(saModel):
+	expectDataType(function_name="getSAModelColumns",
+		variable_name=saModel,expected_type=DeclarativeMeta,
+		input=saModel)
+	sa_dict = convert_class_to_dict(input,case = "all")
+	toReturn = {}
+	for key in saModel:
+		if type(saModel[key]) == InstrumentedAttribute:
+			toReturn[key] = saModel[key]
+	return toReturn
 
 
 
