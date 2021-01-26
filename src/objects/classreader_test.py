@@ -28,10 +28,26 @@ class classreader_TestCase(unittest.TestCase):
 			abc = 5
 			def __init__(self):
 				self.efg = 748
+		#Testing the class itself
 		self.assertEqual(convert_class_to_dict(testClass),{"abc":5})
 		mytest = testClass()
+		
+		#Testing an instance of the class
 		self.assertEqual(convert_class_to_dict(mytest),{"abc":5,"efg":748})
+		print("Test 1_1:convert_class_to_dict")
 
+	def test_1_2_convert_class_to_dict(self):
+		#Testing with a SQLAlchemy declarative base class
+		class testClass():
+			abc = 5
+			def __init__(self):
+				self.efg = 748
+		#Testing the class itself
+		self.assertEqual(convert_class_to_dict(testClass),{"abc":5})
+		mytest = testClass()
+		
+		#Testing an instance of the class
+		self.assertEqual(convert_class_to_dict(mytest),{"abc":5,"efg":748})
 		print("Test 1_1:convert_class_to_dict")
 
 
