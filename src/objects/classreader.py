@@ -1,5 +1,7 @@
 from errors import expectInRange
 import inspect
+from sqlalchemy.orm.attributes import InstrumentedAttribute
+from sqlalchemy.sql.schema import MetaData
 
 """
 convert_class_to_dict
