@@ -1,10 +1,11 @@
 import unittest
 
 
+from classreader import convert_class_to_dict
+
 unittest.TestLoader.sortTestMethodsUsing = None
 
-class MoRBs_TestCase(unittest.TestCase):
-	"""This class represents the trivia test case"""
+class classreader_TestCase(unittest.TestCase):
 
 	def setUp(self):
 		pass       
@@ -15,9 +16,21 @@ class MoRBs_TestCase(unittest.TestCase):
 		print("_+++++++++++++++++++++++++++++++++_")
 
 	#Note: Tests are run alphapetically
-	def test_a_test(self):
+	def test_0_test(self):
 		self.assertEqual(1,1)
 		print("Test 1:Hello, Tests!")
+
+
+
+	def test_1_1_convert_class_to_dict(self):
+		#Testing with a normal class
+		class testClass(object):
+			abc = 5
+			def __init__():
+				self.efg = 748
+		
+		self.assertEqual(convert_class_to_dict(testClass),{"abc":5})
+		print("Test 1_1:convert_class_to_dict")
 
 
 

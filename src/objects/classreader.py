@@ -1,3 +1,6 @@
+from errors import expectInRange
+import inspect
+
 """
 convert_class_to_dict
 
@@ -81,7 +84,7 @@ saColumnReader
 - Outputs:
 	- a dict of the attributes of this dictionary
 - Example:
-	
+
 """
 
 def saColumnReader(sqlalchmey_column):
