@@ -1,4 +1,4 @@
-from errors import expectInRange,
+from errors import expectInRange
 import inspect
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
@@ -22,9 +22,7 @@ convert_class_to_dict
 	- Example: {"name":"Labtop","price":123}
 
 """
-def convert_class_to_dict(input,case = "all"):
-	expectInRange(function_name="convert_class_to_dict",variable_name="case"
-		,range=["all","morbs", "clean"],input = case)
+def convert_class_to_dict(input):
 	data = inspect.getmembers(input, 
 	lambda a:not(inspect.isroutine(a)))
 	to_pop = []
@@ -33,33 +31,11 @@ def convert_class_to_dict(input,case = "all"):
 	for a in data:
 		if not(a[0].startswith('_') 
 		or a[0].endswith('_') or
-		(a[0] == "query") or (a[0] == "query_class") or 
-		("expected" in a[0])
-		):
+		(a[0] == "query") or (a[0] == "query_class")):
 			the_data.append(a)
 	toReturn = {}
 	for element in the_data:		
 		toReturn[element[0]] = element[1]
-	#Now toReturn is full
-	#To remove all key containng 'morbs'
-	if case == "clean":
-		for key in toReturn:
-			if "morbs" in key:
-				to_pop.append(key)
-	
-	#To remove all keys not containing 'morbs'
-	if case == "morbs":
-		for key in toReturn:
-			if "morbs" not in key:
-				to_pop.append(key)
-
-	#poping useless info
-	for key in to_pop:
-		try:
-			toReturn.pop(key)
-		except Exception as e:
-			pass
-	#Finally
 	return toReturn
 
 
