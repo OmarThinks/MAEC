@@ -66,6 +66,12 @@ def convert_class_to_dict(input,case = "all"):
 
 
 
+def convert_sa_to_dict(saModel):
+
+	convert_class_to_dict(input,case = "all")
+
+
+
 
 
 
