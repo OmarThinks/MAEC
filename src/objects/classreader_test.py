@@ -24,12 +24,14 @@ class classreader_TestCase(unittest.TestCase):
 
 	def test_1_1_convert_class_to_dict(self):
 		#Testing with a normal class
-		class testClass(object):
+		class testClass():
 			abc = 5
-			def __init__():
+			def __init__(self):
 				self.efg = 748
-		
 		self.assertEqual(convert_class_to_dict(testClass),{"abc":5})
+		mytest = testClass()
+		self.assertEqual(convert_class_to_dict(mytest),{"abc":5,"efg":748})
+
 		print("Test 1_1:convert_class_to_dict")
 
 
