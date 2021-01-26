@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
 
-from classreader import convert_class_to_dict
+from classreader import convert_class_to_dict, getSAModelColumns
 from sqlalchemy import Column
 from sqlalchemy import (String, Integer, Float, Boolean)
 
@@ -57,7 +57,7 @@ class classreader_TestCase(unittest.TestCase):
 	
 
 
-	def test_2_1_convert_class_to_dict(self):
+	def test_2_1_getSAModelColumns(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass(Base):
@@ -66,17 +66,17 @@ class classreader_TestCase(unittest.TestCase):
 			name = Column(String(63))
 		#Testing the class itself
 		print(type(saTestClass))
-		sa_dict = convert_class_to_dict(saTestClass)
+		sa_dict = getSAModelColumns(saTestClass)
 		for key in sa_dict:
 			print(type(sa_dict[key]))
 			print(sa_dict[key])
-			#self.assertEqual(type(sa_dict[key]),InstrumentedAttribute)
+			self.assertEqual(type(sa_dict[key]),InstrumentedAttribute)
 		#self.assertEqual(convert_class_to_dict(saTestClass),{"abc":5})
 		#mytest = saTestClass()
 		
 		#Testing an instance of the class
-		self.assertEqual(convert_class_to_dict(mytest),{"abc":5,"efg":748})
-		print("Test 1_1:convert_class_to_dict")
+		#self.assertEqual(convert_class_to_dict(mytest),{"abc":5,"efg":748})
+		print("Test 1_2:getSAModelColumns")
 
 
 

@@ -1,4 +1,4 @@
-from errors import expectInRange
+from errors import expectInRange, expectDataType
 import inspect
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
@@ -46,11 +46,11 @@ def getSAModelColumns(saModel):
 	expectDataType(function_name="getSAModelColumns",
 		variable_name=saModel,expected_type=DeclarativeMeta,
 		input=saModel)
-	sa_dict = convert_class_to_dict(input,case = "all")
+	sa_dict = convert_class_to_dict(saModel)
 	toReturn = {}
-	for key in saModel:
-		if type(saModel[key]) == InstrumentedAttribute:
-			toReturn[key] = saModel[key]
+	for key in sa_dict:
+		if type(sa_dict[key]) == InstrumentedAttribute:
+			toReturn[key] = sa_dict[key]
 	return toReturn
 
 
