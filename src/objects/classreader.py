@@ -42,6 +42,24 @@ def convert_class_to_dict(input):
 
 
 
+
+"""
+- Inputs:
+	- saModel
+		-This is SQLAlchemy model in the form of Base
+- Function:
+	- Read the columns of the SQLAlchemy model and 
+- Output:
+	- a dictionary containing all the columns
+		-{"column name string": Column(..), ..}
+Example:
+	{
+		"id":Column(Integer()),
+		"name":Column(String()),
+		...
+	}
+"""
+
 def getSAModelColumns(saModel):
 	expectDataType(function_name="getSAModelColumns",
 		variable_name=saModel,expected_type=DeclarativeMeta,
