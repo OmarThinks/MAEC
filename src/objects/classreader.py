@@ -71,7 +71,18 @@ def convert_class_to_dict(input,case = "all"):
 
 
 
-
+"""
+saColumnReader
+- Inputs:
+	- sqlalchmey_column:
+		The SQLAlchemy column
+- Function:
+	- It will read the SQLAlchemy Column
+- Outputs:
+	- a dict of the attributes of this dictionary
+- Example:
+	
+"""
 
 def saColumnReader(sqlalchmey_column):
 	expectDataType(function_name = "readSAColumn",
