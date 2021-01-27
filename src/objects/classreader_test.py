@@ -166,26 +166,20 @@ class classreader_TestCase(unittest.TestCase):
 			expect_primary_keys=False)
 		self.assertEqual(check,{"name":"abc",
 			"price":data,"in_stock":None})
-		"""check_received(
-			input_dict = {"a":1,"b":True},input_dict_name="tst",
-			expected={"a":"string","b":"boolean"})
-		#Empty
-		check_received(
-			input_dict = {},input_dict_name="tst",
-			expected={})
-		#More
-		check_received(
-			input_dict = {"a":1},input_dict_name="tst",
-			expected={})
+
 		try:
-			#Expected got something wrong
-			check_received(
-				input_dict = {"a":1,"b":True},input_dict_name="tst",
-			expected={"a":"bla_bla_blaaaaaaaa","b":"boolean"})
+			#sa is not SQLAlchemy
+			check_received(function_name="tst",saModel=123,
+			received={"id":123,"name":"abc",
+			"price":data,"in_stock":None},
+			expect_primary_keys=True)
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:validate_expected:ERROR: "+
-				"bla_bla_blaaaaaaaa is not a supported data type")
-		try:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:getSAModel"+
+				"Columns:ERROR: '123' is supposed to"+
+				" have the type of 'DeclarativeMeta',"+
+				" but found type of '<class 'int'>' instead")
+		"""try:
 			#input_dict got something wrong
 			check_received(
 				input_dict = {"a":1},input_dict_name="tst",
