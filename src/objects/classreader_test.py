@@ -158,7 +158,7 @@ class classreader_TestCase(unittest.TestCase):
 		self.assertEqual(sa_primary_keys_names(saTestClass3),["id"])
 		print("Test 7_1:sa_primary_keys_names")
 
-	def test_8_1_saModelColumnsNames(self):
+	def test_8_1_filteredSaModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -166,16 +166,16 @@ class classreader_TestCase(unittest.TestCase):
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
 		# Default, neglect the primary keys only
-		self.assertEqual(saModelColumnsNames(saTestClass3),["name"])
+		self.assertEqual(filteredSaModelColumnsNames(saTestClass3),["name"])
 		#Neglect id
-		self.assertEqual(saModelColumnsNames(
+		self.assertEqual(filteredSaModelColumnsNames(
 			saTestClass3,neglect=["id"]),["name"])
 		#Neglect all
-		self.assertEqual(saModelColumnsNames(
+		self.assertEqual(filteredSaModelColumnsNames(
 			saTestClass3,neglect=["id","name"]),[])
 		#Not list
 		try:
-			saModelColumnsNames(saTestClass3,neglect=123)
+			filteredSaModelColumnsNames(saTestClass3,neglect=123)
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:validate_columns"+
 				"_in_saModel:ERROR: 'columns' is supposed to"+
@@ -183,48 +183,14 @@ class classreader_TestCase(unittest.TestCase):
 				" '<class 'int'>' instead")
 		# a feild does not exist
 		try:
-			saModelColumnsNames(saTestClass3,neglect=["bla bla bla"])
+			filteredSaModelColumnsNames(saTestClass3,neglect=["bla bla bla"])
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:expectInRange:validate"+
 				"_column_name_exists:ERROR:not_in_range_error:"+
 				"'saColName' is not in this range ['id', 'name']")
-		print("Test 8_1:saModelColumnsNames")
+		print("Test 8_1:filteredSaModelColumnsNames")
 
-	def test_5_2_saModelColumnsNames(self):
-		#Testing with a SQLAlchemy declarative base class
-		Base = declarative_base()
-		class saTestClass3(Base):
-			__tablename__="hi"
-			id = Column(Integer, primary_key=True, nullable=False)
-			name = Column(String(63))
-		columns_names = saModelColumnsNames(saTestClass3)
-		self.assertEqual(saModelColumnsNames(saTestClass3),["name"])
-		self.assertEqual(saModelColumnsNames(
-			saTestClass3,expect_primary_keys=True),["id","name"])
-
-		print("Test 5_2:saModelColumnsNames")
-
-	def test_6_1_get_all_sa_columns_names(self):
-		#Testing with a SQLAlchemy declarative base class
-		Base = declarative_base()
-		class saTestClass3(Base):
-			__tablename__="hi"
-			id = Column(Integer, primary_key=True, nullable=False)
-			name = Column(String(63))
-		columns_names = saModelColumnsNames(saTestClass3)
-		self.assertEqual(saModelColumnsNames(saTestClass3),["name"])
-		self.assertEqual(saModelColumnsNames(
-			saTestClass3,expect_primary_keys=True),["id","name"])
-
-		print("Test 5_2:saModelColumnsNames")
-
-
-
-
-
-
-
-	def test_6_1_check_received(self):
+	def test_9_1_check_received(self):
 		#Exactly
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -278,7 +244,7 @@ class classreader_TestCase(unittest.TestCase):
 				"ed' is supposed to have the type "+
 				"of 'dict', but found type of "+
 				"'<class 'int'>' instead")
-		print("Test 5_1: check_received")
+		print("Test 9_1: check_received")
 
 
 

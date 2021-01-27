@@ -222,7 +222,7 @@ def sa_primary_keys_names(saModel):
 
 
 """
-saModelColumnsNames
+filteredSaModelColumnsNames
 - Inputs:
 	- saModel:
 		- The SQLAlchemy model
@@ -238,7 +238,7 @@ saModelColumnsNames
 - Example:
 	["id","name","price"]
 """
-def saModelColumnsNames(saModel,neglect=None):
+def filteredSaModelColumnsNames(saModel,neglect=None):
 	#validate neglect
 	if neglect == None:
 		neglect = sa_primary_keys_names(saModel)
@@ -264,17 +264,18 @@ check_received
 	- received: a dictionary of the received values
 		{<field_name>:<field_value>}
 		- Example: {"name":"abc","price":None,"in_stock":NotReceived()}
-	- expect_primary_keys:boolean default = False
-		- a boolean that represents whether the primary_keys should be 
-			expected or not
+	- neglect: list
+		- the name of the fields to be neglected
+		- Example: ["id","name"]
+		- Default value is None, which means that it will neglect the
+			primary keys
 - Function:
 	- Raise errors if something is missing (These are developer mistakes)
 - Output: there is no return value, this is for validation only
 Tolerance:
 	- No tolerance, these are developer mistakes, not user inputs problem
 """
-def check_received(function_name,saModel,received,
-	neglect=[]):
+def check_received(function_name,saModel,received,neglect=None):
 	# neglect should be a list
 	expectDataType(
 		function_name=str(function_name)+":check_received",
@@ -286,7 +287,7 @@ def check_received(function_name,saModel,received,
 		variable_name= "received",expected_type=dict,
 		input=received)
 	# get 
-	expected_names = saModelColumnsNames(saModel,expect_primary_keys)
+	expected_names = filteredSaModelColumnsNames(saModel,expect_primary_keys)
 	toReturn ={}
 	for key in expected_names:
 		expectDictKey(
