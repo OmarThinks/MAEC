@@ -1,19 +1,40 @@
 """
-expected is an objects that looks consits of one variable
-	- fields
-		this is a list of the expected columns
-		the only way to generate this is to provide the SQLAlchemy model
-		input is not a SQLAlchemy model, it will raise an error,
-		ALL PRIMARY KEYS WILL NOT BE INCLUDED
-	Example:
-		- ["name", "price", "in_stock"]
+Checkpoint
 
+- Attributes:
+ 	- success:
+ 		A boolean carring the value of True or False
+ 	- result:
+ 		A dictionary carring info about what is next
+	-EXAMPLE 1 :
+		- Ckeckpoint.success = True
+		- Ckeckpoint.result = {"price":10.01,"name":None}
+	-EXAMPLE 2 :
+		- Ckeckpoint.success = False
+		- Ckeckpoint.result = {"status":400,"description":
+		"something went wrong", "validation_errors":[..]}
+
+- Inputs: 
+	- success: Boolean
+	- result: a dictionary
+- Function:
+	- if success = True:
+		- Validate that each value of expected class has a 
+			corresponding value of in result
+	- if success = False:
+		- validate that there is an integer status code
+		- validate that description is a string
+		- validation errors will not be validated
+- Output:
+	- It is an object, it will be created
+	- It will only raise error in case if there was an error
+Tolerance:
+	- No tolerance, these are developer's mistakes, not user input
 """
-
 
 class Ckeckpoint():
 	"""docstring for Ckeckpoint"""
-	def __init__(self, success, result, inputClass):
+	def __init__(self, success, result):
 		# Making sure that success is Boolean
 		expectDataType(function_name= "Checkpoint.__init__",
 			variable_name = "success",expected_type=bool,
