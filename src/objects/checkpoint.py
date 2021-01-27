@@ -12,6 +12,9 @@ Checkpoint
  		- fields of the column to be neglected
  		- None = neglect only the primary keys
  		- Example : ["id","price"]
+ 	- extra: list or None
+ 		- extra fields that are expected to be received
+ 		- Example ["page","sreach_name"]
 	-EXAMPLE 1 :
 		- Ckeckpoint.success = True
 		- Ckeckpoint.result = {"price":10.01,"name":None}
@@ -49,7 +52,7 @@ from classreader import check_received
 
 class Ckeckpoint():
 	"""docstring for Ckeckpoint"""
-	def __init__(self, success, result,saModel,neglect=None):
+	def __init__(self, success, result,saModel,neglect=None,extra = None):
 		# Making sure that success is Boolean
 		expectDataType(function_name= "Checkpoint.__init__",
 			variable_name = "success",expected_type=bool,
@@ -78,6 +81,7 @@ class Ckeckpoint():
 			self.result = result
 			self.saModel = saModel
 			self.neglect = neglect
+			self.extra = extra
 			return
 
 		# Now succes is boolean and True
@@ -87,3 +91,4 @@ class Ckeckpoint():
 		self.result = result
 		self.saModel = saModel
 		self.neglect = neglect
+		self.extra = extra
