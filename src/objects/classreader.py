@@ -49,7 +49,7 @@ def convert_class_to_dict(input):
 	- saModel
 		-This is SQLAlchemy model in the form of Base
 - Function:
-	- Read the columns of the SQLAlchemy model and 
+	- Read the columns of the SQLAlchemy model and put it in a dict 
 - Output:
 	- a dictionary containing all the columns
 		-{"column name string": Column(..), ..}
@@ -74,6 +74,19 @@ def getSAModelColumns(saModel):
 
 
 
+
+"""
+- Inputs:
+	- saModel
+		-This is SQLAlchemy model in the form of Base
+- Function:
+	- Read the columns of the SQLAlchemy model and put the names in a list
+- Output:
+	- a list containing all the names of the columns
+		-{"column name string", "column name string", ...}
+Example:
+	["id","name","price"]
+"""
 
 def get_all_sa_columns_names(saModel):
 	all_cols = getSAModelColumns()
