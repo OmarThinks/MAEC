@@ -146,20 +146,26 @@ class classreader_TestCase(unittest.TestCase):
 			in_stock = Column(Boolean())
 
 		#Perfect
-		check_received(function_name="tst",saModel=saTestClass3,
+		check = check_received(function_name="tst",saModel=saTestClass3,
 			received={"name":"abc","price":NotReceived,"in_stock":None},
 			expect_primary_keys=False)
+		self.assertEqual(check,{"name":"abc",
+			"price":NotReceived,"in_stock":None})
 		#Perfect: expect_primary_keys = True
-		check_received(function_name="tst",saModel=saTestClass3,
+		data = NotReceived()
+		check = check_received(function_name="tst",saModel=saTestClass3,
 			received={"id":123,"name":"abc",
-			"price":NotReceived,"in_stock":None},
+			"price":data,"in_stock":None},
 			expect_primary_keys=True)
-		#More
-		check_received(function_name="tst",saModel=saTestClass3,
+		self.assertEqual(check,{"id":123,"name":"abc",
+			"price":data,"in_stock":None})
+		#More: iddddd was neglected because it is a primary key
+		check = check_received(function_name="tst",saModel=saTestClass3,
 			received={"iddddddddddd":123,"name":"abc",
-			"price":NotReceived,"in_stock":None},
+			"price":data,"in_stock":None},
 			expect_primary_keys=False)
-
+		self.assertEqual(check,{"name":"abc",
+			"price":data,"in_stock":None})
 		"""check_received(
 			input_dict = {"a":1,"b":True},input_dict_name="tst",
 			expected={"a":"string","b":"boolean"})
