@@ -140,10 +140,10 @@ saModelColumnsNames
 	["id","name","price"]
 """
 
-def saModelColumnsNames(saModel,primary_keys=False):
+def saModelColumnsNames(saModel,expect_primary_keys=False):
 	expectDataType(function_name="saModelColumnsNames",
-		variable_name= "primary_keys",expected_type=bool,
-		input=primary_keys)
+		variable_name= "expect_primary_keys",expected_type=bool,
+		input=expect_primary_keys)
 	sa_cols = getSAModelColumns(saModel)
 	cols_details = {}
 	for key in sa_cols:
@@ -152,7 +152,7 @@ def saModelColumnsNames(saModel,primary_keys=False):
 	toReturn = []
 	for key in cols_details:
 		if cols_details[key]["primary_key"] == True:
-			if primary_keys == False:
+			if expect_primary_keys == False:
 				continue
 			toReturn.append(cols_details[key]["name"])
 		else:
@@ -162,14 +162,33 @@ def saModelColumnsNames(saModel,primary_keys=False):
 
 
 
-def validate_attendance(function_name,saModel,received,primary_keys=False):
-	expectDataType(function_name="validate_attendance",
-		variable_name= "primary_keys",expected_type=bool,
-		input=primary_keys)
-	expected_names = saModelColumnsNames(saModel,primary_keys)
+"""
+validate_attendance
+-Inputs:
+	- function_name(string): 
+		the name of the function that called this function
+	- saModel: the SQLAlchemy model, not an instance
+	- received: a dictionary of the received values
+		{<field_name>:<field_value>}
+		- Example: {"name":"abc","price":None,"in_stock":NotReceived()}
+	- expect_primary_keys:boolean default = False
+		- a boolean that represents whether the primary_keys should be 
+			expected or not
+
+"""
+def validate_attendance(function_name,saModel,received,
+	expect_primary_keys=False):
+	expectDataType(
+		function_name=str(function_name)+":validate_attendance",
+		variable_name= "expect_primary_keys",expected_type=bool,
+		input=expect_primary_keys)
+	expected_names = saModelColumnsNames(saModel,expect_primary_keys)
+	toReturn ={}
 	for key in expected_names:
 		expectDictKey(
 			function_name=str(function_name)+":validate_attendance",
 			variable_name= "received",expectedKey=key,
 			input=received)
+		toReturn[key] = received[key]
+	return toReturn
 			
