@@ -1,5 +1,7 @@
 import unittest
-
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column
+from sqlalchemy import (String, Integer, Float, Boolean)
 from errors import *
 
 unittest.TestLoader.sortTestMethodsUsing = None
@@ -111,6 +113,16 @@ class errors_TestCase(unittest.TestCase):
 			"not_in_range_error:'tst' is not in this range [1, 2, 3]")
 		print("Test 006: expectInRange")
 
+
+	def test_007_expect_sa_model(self):
+		Base = declarative_base()
+		class saTestClass1(Base):
+			__tablename__="hi"
+			id = Column(Integer, primary_key=True, nullable=False)
+			name = Column(String(63))
+		expect_sa_model(function_name="abc",saModel=saTestClass1)
+
+		print("Test 007: expect_sa_model")
 
 
 

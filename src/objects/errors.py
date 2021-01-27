@@ -1,7 +1,7 @@
 from flask import jsonify
 
-import sqlalchemy.ext.declarative.api.DeclarativeMeta
-import sqlalchemy.orm.attributesInstrumentedAttribute
+from sqlalchemy.ext.declarative.api import DeclarativeMeta
+from sqlalchemy.orm.attributes import InstrumentedAttribute
 
 
 
@@ -78,14 +78,14 @@ def expectInRange(function_name,variable_name,range,input):
 
 
 
-def validate_sa_model(function_name,saModel):
-	expectDataType(function_name="validate_sa_model:"+function_name,
+def expect_sa_model(function_name,saModel):
+	expectDataType(function_name="expect_sa_model:"+function_name,
 		variable_name="saModel",
-		expected_type=sqlalchemy.ext.declarative.api.DeclarativeMeta,
+		expected_type=DeclarativeMeta,
 		input=saModel)
 
-def validate_sa_column(function_name,saColumn):
-	expectDataType(function_name="validate_sa_column:"+function_name,
+def expect_sa_column(function_name,saColumn):
+	expectDataType(function_name="expect_sa_column:"+function_name,
 		variable_name="saColumn",
-		expected_type=sqlalchemy.orm.attributesInstrumentedAttribute,
+		expected_type=InstrumentedAttribute,
 		input=saColumn)
