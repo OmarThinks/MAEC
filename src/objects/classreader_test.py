@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
 
-from classreader import convert_class_to_dict, getSAModelColumns
+from classreader import convert_class_to_dict, getSAModelColumns, saColumnReader
 from sqlalchemy import Column
 from sqlalchemy import (String, Integer, Float, Boolean)
 
@@ -84,15 +84,21 @@ class classreader_TestCase(unittest.TestCase):
 		print("Test 1_2:getSAModelColumns")
 
 	def test_3_1_saColumnReader(self):
-		"""#Testing with a SQLAlchemy declarative base class
-		Base3 = declarative_base()
-		class saTestClass3(Base3):
+		#Testing with a SQLAlchemy declarative base class
+		Base = declarative_base()
+		class saTestClass3(Base):
 			__tablename__="hi"
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
 		#Testing the class itself
 		sa_dict = getSAModelColumns(saTestClass3)
-		print(saColumnReader(sa_dict["id"]))"""	
+		#print(saColumnReader(sa_dict["id"]))
+		self.assertEqual(str(saColumnReader(sa_dict["id"])),
+			"{'autoincrement': 'auto', 'constraints': set(),"+
+			" 'default': None, 'foreign_keys': set(), "+
+			"'key': 'id', 'name': 'id', 'nullable': False,"+
+			" 'primary_key': True, 'type': Integer(),"+
+			" 'unique': None}")
 		print("Test 1_3:saColumnReader")
 
 

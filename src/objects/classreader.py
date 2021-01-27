@@ -92,7 +92,9 @@ saColumnReader
 - Outputs:
 	- a dict of the attributes of this dictionary
 - Example:
-
+{'autoincrement': 'auto', 'constraints': set(), 'default': None, 
+'foreign_keys': set(), 'key': 'id', 'name': 'id', 'nullable': False, 
+'primary_key': True, 'type': Integer(), 'unique': None}
 """
 
 def saColumnReader(sqlalchmey_column):
@@ -104,6 +106,7 @@ def saColumnReader(sqlalchmey_column):
 	
 	try:
 		toReturn["autoincrement"]=sqlalchmey_column.comparator.autoincrement # auto
+		toReturn["constraints"]=sqlalchmey_column.comparator.constraints # set()
 		toReturn["default"]=sqlalchmey_column.comparator.default # None
 		toReturn["foreign_keys"]=sqlalchmey_column.comparator.foreign_keys # set()
 		toReturn["key"]=sqlalchmey_column.comparator.key # id
