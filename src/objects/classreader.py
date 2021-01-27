@@ -194,6 +194,19 @@ def saColumnReader(sqlalchmey_column):
 
 
 
+
+"""
+sa_primary_keys_names
+- Inputs:
+	- saModel:
+		The SQLAlchemy model
+- Function:
+	- It will return a list of the names of the primary keys
+- Outputs:
+	- a list of primary keys
+- Example:
+	["id"]
+"""
 def sa_primary_keys_names(saModel):
 	columns = getSAModelColumns(saModel)
 	#Now columns look like this: {"id":Column(Integer),"name":...}
