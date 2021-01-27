@@ -43,6 +43,14 @@ class checkpoint_TestCase(unittest.TestCase):
 				"__init__:ERROR: 'success' is supposed "+
 				"to have the type of 'bool', but found "+
 				"type of '<class 'int'>' instead")
+		#result not dict
+		try:
+			Ckeckpoint(success=False, result=1,saModel=1)
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Checkpoint."+
+				"__init__:ERROR: 'result' is supposed "+
+				"to have the type of 'dict', but found "+
+				"type of '<class 'int'>' instead")
 		print("Test 1_1:convert_class_to_dict")
 
 
