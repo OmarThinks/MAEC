@@ -130,7 +130,6 @@ class classreader_TestCase(unittest.TestCase):
 				" range ['id', 'name']")
 		print("Test 5_1:validate_columns_in_saModel")
 
-
 	def test_6_1_saColumnReader(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
@@ -148,6 +147,16 @@ class classreader_TestCase(unittest.TestCase):
 			" 'primary_key': True, 'type': Integer(),"+
 			" 'unique': None}")
 		print("Test 6_1:saColumnReader")
+
+	def test_7_1_sa_primary_keys_names(self):
+		#Testing with a SQLAlchemy declarative base class
+		Base = declarative_base()
+		class saTestClass3(Base):
+			__tablename__="hi"
+			id = Column(Integer, primary_key=True, nullable=False)
+			name = Column(String(63))
+		self.assertEqual(sa_primary_keys_names(saTestClass3),["id"])
+		print("Test 7_1:sa_primary_keys_names")
 
 	def test_7_1_saModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class
