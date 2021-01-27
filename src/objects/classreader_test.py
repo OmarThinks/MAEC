@@ -214,8 +214,9 @@ class classreader_TestCase(unittest.TestCase):
 				received={"iddddddddddd":123,"name":"abc",
 				"price":NotReceived(),"in_stock":None})
 		except Exception as e:
-			print(str(e))
-
+			self.assertEqual(str(e),"MoRBs:expectInRange:tst:ERROR"+
+				":not_in_range_error:'received[iddddddddddd]' is"+
+				" not in this range ['in_stock', 'name', 'price']")
 		"""self.assertEqual(check,{"name":"abc",
 			"price":data,"in_stock":None})
 
