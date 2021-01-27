@@ -77,6 +77,17 @@ class checkpoint_TestCase(unittest.TestCase):
 				"__init__:ERROR: 'status' is supposed "+
 				"to have the type of 'int', but found "+
 				"type of '<class 'str'>' instead")
+		# success= False, description not string or dict
+		try:
+			Ckeckpoint(success=False, result=
+				{"status":400,"description":1},saModel=1)
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:expectInRange"+
+				":Checkpoint.__init__:ERROR:not_in_range_"+
+				"error:'type(result['description'])' is "+
+				"not in this range [<class 'str'>, "+
+				"<class 'dict'>]")
 		print("Test 1_1:checkpoint")
 
 
