@@ -192,6 +192,22 @@ def saColumnReader(sqlalchmey_column):
 
 
 
+
+
+def sa_primary_keys_names(saModel):
+	columns = getSAModelColumns(saModel)
+	#Now columns look like this: {"id":Column(Integer),"name":...}
+	toReturn = []
+	for key in columns:
+		if saColumnReader(columns[key])["primary_key"] == True:
+			toReturn.append(key)
+	return toReturn
+
+
+
+
+
+
 """
 saModelColumnsNames
 - Inputs:
@@ -207,6 +223,11 @@ saModelColumnsNames
 - Example:
 	["id","name","price"]
 """
+
+
+
+
+
 
 def saModelColumnsNames(saModel,neglect=[]):
 	#validate neglect

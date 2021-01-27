@@ -165,7 +165,11 @@ class classreader_TestCase(unittest.TestCase):
 		#Neglect all
 		self.assertEqual(saModelColumnsNames(
 			saTestClass3,neglect=["id","name"]),[])
-
+		try:
+			pass
+		except Exception as e:
+			raise e
+		
 		print("Test 7_1:saModelColumnsNames")
 
 	def test_5_2_saModelColumnsNames(self):
