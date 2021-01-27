@@ -227,17 +227,15 @@ class classreader_TestCase(unittest.TestCase):
 				"Columns:ERROR: '123' is supposed to"+
 				" have the type of 'DeclarativeMeta',"+
 				" but found type of '<class 'int'>' instead")
-		"""try:
+		try:
 			# received is not a dict
 			check_received(function_name="tst",saModel=saTestClass3,
-			received=123,
-			expect_primary_keys=True)
+			received=123)
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:tst:"+
-				"validate_received:ERROR: 'receiv"+
-				"ed' is supposed to have the type "+
-				"of 'dict', but found type of "+
-				"'<class 'int'>' instead")"""
+			self.assertEqual(str(e),"MoRBs:tst:check_received:"+
+				"ERROR: 'received' is supposed to have the type"+
+				" of 'dict', but found type of '<class 'int'>'"+
+				" instead")
 		print("Test 9_1: check_received")
 
 
