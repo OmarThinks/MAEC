@@ -61,9 +61,6 @@ Example:
 """
 
 def getSAModelColumns(saModel):
-	expectDataType(function_name="getSAModelColumns",
-		variable_name=saModel,expected_type=DeclarativeMeta,
-		input=saModel)
 	sa_dict = convert_class_to_dict(saModel)
 	toReturn = {}
 	for key in sa_dict:

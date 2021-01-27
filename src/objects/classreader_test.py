@@ -65,17 +65,15 @@ class classreader_TestCase(unittest.TestCase):
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
 		#Testing the class itself
-		print(type(saTestClass))
 		sa_dict = getSAModelColumns(saTestClass)
+		self.assertEqual(len(sa_dict),2)
 		for key in sa_dict:
-			print(type(sa_dict[key]))
-			print(sa_dict[key])
 			self.assertEqual(type(sa_dict[key]),InstrumentedAttribute)
-		#self.assertEqual(convert_class_to_dict(saTestClass),{"abc":5})
-		#mytest = saTestClass()
 		
-		#Testing an instance of the class
-		#self.assertEqual(convert_class_to_dict(mytest),{"abc":5,"efg":748})
+		mytest = saTestClass(name= "abc")
+		sa_dict = getSAModelColumns(mytest)
+		for key in sa_dict:
+			self.assertEqual(type(sa_dict[key]),InstrumentedAttribute)		
 		print("Test 1_2:getSAModelColumns")
 
 
