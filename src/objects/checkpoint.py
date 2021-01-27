@@ -34,7 +34,7 @@ Tolerance:
 
 class Ckeckpoint():
 	"""docstring for Ckeckpoint"""
-	def __init__(self, success, result):
+	def __init__(self, success, result,saModel,neglect=None):
 		# Making sure that success is Boolean
 		expectDataType(function_name= "Checkpoint.__init__",
 			variable_name = "success",expected_type=bool,
@@ -61,19 +61,14 @@ class Ckeckpoint():
 			input= result["description"])
 			self.success = success
 			self.result = result
+			self.saModel = saModel
+			self.neglect = neglect
 			return
+
 		# Now succes is boolean and True
-		expected = createExpectedFromClass(inputClass)
-		validate_attendance_from_expected(
-			input_dict= result,input_dict_name = "Checkpont.result",
-			expected= expected)
+		check_received(function_name="Ckeckpoint",
+			saModel=saModel,received=result,neglect=neglect):
 		self.success = success
 		self.result = result
-	def ready():
-		the_dict = self.result
-		for key in the_dict:
-			if the_dict[key] == None:
-				raise Exception(
-				"MoRBs:ERROR:Checkpoint:not ready, but found a value"+
-				" of 'None' in this key:'" + str(key)+"'")
-
+		self.saModel = saModel
+		self.neglect = neglect
