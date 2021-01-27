@@ -134,15 +134,17 @@ class checkpoint_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:Ckeckpoint"+
 				":ERROR:missing_data_error:"+
 				"'received[price]' is missing")
-		#success=True, extra fails
+		#success=True, extra not None or list
 		try:
 			Ckeckpoint(success=True, result=
-			{"in_stock":1,"name":1,"priiiice":1},saModel=saTestClass2)
+			{"in_stock":1,"name":1,"price":1},saModel=saTestClass2,
+			extra=123)
 		except Exception as e:
 			#print(str(e))
-			self.assertEqual(str(e),"MoRBs:Ckeckpoint"+
-				":ERROR:missing_data_error:"+
-				"'received[price]' is missing")
+			self.assertEqual(str(e),"MoRBs:expectInRange"+
+				":Checkpoint.__init__:ERROR:not_in_range_"+
+				"error:'type(extra)' is not in this range"+
+				" [<class 'NoneType'>, <class 'list'>]")
 		#successful
 		cp = Ckeckpoint(success=True, result=
 			{"in_stock":1,"name":1,"price":1},saModel=saTestClass2)

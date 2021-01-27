@@ -77,15 +77,6 @@ class Ckeckpoint():
 			expectInRange(function_name="Checkpoint.__init__",
 				variable_name="type(result['description'])",
 				range=[str,dict],input=type(result['description']))
-			if extra != None:
-				expectDataType(function_name="Checkpoint.__init__",
-					variable_name="extra",expected_type=list,
-					input=extra)
-				for extra_field in extra:
-					expectDataType(function_name="Checkpoint.__init__",
-					variable_name="element in extra",
-					expected_type=str,
-					input=extra_field)
 
 			self.success = success
 			self.result = result
@@ -97,6 +88,17 @@ class Ckeckpoint():
 		# Now succes is boolean and True
 		check_received(function_name="Ckeckpoint",
 			saModel=saModel,received=result,neglect=neglect)
+		if extra != None:
+			expectInRange(function_name="Checkpoint.__init__",
+				variable_name="type(extra)",
+					range=[type(None),list],input=type(extra))
+			for extra_field in extra:
+
+				expectDataType(function_name="Checkpoint.__init__",
+				variable_name="element in extra",
+				expected_type=str,
+				input=extra_field)
+
 		self.success = success
 		self.result = result
 		self.saModel = saModel
