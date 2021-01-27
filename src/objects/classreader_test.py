@@ -116,11 +116,18 @@ class classreader_TestCase(unittest.TestCase):
 		try:
 			validate_columns_in_saModel(saTestClass2,[123])			
 		except Exception as e:
-			#print(str(e))
 			self.assertEqual(str(e),"MoRBs:validate_column_name"+
 				"_exists:ERROR: 'saColName' is supposed to have "+
 				"the type of 'str', but found type of "+
 				"'<class 'int'>' instead")
+		# does not exist
+		try:
+			validate_columns_in_saModel(saTestClass2,["123"])			
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:expectInRange"+
+				":validate_column_name_exists:ERROR:not_"+
+				"in_range_error:'saColName' is not in this"+
+				" range ['id', 'name']")
 		print("Test 5_1:validate_columns_in_saModel")
 
 
