@@ -67,6 +67,16 @@ class checkpoint_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:Checkpoint"+
 				".__init__:ERROR:missing_data_error:'"+
 				"result[description]' is missing")
+		# success= False, status not int
+		try:
+			Ckeckpoint(success=False, result=
+				{"status":"abc","description":1},saModel=1)
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:Checkpoint."+
+				"__init__:ERROR: 'status' is supposed "+
+				"to have the type of 'int', but found "+
+				"type of '<class 'str'>' instead")
 		print("Test 1_1:checkpoint")
 
 
