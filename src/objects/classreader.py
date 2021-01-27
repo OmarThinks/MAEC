@@ -166,6 +166,26 @@ def saColumnReader(sqlalchmey_column):
 
 
 
+
+
+
+
+def validate_columns_in_saModel(saModel,columns):
+	expectDataType(function_name = "validate_columns_in_saModel",
+		variable_name = "columns",
+		expected_type = list,
+		input = columns)
+	#Make sure that every element in columns is there in the model
+	for name in columns:
+		validate_column_name_exists(saModel,neglected_name)
+
+
+
+
+
+
+
+
 """
 saModelColumnsNames
 - Inputs:
@@ -216,22 +236,6 @@ def saModelColumnsNames(saModel,neglect=[]):
 
 
 
-
-
-
-
-def validate_fields_in_saModel(saModel,fields):
-	# to validate that feilds is a list
-	expectInRange(function_name="validate_in_model",
-		variable_name="type(fields)",range=[list,dict],
-		input=fields)
-	# to validate that saModel is a SQLAlchemy model
-	validate_sa_model(function_name = "validate_in_model",
-		saModel=saModel)
-	#Capturing the SQLAlchmey columns
-	sa_cols = getSAModelColumns(saModel)
-	#for key in fields:
-	#	if
 
 
 
