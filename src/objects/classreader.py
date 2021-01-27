@@ -140,10 +140,10 @@ saModelColumnsNames
 	["id","name","price"]
 """
 
-def saModelColumnsNames(saModel,primary_key=False):
+def saModelColumnsNames(saModel,primary_keys=False):
 	expectDataType(function_name="saModelColumnsNames",
-		variable_name= "primary_key",expected_type=bool,
-		input=primary_key)
+		variable_name= "primary_keys",expected_type=bool,
+		input=primary_keys)
 	sa_cols = getSAModelColumns(saModel)
 	cols_details = {}
 	for key in sa_cols:
@@ -152,7 +152,7 @@ def saModelColumnsNames(saModel,primary_key=False):
 	toReturn = []
 	for key in cols_details:
 		if cols_details[key]["primary_key"] == True:
-			if primary_key == False:
+			if primary_keys == False:
 				continue
 			toReturn.append(cols_details[key]["name"])
 		else:
@@ -162,11 +162,11 @@ def saModelColumnsNames(saModel,primary_key=False):
 
 
 
-def validate_attendance(function_name,saModel,received,primary_key=False):
+def validate_attendance(function_name,saModel,received,primary_keys=False):
 	expectDataType(function_name="validate_attendance",
-		variable_name= "primary_key",expected_type=bool,
-		input=primary_key)
-	expected_names = saModelColumnsNames(saModel,primary_key)
+		variable_name= "primary_keys",expected_type=bool,
+		input=primary_keys)
+	expected_names = saModelColumnsNames(saModel,primary_keys)
 	for key in expected_names:
 		expectDictKey(
 			function_name=str(function_name)+":validate_attendance",

@@ -111,7 +111,7 @@ class classreader_TestCase(unittest.TestCase):
 		columns_names = saModelColumnsNames(saTestClass3)
 		self.assertEqual(saModelColumnsNames(saTestClass3),["name"])
 		self.assertEqual(saModelColumnsNames(
-			saTestClass3,primary_key=True),["id","name"])
+			saTestClass3,primary_keys=True),["id","name"])
 
 		print("Test 1_4:saModelColumnsNames")
 
