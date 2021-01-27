@@ -229,6 +229,8 @@ saModelColumnsNames
 	- neglect: list
 		- the name of the fields to be neglected
 		- Example: ["id","name"]
+		- Default value is None, which means that it will neglect the
+			primary keys
 - Function:
 	- It will return a list of the model columns names
 - Outputs:
@@ -236,15 +238,13 @@ saModelColumnsNames
 - Example:
 	["id","name","price"]
 """
-
-
-
-
-
-
-def saModelColumnsNames(saModel,neglect=[]):
+def saModelColumnsNames(saModel,neglect=None):
 	#validate neglect
-	validate_columns_in_saModel(saModel,neglect)
+	if neglect == None:
+		neglect = sa_primary_keys_names(saModel)
+	else:
+		validate_columns_in_saModel(saModel,neglect)
+	
 	#We need sa_cols to be like this ["id","name"]
 	sa_cols = get_sa_all_columns_names(saModel)
 	
