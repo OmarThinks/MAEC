@@ -6,6 +6,7 @@ from sqlalchemy.sql.schema import MetaData
 from classreader import *
 from sqlalchemy import Column
 from sqlalchemy import (String, Integer, Float, Boolean)
+from NotReceived import NotReceived
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
@@ -129,27 +130,38 @@ class classreader_TestCase(unittest.TestCase):
 
 		print("Test 1_4:saModelColumnsNames")
 
-	def test_5_1_validate_attendance(self):
+	def test_5_1_validate_received(self):
 
-		print("Test 1_5:validate_attendance")
+		print("Test 1_5:validate_received")
 
 
-	def test_b_11_001_validate_attendance(self):
+	def test_5_1_validate_received(self):
 		#Exactly
-		validate_attendance(
+		Base = declarative_base()
+		class saTestClass3(Base):
+			__tablename__="hi"
+			id = Column(Integer, primary_key=True, nullable=False)
+			name = Column(String(63))
+			price = Column(Float())
+			in_stock = Column(Boolean())
+
+		validate_received(function_name="tst",saModel=saTestClass3,
+			received={"name":"abc","price":NotReceived,"in_stock":None},
+			expect_primary_keys=False)
+		"""validate_received(
 			input_dict = {"a":1,"b":True},input_dict_name="tst",
 			expected={"a":"string","b":"boolean"})
 		#Empty
-		validate_attendance(
+		validate_received(
 			input_dict = {},input_dict_name="tst",
 			expected={})
 		#More
-		validate_attendance(
+		validate_received(
 			input_dict = {"a":1},input_dict_name="tst",
 			expected={})
 		try:
 			#Expected got something wrong
-			validate_attendance(
+			validate_received(
 				input_dict = {"a":1,"b":True},input_dict_name="tst",
 			expected={"a":"bla_bla_blaaaaaaaa","b":"boolean"})
 		except Exception as e:
@@ -157,43 +169,14 @@ class classreader_TestCase(unittest.TestCase):
 				"bla_bla_blaaaaaaaa is not a supported data type")
 		try:
 			#input_dict got something wrong
-			validate_attendance(
+			validate_received(
 				input_dict = {"a":1},input_dict_name="tst",
 			expected={"a":"string","b":"boolean"})
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:validate_attendance:"+
+			self.assertEqual(str(e),"MoRBs:validate_received:"+
 				"ERROR:tst did not carry this key 'b', but it exists in"+
-				" 'expected' dict")
-		print("Test b_11_1: validate_attendance")
-
-	def test_b_12_001_new_attendance_validator(self):
-		#Exactly
-		self.assertEqual(new_attendance_validator(
-			expected={"a":"string","b":"boolean"},
-			received_result = {"a":1,"b":True}),
-		{"success":True,"result":{"a":1,"b":True}})
-		#Empty
-		self.assertEqual(new_attendance_validator(
-			expected={},received_result = {}),
-		{"success":True,"result":{}})
-		#More
-		self.assertEqual(new_attendance_validator(
-			expected={},received_result = {"a":1}),
-		{"success":True,"result":{}})
-
-		#fail validate attendance from expected
-		try:
-			self.assertEqual(new_attendance_validator(
-			expected={"a":"string"},received_result = {}),
-			{"success":False,"result":{"status":400, 
-			"description":"a is missing"}})
-		except Exception as e:
-			self.assertEqual(str(e),
-				"MoRBs:validate_attendance:ERROR:"+
-				"received did not carry this key 'a', but it exists in"+
-				" 'expected' dict")
-		print("Test b_12_1: new_attendance_validator")
-
+				" 'expected' dict")"""
+		print("Test 5_1: validate_received")
 
 
 

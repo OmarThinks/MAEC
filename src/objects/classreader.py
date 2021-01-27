@@ -1,4 +1,4 @@
-from errors import expectInRange, expectDataType
+from errors import expectInRange, expectDataType, expectDictKey
 import inspect
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
@@ -163,7 +163,7 @@ def saModelColumnsNames(saModel,expect_primary_keys=False):
 
 
 """
-validate_attendance
+validate_received
 - Inputs:
 	- function_name(string): 
 		the name of the function that called this function
@@ -183,18 +183,18 @@ Tolerance:
 def validate_received(function_name,saModel,received,
 	expect_primary_keys=False):
 	expectDataType(
-		function_name=str(function_name)+":validate_attendance",
+		function_name=str(function_name)+":validate_received",
 		variable_name= "expect_primary_keys",expected_type=bool,
 		input=expect_primary_keys)
 	expectDataType(
-		function_name=str(function_name)+":validate_attendance",
+		function_name=str(function_name)+":validate_received",
 		variable_name= "received",expected_type=dict,
 		input=received)
 	expected_names = saModelColumnsNames(saModel,expect_primary_keys)
 	toReturn ={}
 	for key in expected_names:
 		expectDictKey(
-			function_name=str(function_name)+":validate_attendance",
+			function_name=str(function_name)+":validate_received",
 			variable_name= "received",expectedKey=key,
 			input=received)
 		toReturn[key] = received[key]
