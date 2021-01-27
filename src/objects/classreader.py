@@ -127,7 +127,18 @@ def saColumnReader(sqlalchmey_column):
 
 
 
-
+"""
+saModelColumnsNames
+- Inputs:
+	- saModel:
+		The SQLAlchemy model
+- Function:
+	- It will return a list of the model columns names
+- Outputs:
+	- a list of the names of the columns
+- Example:
+	["id","name","price"]
+"""
 
 def saModelColumnsNames(saModel,primary_key=False):
 	sa_cols = getSAModelColumns(saModel)
