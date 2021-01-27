@@ -140,7 +140,14 @@ class errors_TestCase(unittest.TestCase):
 			name = Column(String(63))
 		# perfect
 		expect_sa_column(function_name="abc",saColumn=saTestClass1.id)
-
+		try:
+			#this is not a saColumn
+			expect_sa_column(function_name = "tst", saColumn = 1)
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:expect_sa_column:"+
+				"tst:ERROR: 'saColumn' is supposed to have the"+
+				" type of 'InstrumentedAttribute', but found ty"+
+				"pe of '<class 'int'>' instead")
 		print("Test 008: expect_sa_column")
 
 
