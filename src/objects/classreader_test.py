@@ -174,20 +174,21 @@ class classreader_TestCase(unittest.TestCase):
 			"price":data,"in_stock":None},
 			expect_primary_keys=True)
 		except Exception as e:
-			#print(str(e))
 			self.assertEqual(str(e),"MoRBs:getSAModel"+
 				"Columns:ERROR: '123' is supposed to"+
 				" have the type of 'DeclarativeMeta',"+
 				" but found type of '<class 'int'>' instead")
-		"""try:
-			#input_dict got something wrong
-			check_received(
-				input_dict = {"a":1},input_dict_name="tst",
-			expected={"a":"string","b":"boolean"})
+		try:
+			# received is not a dict
+			check_received(function_name="tst",saModel=saTestClass3,
+			received=123,
+			expect_primary_keys=True)
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:check_received:"+
-				"ERROR:tst did not carry this key 'b', but it exists in"+
-				" 'expected' dict")"""
+			self.assertEqual(str(e),"MoRBs:tst:"+
+				"validate_received:ERROR: 'receiv"+
+				"ed' is supposed to have the type "+
+				"of 'dict', but found type of "+
+				"'<class 'int'>' instead")
 		print("Test 5_1: check_received")
 
 
