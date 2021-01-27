@@ -180,12 +180,16 @@ validate_attendance
 Tolerance:
 	- No tolerance, these are developer mistakes, not user inputs problem
 """
-def validate_attendance(function_name,saModel,received,
+def validate_received(function_name,saModel,received,
 	expect_primary_keys=False):
 	expectDataType(
 		function_name=str(function_name)+":validate_attendance",
 		variable_name= "expect_primary_keys",expected_type=bool,
 		input=expect_primary_keys)
+	expectDataType(
+		function_name=str(function_name)+":validate_attendance",
+		variable_name= "received",expected_type=dict,
+		input=received)
 	expected_names = saModelColumnsNames(saModel,expect_primary_keys)
 	toReturn ={}
 	for key in expected_names:
@@ -196,3 +200,6 @@ def validate_attendance(function_name,saModel,received,
 		toReturn[key] = received[key]
 	return toReturn
 			
+
+#We need new attendance validator
+#old attendance validator
