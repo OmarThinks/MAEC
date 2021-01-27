@@ -120,8 +120,16 @@ class errors_TestCase(unittest.TestCase):
 			__tablename__="hi"
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
+		# perfect
 		expect_sa_model(function_name="abc",saModel=saTestClass1)
-
+		try:
+			#this is not a saModel
+			expect_sa_model(function_name = "tst", saModel = 1)
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:expect_sa_model"+
+				":tst:ERROR: 'saModel' is supposed to have"+
+				" the type of 'DeclarativeMeta', but found "+
+				"type of '<class 'int'>' instead")
 		print("Test 007: expect_sa_model")
 
 
