@@ -105,14 +105,14 @@ class checkpoint_TestCase(unittest.TestCase):
 			{"status":400,"description":"abc"},saModel=1)
 		self.assertEqual(convert_class_to_dict(cp),{'neglect': None, 
 			'result': {'status': 400, 'description': 'abc'}, 
-			'saModel': 1, 'success': False})
+			'saModel': 1, 'success': False, "extra":None})
 		#print(convert_class_to_dict(cp))
 		#success = False : successful description dict
 		cp = Ckeckpoint(success=False, result=
 			{"status":400,"description":{}},saModel=1)
 		self.assertEqual(convert_class_to_dict(cp),{'neglect': None, 
 			'result': {'status': 400, 'description': {}}, 
-			'saModel': 1, 'success': False})
+			'saModel': 1, 'success': False, "extra":None})
 		#print(convert_class_to_dict(cp))
 		print("Test 1_2:checkpoint")
 
@@ -126,6 +126,15 @@ class checkpoint_TestCase(unittest.TestCase):
 			price = Column(Float())
 			in_stock = Column(Boolean())
 		#success=True, checkrecieved fails
+		try:
+			Ckeckpoint(success=True, result=
+			{"in_stock":1,"name":1,"priiiice":1},saModel=saTestClass2)
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:Ckeckpoint"+
+				":ERROR:missing_data_error:"+
+				"'received[price]' is missing")
+		#success=True, extra fails
 		try:
 			Ckeckpoint(success=True, result=
 			{"in_stock":1,"name":1,"priiiice":1},saModel=saTestClass2)

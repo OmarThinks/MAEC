@@ -77,6 +77,16 @@ class Ckeckpoint():
 			expectInRange(function_name="Checkpoint.__init__",
 				variable_name="type(result['description'])",
 				range=[str,dict],input=type(result['description']))
+			if extra != None:
+				expectDataType(function_name="Checkpoint.__init__",
+					variable_name="extra",expected_type=list,
+					input=extra)
+				for extra_field in extra:
+					expectDataType(function_name="Checkpoint.__init__",
+					variable_name="element in extra",
+					expected_type=str,
+					input=extra_field)
+
 			self.success = success
 			self.result = result
 			self.saModel = saModel
