@@ -82,6 +82,7 @@ def getSAModelColumns(saModel):
 
 
 
+
 """
 saColumnReader
 - Inputs:
@@ -122,3 +123,19 @@ def saColumnReader(sqlalchmey_column):
 	return toReturn
 
 
+
+
+
+
+
+
+def saModelColumnsNames(saModel,primary_key=False):
+	sa_cols = getSAModelColumns(saModel)
+	sa_cols = [saColumnReader(a) for a in sa_cols]
+	toReturn = []
+	for key in sa_cols:
+		if sa_cols["primary_key"] == True:
+			if primary_key == False:
+				continue
+			toReturn.append(sa_cols["name"])
+	return toReturn
