@@ -115,6 +115,24 @@ class classreader_TestCase(unittest.TestCase):
 
 		print("Test 1_4:saModelColumnsNames")
 
+	def test_4_1_saModelColumnsNames(self):
+		#Testing with a SQLAlchemy declarative base class
+		Base = declarative_base()
+		class saTestClass3(Base):
+			__tablename__="hi"
+			id = Column(Integer, primary_key=True, nullable=False)
+			name = Column(String(63))
+		columns_names = saModelColumnsNames(saTestClass3)
+		self.assertEqual(saModelColumnsNames(saTestClass3),["name"])
+		self.assertEqual(saModelColumnsNames(
+			saTestClass3,expect_primary_keys=True),["id","name"])
+
+		print("Test 1_4:saModelColumnsNames")
+
+	def test_5_1_validate_attendance(self):
+
+		print("Test 1_5:validate_attendance")
+
 
 
 
