@@ -116,9 +116,38 @@ Tolerance:
 def validate_column_name_exists(saModel,saColName):
 	expectDataType(function_name="validate_column_name_exists",
 		variable_name="saColName",expected_type=str,input=saColName)
-	cols_names=get_sa_columns_names(saModel)
+	cols_names=get_sa_all_columns_names(saModel)
 	expectInRange(function_name="validate_column_name_exists",
 		variable_name="saColName",range=cols_names,input=saColName)
+
+
+
+
+"""
+- Inputs:
+	- saModel
+		-This is SQLAlchemy model in the form of Base
+	- columns (list of strings)
+		- this is the list of columns names
+		- Example: ["id","name","price"] 
+- Function:
+	- validate that these names of columns really exist
+- Output:
+	- No output
+Tolerance:
+	- No tolerance, these are developer mistakes, not user input
+"""
+def validate_columns_in_saModel(saModel,columns):
+	expectDataType(function_name = "validate_columns_in_saModel",
+		variable_name = "columns",
+		expected_type = list,
+		input = columns)
+	#Make sure that every element in columns is there in the model
+	for name in columns:
+		validate_column_name_exists(saModel,name)
+
+
+
 
 
 
@@ -169,15 +198,6 @@ def saColumnReader(sqlalchmey_column):
 
 
 
-
-def validate_columns_in_saModel(saModel,columns):
-	expectDataType(function_name = "validate_columns_in_saModel",
-		variable_name = "columns",
-		expected_type = list,
-		input = columns)
-	#Make sure that every element in columns is there in the model
-	for name in columns:
-		validate_column_name_exists(saModel,neglected_name)
 
 
 

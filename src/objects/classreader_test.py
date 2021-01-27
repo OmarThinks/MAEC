@@ -101,6 +101,28 @@ class classreader_TestCase(unittest.TestCase):
 				"ror:'saColName' is not in this range ['id', 'name']")
 		print("Test 4_1:validate_column_name_exists")
 
+	def test_5_1_validate_columns_in_saModel(self):
+		#Testing with a SQLAlchemy declarative base class
+		Base = declarative_base()
+		class saTestClass2(Base):
+			__tablename__="hi"
+			id = Column(Integer, primary_key=True, nullable=False)
+			name = Column(String(63))
+		#These names really exist
+		validate_columns_in_saModel(saTestClass2,["id"])
+		validate_columns_in_saModel(saTestClass2,["name","id"])
+		
+		#not string
+		try:
+			validate_columns_in_saModel(saTestClass2,[123])			
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:validate_column_name"+
+				"_exists:ERROR: 'saColName' is supposed to have "+
+				"the type of 'str', but found type of "+
+				"'<class 'int'>' instead")
+		print("Test 5_1:validate_columns_in_saModel")
+
 
 	def test_5_1_saColumnReader(self):
 		#Testing with a SQLAlchemy declarative base class
