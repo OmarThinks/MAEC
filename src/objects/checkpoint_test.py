@@ -134,7 +134,14 @@ class checkpoint_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:Ckeckpoint"+
 				":ERROR:missing_data_error:"+
 				"'received[price]' is missing")
-
+		#successful
+		cp = Ckeckpoint(success=True, result=
+			{"in_stock":1,"name":1,"price":1},saModel=saTestClass2)
+		#print(convert_class_to_dict(cp))
+		self.assertEqual(cp.success , True)
+		self.assertEqual(cp.result , {"in_stock":1,"name":1,"price":1})
+		self.assertEqual(cp.saModel , saTestClass2)
+		self.assertEqual(cp.neglect , None)
 		print("Test 1_3:checkpoint")
 
 
