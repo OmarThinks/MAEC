@@ -99,6 +99,20 @@ def get_all_sa_columns_names(saModel):
 
 
 
+"""
+- Inputs:
+	- saModel
+		-This is SQLAlchemy model in the form of Base
+	- saColName (string)
+		- this is the string of the column name
+		- Example: "id" 
+- Function:
+	- validate that there s a column with this name in the model
+- Output:
+	- No output
+Tolerance:
+	- No tolerance, these are developer mistakes, not user input
+"""
 def validate_column_name_exists(saModel,saColName):
 	expectDataType(function_name="validate_column_name_exists",
 		variable_name="saColName",expected_type=str,input=saColName)
