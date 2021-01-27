@@ -131,7 +131,7 @@ class classreader_TestCase(unittest.TestCase):
 		print("Test 5_1:validate_columns_in_saModel")
 
 
-	def test_5_1_saColumnReader(self):
+	def test_6_1_saColumnReader(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -148,7 +148,7 @@ class classreader_TestCase(unittest.TestCase):
 			" 'primary_key': True, 'type': Integer(),"+
 			" 'unique': None}")
 		print([1,2,3]-[4,1,3])
-		print("Test 5_1:saColumnReader")
+		print("Test 6_1:saColumnReader")
 
 	def test_5_1_saModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class

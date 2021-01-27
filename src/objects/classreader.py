@@ -192,20 +192,6 @@ def saColumnReader(sqlalchmey_column):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 """
 saModelColumnsNames
 - Inputs:
@@ -223,41 +209,16 @@ saModelColumnsNames
 """
 
 def saModelColumnsNames(saModel,neglect=[]):
-	#neglect must be a list
-	expectDataType(function_name = "saModelColumnsNames",
-		variable_name = "neglect",
-		expected_type = list,
-		input = neglect)
-	
-	#Make sure that every element in neglect is there in the columns
-	for neglected_name in neglect:
-		validate_column_name_exists(saModel,neglected_name)
-	
+	#validate neglect
+	validate_columns_in_saModel(saModel,neglect)
+	#We need sa_cols to be like this ["id","name"]
 	sa_cols = get_sa_all_columns_names(saModel)
-	#Now we have sa_cols like this ["id","name"]
 	
 	toReturn = []
-	for col_name in toReturn:
+	for col_name in sa_cols:
 		if col_name not in neglect:
 			toReturn.append(col_name)
 	return toReturn
-	"""cols_details = {}
-	for key in sa_cols:
-		cols_details[key] = saColumnReader(sa_cols[key])
-	#sa_cols = [saColumnReader(a[key]) for a,key in enumerate(sa_cols)]
-	toReturn = []
-	for key in cols_details:
-		if cols_details[key]["primary_key"] == True:
-			if expect_primary_keys == False:
-				continue
-			toReturn.append(cols_details[key]["name"])
-		else:
-			toReturn.append(cols_details[key]["name"])"""
-
-
-
-
-
 
 
 """
