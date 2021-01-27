@@ -217,6 +217,14 @@ class classreader_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:expectInRange:tst:ERROR"+
 				":not_in_range_error:'received[iddddddddddd]' is"+
 				" not in this range ['in_stock', 'name', 'price']")
+		#Less: id is missing
+		try:
+			check_received(function_name="tst",saModel=saTestClass3,
+				received={"name":"abc",
+				"price":NotReceived(),"in_stock":None},neglect=[])
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:tst:ERROR:"+
+				"missing_data_error:'received[id]' is missing")
 		try:
 			#sa is not SQLAlchemy
 			check_received(function_name="tst",saModel=123,
