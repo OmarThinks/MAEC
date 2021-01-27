@@ -1,6 +1,6 @@
 import unittest
 from checkpoint import Ckeckpoint
-
+from classreader import convert_class_to_dict
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column
 from sqlalchemy import (String, Integer, Float, Boolean)
@@ -88,6 +88,13 @@ class checkpoint_TestCase(unittest.TestCase):
 				"error:'type(result['description'])' is "+
 				"not in this range [<class 'str'>, "+
 				"<class 'dict'>]")
+		#success = False : successful
+		cp = Ckeckpoint(success=False, result=
+			{"status":400,"description":"abc"},saModel=1)
+		self.assertEqual(convert_class_to_dict(cp),{'neglect': None, 
+			'result': {'status': 400, 'description': 'abc'}, 
+			'saModel': 1, 'success': False})
+		#print(convert_class_to_dict(cp))
 		print("Test 1_1:checkpoint")
 
 
