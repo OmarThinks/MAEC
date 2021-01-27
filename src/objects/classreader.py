@@ -163,7 +163,7 @@ def saModelColumnsNames(saModel,expect_primary_keys=False):
 
 
 """
-validate_received
+check_received
 - Inputs:
 	- function_name(string): 
 		the name of the function that called this function
@@ -180,7 +180,7 @@ validate_received
 Tolerance:
 	- No tolerance, these are developer mistakes, not user inputs problem
 """
-def validate_received(function_name,saModel,received,
+def check_received(function_name,saModel,received,
 	expect_primary_keys=False):
 	expectDataType(
 		function_name=str(function_name)+":validate_received",

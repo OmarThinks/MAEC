@@ -130,12 +130,12 @@ class classreader_TestCase(unittest.TestCase):
 
 		print("Test 1_4:saModelColumnsNames")
 
-	def test_5_1_validate_received(self):
+	def test_5_1_check_received(self):
 
-		print("Test 1_5:validate_received")
+		print("Test 1_5:check_received")
 
 
-	def test_5_1_validate_received(self):
+	def test_5_1_check_received(self):
 		#Exactly
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -146,28 +146,34 @@ class classreader_TestCase(unittest.TestCase):
 			in_stock = Column(Boolean())
 
 		#Perfect
-		validate_received(function_name="tst",saModel=saTestClass3,
+		check_received(function_name="tst",saModel=saTestClass3,
 			received={"name":"abc","price":NotReceived,"in_stock":None},
 			expect_primary_keys=False)
 		#Perfect: expect_primary_keys = True
-		validate_received(function_name="tst",saModel=saTestClass3,
+		check_received(function_name="tst",saModel=saTestClass3,
 			received={"id":123,"name":"abc",
 			"price":NotReceived,"in_stock":None},
 			expect_primary_keys=True)
-		"""validate_received(
+		#More
+		check_received(function_name="tst",saModel=saTestClass3,
+			received={"iddddddddddd":123,"name":"abc",
+			"price":NotReceived,"in_stock":None},
+			expect_primary_keys=False)
+
+		"""check_received(
 			input_dict = {"a":1,"b":True},input_dict_name="tst",
 			expected={"a":"string","b":"boolean"})
 		#Empty
-		validate_received(
+		check_received(
 			input_dict = {},input_dict_name="tst",
 			expected={})
 		#More
-		validate_received(
+		check_received(
 			input_dict = {"a":1},input_dict_name="tst",
 			expected={})
 		try:
 			#Expected got something wrong
-			validate_received(
+			check_received(
 				input_dict = {"a":1,"b":True},input_dict_name="tst",
 			expected={"a":"bla_bla_blaaaaaaaa","b":"boolean"})
 		except Exception as e:
@@ -175,14 +181,14 @@ class classreader_TestCase(unittest.TestCase):
 				"bla_bla_blaaaaaaaa is not a supported data type")
 		try:
 			#input_dict got something wrong
-			validate_received(
+			check_received(
 				input_dict = {"a":1},input_dict_name="tst",
 			expected={"a":"string","b":"boolean"})
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:validate_received:"+
+			self.assertEqual(str(e),"MoRBs:check_received:"+
 				"ERROR:tst did not carry this key 'b', but it exists in"+
 				" 'expected' dict")"""
-		print("Test 5_1: validate_received")
+		print("Test 5_1: check_received")
 
 
 
