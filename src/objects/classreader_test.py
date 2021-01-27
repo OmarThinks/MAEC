@@ -55,9 +55,6 @@ class classreader_TestCase(unittest.TestCase):
 		self.assertEqual(convert_class_to_dict(mytest),{"abc":5,"efg":748})
 		print("Test 1_1:convert_class_to_dict")
 
-	
-
-
 	def test_2_1_getSAModelColumns(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
@@ -71,20 +68,25 @@ class classreader_TestCase(unittest.TestCase):
 		self.assertEqual(len(sa_dict),2)
 		for key in sa_dict:
 			self.assertEqual(type(sa_dict[key]),InstrumentedAttribute)
-		
-		# Can not use code on instance
-		"""mytest = saTestClass2(name= "abc")
-		print(mytest)
-		print(type(mytest))
-		sa_dict = getSAModelColumns(mytest)
-		print(sa_dict)
-		self.assertEqual(len(sa_dict),2)
-		for key in sa_dict:
-			self.assertEqual(type(sa_dict[key]),
-			InstrumentedAttribute)"""		
+	
 		print("Test 1_2:getSAModelColumns")
 
-	def test_3_1_saColumnReader(self):
+	def test_3_1_get_all_sa_columns_names(self):
+		#Testing with a SQLAlchemy declarative base class
+		Base = declarative_base()
+		class saTestClass2(Base):
+			__tablename__="hi"
+			id = Column(Integer, primary_key=True, nullable=False)
+			name = Column(String(63))
+		#Testing the class itself
+		names = get_all_sa_columns_names(saTestClass2)
+		#print(len(sa_dict))
+		self.assertEqual(names,["id","name"])
+	
+		print("Test 3_1:get_all_sa_columns_names")
+
+
+	def test_4_1_saColumnReader(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -100,9 +102,9 @@ class classreader_TestCase(unittest.TestCase):
 			"'key': 'id', 'name': 'id', 'nullable': False,"+
 			" 'primary_key': True, 'type': Integer(),"+
 			" 'unique': None}")
-		print("Test 1_3:saColumnReader")
+		print("Test 1_4:saColumnReader")
 
-	def test_4_1_saModelColumnsNames(self):
+	def test_5_1_saModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -114,9 +116,9 @@ class classreader_TestCase(unittest.TestCase):
 		self.assertEqual(saModelColumnsNames(
 			saTestClass3,expect_primary_keys=True),["id","name"])
 
-		print("Test 1_4:saModelColumnsNames")
+		print("Test 5_1:saModelColumnsNames")
 
-	def test_4_1_saModelColumnsNames(self):
+	def test_5_2_saModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -128,14 +130,11 @@ class classreader_TestCase(unittest.TestCase):
 		self.assertEqual(saModelColumnsNames(
 			saTestClass3,expect_primary_keys=True),["id","name"])
 
-		print("Test 1_4:saModelColumnsNames")
-
-	def test_5_1_check_received(self):
-
-		print("Test 1_5:check_received")
+		print("Test 5_2:saModelColumnsNames")
 
 
-	def test_5_1_check_received(self):
+
+	def test_6_1_check_received(self):
 		#Exactly
 		Base = declarative_base()
 		class saTestClass3(Base):

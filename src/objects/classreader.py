@@ -1,5 +1,4 @@
-from errors import (expectInRange, expectDataType, 
-	expectDictKey, validate_sa_model, validate_sa_column)
+from errors import *
 import inspect
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
@@ -89,7 +88,7 @@ Example:
 """
 
 def get_all_sa_columns_names(saModel):
-	all_cols = getSAModelColumns()
+	all_cols = getSAModelColumns(saModel)
 	toReturn = []
 	for key in all_cols:
 		toReturn.append(key)
@@ -197,8 +196,8 @@ def validate_fields_in_saModel(saModel,fields):
 		saModel=saModel)
 	#Capturing the SQLAlchmey columns
 	sa_cols = getSAModelColumns(saModel)
-	for key in fields:
-		if
+	#for key in fields:
+	#	if
 
 
 
