@@ -1,3 +1,15 @@
+"""
+def convert_class_to_dict(input)
+def getSAModelColumns(saModel)
+def get_sa_all_columns_names(saModel)
+def validate_column_name_exists(saModel,saColName)
+def validate_columns_in_saModel(saModel,columns)
+def saColumnReader(sqlalchmey_column)
+def sa_primary_keys_names(saModel)
+def filteredSaModelColumnsNames(saModel,neglect=None)
+def check_received(function_name,saModel,received,neglect=None)
+"""
+
 from errors import *
 import inspect
 from sqlalchemy.orm.attributes import InstrumentedAttribute
@@ -226,7 +238,7 @@ filteredSaModelColumnsNames
 - Inputs:
 	- saModel:
 		- The SQLAlchemy model
-	- neglect: list
+	- neglect: list or None
 		- the name of the fields to be neglected
 		- Example: ["id","name"]
 		- Default value is None, which means that it will neglect the
@@ -264,39 +276,35 @@ check_received
 	- received: a dictionary of the received values
 		{<field_name>:<field_value>}
 		- Example: {"name":"abc","price":None,"in_stock":NotReceived()}
-	- neglect: list
+	- neglect: list or None
 		- the name of the fields to be neglected
 		- Example: ["id","name"]
 		- Default value is None, which means that it will neglect the
 			primary keys
 - Function:
 	- Raise errors if something is missing (These are developer mistakes)
+	- Raise error if a column is receved and it is not expected
 - Output: there is no return value, this is for validation only
 Tolerance:
 	- No tolerance, these are developer mistakes, not user inputs problem
 """
 def check_received(function_name,saModel,received,neglect=None):
-	# neglect should be a list
-	expectDataType(
-		function_name=str(function_name)+":check_received",
-		variable_name= "neglect",expected_type=bool,
-		input=neglect)
 	# received should be a dict
 	expectDataType(
 		function_name=str(function_name)+":check_received",
 		variable_name= "received",expected_type=dict,
 		input=received)
-	# get 
-	expected_names = filteredSaModelColumnsNames(saModel,expect_primary_keys)
-	toReturn ={}
-	for key in expected_names:
-		expectDictKey(
-			function_name=str(function_name)+":check_received",
-			variable_name= "received",expectedKey=key,
-			input=received)
-		toReturn[key] = received[key]
-	return toReturn
-			
+
+	sa_cols_names = filteredSaModelColumnsNames(saModel,neglect)
+	#Now the sa_cols_names ook like this: ["id","name","price"]
+
+	for column_name in sa_cols_names:
+		def expectDictKey(function_name=function_name,
+			variable_name="received",expectedKey=column_name,
+			input = received)
+	#Now for every expected col in sa_model there must be a 
+	# received value
+
 
 #We need new attendance validator
 #old attendance validator
