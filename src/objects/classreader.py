@@ -305,6 +305,12 @@ def check_received(function_name,saModel,received,neglect=None):
 	#Now for every expected col in sa_model there must be a 
 	# received value
 
+	# Validating the opposite
+	for key in received:
+		expectInRange(function_name=function_name,
+			variable_name = "received["+str(key)+"]",
+			range=sa_cols_names,input=key)
+
 
 #We need new attendance validator
 #old attendance validator

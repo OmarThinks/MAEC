@@ -200,7 +200,7 @@ class classreader_TestCase(unittest.TestCase):
 			price = Column(Float())
 			in_stock = Column(Boolean())
 
-		#Perfect
+		#Perfect: no nelect: primary keys wil not be received
 		check = check_received(function_name="tst",saModel=saTestClass3,
 			received={"name":"abc","price":NotReceived,"in_stock":None})
 		#Perfect: expect_primary_keys = True
@@ -208,12 +208,15 @@ class classreader_TestCase(unittest.TestCase):
 			received={"id":123,"name":"abc",
 			"price":NotReceived(),"in_stock":None},
 			neglect=[])
-		"""#More: iddddd was neglected because it is a primary key
-		check = check_received(function_name="tst",saModel=saTestClass3,
-			received={"iddddddddddd":123,"name":"abc",
-			"price":data,"in_stock":None},
-			expect_primary_keys=False)
-		self.assertEqual(check,{"name":"abc",
+		#More: iddddddddddd = error
+		try:
+			check_received(function_name="tst",saModel=saTestClass3,
+				received={"iddddddddddd":123,"name":"abc",
+				"price":NotReceived(),"in_stock":None})
+		except Exception as e:
+			print(str(e))
+
+		"""self.assertEqual(check,{"name":"abc",
 			"price":data,"in_stock":None})
 
 		try:
