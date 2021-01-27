@@ -141,6 +141,9 @@ saModelColumnsNames
 """
 
 def saModelColumnsNames(saModel,primary_key=False):
+	expectDataType(function_name="saModelColumnsNames",
+		variable_name= "primary_key",expected_type=bool,
+		input=primary_key)
 	sa_cols = getSAModelColumns(saModel)
 	cols_details = {}
 	for key in sa_cols:
@@ -159,6 +162,14 @@ def saModelColumnsNames(saModel,primary_key=False):
 
 
 
-def validate_attendance(saModel,received):
-	pass
-
+def validate_attendance(function_name,saModel,received,primary_key=False):
+	expectDataType(function_name="validate_attendance",
+		variable_name= "primary_key",expected_type=bool,
+		input=primary_key)
+	expected_names = saModelColumnsNames(saModel,primary_key)
+	for key in expected_names:
+		expectDictKey(
+			function_name=str(function_name)+":validate_attendance",
+			variable_name= "received",expectedKey=key,
+			input=received)
+			
