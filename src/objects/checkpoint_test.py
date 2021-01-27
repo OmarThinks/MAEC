@@ -91,7 +91,7 @@ class checkpoint_TestCase(unittest.TestCase):
 		print("Test 1_1:checkpoint")
 
 
-	def test_1_1_checkpoint(self):
+	def test_1_2_checkpoint(self):
 		#Testing with a normal class
 		Base = declarative_base()
 		class saTestClass2(Base):
@@ -115,6 +115,27 @@ class checkpoint_TestCase(unittest.TestCase):
 			'saModel': 1, 'success': False})
 		#print(convert_class_to_dict(cp))
 		print("Test 1_2:checkpoint")
+
+	def test_1_3_checkpoint(self):
+		#Testing with a normal class
+		Base = declarative_base()
+		class saTestClass2(Base):
+			__tablename__="hi"
+			id = Column(Integer, primary_key=True, nullable=False)
+			name = Column(String(63))
+			price = Column(Float())
+			in_stock = Column(Boolean())
+		#success=True, checkrecieved fails
+		try:
+			Ckeckpoint(success=True, result=
+			{"in_stock":1,"name":1,"priiiice":1},saModel=saTestClass2)
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:Ckeckpoint"+
+				":ERROR:missing_data_error:"+
+				"'received[price]' is missing")
+
+		print("Test 1_3:checkpoint")
 
 
 
