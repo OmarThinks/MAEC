@@ -217,21 +217,17 @@ class classreader_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:expectInRange:tst:ERROR"+
 				":not_in_range_error:'received[iddddddddddd]' is"+
 				" not in this range ['in_stock', 'name', 'price']")
-		"""self.assertEqual(check,{"name":"abc",
-			"price":data,"in_stock":None})
-
 		try:
 			#sa is not SQLAlchemy
 			check_received(function_name="tst",saModel=123,
 			received={"id":123,"name":"abc",
-			"price":data,"in_stock":None},
-			expect_primary_keys=True)
+			"price":NotReceived(),"in_stock":None})
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:getSAModel"+
 				"Columns:ERROR: '123' is supposed to"+
 				" have the type of 'DeclarativeMeta',"+
 				" but found type of '<class 'int'>' instead")
-		try:
+		"""try:
 			# received is not a dict
 			check_received(function_name="tst",saModel=saTestClass3,
 			received=123,
