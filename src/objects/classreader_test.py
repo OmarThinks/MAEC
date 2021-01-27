@@ -158,28 +158,41 @@ class classreader_TestCase(unittest.TestCase):
 		self.assertEqual(sa_primary_keys_names(saTestClass3),["id"])
 		print("Test 7_1:sa_primary_keys_names")
 
-	def test_7_1_saModelColumnsNames(self):
+	def test_8_1_saModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
 			__tablename__="hi"
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
-		#Perfect
-		self.assertEqual(saModelColumnsNames(saTestClass3),
-			["id","name"])
+		# Default, neglect the primary keys only
+		self.assertEqual(saModelColumnsNames(saTestClass3),["name"])
 		#Neglect id
 		self.assertEqual(saModelColumnsNames(
 			saTestClass3,neglect=["id"]),["name"])
 		#Neglect all
 		self.assertEqual(saModelColumnsNames(
 			saTestClass3,neglect=["id","name"]),[])
+		#Not list
 		try:
-			pass
+			saModelColumnsNames(saTestClass3,neglect=123)
 		except Exception as e:
-			raise e
+			self.assertEqual(str(e),"MoRBs:validate_columns"+
+				"_in_saModel:ERROR: 'columns' is supposed to"+
+				" have the type of 'list', but found type of"+
+				" '<class 'int'>' instead")
+			#print(str(e))
+		# a feild does not exist
+		try:
+			saModelColumnsNames(saTestClass3,neglect=123)
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:validate_columns"+
+				"_in_saModel:ERROR: 'columns' is supposed to"+
+				" have the type of 'list', but found type of"+
+				" '<class 'int'>' instead")
+			#print(str(e))
 		
-		print("Test 7_1:saModelColumnsNames")
+		print("Test 8_1:saModelColumnsNames")
 
 	def test_5_2_saModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class
