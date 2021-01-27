@@ -299,7 +299,7 @@ def check_received(function_name,saModel,received,neglect=None):
 	#Now the sa_cols_names ook like this: ["id","name","price"]
 
 	for column_name in sa_cols_names:
-		def expectDictKey(function_name=function_name,
+		expectDictKey(function_name=function_name,
 			variable_name="received",expectedKey=column_name,
 			input = received)
 	#Now for every expected col in sa_model there must be a 
