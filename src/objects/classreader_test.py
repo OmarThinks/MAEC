@@ -147,22 +147,26 @@ class classreader_TestCase(unittest.TestCase):
 			"'key': 'id', 'name': 'id', 'nullable': False,"+
 			" 'primary_key': True, 'type': Integer(),"+
 			" 'unique': None}")
-		print([1,2,3]-[4,1,3])
 		print("Test 6_1:saColumnReader")
 
-	def test_5_1_saModelColumnsNames(self):
+	def test_7_1_saModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
 			__tablename__="hi"
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
-		columns_names = saModelColumnsNames(saTestClass3)
-		self.assertEqual(saModelColumnsNames(saTestClass3),["name"])
+		#Perfect
+		self.assertEqual(saModelColumnsNames(saTestClass3),
+			["id","name"])
+		#Neglect id
 		self.assertEqual(saModelColumnsNames(
-			saTestClass3,expect_primary_keys=True),["id","name"])
+			saTestClass3,neglect=["id"]),["name"])
+		#Neglect all
+		self.assertEqual(saModelColumnsNames(
+			saTestClass3,neglect=["id","name"]),[])
 
-		print("Test 5_1:saModelColumnsNames")
+		print("Test 7_1:saModelColumnsNames")
 
 	def test_5_2_saModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class
