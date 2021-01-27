@@ -1,7 +1,7 @@
 from flask import jsonify
 
 import sqlalchemy.ext.declarative.api.DeclarativeMeta
-
+import sqlalchemy.orm.attributesInstrumentedAttribute
 
 
 
@@ -84,3 +84,8 @@ def validate_sa_model(function_name,saModel):
 		expected_type=sqlalchemy.ext.declarative.api.DeclarativeMeta,
 		input=saModel)
 
+def validate_sa_column(function_name,saColumn):
+	expectDataType(function_name="validate_sa_column:"+function_name,
+		variable_name="saColumn",
+		expected_type=sqlalchemy.orm.attributesInstrumentedAttribute,
+		input=saColumn)
