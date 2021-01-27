@@ -131,11 +131,16 @@ def saColumnReader(sqlalchmey_column):
 
 def saModelColumnsNames(saModel,primary_key=False):
 	sa_cols = getSAModelColumns(saModel)
-	sa_cols = [saColumnReader(a) for a in sa_cols]
-	toReturn = []
+	cols_details = {}
 	for key in sa_cols:
-		if sa_cols["primary_key"] == True:
+		cols_details[key] = saColumnReader(sa_cols[key])
+	#sa_cols = [saColumnReader(a[key]) for a,key in enumerate(sa_cols)]
+	toReturn = []
+	for key in cols_details:
+		if cols_details[key]["primary_key"] == True:
 			if primary_key == False:
 				continue
-			toReturn.append(sa_cols["name"])
+			toReturn.append(cols_details[key]["name"])
+		else:
+			toReturn.append(cols_details[key]["name"])
 	return toReturn
