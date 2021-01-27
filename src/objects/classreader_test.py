@@ -181,17 +181,13 @@ class classreader_TestCase(unittest.TestCase):
 				"_in_saModel:ERROR: 'columns' is supposed to"+
 				" have the type of 'list', but found type of"+
 				" '<class 'int'>' instead")
-			#print(str(e))
 		# a feild does not exist
 		try:
-			saModelColumnsNames(saTestClass3,neglect=123)
+			saModelColumnsNames(saTestClass3,neglect=["bla bla bla"])
 		except Exception as e:
-			self.assertEqual(str(e),"MoRBs:validate_columns"+
-				"_in_saModel:ERROR: 'columns' is supposed to"+
-				" have the type of 'list', but found type of"+
-				" '<class 'int'>' instead")
-			#print(str(e))
-		
+			self.assertEqual(str(e),"MoRBs:expectInRange:validate"+
+				"_column_name_exists:ERROR:not_in_range_error:"+
+				"'saColName' is not in this range ['id', 'name']")
 		print("Test 8_1:saModelColumnsNames")
 
 	def test_5_2_saModelColumnsNames(self):
