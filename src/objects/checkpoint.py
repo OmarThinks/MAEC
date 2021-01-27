@@ -3,20 +3,31 @@ Checkpoint
 
 - Attributes:
  	- success:
- 		A boolean carring the value of True or False
+ 		- A boolean carring the value of True or False
  	- result:
- 		A dictionary carring info about what is next
+ 		- A dictionary carring info about what is next
+ 	- saModel:
+ 		- the SQLAlchemy model
+ 	- neglect: (default = None)
+ 		- fields of the column to be neglected
+ 		- None = neglect only the primary keys
+ 		- Example : ["id","price"]
 	-EXAMPLE 1 :
 		- Ckeckpoint.success = True
 		- Ckeckpoint.result = {"price":10.01,"name":None}
+		- Ckeckpoint.saModel = class: ....
+		- Ckeckpoint.neglect = ["id","price"]
 	-EXAMPLE 2 :
 		- Ckeckpoint.success = False
 		- Ckeckpoint.result = {"status":400,"description":
 		"something went wrong", "validation_errors":[..]}
-
+		- Ckeckpoint.saModel = class: ....
+		- Ckeckpoint.neglect = ["id","price"]
 - Inputs: 
 	- success: Boolean
 	- result: a dictionary
+	- neglect: list or None (fields to be neglected)
+	- result: a dictionary of the contained data
 - Function:
 	- if success = True:
 		- Validate that each value of expected class has a 
@@ -26,6 +37,7 @@ Checkpoint
 		- validate that description is a string
 		- validation errors will not be validated
 - Output:
+	- there are no outputs
 	- It is an object, it will be created
 	- It will only raise error in case if there was an error
 Tolerance:
