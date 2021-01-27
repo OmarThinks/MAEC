@@ -90,9 +90,15 @@ class classreader_TestCase(unittest.TestCase):
 			__tablename__="hi"
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
-		#Testing the class itself
+		#These names really exist
 		validate_column_name_exists(saTestClass2,"id")
 		validate_column_name_exists(saTestClass2,"name")
+		try:
+			validate_column_name_exists(saTestClass2,"bla bla bla bla")			
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:expectInRange:valid"+
+				"ate_column_name_exists:ERROR:not_in_range_er"+
+				"ror:'saColName' is not in this range ['id', 'name']")
 		print("Test 4_1:validate_column_name_exists")
 
 
