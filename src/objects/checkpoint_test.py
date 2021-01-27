@@ -88,15 +88,33 @@ class checkpoint_TestCase(unittest.TestCase):
 				"error:'type(result['description'])' is "+
 				"not in this range [<class 'str'>, "+
 				"<class 'dict'>]")
-		#success = False : successful
+		print("Test 1_1:checkpoint")
+
+
+	def test_1_1_checkpoint(self):
+		#Testing with a normal class
+		Base = declarative_base()
+		class saTestClass2(Base):
+			__tablename__="hi"
+			id = Column(Integer, primary_key=True, nullable=False)
+			name = Column(String(63))
+			price = Column(Float())
+			in_stock = Column(Boolean())
+		#success = False : successful, description string
 		cp = Ckeckpoint(success=False, result=
 			{"status":400,"description":"abc"},saModel=1)
 		self.assertEqual(convert_class_to_dict(cp),{'neglect': None, 
 			'result': {'status': 400, 'description': 'abc'}, 
 			'saModel': 1, 'success': False})
 		#print(convert_class_to_dict(cp))
-		print("Test 1_1:checkpoint")
-
+		#success = False : successful description dict
+		cp = Ckeckpoint(success=False, result=
+			{"status":400,"description":{}},saModel=1)
+		self.assertEqual(convert_class_to_dict(cp),{'neglect': None, 
+			'result': {'status': 400, 'description': {}}, 
+			'saModel': 1, 'success': False})
+		#print(convert_class_to_dict(cp))
+		print("Test 1_2:checkpoint")
 
 
 
