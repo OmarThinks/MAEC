@@ -99,6 +99,13 @@ def get_all_sa_columns_names(saModel):
 
 
 
+def validate_column_name_exists(saModel,saColName):
+	expectDataType(function_name="validate_column_name_exists",
+		variable_name="saColName",expected_type=str,input=saColName)
+	cols_names=get_all_sa_columns_names(saModel)
+	expectInRange(function_name="validate_column_name_exists",
+		variable_name="saColName",range=cols_names,input=saColName)
+
 
 
 """

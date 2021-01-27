@@ -80,7 +80,6 @@ class classreader_TestCase(unittest.TestCase):
 			name = Column(String(63))
 		#Testing the class itself
 		names = get_all_sa_columns_names(saTestClass2)
-		#print(len(sa_dict))
 		self.assertEqual(names,["id","name"])
 	
 		print("Test 3_1:get_all_sa_columns_names")
