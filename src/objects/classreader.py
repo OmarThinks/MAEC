@@ -1,4 +1,5 @@
-from errors import expectInRange, expectDataType, expectDictKey
+from errors import (expectInRange, expectDataType, 
+	expectDictKey, validate_sa_model, validate_sa_column)
 import inspect
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
@@ -74,7 +75,12 @@ def getSAModelColumns(saModel):
 
 
 
-
+def get_all_sa_columns_names(saModel):
+	all_cols = getSAModelColumns()
+	toReturn = []
+	for key in all_cols:
+		toReturn.append(key)
+	return toReturn
 
 
 
@@ -166,13 +172,20 @@ def saModelColumnsNames(saModel,neglect=[]):
 
 
 
-def validate_in_model(saModel,fields):
+
+
+def validate_fields_in_saModel(saModel,fields):
+	# to validate that feilds is a list
 	expectInRange(function_name="validate_in_model",
 		variable_name="type(fields)",range=[list,dict],
 		input=fields)
-	
-
-
+	# to validate that saModel is a SQLAlchemy model
+	validate_sa_model(function_name = "validate_in_model",
+		saModel=saModel)
+	#Capturing the SQLAlchmey columns
+	sa_cols = getSAModelColumns(saModel)
+	for key in fields:
+		if
 
 
 
