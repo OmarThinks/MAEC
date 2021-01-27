@@ -87,7 +87,7 @@ Example:
 	["id","name","price"]
 """
 
-def get_all_sa_columns_names(saModel):
+def get_sa_columns_names(saModel):
 	all_cols = getSAModelColumns(saModel)
 	toReturn = []
 	for key in all_cols:
