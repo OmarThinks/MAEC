@@ -155,3 +155,10 @@ def saModelColumnsNames(saModel,primary_key=False):
 		else:
 			toReturn.append(cols_details[key]["name"])
 	return toReturn
+
+
+
+
+def validate_attendance(saModel,received):
+	pass
+
