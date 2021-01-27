@@ -25,7 +25,7 @@ class checkpoint_TestCase(unittest.TestCase):
 
 
 
-	def test_1_1_convert_class_to_dict(self):
+	def test_1_1_checkpoint(self):
 		#Testing with a normal class
 		Base = declarative_base()
 		class saTestClass2(Base):
@@ -51,7 +51,23 @@ class checkpoint_TestCase(unittest.TestCase):
 				"__init__:ERROR: 'result' is supposed "+
 				"to have the type of 'dict', but found "+
 				"type of '<class 'int'>' instead")
-		print("Test 1_1:convert_class_to_dict")
+		# success= False, result has no Status
+		try:
+			Ckeckpoint(success=False, result={},saModel=1)
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:Checkpoint"+
+				".__init__:ERROR:missing_data_error:"+
+				"'result[status]' is missing")
+		# success= False, result has no description
+		try:
+			Ckeckpoint(success=False, result={"status":"abc"},saModel=1)
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:Checkpoint"+
+				".__init__:ERROR:missing_data_error:'"+
+				"result[description]' is missing")
+		print("Test 1_1:checkpoint")
 
 
 
