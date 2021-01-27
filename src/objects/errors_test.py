@@ -132,6 +132,17 @@ class errors_TestCase(unittest.TestCase):
 				"type of '<class 'int'>' instead")
 		print("Test 007: expect_sa_model")
 
+	def test_008_expect_sa_column(self):
+		Base = declarative_base()
+		class saTestClass1(Base):
+			__tablename__="hi"
+			id = Column(Integer, primary_key=True, nullable=False)
+			name = Column(String(63))
+		# perfect
+		expect_sa_column(function_name="abc",saColumn=saTestClass1.id)
+
+		print("Test 008: expect_sa_column")
+
 
 
 
