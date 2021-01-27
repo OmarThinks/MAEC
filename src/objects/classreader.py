@@ -131,7 +131,10 @@ def saColumnReader(sqlalchmey_column):
 saModelColumnsNames
 - Inputs:
 	- saModel:
-		The SQLAlchemy model
+		- The SQLAlchemy model
+	- neglect: list
+		- the name of the fields to be neglected
+		- Example: ["id","name"]
 - Function:
 	- It will return a list of the model columns names
 - Outputs:
@@ -140,7 +143,7 @@ saModelColumnsNames
 	["id","name","price"]
 """
 
-def saModelColumnsNames(saModel,expect_primary_keys=False):
+def saModelColumnsNames(saModel,neglect=[]):
 	expectDataType(function_name="saModelColumnsNames",
 		variable_name= "expect_primary_keys",expected_type=bool,
 		input=expect_primary_keys)
@@ -158,6 +161,18 @@ def saModelColumnsNames(saModel,expect_primary_keys=False):
 		else:
 			toReturn.append(cols_details[key]["name"])
 	return toReturn
+
+
+
+
+
+def validate_in_model(saModel,fields):
+	expectInRange(function_name="validate_in_model",
+		variable_name="type(fields)",range=[list,dict],
+		input=fields)
+	
+
+
 
 
 
@@ -181,20 +196,23 @@ Tolerance:
 	- No tolerance, these are developer mistakes, not user inputs problem
 """
 def check_received(function_name,saModel,received,
-	expect_primary_keys=False):
+	neglect=[]):
+	# neglect should be a list
 	expectDataType(
-		function_name=str(function_name)+":validate_received",
-		variable_name= "expect_primary_keys",expected_type=bool,
-		input=expect_primary_keys)
+		function_name=str(function_name)+":check_received",
+		variable_name= "neglect",expected_type=bool,
+		input=neglect)
+	# received should be a dict
 	expectDataType(
-		function_name=str(function_name)+":validate_received",
+		function_name=str(function_name)+":check_received",
 		variable_name= "received",expected_type=dict,
 		input=received)
+	# get 
 	expected_names = saModelColumnsNames(saModel,expect_primary_keys)
 	toReturn ={}
 	for key in expected_names:
 		expectDictKey(
-			function_name=str(function_name)+":validate_received",
+			function_name=str(function_name)+":check_received",
 			variable_name= "received",expectedKey=key,
 			input=received)
 		toReturn[key] = received[key]

@@ -1,5 +1,10 @@
 from flask import jsonify
 
+import sqlalchemy.ext.declarative.api.DeclarativeMeta
+
+
+
+
 def my_error(status=404 ,description="",fullError=""):
 	#In case the error was totally ready
 	if fullError != "":
@@ -69,3 +74,13 @@ def expectInRange(function_name,variable_name,range,input):
 		raise Exception("MoRBs:expectInRange:"+
 			str(function_name)+":ERROR:not_in_range_error:'"+
 			variable_name+"' is not in this range "+str(range))
+
+
+
+
+def validate_sa_model(function_name,saModel):
+	expectDataType(function_name="validate_sa_model:"+function_name,
+		variable_name="saModel",
+		expected_type=sqlalchemy.ext.declarative.api.DeclarativeMeta,
+		input=saModel)
+
