@@ -67,10 +67,13 @@ class Ckeckpoint():
 				variable_name = "result",expectedKey = "description",
 				input = result)
 			# Now we need to validate that status is int 
-			# and description is string
+			# and description is string or dict
 			expectDataType(function_name= "Checkpoint.__init__",
 			variable_name = "status",expected_type=int,
 			input= result["status"])
+			expectInRange(function_name="Checkpoint.__init__",
+				variable_name="type(result['description'])",
+				range=[str,dict],input=type(result['description']))
 			expectDataType(function_name= "Checkpoint.__init__",
 			variable_name = "description",expected_type=str,
 			input= result["description"])
