@@ -71,7 +71,7 @@ class classreader_TestCase(unittest.TestCase):
 	
 		print("Test 1_2:getSAModelColumns")
 
-	def test_3_1_get_sa_columns_names(self):
+	def test_3_1_get_sa_all_columns_names(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass2(Base):
@@ -79,9 +79,9 @@ class classreader_TestCase(unittest.TestCase):
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
 		#Testing the class itself
-		names = get_sa_columns_names(saTestClass2)
+		names = get_sa_all_columns_names(saTestClass2)
 		self.assertEqual(names,["id","name"])
-		print("Test 3_1:get_sa_columns_names")
+		print("Test 3_1:get_sa_all_columns_names")
 
 	def test_4_1_validate_column_name_exists(self):
 		#Testing with a SQLAlchemy declarative base class
@@ -102,7 +102,7 @@ class classreader_TestCase(unittest.TestCase):
 		print("Test 4_1:validate_column_name_exists")
 
 
-	def test_4_1_saColumnReader(self):
+	def test_5_1_saColumnReader(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -118,7 +118,8 @@ class classreader_TestCase(unittest.TestCase):
 			"'key': 'id', 'name': 'id', 'nullable': False,"+
 			" 'primary_key': True, 'type': Integer(),"+
 			" 'unique': None}")
-		print("Test 1_4:saColumnReader")
+		print([1,2,3]-[4,1,3])
+		print("Test 5_1:saColumnReader")
 
 	def test_5_1_saModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class

@@ -87,7 +87,7 @@ Example:
 	["id","name","price"]
 """
 
-def get_sa_columns_names(saModel):
+def get_sa_all_columns_names(saModel):
 	all_cols = getSAModelColumns(saModel)
 	toReturn = []
 	for key in all_cols:
@@ -183,11 +183,25 @@ saModelColumnsNames
 """
 
 def saModelColumnsNames(saModel,neglect=[]):
-	expectDataType(function_name="saModelColumnsNames",
-		variable_name= "expect_primary_keys",expected_type=bool,
-		input=expect_primary_keys)
-	sa_cols = getSAModelColumns(saModel)
-	cols_details = {}
+	#neglect must be a list
+	expectDataType(function_name = "saModelColumnsNames",
+		variable_name = "neglect",
+		expected_type = list,
+		input = neglect)
+	
+	#Make sure that every element in neglect is there in the columns
+	for neglected_name in neglect:
+		validate_column_name_exists(saModel,neglected_name)
+	
+	sa_cols = get_sa_all_columns_names(saModel)
+	#Now we have sa_cols like this ["id","name"]
+	
+	toReturn = []
+	for col_name in toReturn:
+		if col_name not in neglect:
+			toReturn.append(col_name)
+	return toReturn
+	"""cols_details = {}
 	for key in sa_cols:
 		cols_details[key] = saColumnReader(sa_cols[key])
 	#sa_cols = [saColumnReader(a[key]) for a,key in enumerate(sa_cols)]
@@ -198,8 +212,7 @@ def saModelColumnsNames(saModel,neglect=[]):
 				continue
 			toReturn.append(cols_details[key]["name"])
 		else:
-			toReturn.append(cols_details[key]["name"])
-	return toReturn
+			toReturn.append(cols_details[key]["name"])"""
 
 
 
