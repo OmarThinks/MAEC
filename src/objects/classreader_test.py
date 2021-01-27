@@ -145,9 +145,15 @@ class classreader_TestCase(unittest.TestCase):
 			price = Column(Float())
 			in_stock = Column(Boolean())
 
+		#Perfect
 		validate_received(function_name="tst",saModel=saTestClass3,
 			received={"name":"abc","price":NotReceived,"in_stock":None},
 			expect_primary_keys=False)
+		#Perfect: expect_primary_keys = True
+		validate_received(function_name="tst",saModel=saTestClass3,
+			received={"id":123,"name":"abc",
+			"price":NotReceived,"in_stock":None},
+			expect_primary_keys=True)
 		"""validate_received(
 			input_dict = {"a":1,"b":True},input_dict_name="tst",
 			expected={"a":"string","b":"boolean"})
