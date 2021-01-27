@@ -164,7 +164,7 @@ def saModelColumnsNames(saModel,expect_primary_keys=False):
 
 """
 validate_attendance
--Inputs:
+- Inputs:
 	- function_name(string): 
 		the name of the function that called this function
 	- saModel: the SQLAlchemy model, not an instance
@@ -174,7 +174,11 @@ validate_attendance
 	- expect_primary_keys:boolean default = False
 		- a boolean that represents whether the primary_keys should be 
 			expected or not
-
+- Function:
+	- Raise errors if something is missing (These are developer mistakes)
+- Output: there is no return value, this is for validation only
+Tolerance:
+	- No toleranvce, these are developer mistakes, not user inputs problem
 """
 def validate_attendance(function_name,saModel,received,
 	expect_primary_keys=False):
