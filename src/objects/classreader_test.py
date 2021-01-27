@@ -108,10 +108,11 @@ class classreader_TestCase(unittest.TestCase):
 			__tablename__="hi"
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
-		#Testing the class itself
 		columns_names = saModelColumnsNames(saTestClass3)
-		#print(saColumnReader(sa_dict["id"]))
-		self.assertEqual(columns_names,["name"])
+		self.assertEqual(saModelColumnsNames(saTestClass3),["name"])
+		self.assertEqual(saModelColumnsNames(
+			saTestClass3,primary_key=True),["id","name"])
+
 		print("Test 1_4:saModelColumnsNames")
 
 
