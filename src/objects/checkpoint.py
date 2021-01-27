@@ -32,6 +32,9 @@ Tolerance:
 	- No tolerance, these are developer's mistakes, not user input
 """
 
+from errors import *
+from classreader import check_received
+
 class Ckeckpoint():
 	"""docstring for Ckeckpoint"""
 	def __init__(self, success, result,saModel,neglect=None):
@@ -67,7 +70,7 @@ class Ckeckpoint():
 
 		# Now succes is boolean and True
 		check_received(function_name="Ckeckpoint",
-			saModel=saModel,received=result,neglect=neglect):
+			saModel=saModel,received=result,neglect=neglect)
 		self.success = success
 		self.result = result
 		self.saModel = saModel

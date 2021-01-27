@@ -1,4 +1,6 @@
 import unittest
+from checkpoint import Ckeckpoint
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column
 from sqlalchemy import (String, Integer, Float, Boolean)
@@ -32,6 +34,15 @@ class checkpoint_TestCase(unittest.TestCase):
 			name = Column(String(63))
 			price = Column(Float())
 			in_stock = Column(Boolean())
+		
+		#success not boolean
+		try:
+			Ckeckpoint(success=1, result=1,saModel=1)
+		except Exception as e:
+			self.assertEqual(str(e),"MoRBs:Checkpoint."+
+				"__init__:ERROR: 'success' is supposed "+
+				"to have the type of 'bool', but found "+
+				"type of '<class 'int'>' instead")
 		print("Test 1_1:convert_class_to_dict")
 
 
