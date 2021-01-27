@@ -203,15 +203,12 @@ class classreader_TestCase(unittest.TestCase):
 		#Perfect
 		check = check_received(function_name="tst",saModel=saTestClass3,
 			received={"name":"abc","price":NotReceived,"in_stock":None})
-		"""#Perfect: expect_primary_keys = True
-		data = NotReceived()
-		check = check_received(function_name="tst",saModel=saTestClass3,
+		#Perfect: expect_primary_keys = True
+		check_received(function_name="tst",saModel=saTestClass3,
 			received={"id":123,"name":"abc",
-			"price":data,"in_stock":None},
-			expect_primary_keys=True)
-		self.assertEqual(check,{"id":123,"name":"abc",
-			"price":data,"in_stock":None})
-		#More: iddddd was neglected because it is a primary key
+			"price":NotReceived(),"in_stock":None},
+			neglect=[])
+		"""#More: iddddd was neglected because it is a primary key
 		check = check_received(function_name="tst",saModel=saTestClass3,
 			received={"iddddddddddd":123,"name":"abc",
 			"price":data,"in_stock":None},
