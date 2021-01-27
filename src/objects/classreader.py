@@ -178,7 +178,7 @@ validate_attendance
 	- Raise errors if something is missing (These are developer mistakes)
 - Output: there is no return value, this is for validation only
 Tolerance:
-	- No toleranvce, these are developer mistakes, not user inputs problem
+	- No tolerance, these are developer mistakes, not user inputs problem
 """
 def validate_attendance(function_name,saModel,received,
 	expect_primary_keys=False):
