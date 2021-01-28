@@ -12,7 +12,7 @@ import base64
 
 
 
-
+from app import create_app
 
 
 
@@ -32,11 +32,11 @@ class receiver_TestCase(unittest.TestCase):
 
 	def setUp(self):
 		# create and configure the app
-		self.app = create_app(testing=True) #Flask(__name__)
+		self.app = create_app() #Flask(__name__)
 		self.client = self.app.test_client
 		#db.app = self.app
 		#db.init_app(self.app)
-		db.create_all()        
+		#db.create_all()        
 		
 	
 	def tearDown(self):
@@ -55,6 +55,20 @@ class receiver_TestCase(unittest.TestCase):
 		print("Testing receiver")
 
 	def test_c_1_1_1_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver/1")
+		#Expected to fail, No request body
+		data = json.loads(response.data)
+		#print(data)
+		self.assertEqual(data,{'message': "MoRBs:json_"+
+			"receiver:ERROR: 'request' is supposed to "+
+			"have the type of 'LocalProxy', but found "+
+			"type of '<class 'int'>' instead"})
+		self.assertEqual(response.status_code,200)
+		print("Test c_1_1_1: receiver_tests : request not flask_request")
+
+
+	"""def test_c_1_1_1_receiver_tests(self):
 		#Testing the function of route "receiver_test/int"
 		response = self.client().post("/receiver/1")
 		#Expected to fail, No request body
@@ -277,7 +291,7 @@ class receiver_TestCase(unittest.TestCase):
 			old={"name":"efg","price":9,"in_stock":False})
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:attendance_validator:ERROR: 'received' is supposed to have the type of 'dict', but found type of '<class 'str'>' instead")
-		print("Test c_2_4: attendance_validator")
+		print("Test c_2_4: attendance_validator")"""
 
 
 
