@@ -36,6 +36,7 @@ from classes.classreader import filteredSaModelColumnsNames
 from classes.checkpoint import Checkpoint
 from classes.NotReceived import NotReceived
 from flask import request as flask_request
+from sqlalchemy.ext.declarative.api import DeclarativeMeta
 
 def json_receiver(request, saModel, neglect=None, extra=None):
 #def json_receiver(request, expected={}):
@@ -43,6 +44,10 @@ def json_receiver(request, saModel, neglect=None, extra=None):
 	expectDataType(function_name="json_receiver",
 		variable_name="request",expected_type=type(flask_request),
 		input= request)
+	#validate saModel
+	expectDataType(function_name="json_receiver",
+		variable_name="saModel",expected_type=DeclarativeMeta,
+		input= saModel)
 	#validate neglect
 	validate_fields(function_name="json_receiver",variable_name="neglect",
 			fields=neglect)
