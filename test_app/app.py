@@ -32,7 +32,8 @@ Base.metadata.create_all(bind=engine)
 	
 @app.route("/")
 def home_route():
-	return jsonify({"message":"Hi There!"}),200
+	return jsonify({"type(Product)":str(type(Product)),
+		"type(Product.id)":str(type(Product.id))}),200
 
 
 if __name__ == "__main__":
