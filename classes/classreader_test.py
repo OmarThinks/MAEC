@@ -3,10 +3,15 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
 
-from classreader import *
+#from classreader import *
 from sqlalchemy import Column
 from sqlalchemy import (String, Integer, Float, Boolean)
-from NotReceived import NotReceived
+#from NotReceived import NotReceived
+
+try:
+	from __init__ import *
+except Exception as e:
+	from .__init__ import *
 
 unittest.TestLoader.sortTestMethodsUsing = None
 

@@ -1,5 +1,10 @@
 from flask import jsonify
 
+try:
+	from __init__ import *
+except Exception as e:
+	from .__init__ import *
+
 from sqlalchemy.ext.declarative.api import DeclarativeMeta
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 

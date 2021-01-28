@@ -11,7 +11,13 @@ def check_received(function_name,saModel,received,neglect=None)
 def validate_fields(fields):
 """
 
-from errors import *
+try:
+	from __init__ import *
+except Exception as e:
+	from .__init__ import *
+
+
+#from errors import *
 import inspect
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 from sqlalchemy.sql.schema import MetaData
@@ -197,7 +203,7 @@ def saColumnReader(sqlalchmey_column):
 		toReturn["primary_key"]=sqlalchmey_column.comparator.primary_key # True
 		toReturn["type"]=sqlalchmey_column.comparator.type # INTEGER
 		toReturn["unique"]=sqlalchmey_column.comparator.unique # None
-	except:
+	except Exception as e:
 		raise Exception("MoRBs:ERROR:readSAColumn:can not read this"+
 			" column, may be this version of MoRBs is incompatible"+
 			" with your version of SQLAlchemy")

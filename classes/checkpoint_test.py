@@ -1,10 +1,21 @@
 import unittest
-from checkpoint import Ckeckpoint
-from classreader import convert_class_to_dict
+
+
+try:
+	from __init__ import *
+except Exception as e:
+	from .__init__ import *
+
+"""
+#if __name__ == '__main__':
+from errors import expectDataType
+from checkpoint import Checkpoint
+from classreader import convert_class_to_dict"""
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column
 from sqlalchemy import (String, Integer, Float, Boolean)
-from NotReceived import NotReceived
+#from NotReceived import NotReceived
 
 unittest.TestLoader.sortTestMethodsUsing = None
 
@@ -37,7 +48,7 @@ class checkpoint_TestCase(unittest.TestCase):
 		
 		#success not boolean
 		try:
-			Ckeckpoint(success=1, result=1,saModel=1)
+			Checkpoint(success=1, result=1,saModel=1)
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:Checkpoint."+
 				"__init__:ERROR: 'success' is supposed "+
@@ -45,7 +56,7 @@ class checkpoint_TestCase(unittest.TestCase):
 				"type of '<class 'int'>' instead")
 		#result not dict
 		try:
-			Ckeckpoint(success=False, result=1,saModel=1)
+			Checkpoint(success=False, result=1,saModel=1)
 		except Exception as e:
 			self.assertEqual(str(e),"MoRBs:Checkpoint."+
 				"__init__:ERROR: 'result' is supposed "+
@@ -53,7 +64,7 @@ class checkpoint_TestCase(unittest.TestCase):
 				"type of '<class 'int'>' instead")
 		#extra_results not dict
 		try:
-			Ckeckpoint(success=False, result={},saModel=1,extra_results=123)
+			Checkpoint(success=False, result={},saModel=1,extra_results=123)
 		except Exception as e:
 			#print(str(e))
 			self.assertEqual(str(e),"MoRBs:Checkpoint.__init__:ERROR:"+
@@ -61,7 +72,7 @@ class checkpoint_TestCase(unittest.TestCase):
 				"'dict', but found type of '<class 'int'>' instead")
 		# success= False, result has no Status
 		try:
-			Ckeckpoint(success=False, result={},saModel=1)
+			Checkpoint(success=False, result={},saModel=1)
 		except Exception as e:
 			#print(str(e))
 			self.assertEqual(str(e),"MoRBs:Checkpoint"+
@@ -69,7 +80,7 @@ class checkpoint_TestCase(unittest.TestCase):
 				"'result[status]' is missing")
 		# success= False, result has no description
 		try:
-			Ckeckpoint(success=False, result={"status":"abc"},saModel=1)
+			Checkpoint(success=False, result={"status":"abc"},saModel=1)
 		except Exception as e:
 			#print(str(e))
 			self.assertEqual(str(e),"MoRBs:Checkpoint"+
@@ -77,7 +88,7 @@ class checkpoint_TestCase(unittest.TestCase):
 				"result[description]' is missing")
 		# success= False, status not int
 		try:
-			Ckeckpoint(success=False, result=
+			Checkpoint(success=False, result=
 				{"status":"abc","description":1},saModel=1)
 		except Exception as e:
 			#print(str(e))
@@ -87,7 +98,7 @@ class checkpoint_TestCase(unittest.TestCase):
 				"type of '<class 'str'>' instead")
 		# success= False, description not string or dict
 		try:
-			Ckeckpoint(success=False, result=
+			Checkpoint(success=False, result=
 				{"status":400,"description":1},saModel=1)
 		except Exception as e:
 			#print(str(e))
@@ -109,7 +120,7 @@ class checkpoint_TestCase(unittest.TestCase):
 			price = Column(Float())
 			in_stock = Column(Boolean())
 		#success = False : successful, description string
-		cp = Ckeckpoint(success=False, result=
+		cp = Checkpoint(success=False, result=
 			{"status":400,"description":"abc"},saModel=1)
 		self.assertEqual(convert_class_to_dict(cp),{'neglect': None, 
 			'result': {'status': 400, 'description': 'abc'}, 
@@ -117,7 +128,7 @@ class checkpoint_TestCase(unittest.TestCase):
 			"extra":None,"extra_results":{}})
 		#print(convert_class_to_dict(cp))
 		#success = False : successful description dict
-		cp = Ckeckpoint(success=False, result=
+		cp = Checkpoint(success=False, result=
 			{"status":400,"description":{}},saModel=1)
 		self.assertEqual(convert_class_to_dict(cp),{'neglect': None, 
 			'result': {'status': 400, 'description': {}}, 
@@ -136,7 +147,7 @@ class checkpoint_TestCase(unittest.TestCase):
 			in_stock = Column(Boolean())
 		#success=True, checkrecieved fails
 		try:
-			Ckeckpoint(success=True, result=
+			Checkpoint(success=True, result=
 			{"in_stock":1,"name":1,"priiiice":1},saModel=saTestClass2)
 		except Exception as e:
 			#print(str(e))
@@ -145,7 +156,7 @@ class checkpoint_TestCase(unittest.TestCase):
 				"' is missing")
 		#success=True, extra not None or list
 		try:
-			Ckeckpoint(success=True, result=
+			Checkpoint(success=True, result=
 			{"in_stock":1,"name":1,"price":1},saModel=saTestClass2,
 			extra=123)
 		except Exception as e:
@@ -156,7 +167,7 @@ class checkpoint_TestCase(unittest.TestCase):
 				"'NoneType'>, <class 'list'>]")
 		#success=True, extra element not string
 		try:
-			Ckeckpoint(success=True, result=
+			Checkpoint(success=True, result=
 			{"in_stock":1,"name":1,"price":1},saModel=saTestClass2,
 			extra=["123","456",789])
 		except Exception as e:
@@ -166,7 +177,7 @@ class checkpoint_TestCase(unittest.TestCase):
 				" have the type of 'str', but found type of "+
 				"'<class 'int'>' instead")
 		#successful
-		cp = Ckeckpoint(success=True, result=
+		cp = Checkpoint(success=True, result=
 			{"in_stock":1,"name":1,"price":1},saModel=saTestClass2)
 		#print(convert_class_to_dict(cp))
 		self.assertEqual(cp.success , True)

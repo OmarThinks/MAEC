@@ -47,10 +47,15 @@ Tolerance:
 	- No tolerance, these are developer's mistakes, not user input
 """
 
-from errors import *
-from classreader import check_received
+#from errors import *
+#from classreader import check_received
 
-class Ckeckpoint():
+try:
+	from __init__ import *
+except Exception as e:
+	from .__init__ import *
+
+class Checkpoint():
 	"""docstring for Ckeckpoint"""
 	def __init__(self, success, result,saModel,neglect=None,extra = None,
 		extra_results={}):
