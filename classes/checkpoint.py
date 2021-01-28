@@ -53,7 +53,7 @@ from classreader import check_received
 class Ckeckpoint():
 	"""docstring for Ckeckpoint"""
 	def __init__(self, success, result,saModel,neglect=None,extra = None,
-		extra_results=None):
+		extra_results={}):
 		# Making sure that success is Boolean
 		expectDataType(function_name= "Checkpoint.__init__",
 			variable_name = "success",expected_type=bool,
@@ -62,6 +62,9 @@ class Ckeckpoint():
 		expectDataType(function_name= "Checkpoint.__init__",
 			variable_name = "result",expected_type=dict,
 			input= result)
+		expectDataType(function_name= "Checkpoint.__init__",
+			variable_name = "extra_results",expected_type=dict,
+			input= extra_results)
 		if success == False:
 			# Then we need result to have "status" and "description"
 			expectDictKey(function_name="Checkpoint.__init__",

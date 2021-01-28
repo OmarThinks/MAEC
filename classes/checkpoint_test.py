@@ -51,6 +51,14 @@ class checkpoint_TestCase(unittest.TestCase):
 				"__init__:ERROR: 'result' is supposed "+
 				"to have the type of 'dict', but found "+
 				"type of '<class 'int'>' instead")
+		#extra_results not dict
+		try:
+			Ckeckpoint(success=False, result={},saModel=1,extra_results=123)
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:Checkpoint.__init__:ERROR:"+
+				" 'extra_results' is supposed to have the type of "+
+				"'dict', but found type of '<class 'int'>' instead")
 		# success= False, result has no Status
 		try:
 			Ckeckpoint(success=False, result={},saModel=1)
@@ -105,14 +113,15 @@ class checkpoint_TestCase(unittest.TestCase):
 			{"status":400,"description":"abc"},saModel=1)
 		self.assertEqual(convert_class_to_dict(cp),{'neglect': None, 
 			'result': {'status': 400, 'description': 'abc'}, 
-			'saModel': 1, 'success': False, "extra":None})
+			'saModel': 1, 'success': False, 
+			"extra":None,"extra_results":{}})
 		#print(convert_class_to_dict(cp))
 		#success = False : successful description dict
 		cp = Ckeckpoint(success=False, result=
 			{"status":400,"description":{}},saModel=1)
 		self.assertEqual(convert_class_to_dict(cp),{'neglect': None, 
 			'result': {'status': 400, 'description': {}}, 
-			'saModel': 1, 'success': False, "extra":None})
+			'saModel': 1, 'success': False, "extra":None,"extra_results":{}})
 		#print(convert_class_to_dict(cp))
 		print("Test 1_2:checkpoint")
 
