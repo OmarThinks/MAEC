@@ -89,3 +89,25 @@ def expect_sa_column(function_name,saColumn):
 		variable_name="saColumn",
 		expected_type=InstrumentedAttribute,
 		input=saColumn)
+
+
+"""
+validate_fields
+- Inputs:
+	- fields: None, or a list of strings
+		- Example: ["page","max_in_page"]
+- Function: 
+	- validate this input, and raise error if something went wrong
+- Output:
+	- There are no outputs, there is only validation
+"""
+def validate_fields(function_name,variable_name,fields)(fields):
+	if fields != None:
+		expectInRange(function_name=function_name,
+			variable_name="type("+str(variable_name)+")",
+				range=[type(None),list],input=type(fields))
+		for field in fields:
+			expectDataType(function_name=function_name,
+			variable_name="element in "+variable_name+" list",
+			expected_type=str,
+			input=field)

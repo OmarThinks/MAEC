@@ -311,26 +311,3 @@ def check_received(function_name,saModel,received,neglect=None):
 		expectInRange(function_name=function_name,
 			variable_name = "received["+str(key)+"]",
 			range=sa_cols_names,input=key)
-
-
-
-"""
-validate_fields
-- Inputs:
-	- fields: None, or a list of strings
-		- Example: ["page","max_in_page"]
-- Function: 
-	- validate this input, and raise error if something went wrong
-- Output:
-	- There are no outputs, there is only validation
-"""
-def validate_fields(fields):
-	if fields != None:
-		expectInRange(function_name="validate_fields",
-			variable_name="type(fields)",
-				range=[type(None),list],input=type(fields))
-		for field in fields:
-			expectDataType(function_name="validate_fields",
-			variable_name="element in fields list",
-			expected_type=str,
-			input=field)
