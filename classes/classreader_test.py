@@ -260,6 +260,15 @@ class classreader_TestCase(unittest.TestCase):
 				":validate_fields:ERROR:not_in_range_error"+
 				":'type(fields)' is not in this range "+
 				"[<class 'NoneType'>, <class 'list'>]")
+		try:
+			#Fields not list, but there is a not string
+			validate_fields(["abc","123",456])
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:validate_fields"+
+				":ERROR: 'element in fields list' is "+
+				"supposed to have the type of 'str', but"+
+				" found type of '<class 'int'>' instead")
 		print("Test 10_1: validate_fields")
 
 
