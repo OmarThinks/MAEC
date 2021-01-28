@@ -269,6 +269,8 @@ class classreader_TestCase(unittest.TestCase):
 				":ERROR: 'element in fields list' is "+
 				"supposed to have the type of 'str', but"+
 				" found type of '<class 'int'>' instead")
+		#every thing is fine
+		validate_fields(["abc","123","456"])
 		print("Test 10_1: validate_fields")
 
 
