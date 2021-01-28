@@ -32,10 +32,15 @@ Inputs:
 		- None :it was sent with the value of None
 """
 from classes.errors import *
+
 def json_receiver(request, saModel, neglect=None, extra=None):
 #def json_receiver(request, expected={}):
-	validate_fields(extra)
-	toReturn={}
+	validate_fields(function_name="json_receiver",variable_name="neglect",
+			fields=neglect)
+	validate_fields(function_name="json_receiver",variable_name="extra",
+			fields=extra)
+
+	result={}
 	#Validating that the request can be parsed to JSON
 	try:
 		body = request.get_json()
