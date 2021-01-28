@@ -54,7 +54,7 @@ class receiver_TestCase(unittest.TestCase):
 	def test_a_0_0_0(self):
 		print("Testing receiver")
 
-	def test_c_1_1_1_receiver_tests(self):
+	def test_a_1_1_1_receiver_tests(self):
 		#Testing the function of route "receiver_test/int"
 		response = self.client().post("/receiver/1")
 		#Expected to fail, No request body
@@ -65,7 +65,27 @@ class receiver_TestCase(unittest.TestCase):
 			"have the type of 'LocalProxy', but found "+
 			"type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test c_1_1_1: receiver_tests : request not flask_request")
+		print("Test a_1_1_1: receiver_tests : request not flask_request")
+
+	def test_a_1_1_2_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver/1")
+		#Expected to fail, No request body
+		data = json.loads(response.data)
+		#print(data)
+		self.assertEqual(data,{'message': "MoRBs:json_"+
+			"receiver:ERROR: 'request' is supposed to "+
+			"have the type of 'LocalProxy', but found "+
+			"type of '<class 'int'>' instead"})
+		self.assertEqual(response.status_code,200)
+		print("Test a_1_1_2: receiver_tests : request not flask_request")
+
+
+
+
+
+
+
 
 
 	"""def test_c_1_1_1_receiver_tests(self):

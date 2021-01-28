@@ -54,6 +54,15 @@ def create_app():
 		except Exception as e:
 			return jsonify({"message":str(e)}),200
 
+	@app.route("/receiver/2", methods=["POST"])
+	def receiver_test_case1():
+		# request is not request type
+		try:
+			json_receiver(request=request, 
+				saModel = 1, neglect=None, extra=None)
+		except Exception as e:
+			return jsonify({"message":str(e)}),200
+
 
 
 
