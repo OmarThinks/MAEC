@@ -69,10 +69,10 @@ class receiver_TestCase(unittest.TestCase):
 
 	def test_a_1_1_2_receiver_tests(self):
 		#Testing the function of route "receiver_test/int"
-		response = self.client().post("/receiver/1")
+		response = self.client().post("/receiver/2")
 		#Expected to fail, No request body
 		data = json.loads(response.data)
-		#print(data)
+		print(data)
 		self.assertEqual(data,{'message': "MoRBs:json_"+
 			"receiver:ERROR: 'request' is supposed to "+
 			"have the type of 'LocalProxy', but found "+
