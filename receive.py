@@ -33,15 +33,16 @@ Inputs:
 """
 from classes.errors import *
 from classes.classreader import filteredSaModelColumnsNames
-from checkpoint import Checkpoint
-from NotReceived import NotReceived
+from classes.checkpoint import Checkpoint
+from classes.NotReceived import NotReceived
 from flask import request as flask_request
 
 def json_receiver(request, saModel, neglect=None, extra=None):
 #def json_receiver(request, expected={}):
 	#validate request
+	print(type(flask_request),flush=True)
 	expectDataType(function_name="json_receiver",
-		variable_name="request",expected_type=flask_request,
+		variable_name="request",expected_type=type(flask_request),
 		input= request)
 	#validate neglect
 	validate_fields(function_name="json_receiver",variable_name="neglect",

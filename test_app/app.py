@@ -6,9 +6,9 @@ from sqlalchemy import Column, Integer, String, Boolean, Float
 
 
 import sys
-#sys.path.insert(0,'..')
+sys.path.insert(0,'..')
 from classes.classreader import convert_class_to_dict
-
+from receive import json_receiver
 
 app = Flask(__name__)
 app.debug = True
@@ -45,10 +45,13 @@ def home_route():
 
 
 
-@app.route("/receiver/1")
+@app.route("/receiver/1", methods=["POST"])
 def receiver_test_case1():
 	# request is not request type
-	pass
+	try:
+		json_receiver(request=1, saModel = 1, neglect=None, extra=None)
+	except Exception as e:
+		return jsonify({"message":str(e)}),200
 
 
 
