@@ -251,6 +251,15 @@ class classreader_TestCase(unittest.TestCase):
 	def test_10_1_validata_fields(self):
 		#fields = None
 		validate_fields(None)
+		try:
+			#Fields not list
+			validate_fields(123)
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:expectInRange"+
+				":validate_fields:ERROR:not_in_range_error"+
+				":'type(fields)' is not in this range "+
+				"[<class 'NoneType'>, <class 'list'>]")
 		print("Test 10_1: validate_fields")
 
 
