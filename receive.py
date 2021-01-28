@@ -40,6 +40,8 @@ def json_receiver(request, saModel, neglect=None, extra=None):
 	validate_fields(function_name="json_receiver",variable_name="extra",
 			fields=extra)
 
+
+	
 	result={}
 	#Validating that the request can be parsed to JSON
 	try:
@@ -53,10 +55,21 @@ def json_receiver(request, saModel, neglect=None, extra=None):
 	except:
 		return {"success":False,"result":{"status":400, 
 			"description":"there is no request body"}}
-	#Finally, return values
-	for key in (expected):
-		toReturn[key] = body.get(key,None)
-	return {"success":True,"result":toReturn}
+	
+	# what are the values that are required
+	to_expect=filteredSaModelColumnsNames(saModel,neglect)
+
+	result = {}
+	#receiving data
+	for key in to_expect:
+		result[key] = body.get(key,None)
+	
+	#receiving data
+	extra_values = {}
+	if extra!=None:
+		for key in extra:
+			extra_results[key] = body.get(key,None)
+	return {"success":True,"result":result,"extra_results":extra_results}
 
 
 

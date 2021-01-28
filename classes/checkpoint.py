@@ -53,7 +53,7 @@ from classreader import check_received
 class Ckeckpoint():
 	"""docstring for Ckeckpoint"""
 	def __init__(self, success, result,saModel,neglect=None,extra = None,
-		extra_values=None):
+		extra_results=None):
 		# Making sure that success is Boolean
 		expectDataType(function_name= "Checkpoint.__init__",
 			variable_name = "success",expected_type=bool,
@@ -84,7 +84,7 @@ class Ckeckpoint():
 			self.saModel = saModel
 			self.neglect = neglect
 			self.extra = extra
-			self.extra_values = extra_values
+			self.extra_results = extra_results
 			return
 
 		# Now succes is boolean and True
@@ -98,4 +98,4 @@ class Ckeckpoint():
 		self.saModel = saModel
 		self.neglect = neglect
 		self.extra = extra
-		self.extra_values = extra_values
+		self.extra_results = extra_results
