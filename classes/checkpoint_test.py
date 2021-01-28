@@ -141,10 +141,10 @@ class checkpoint_TestCase(unittest.TestCase):
 			extra=123)
 		except Exception as e:
 			#print(str(e))
-			self.assertEqual(str(e),"MoRBs:expectInRange"+
-				":Checkpoint.__init__:ERROR:not_in_range_"+
-				"error:'type(extra)' is not in this range"+
-				" [<class 'NoneType'>, <class 'list'>]")
+			self.assertEqual(str(e),"MoRBs:expectInRange:"+
+				"validate_fields:ERROR:not_in_range_error:"+
+				"'type(fields)' is not in this range [<class"+
+				" 'NoneType'>, <class 'list'>]")
 		#success=True, extra element not string
 		try:
 			Ckeckpoint(success=True, result=
@@ -152,10 +152,10 @@ class checkpoint_TestCase(unittest.TestCase):
 			extra=["123","456",789])
 		except Exception as e:
 			#print(str(e))
-			self.assertEqual(str(e),"MoRBs:Checkpoint."+
-				"__init__:ERROR: 'element in extra' "+
-				"is supposed to have the type of 'str',"+
-				" but found type of '<class 'int'>' instead")
+			self.assertEqual(str(e),"MoRBs:validate_fields:ERROR:"+
+				" 'element in fields list' is supposed to have"+
+				" the type of 'str', but found type of "+
+				"'<class 'int'>' instead")
 		#successful
 		cp = Ckeckpoint(success=True, result=
 			{"in_stock":1,"name":1,"price":1},saModel=saTestClass2)
