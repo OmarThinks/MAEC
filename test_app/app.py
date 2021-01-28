@@ -46,16 +46,16 @@ def create_app():
 
 
 
-	@app.route("/receiver/1", methods=["POST"])
-	def receiver_test_case1():
+	@app.route("/json_receiver/1", methods=["POST"])
+	def json_receiver_test_case1():
 		# request is not request type
 		try:
 			json_receiver(request=1, saModel = 1, neglect=None, extra=None)
 		except Exception as e:
 			return jsonify({"message":str(e)}),200
 
-	@app.route("/receiver/2", methods=["POST"])
-	def receiver_test_case2():
+	@app.route("/json_receiver/2", methods=["POST"])
+	def json_receiver_test_case2():
 		# saModel fails
 		try:
 			json_receiver(request=request, 
@@ -65,8 +65,8 @@ def create_app():
 			return jsonify({"message":str(e)}),200
 
 
-	@app.route("/receiver/3", methods=["POST"])
-	def receiver_test_case3():
+	@app.route("/json_receiver/3", methods=["POST"])
+	def json_receiver_test_case3():
 		# neglect fails
 		try:
 			json_receiver(request=request, 
@@ -76,8 +76,8 @@ def create_app():
 		except Exception as e:
 			return jsonify({"message":str(e)}),200
 
-	@app.route("/receiver/4", methods=["POST"])
-	def receiver_test_case4():
+	@app.route("/json_receiver/4", methods=["POST"])
+	def json_receiver_test_case4():
 		# extra fails
 		try:
 			json_receiver(request=request, 
@@ -87,9 +87,9 @@ def create_app():
 		except Exception as e:
 			return jsonify({"message":str(e)}),200
 
-	@app.route("/receiver/5", methods=["POST"])
-	def receiver_test_case4():
-		# neglect fails, a field is not in the asModel
+	@app.route("/json_receiver/5", methods=["POST"])
+	def json_receiver_test_case5():
+		# There is no request body
 		try:
 			json_receiver(request=request, 
 				saModel = Product, neglect=["abc"], 

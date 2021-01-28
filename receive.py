@@ -73,7 +73,6 @@ def json_receiver(request, saModel, neglect=None, extra=None):
 	
 	# what are the values that are required
 	to_expect=filteredSaModelColumnsNames(saModel,neglect)
-
 	result = {}
 	#receiving data
 	for key in to_expect:

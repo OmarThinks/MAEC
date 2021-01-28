@@ -52,24 +52,24 @@ class receiver_TestCase(unittest.TestCase):
 
 
 	def test_a_0_0_0(self):
-		print("Testing receiver")
+		print("Testing json_receiver")
 
-	def test_a_1_1_1_receiver_tests(self):
-		#Testing the function of route "receiver_test/int"
-		response = self.client().post("/receiver/1")
+	def test_a_1_1_1_json_receiver_tests(self):
+		#Testing the function of route "json_receiver_test/int"
+		response = self.client().post("/json_receiver/1")
 		#Expected to fail, No request body
 		data = json.loads(response.data)
 		#print(data)
 		self.assertEqual(data,{'message': "MoRBs:json_"+
-			"receiver:ERROR: 'request' is supposed to "+
+			"json_receiver:ERROR: 'request' is supposed to "+
 			"have the type of 'LocalProxy', but found "+
 			"type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_1: receiver_tests : request not flask_request")
+		print("Test a_1_1_1: json_receiver_tests : request not flask_request")
 
-	def test_a_1_1_2_receiver_tests(self):
-		#Testing the function of route "receiver_test/int"
-		response = self.client().post("/receiver/2")
+	def test_a_1_1_2_json_receiver_tests(self):
+		#Testing the function of route "json_receiver_test/int"
+		response = self.client().post("/json_receiver/2")
 		#Expected to fail, No request body
 		data = json.loads(response.data)
 		#print(data)
@@ -78,11 +78,11 @@ class receiver_TestCase(unittest.TestCase):
 			" to have the type of 'DeclarativeMeta', but"+
 			" found type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_2: receiver_tests : Not saModel")
+		print("Test a_1_1_2: json_receiver_tests : Not saModel")
 
-	def test_a_1_1_3_receiver_tests(self):
-		#Testing the function of route "receiver_test/int"
-		response = self.client().post("/receiver/3")
+	def test_a_1_1_3_json_receiver_tests(self):
+		#Testing the function of route "json_receiver_test/int"
+		response = self.client().post("/json_receiver/3")
 		#Expected to fail, No request body
 		data = json.loads(response.data)
 		#print(data)
@@ -91,11 +91,11 @@ class receiver_TestCase(unittest.TestCase):
 			" list' is supposed to have the type of 'str'"+
 			", but found type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_3: receiver_tests : neglect fails")
+		print("Test a_1_1_3: json_receiver_tests : neglect fails")
 
-	def test_a_1_1_4_receiver_tests(self):
+	def test_a_1_1_4_json_receiver_tests(self):
 		#Testing the function of route "receiver_test/int"
-		response = self.client().post("/receiver/4")
+		response = self.client().post("/json_receiver/4")
 		#Expected to fail, No request body
 		data = json.loads(response.data)
 		#print(data)
@@ -104,7 +104,21 @@ class receiver_TestCase(unittest.TestCase):
 			"list' is supposed to have the type of 'str'"+
 			", but found type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_4: receiver_tests : extra fails")
+		print("Test a_1_1_4: json_receiver_tests : extra fails")
+
+	def test_a_1_1_5_json_receiver_tests(self):
+		#Testing the function of route "json_receiver_test/int"
+		response = self.client().post("/json_receiver/5")
+		#Expected to fail, No request body
+		data = json.loads(response.data)
+		print(data)
+		self.assertEqual(data,{'message': "MoRBs:"+
+			"json_receiver:ERROR: 'element in extra "+
+			"list' is supposed to have the type of 'str'"+
+			", but found type of '<class 'int'>' instead"})
+		self.assertEqual(response.status_code,200)
+		print("Test a_1_1_5: json_receiver_tests : neglect fails,"+
+			" a field not in saModel")
 
 
 
