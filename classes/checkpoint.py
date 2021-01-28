@@ -48,7 +48,7 @@ Tolerance:
 """
 
 from errors import *
-from classreader import check_received, validate_fields
+from classreader import check_received
 
 class Ckeckpoint():
 	"""docstring for Ckeckpoint"""
@@ -86,9 +86,10 @@ class Ckeckpoint():
 			return
 
 		# Now succes is boolean and True
-		check_received(function_name="Ckeckpoint",
+		check_received(function_name="Checkpoint.__init__",
 			saModel=saModel,received=result,neglect=neglect)
-		validate_fields(extra)
+		validate_fields(function_name = "Checkpoint.__init__",
+			variable_name="extra",fields=extra)
 		"""if extra != None:
 			expectInRange(function_name="Checkpoint.__init__",
 				variable_name="type(extra)",

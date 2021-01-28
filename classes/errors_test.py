@@ -153,6 +153,38 @@ class errors_TestCase(unittest.TestCase):
 
 
 
+	def test_009_1_validata_fields(self):
+		#fields = None
+		validate_fields(function_name="tst",variable_name="abc",
+			fields=None)
+		try:
+			#Fields not list
+			validate_fields(function_name="tst",variable_name="abc",
+				fields=123)
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:expectInRange"+
+				":tst:ERROR:not_in_range_error:'type(abc)'"+
+				" is not in this range [<class 'NoneType'>"+
+				", <class 'list'>]")
+		try:
+			#Fields not list, but there is a not string
+			validate_fields(function_name="tst",variable_name="abc",
+			fields=["abc","123",456])
+		except Exception as e:
+			#print(str(e))
+			self.assertEqual(str(e),"MoRBs:tst:ERROR: "+
+				"'element in abc list' is supposed to have"+
+				" the type of 'str', but found type of "+
+				"'<class 'int'>' instead")
+		#every thing is fine
+		validate_fields(function_name="tst",variable_name="abc",
+			fields=["abc","123","456"])
+		print("Test 10_1: validate_fields")
+
+
+
+
 
 
 # Make the tests conveniently executable

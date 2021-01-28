@@ -101,7 +101,7 @@ validate_fields
 - Output:
 	- There are no outputs, there is only validation
 """
-def validate_fields(function_name,variable_name,fields)(fields):
+def validate_fields(function_name,variable_name,fields):
 	if fields != None:
 		expectInRange(function_name=function_name,
 			variable_name="type("+str(variable_name)+")",

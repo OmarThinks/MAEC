@@ -31,7 +31,7 @@ Inputs:
 		- NotRecieved() :means that has not been sent at all
 		- None :it was sent with the value of None
 """
-from classes.classreader import validate_fields
+from classes.errors import *
 def json_receiver(request, saModel, neglect=None, extra=None):
 #def json_receiver(request, expected={}):
 	validate_fields(extra)
