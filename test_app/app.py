@@ -56,10 +56,22 @@ def create_app():
 
 	@app.route("/receiver/2", methods=["POST"])
 	def receiver_test_case2():
-		# request is not request type
+		# saModel fails
 		try:
 			json_receiver(request=request, 
 				saModel = 1, neglect=None, extra=None)
+			return jsonify({"message":"abc"}),200
+		except Exception as e:
+			return jsonify({"message":str(e)}),200
+
+
+	@app.route("/receiver/3", methods=["POST"])
+	def receiver_test_case3():
+		# neglect fails
+		try:
+			json_receiver(request=request, 
+				saModel = Product, neglect=["abc","dfg",123], 
+				extra=None)
 			return jsonify({"message":"abc"}),200
 		except Exception as e:
 			return jsonify({"message":str(e)}),200
