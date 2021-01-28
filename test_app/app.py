@@ -87,6 +87,17 @@ def create_app():
 		except Exception as e:
 			return jsonify({"message":str(e)}),200
 
+	@app.route("/receiver/5", methods=["POST"])
+	def receiver_test_case4():
+		# neglect fails, a field is not in the asModel
+		try:
+			json_receiver(request=request, 
+				saModel = Product, neglect=["abc"], 
+				extra=None)#'abc' is not a field in the saModel
+			return jsonify({"message":"abc"}),200
+		except Exception as e:
+			return jsonify({"message":str(e)}),200
+
 
 
 
