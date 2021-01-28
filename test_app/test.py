@@ -72,13 +72,13 @@ class receiver_TestCase(unittest.TestCase):
 		response = self.client().post("/receiver/2")
 		#Expected to fail, No request body
 		data = json.loads(response.data)
-		print(data)
-		self.assertEqual(data,{'message': "MoRBs:json_"+
-			"receiver:ERROR: 'request' is supposed to "+
-			"have the type of 'LocalProxy', but found "+
-			"type of '<class 'int'>' instead"})
+		#print(data)
+		self.assertEqual(data,{'message': "MoRBs:"+
+			"json_receiver:ERROR: 'saModel' is supposed"+
+			" to have the type of 'DeclarativeMeta', but"+
+			" found type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_2: receiver_tests : request not flask_request")
+		print("Test a_1_1_2: receiver_tests : Not saModel")
 
 
 
