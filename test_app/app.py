@@ -7,8 +7,8 @@ from sqlalchemy import Column, Integer, String, Boolean, Float
 
 import sys
 sys.path.insert(0,'..')
-from classes.classreader import convert_class_to_dict
 from receive import json_receiver
+from classes.classreader import convert_class_to_dict
 
 
 engine = create_engine('sqlite:///database/database.sqlite', convert_unicode=True)
@@ -89,14 +89,17 @@ def create_app():
 
 	@app.route("/json_receiver/5", methods=["POST"])
 	def json_receiver_test_case5():
-		# There is no request body
+		# neglect has something wrong
+		#
 		try:
 			received = json_receiver(request=request, 
 				saModel = Product, neglect=["abc"], 
 				extra=None)#'abc' is not a field in the saModel
 			return jsonify(received),200
 		except Exception as e:
+			raise e
 			return jsonify({"message":str(e)}),200
+
 
 
 

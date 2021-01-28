@@ -1,3 +1,4 @@
+"""
 try:
 	from .NotReceived import NotReceived
 	from .errors import *
@@ -8,7 +9,7 @@ except Exception as e:
 	from errors import *
 	from classreader import *
 	from checkpoint import Checkpoint
-
+"""
 
 """
 import sys

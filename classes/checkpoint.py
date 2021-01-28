@@ -50,10 +50,22 @@ Tolerance:
 #from errors import *
 #from classreader import check_received
 
+"""
 try:
 	from __init__ import *
 except Exception as e:
 	from .__init__ import *
+"""
+
+try:
+	from .NotReceived import NotReceived
+	from .errors import *
+	from .classreader import *
+except Exception as e:
+	from NotReceived import NotReceived
+	from errors import *
+	from classreader import *
+
 
 class Checkpoint():
 	"""docstring for Ckeckpoint"""

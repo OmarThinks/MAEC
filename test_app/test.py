@@ -67,7 +67,7 @@ class receiver_TestCase(unittest.TestCase):
 		self.assertEqual(response.status_code,200)
 		print("Test a_1_1_1: json_receiver_tests : request not flask_request")
 
-	def test_a_1_1_2_json_receiver_tests(self):
+	def test_a_1_2_1_json_receiver_tests(self):
 		#Testing the function of route "json_receiver_test/int"
 		response = self.client().post("/json_receiver/2")
 		#Expected to fail, No request body
@@ -78,9 +78,9 @@ class receiver_TestCase(unittest.TestCase):
 			" to have the type of 'DeclarativeMeta', but"+
 			" found type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_2: json_receiver_tests : Not saModel")
+		print("Test a_1_2_1: json_receiver_tests : Not saModel")
 
-	def test_a_1_1_3_json_receiver_tests(self):
+	def test_a_1_3_1_json_receiver_tests(self):
 		#Testing the function of route "json_receiver_test/int"
 		response = self.client().post("/json_receiver/3")
 		#Expected to fail, No request body
@@ -91,9 +91,9 @@ class receiver_TestCase(unittest.TestCase):
 			" list' is supposed to have the type of 'str'"+
 			", but found type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_3: json_receiver_tests : neglect fails")
+		print("Test a_1_3_1: json_receiver_tests : neglect fails")
 
-	def test_a_1_1_4_json_receiver_tests(self):
+	def test_a_1_4_1_json_receiver_tests(self):
 		#Testing the function of route "receiver_test/int"
 		response = self.client().post("/json_receiver/4")
 		#Expected to fail, No request body
@@ -104,9 +104,9 @@ class receiver_TestCase(unittest.TestCase):
 			"list' is supposed to have the type of 'str'"+
 			", but found type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_4: json_receiver_tests : extra fails")
+		print("Test a_1_4_1: json_receiver_tests : extra fails")
 
-	def test_a_1_1_5_json_receiver_tests(self):
+	def test_a_1_5_1_json_receiver_tests(self):
 		#Testing the function of route "json_receiver_test/int"
 		response = self.client().post("/json_receiver/5")
 		#Expected to fail, No request body
@@ -116,7 +116,20 @@ class receiver_TestCase(unittest.TestCase):
 			'description': 'there is no request body',
 			'status': 400}, 'success': False})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_5: json_receiver_tests : neglect fails,"+
+		print("Test a_1_5_1: json_receiver_tests : neglect fails,"+
+			" a field not in saModel")
+
+	def test_a_1_5_2_json_receiver_tests(self):
+		#Testing the function of route "json_receiver_test/int"
+		response = self.client().post("/json_receiver/5",json={})
+		#Expected to fail, No request body
+		data = json.loads(response.data)
+		print(data)
+		self.assertEqual(data,{'result': {
+			'description': 'there is no request body',
+			'status': 400}, 'success': False})
+		self.assertEqual(response.status_code,200)
+		print("Test a_1_5_2: json_receiver_tests : neglect fails,"+
 			" a field not in saModel")
 
 

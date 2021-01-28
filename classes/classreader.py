@@ -10,12 +10,22 @@ def filteredSaModelColumnsNames(saModel,neglect=None)
 def check_received(function_name,saModel,received,neglect=None)
 def validate_fields(fields):
 """
-
+"""
 try:
 	from __init__ import *
-except Exception as e:
+except:
 	from .__init__ import *
 
+
+#from .NotReceived import *
+"""
+
+try:
+	from .NotReceived import NotReceived
+	from .errors import *
+except Exception as e:
+	from NotReceived import NotReceived
+	from errors import *
 
 #from errors import *
 import inspect
