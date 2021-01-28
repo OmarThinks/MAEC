@@ -104,19 +104,3 @@ class Ckeckpoint():
 		self.saModel = saModel
 		self.neglect = neglect
 		self.extra = extra
-
-
-
-"""
-validate_fields
-- Inputs:
-	- fields: a list of strings
-		- Example: ["page","max_in_page"]
-- Function: 
-	- validate this input, and raise error if something went wrong
-- Output:
-	- There are no outputs, there is only validation
-"""
-
-def validate_fields(fields):
-	pass
