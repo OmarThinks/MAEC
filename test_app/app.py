@@ -5,6 +5,9 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy import Column, Integer, String, Boolean, Float
 
 
+import sys
+#sys.path.insert(0,'..')
+from classes.classreader import convert_class_to_dict
 
 
 app = Flask(__name__)
@@ -45,7 +48,7 @@ def home_route():
 @app.route("/receiver/1")
 def receiver_test_case1():
 	# request is not request type
-	
+	pass
 
 
 
