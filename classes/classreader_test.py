@@ -249,7 +249,8 @@ class classreader_TestCase(unittest.TestCase):
 
 
 	def test_10_1_validata_fields(self):
-		#Exactly
+		#fields = None
+		validate_fields(None)
 		print("Test 10_1: validate_fields")
 
 
