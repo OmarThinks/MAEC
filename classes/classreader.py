@@ -8,6 +8,7 @@ def saColumnReader(sqlalchmey_column)
 def sa_primary_keys_names(saModel)
 def filteredSaModelColumnsNames(saModel,neglect=None)
 def check_received(function_name,saModel,received,neglect=None)
+def validate_fields(fields):
 """
 
 from errors import *
@@ -323,7 +324,6 @@ validate_fields
 - Output:
 	- There are no outputs, there is only validation
 """
-
 def validate_fields(fields):
 	if fields != None:
 		expectInRange(function_name="validate_fields",

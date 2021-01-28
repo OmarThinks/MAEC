@@ -27,7 +27,7 @@ class classreader_TestCase(unittest.TestCase):
 
 
 
-	def test_1_1_convert_class_to_dict(self):
+	def test_01_1_convert_class_to_dict(self):
 		#Testing with a normal class
 		class testClass():
 			abc = 5
@@ -39,9 +39,9 @@ class classreader_TestCase(unittest.TestCase):
 		
 		#Testing an instance of the class
 		self.assertEqual(convert_class_to_dict(mytest),{"abc":5,"efg":748})
-		print("Test 1_1:convert_class_to_dict")
+		print("Test 01_1:convert_class_to_dict")
 
-	def test_1_1_convert_class_to_dict(self):
+	def test_01_1_convert_class_to_dict(self):
 		#Testing with a normal class
 		class testClass():
 			abc = 5
@@ -53,9 +53,9 @@ class classreader_TestCase(unittest.TestCase):
 		
 		#Testing an instance of the class
 		self.assertEqual(convert_class_to_dict(mytest),{"abc":5,"efg":748})
-		print("Test 1_1:convert_class_to_dict")
+		print("Test 01_1:convert_class_to_dict")
 
-	def test_2_1_getSAModelColumns(self):
+	def test_02_1_getSAModelColumns(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass2(Base):
@@ -69,9 +69,9 @@ class classreader_TestCase(unittest.TestCase):
 		for key in sa_dict:
 			self.assertEqual(type(sa_dict[key]),InstrumentedAttribute)
 	
-		print("Test 1_2:getSAModelColumns")
+		print("Test 02_1:getSAModelColumns")
 
-	def test_3_1_get_sa_all_columns_names(self):
+	def test_03_1_get_sa_all_columns_names(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass2(Base):
@@ -81,9 +81,9 @@ class classreader_TestCase(unittest.TestCase):
 		#Testing the class itself
 		names = get_sa_all_columns_names(saTestClass2)
 		self.assertEqual(names,["id","name"])
-		print("Test 3_1:get_sa_all_columns_names")
+		print("Test 03_1:get_sa_all_columns_names")
 
-	def test_4_1_validate_column_name_exists(self):
+	def test_04_1_validate_column_name_exists(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass2(Base):
@@ -99,9 +99,9 @@ class classreader_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:expectInRange:valid"+
 				"ate_column_name_exists:ERROR:not_in_range_er"+
 				"ror:'saColName' is not in this range ['id', 'name']")
-		print("Test 4_1:validate_column_name_exists")
+		print("Test 04_1:validate_column_name_exists")
 
-	def test_5_1_validate_columns_in_saModel(self):
+	def test_05_1_validate_columns_in_saModel(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass2(Base):
@@ -128,9 +128,9 @@ class classreader_TestCase(unittest.TestCase):
 				":validate_column_name_exists:ERROR:not_"+
 				"in_range_error:'saColName' is not in this"+
 				" range ['id', 'name']")
-		print("Test 5_1:validate_columns_in_saModel")
+		print("Test 05_1:validate_columns_in_saModel")
 
-	def test_6_1_saColumnReader(self):
+	def test_06_1_saColumnReader(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -146,9 +146,9 @@ class classreader_TestCase(unittest.TestCase):
 			"'key': 'id', 'name': 'id', 'nullable': False,"+
 			" 'primary_key': True, 'type': Integer(),"+
 			" 'unique': None}")
-		print("Test 6_1:saColumnReader")
+		print("Test 06_1:saColumnReader")
 
-	def test_7_1_sa_primary_keys_names(self):
+	def test_07_1_sa_primary_keys_names(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -156,9 +156,9 @@ class classreader_TestCase(unittest.TestCase):
 			id = Column(Integer, primary_key=True, nullable=False)
 			name = Column(String(63))
 		self.assertEqual(sa_primary_keys_names(saTestClass3),["id"])
-		print("Test 7_1:sa_primary_keys_names")
+		print("Test 07_1:sa_primary_keys_names")
 
-	def test_8_1_filteredSaModelColumnsNames(self):
+	def test_08_1_filteredSaModelColumnsNames(self):
 		#Testing with a SQLAlchemy declarative base class
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -188,9 +188,9 @@ class classreader_TestCase(unittest.TestCase):
 			self.assertEqual(str(e),"MoRBs:expectInRange:validate"+
 				"_column_name_exists:ERROR:not_in_range_error:"+
 				"'saColName' is not in this range ['id', 'name']")
-		print("Test 8_1:filteredSaModelColumnsNames")
+		print("Test 08_1:filteredSaModelColumnsNames")
 
-	def test_9_1_check_received(self):
+	def test_09_1_check_received(self):
 		#Exactly
 		Base = declarative_base()
 		class saTestClass3(Base):
@@ -244,11 +244,13 @@ class classreader_TestCase(unittest.TestCase):
 				"ERROR: 'received' is supposed to have the type"+
 				" of 'dict', but found type of '<class 'int'>'"+
 				" instead")
-		print("Test 9_1: check_received")
+		print("Test 09_1: check_received")
 
 
 
-
+	def test_10_1_validata_fields(self):
+		#Exactly
+		print("Test 10_1: validate_fields")
 
 
 
