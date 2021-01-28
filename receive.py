@@ -34,6 +34,7 @@ Inputs:
 from classes.errors import *
 from classes.classreader import filteredSaModelColumnsNames
 from checkpoint import Checkpoint
+from NotReceived import NotReceived
 from flask import request as flask_request
 
 def json_receiver(request, saModel, neglect=None, extra=None):
@@ -60,7 +61,7 @@ def json_receiver(request, saModel, neglect=None, extra=None):
 			"description":"request body can not be parsed to json"}}
 	#Validating that there is a request body
 	try:
-		testing = body.get("testing",None)
+		testing = body.get("testing",NotReceived())
 	except:
 		return {"success":False,"result":{"status":400, 
 			"description":"there is no request body"}}
@@ -71,7 +72,7 @@ def json_receiver(request, saModel, neglect=None, extra=None):
 	result = {}
 	#receiving data
 	for key in to_expect:
-		result[key] = body.get(key,None)
+		result[key] = body.get(key,NotReceived())
 	
 	#receiving data
 	extra_values = {}

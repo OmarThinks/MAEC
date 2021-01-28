@@ -44,8 +44,8 @@ def home_route():
 
 @app.route("/receiver/1")
 def receiver_test_case1():
-	# request is not sent to the method
-
+	# request is not request type
+	
 
 
 
