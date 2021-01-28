@@ -33,6 +33,7 @@ Inputs:
 """
 from classes.errors import *
 from classes.classreader import filteredSaModelColumnsNames
+from checkpoint import Checkpoint
 
 def json_receiver(request, saModel, neglect=None, extra=None):
 #def json_receiver(request, expected={}):
