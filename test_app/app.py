@@ -91,10 +91,10 @@ def create_app():
 	def json_receiver_test_case5():
 		# There is no request body
 		try:
-			json_receiver(request=request, 
+			received = json_receiver(request=request, 
 				saModel = Product, neglect=["abc"], 
 				extra=None)#'abc' is not a field in the saModel
-			return jsonify({"message":"abc"}),200
+			return jsonify(received),200
 		except Exception as e:
 			return jsonify({"message":str(e)}),200
 

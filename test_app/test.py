@@ -111,11 +111,10 @@ class receiver_TestCase(unittest.TestCase):
 		response = self.client().post("/json_receiver/5")
 		#Expected to fail, No request body
 		data = json.loads(response.data)
-		print(data)
-		self.assertEqual(data,{'message': "MoRBs:"+
-			"json_receiver:ERROR: 'element in extra "+
-			"list' is supposed to have the type of 'str'"+
-			", but found type of '<class 'int'>' instead"})
+		#print(data)
+		self.assertEqual(data,{'result': {
+			'description': 'there is no request body',
+			'status': 400}, 'success': False})
 		self.assertEqual(response.status_code,200)
 		print("Test a_1_1_5: json_receiver_tests : neglect fails,"+
 			" a field not in saModel")
