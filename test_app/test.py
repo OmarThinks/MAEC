@@ -91,7 +91,20 @@ class receiver_TestCase(unittest.TestCase):
 			" list' is supposed to have the type of 'str'"+
 			", but found type of '<class 'int'>' instead"})
 		self.assertEqual(response.status_code,200)
-		print("Test a_1_1_3: receiver_tests : Not saModel")
+		print("Test a_1_1_3: receiver_tests : neglect fails")
+
+	def test_a_1_1_4_receiver_tests(self):
+		#Testing the function of route "receiver_test/int"
+		response = self.client().post("/receiver/4")
+		#Expected to fail, No request body
+		data = json.loads(response.data)
+		#print(data)
+		self.assertEqual(data,{'message': "MoRBs:"+
+			"json_receiver:ERROR: 'element in extra "+
+			"list' is supposed to have the type of 'str'"+
+			", but found type of '<class 'int'>' instead"})
+		self.assertEqual(response.status_code,200)
+		print("Test a_1_1_4: receiver_tests : extra fails")
 
 
 
