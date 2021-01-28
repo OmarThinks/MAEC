@@ -32,6 +32,7 @@ Inputs:
 		- None :it was sent with the value of None
 """
 from classes.errors import *
+from classes.classreader import filteredSaModelColumnsNames
 
 def json_receiver(request, saModel, neglect=None, extra=None):
 #def json_receiver(request, expected={}):
