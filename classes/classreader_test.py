@@ -8,10 +8,7 @@ from sqlalchemy import Column
 from sqlalchemy import (String, Integer, Float, Boolean)
 #from NotReceived import NotReceived
 
-try:
-	from __init__ import *
-except Exception as e:
-	from .__init__ import *
+from classreader import *
 
 unittest.TestLoader.sortTestMethodsUsing = None
 

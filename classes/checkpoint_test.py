@@ -1,10 +1,7 @@
 import unittest
 
+from checkpoint import *
 
-try:
-	from __init__ import *
-except Exception as e:
-	from .__init__ import *
 
 """
 #if __name__ == '__main__':
